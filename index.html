@@ -61,7 +61,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   margin-bottom: 12px; border: 1px solid var(--border);
 }
 .card-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--accent2); }
-.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
 .stat-card {
   background: var(--surface); border-radius: 12px; padding: 14px;
   border: 1px solid var(--border); text-align: center;
@@ -160,23 +160,52 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .mastery-learning { background: var(--red-bg); color: var(--red); }
 .mastery-mature { background: var(--green-bg); color: var(--green); }
 
-/* Vocab table */
-.vocab-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.vocab-table th {
-  text-align: left; padding: 8px 10px; background: var(--surface2);
-  color: var(--text2); font-size: 11px; font-weight: 600; position: sticky; top: 0; z-index: 1;
+/* Vocab list (card-based for mobile) */
+.vocab-card {
+  padding: 12px; border-bottom: 1px solid var(--border);
 }
-.vocab-table td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-.vocab-table tr:hover td { background: rgba(59,130,246,0.05); }
-.vocab-word-cell { font-weight: 600; font-size: 14px; color: var(--accent2); }
+.vocab-card:last-child { border-bottom: none; }
+.vocab-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.vocab-left { flex: 1; }
+.vocab-word-cell { font-weight: 700; font-size: 15px; color: var(--accent2); }
+.vocab-ja-inline { font-size: 13px; color: var(--text); margin-top: 2px; }
 .vocab-pos { font-size: 10px; color: var(--text2); font-style: italic; }
-.vocab-actions { display: flex; gap: 4px; align-items: center; margin-top: 6px; }
+.vocab-right { display: flex; gap: 6px; align-items: center; flex-shrink: 0; margin-left: 8px; }
 .btn-master {
-  padding: 3px 8px; border-radius: 4px; border: 1px solid var(--green);
+  padding: 4px 10px; border-radius: 4px; border: 1px solid var(--green);
   background: var(--green-bg); color: var(--green);
   font-size: 10px; cursor: pointer; font-weight: 600; font-family: inherit; white-space: nowrap;
 }
 .btn-master:hover { background: var(--green); color: white; }
+.vocab-example-toggle {
+  font-size: 12px; color: var(--accent2); cursor: pointer;
+  background: none; border: none; padding: 4px 0; margin-top: 6px; font-family: inherit;
+}
+.vocab-example-body {
+  display: none; margin-top: 8px; padding: 10px; background: var(--surface2);
+  border-radius: 8px; font-size: 13px; line-height: 1.6;
+}
+.vocab-example-body.open { display: block; }
+.vocab-example-en { font-style: italic; color: var(--text); margin-bottom: 6px; }
+.vocab-example-ja { color: var(--text2); }
+
+/* Read count button */
+.read-count-area {
+  display: flex; justify-content: center; margin: 20px 0 16px;
+}
+.read-count-btn {
+  padding: 12px 24px; border-radius: 12px; border: 2px solid var(--accent);
+  background: var(--surface); color: var(--accent2);
+  font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit;
+  display: flex; align-items: center; gap: 8px; transition: all 0.2s;
+}
+.read-count-btn:hover { background: var(--accent); color: white; }
+.read-count-btn:active { transform: scale(0.95); }
+.read-count-num {
+  background: var(--accent); color: white; border-radius: 50%;
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+}
 
 /* Flashcard */
 .flashcard {
@@ -242,7 +271,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .tab.active { background: var(--accent); border-color: var(--accent); color: white; }
 
 @media (min-width: 600px) {
-  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); }
   .essay-en { font-size: 17px; }
   main { padding: 24px 24px 80px; }
 }
@@ -260,10 +289,12 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <p id="home-date"></p>
     </div>
     <div class="stats-grid">
-      <div class="stat-card"><div class="stat-num" id="stat-essays">0</div><div class="stat-label">Essays</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-words">0</div><div class="stat-label">Words</div></div>
-      <div class="stat-card"><div class="stat-num" id="stat-due">0</div><div class="stat-label">Due Today</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-read-essays">0</div><div class="stat-label">Essays Read</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-read-words">0</div><div class="stat-label">Words Read</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-vocab">0</div><div class="stat-label">Vocab Total</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-mastered">0</div><div class="stat-label">Mastered</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-due">0</div><div class="stat-label">Due Today</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-total-reads">0</div><div class="stat-label">Total Reads</div></div>
     </div>
     <div id="due-alert" class="card" style="display:none; border-color: var(--orange);">
       <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -303,6 +334,12 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <div class="essay-ja-panel" id="essay-ja-panel"></div>
     </div>
 
+    <div class="read-count-area">
+      <button class="read-count-btn" onclick="incrementReadCount()">
+        Read Complete <span class="read-count-num" id="read-count-num">0</span>
+      </button>
+    </div>
+
     <button class="section-toggle" onclick="toggleSection(this)">
       Glossary <span class="arrow">▼</span>
     </button>
@@ -329,11 +366,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
       <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
     </div>
-    <div class="card" style="padding:0; overflow-x:auto;">
-      <table class="vocab-table">
-        <thead><tr><th>Word</th><th>和訳</th><th>例文和訳</th><th>Example</th><th style="width:70px;">Status</th></tr></thead>
-        <tbody id="vocab-list"></tbody>
-      </table>
+    <div class="card" style="padding:0;">
+      <div id="vocab-list"></div>
     </div>
     <div id="vocab-count" style="text-align:center; font-size:12px; color:var(--text2); margin-top:8px;"></div>
   </div>
@@ -404,6 +438,20 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     </div>
     <div class="card-title" style="margin: 16px 0 8px;">Upcoming Reviews</div>
     <div id="upcoming-reviews"></div>
+    <div class="card-title" style="margin: 16px 0 8px;">Progress (Last 14 Days)</div>
+    <div class="card" style="padding:12px;">
+      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Words Read per Day</div>
+      <canvas id="chart-words-read" height="150" style="width:100%;"></canvas>
+    </div>
+    <div class="card" style="padding:12px; margin-top:8px;">
+      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Vocabulary Growth (Cumulative)</div>
+      <canvas id="chart-vocab-growth" height="150" style="width:100%;"></canvas>
+    </div>
+    <div class="card" style="padding:12px; margin-top:8px;">
+      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Quiz Reviews per Day</div>
+      <canvas id="chart-reviews" height="150" style="width:100%;"></canvas>
+    </div>
+
     <div class="card-title" style="margin: 16px 0 8px;">Mastery Distribution</div>
     <div class="card" id="mastery-chart"></div>
     <div class="card-title" style="margin: 16px 0 8px;">Study History</div>
@@ -451,10 +499,12 @@ function loadState() {
       if (!p.vocabulary) p.vocabulary = {};
       if (!p.essaysRead) p.essaysRead = [];
       if (!p.studyHistory) p.studyHistory = [];
+      if (!p.readCounts) p.readCounts = {};
+      if (!p.dailyStats) p.dailyStats = {};
       return p;
     }
   } catch (e) { localStorage.removeItem(STORAGE_KEY); }
-  return { vocabulary: {}, essaysRead: [], studyHistory: [], lastStudyDate: null };
+  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, lastStudyDate: null };
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
@@ -506,13 +556,25 @@ function showPage(page) {
 
 // === DASHBOARD ===
 function updateDashboard() {
-  const totalWords = Object.keys(state.vocabulary).length;
+  const totalVocab = Object.keys(state.vocabulary).length;
   const dueWords = getDueWords().length;
   const masteredWords = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
-  document.getElementById('stat-essays').textContent = ESSAYS.length;
-  document.getElementById('stat-words').textContent = totalWords;
-  document.getElementById('stat-due').textContent = dueWords;
+  // Essays read count (unique essays with readCount > 0)
+  const essaysRead = Object.keys(state.readCounts).filter(k => state.readCounts[k] > 0).length;
+  // Total words read (sum of wordCount * readCount for each essay)
+  let wordsRead = 0;
+  let totalReads = 0;
+  Object.entries(state.readCounts).forEach(([id, count]) => {
+    const essay = ESSAYS.find(e => e.id === id);
+    if (essay) wordsRead += essay.wordCount * count;
+    totalReads += count;
+  });
+  document.getElementById('stat-read-essays').textContent = essaysRead;
+  document.getElementById('stat-read-words').textContent = wordsRead.toLocaleString();
+  document.getElementById('stat-vocab').textContent = totalVocab;
   document.getElementById('stat-mastered').textContent = masteredWords;
+  document.getElementById('stat-due').textContent = dueWords;
+  document.getElementById('stat-total-reads').textContent = totalReads;
 
   const dueAlert = document.getElementById('due-alert');
   if (dueWords > 0) { dueAlert.style.display = 'block'; document.getElementById('due-count-alert').textContent = dueWords; }
@@ -522,12 +584,14 @@ function updateDashboard() {
   if (dueWords > 0) { badge.style.display = 'block'; badge.textContent = dueWords; }
   else badge.style.display = 'none';
 
-  document.getElementById('essay-list').innerHTML = ESSAYS.slice().reverse().map(e => `
-    <div class="essay-item" onclick="openEssay('${e.id}')">
+  document.getElementById('essay-list').innerHTML = ESSAYS.slice().reverse().map(e => {
+    const rc = state.readCounts[e.id] || 0;
+    return `<div class="essay-item" onclick="openEssay('${e.id}')">
       <span class="essay-topic">${e.topic}</span>
       <div class="essay-title">${e.title}</div>
-      <div class="essay-meta">${e.date} · ${e.wordCount} words · ${e.difficulty} · ${e.glossary.length} vocab</div>
-    </div>`).join('');
+      <div class="essay-meta">${e.date} · ${e.wordCount} words · ${e.difficulty} · ${e.glossary.length} vocab${rc > 0 ? ` · Read: ${rc}` : ''}</div>
+    </div>`;
+  }).join('');
 }
 
 // === ESSAY ===
@@ -564,7 +628,27 @@ function openEssay(id) {
   }).join('');
 
   if (!state.essaysRead.includes(id)) { state.essaysRead.push(id); saveState(); }
+  // Read count display
+  const count = state.readCounts[id] || 0;
+  document.getElementById('read-count-num').textContent = count;
   showPage('essay');
+}
+
+function incrementReadCount() {
+  if (!currentEssay) return;
+  if (!state.readCounts[currentEssay.id]) state.readCounts[currentEssay.id] = 0;
+  state.readCounts[currentEssay.id]++;
+  document.getElementById('read-count-num').textContent = state.readCounts[currentEssay.id];
+  // Record daily reading stats
+  const today = new Date().toISOString().split('T')[0];
+  if (!state.dailyStats) state.dailyStats = {};
+  if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
+  state.dailyStats[today].wordsRead += currentEssay.wordCount;
+  state.dailyStats[today].essaysRead++;
+  state.dailyStats[today].vocabCount = Object.keys(state.vocabulary).length;
+  state.dailyStats[today].mastered = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
+  saveState();
+  showToast('Read count: ' + state.readCounts[currentEssay.id]);
 }
 
 function toggleTranslation() {
@@ -654,28 +738,29 @@ function updateVocabPage() { filterVocab(); }
 function renderVocabList(words) {
   const el = document.getElementById('vocab-list');
   if (words.length === 0) {
-    el.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text2);">No words found</td></tr>';
+    el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words found</div>';
     document.getElementById('vocab-count').textContent = '';
     return;
   }
-  el.innerHTML = words.map(([key, v]) => {
-    const shortEx = truncateWords(v.example || '', 10);
-    const shortExJa = truncateChars(v.exampleJa || '', 30);
-    return `<tr>
-    <td>
-      <div class="vocab-word-cell">${v.word}</div>
-      <div class="vocab-pos">${v.pos || ''}</div>
-      <div class="vocab-actions">
-        <button class="btn small" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
-        ${v.level < 3 ? `<button class="btn-master" onclick="markMastered('${key}')">Mastered</button>` : ''}
+  el.innerHTML = words.map(([key, v], idx) => `
+    <div class="vocab-card">
+      <div class="vocab-top">
+        <div class="vocab-left">
+          <div class="vocab-word-cell">${v.word} <span class="vocab-pos">${v.pos || ''}</span></div>
+          <div class="vocab-ja-inline">${v.japanese}</div>
+        </div>
+        <div class="vocab-right">
+          ${v.level < 3 ? `<button class="btn-master" onclick="markMastered('${key}')">Mastered</button>` : getMasteryBadge(v.level)}
+          <button class="btn small" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
+        </div>
       </div>
-    </td>
-    <td>${v.japanese}</td>
-    <td>${shortExJa}</td>
-    <td style="font-style:italic;">${shortEx}</td>
-    <td style="text-align:center;">${getMasteryBadge(v.level)}</td>
-  </tr>`;
-  }).join('');
+      <button class="vocab-example-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? '▲ Close example' : '▼ Show example';">▼ Show example</button>
+      <div class="vocab-example-body">
+        <div class="vocab-example-en">${v.example || ''}</div>
+        <div class="vocab-example-ja">${v.exampleJa || ''}</div>
+      </div>
+    </div>
+  `).join('');
   document.getElementById('vocab-count').textContent = `${words.length} words`;
 }
 
@@ -758,6 +843,12 @@ function showQuizComplete() {
   const today = new Date().toISOString().split('T')[0];
   const ex = state.studyHistory.find(h => h.date === today);
   if (ex) ex.reviewed += t; else state.studyHistory.push({ date: today, reviewed: t, newWords: 0 });
+  // Update daily stats for charts
+  if (!state.dailyStats) state.dailyStats = {};
+  if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
+  state.dailyStats[today].reviewed += t;
+  state.dailyStats[today].vocabCount = Object.keys(state.vocabulary).length;
+  state.dailyStats[today].mastered = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
   saveState(); updateDashboard(); updateReviewPage();
 }
 function resetQuiz() { document.getElementById('quiz-complete').style.display = 'none'; updateQuizPage(); }
@@ -794,6 +885,140 @@ function updateReviewPage() {
   const recent = state.studyHistory.slice(-7).reverse();
   document.getElementById('study-history').innerHTML = recent.length === 0 ? '<div style="color:var(--text2); font-size:13px;">No study history yet.</div>'
     : recent.map(h => `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:13px;"><span>${h.date}</span><span>${h.reviewed} reviewed</span></div>`).join('');
+
+  // Draw progress charts
+  drawCharts();
+}
+
+function getLast14Days() {
+  const days = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    days.push(d.toISOString().split('T')[0]);
+  }
+  return days;
+}
+
+function drawCharts() {
+  if (!state.dailyStats) state.dailyStats = {};
+  const days = getLast14Days();
+  const shortLabels = days.map(d => d.slice(5)); // MM-DD
+
+  // Words read per day
+  const wordsData = days.map(d => (state.dailyStats[d] || {}).wordsRead || 0);
+  drawBarChart('chart-words-read', shortLabels, wordsData, '#3b82f6');
+
+  // Vocab growth (cumulative) - use latest known value for each day
+  let lastVocab = 0;
+  const vocabData = days.map(d => {
+    if (state.dailyStats[d] && state.dailyStats[d].vocabCount) lastVocab = state.dailyStats[d].vocabCount;
+    return lastVocab;
+  });
+  // If no data yet, show current total for today
+  if (lastVocab === 0) vocabData[vocabData.length - 1] = Object.keys(state.vocabulary).length;
+  drawLineChart('chart-vocab-growth', shortLabels, vocabData, '#22c55e');
+
+  // Reviews per day
+  const reviewData = days.map(d => (state.dailyStats[d] || {}).reviewed || 0);
+  drawBarChart('chart-reviews', shortLabels, reviewData, '#a78bfa');
+}
+
+function drawBarChart(canvasId, labels, data, color) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const w = rect.width, h = rect.height;
+  const padTop = 10, padBot = 25, padLeft = 35, padRight = 10;
+  const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
+  const max = Math.max(...data, 1);
+  const barW = chartW / labels.length * 0.6;
+  const gap = chartW / labels.length;
+
+  ctx.clearRect(0, 0, w, h);
+  // Grid lines
+  ctx.strokeStyle = '#334155'; ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 4; i++) {
+    const y = padTop + chartH - (chartH * i / 4);
+    ctx.beginPath(); ctx.moveTo(padLeft, y); ctx.lineTo(w - padRight, y); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '9px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(max * i / 4), padLeft - 4, y + 3);
+  }
+  // Bars
+  labels.forEach((l, i) => {
+    const barH = (data[i] / max) * chartH;
+    const x = padLeft + i * gap + (gap - barW) / 2;
+    const y = padTop + chartH - barH;
+    ctx.fillStyle = color; ctx.globalAlpha = 0.8;
+    ctx.beginPath(); ctx.roundRect(x, y, barW, barH, 2); ctx.fill();
+    ctx.globalAlpha = 1;
+    // Label
+    ctx.fillStyle = '#94a3b8'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(l, padLeft + i * gap + gap / 2, h - 4);
+  });
+}
+
+function drawLineChart(canvasId, labels, data, color) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const w = rect.width, h = rect.height;
+  const padTop = 10, padBot = 25, padLeft = 35, padRight = 10;
+  const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
+  const max = Math.max(...data, 1);
+  const gap = chartW / (labels.length - 1 || 1);
+
+  ctx.clearRect(0, 0, w, h);
+  // Grid
+  ctx.strokeStyle = '#334155'; ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 4; i++) {
+    const y = padTop + chartH - (chartH * i / 4);
+    ctx.beginPath(); ctx.moveTo(padLeft, y); ctx.lineTo(w - padRight, y); ctx.stroke();
+    ctx.fillStyle = '#94a3b8'; ctx.font = '9px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(Math.round(max * i / 4), padLeft - 4, y + 3);
+  }
+  // Fill area
+  ctx.beginPath();
+  ctx.moveTo(padLeft, padTop + chartH);
+  labels.forEach((l, i) => {
+    const x = padLeft + i * gap;
+    const y = padTop + chartH - (data[i] / max) * chartH;
+    ctx.lineTo(x, y);
+  });
+  ctx.lineTo(padLeft + (labels.length - 1) * gap, padTop + chartH);
+  ctx.closePath();
+  ctx.fillStyle = color + '20'; ctx.fill();
+  // Line
+  ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 2;
+  labels.forEach((l, i) => {
+    const x = padLeft + i * gap;
+    const y = padTop + chartH - (data[i] / max) * chartH;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+  // Dots
+  labels.forEach((l, i) => {
+    const x = padLeft + i * gap;
+    const y = padTop + chartH - (data[i] / max) * chartH;
+    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = color; ctx.fill();
+  });
+  // Labels
+  labels.forEach((l, i) => {
+    if (i % 2 === 0 || labels.length <= 7) {
+      ctx.fillStyle = '#94a3b8'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(l, padLeft + i * gap, h - 4);
+    }
+  });
 }
 
 // === HELPERS ===
