@@ -128,6 +128,16 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .glossary-pos { font-size: 10px; color: var(--text2); font-style: italic; }
 .glossary-example { font-size: 12px; color: var(--text2); margin-top: 4px; font-style: italic; }
 
+/* Highlight glossary words in essay */
+.highlight-word {
+  background: rgba(234, 179, 8, 0.25); border-radius: 3px; padding: 0 2px;
+  border-bottom: 2px solid var(--yellow); cursor: help; position: relative;
+}
+.highlight-ja {
+  display: block; font-size: 11px; color: var(--yellow); line-height: 1.2;
+  margin-top: 1px; margin-bottom: 2px;
+}
+
 .section-toggle {
   width: 100%; text-align: left; padding: 12px 16px;
   background: var(--surface); border: 1px solid var(--border);
@@ -177,17 +187,25 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   font-size: 10px; cursor: pointer; font-weight: 600; font-family: inherit; white-space: nowrap;
 }
 .btn-master:hover { background: var(--green); color: white; }
-.vocab-example-toggle {
-  font-size: 12px; color: var(--accent2); cursor: pointer;
-  background: none; border: none; padding: 4px 0; margin-top: 6px; font-family: inherit;
+.btn-exclude {
+  padding: 4px 10px; border-radius: 4px; border: 1px solid var(--text2);
+  background: var(--surface2); color: var(--text2);
+  font-size: 10px; cursor: pointer; font-weight: 600; font-family: inherit; white-space: nowrap;
 }
+.btn-exclude:hover { background: var(--text2); color: var(--bg); }
+.btn-restore {
+  padding: 4px 10px; border-radius: 4px; border: 1px solid var(--accent);
+  background: transparent; color: var(--accent2);
+  font-size: 10px; cursor: pointer; font-weight: 600; font-family: inherit; white-space: nowrap;
+}
+.btn-restore:hover { background: var(--accent); color: white; }
+.mastery-excluded { background: var(--surface2); color: var(--text2); }
 .vocab-example-body {
-  display: none; margin-top: 8px; padding: 10px; background: var(--surface2);
+  display: block; margin-top: 8px; padding: 10px; background: var(--surface2);
   border-radius: 8px; font-size: 13px; line-height: 1.6;
 }
-.vocab-example-body.open { display: block; }
 .vocab-example-en { font-style: italic; color: var(--text); margin-bottom: 6px; }
-.vocab-example-ja { color: var(--text2); }
+.vocab-example-ja { color: var(--text2); font-style: italic; }
 
 /* Read count button */
 .read-count-area {
@@ -322,6 +340,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="btn" onclick="stopSpeech()">&#9632; Stop</button>
       <button class="btn" id="btn-repeat" onclick="toggleRepeat()">&#128257; Repeat: OFF</button>
       <button class="btn" id="btn-translation" onclick="toggleTranslation()">&#127471;&#127477; Translation</button>
+      <button class="btn" id="btn-highlight" onclick="toggleHighlight()">&#128161; Highlight</button>
       <div class="speed-control">
         <span>Speed</span>
         <input type="range" min="0.5" max="2.0" step="0.1" value="1.0" id="speech-speed" oninput="updateSpeedLabel()">
@@ -365,6 +384,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn" data-filter="new" onclick="setVocabFilter('new', this)">New</button>
       <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
       <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
+      <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
     </div>
     <div class="card" style="padding:0;">
       <div id="vocab-list"></div>
@@ -456,6 +476,14 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div class="card" id="mastery-chart"></div>
     <div class="card-title" style="margin: 16px 0 8px;">Study History</div>
     <div class="card" id="study-history"></div>
+
+    <div class="card-title" style="margin: 16px 0 8px;">Data Backup</div>
+    <div class="card" style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="btn" onclick="exportProgress()">&#128190; Export</button>
+      <button class="btn" onclick="document.getElementById('import-file').click()">&#128194; Import</button>
+      <input type="file" id="import-file" accept=".json" style="display:none;" onchange="importProgress(event)">
+      <div style="font-size:11px; color:var(--text2); width:100%; margin-top:4px;">学習進捗をJSONファイルとして保存・復元できます</div>
+    </div>
   </div>
 </main>
 
@@ -526,7 +554,16 @@ function buildVocabulary() {
     });
   });
   Object.keys(allWords).forEach(key => {
-    if (state.vocabulary[key]) return;
+    if (state.vocabulary[key]) {
+      // Update word info (example, definition etc.) while preserving SRS progress
+      state.vocabulary[key].word = allWords[key].word;
+      state.vocabulary[key].japanese = allWords[key].japanese;
+      state.vocabulary[key].pos = allWords[key].pos || '';
+      state.vocabulary[key].definition = allWords[key].definition || '';
+      state.vocabulary[key].example = allWords[key].example || '';
+      state.vocabulary[key].exampleJa = allWords[key].exampleJa || '';
+      return;
+    }
     state.vocabulary[key] = {
       interval: 0, easeFactor: 2.5,
       nextReview: new Date().toISOString().split('T')[0],
@@ -556,7 +593,7 @@ function showPage(page) {
 
 // === DASHBOARD ===
 function updateDashboard() {
-  const totalVocab = Object.keys(state.vocabulary).length;
+  const totalVocab = Object.values(state.vocabulary).filter(v => v.level >= 0).length;
   const dueWords = getDueWords().length;
   const masteredWords = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
   // Essays read count (unique essays with readCount > 0)
@@ -605,6 +642,8 @@ function openEssay(id) {
   document.getElementById('essay-ja-panel').textContent = currentEssay.translation;
   document.getElementById('essay-ja-panel').classList.remove('open');
   document.getElementById('btn-translation').classList.remove('active-toggle');
+  highlightMode = false;
+  document.getElementById('btn-highlight').classList.remove('active-toggle');
 
   const tbody = document.getElementById('glossary-body');
   tbody.innerHTML = currentEssay.glossary.map(g => {
@@ -656,6 +695,47 @@ function toggleTranslation() {
   const btn = document.getElementById('btn-translation');
   panel.classList.toggle('open');
   btn.classList.toggle('active-toggle');
+}
+
+let highlightMode = false;
+function toggleHighlight() {
+  highlightMode = !highlightMode;
+  const btn = document.getElementById('btn-highlight');
+  btn.classList.toggle('active-toggle', highlightMode);
+  renderEssayText();
+}
+
+function renderEssayText() {
+  if (!currentEssay) return;
+  const container = document.getElementById('essay-text-container');
+  if (!highlightMode) {
+    container.textContent = currentEssay.text;
+    return;
+  }
+  // Build regex from glossary words (longest first to avoid partial matches)
+  const words = currentEssay.glossary.map(g => g.word).sort((a, b) => b.length - a.length);
+  const jaMap = {};
+  currentEssay.glossary.forEach(g => { jaMap[g.word.toLowerCase()] = g.japanese; });
+  const pattern = new RegExp('\\b(' + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'gi');
+  const text = currentEssay.text;
+  let html = '';
+  let lastIndex = 0;
+  let match;
+  while ((match = pattern.exec(text)) !== null) {
+    // Escape and add text before match
+    html += escapeHtml(text.slice(lastIndex, match.index));
+    const matched = match[0];
+    const ja = jaMap[matched.toLowerCase()] || '';
+    html += `<span class="highlight-word">${escapeHtml(matched)}<span class="highlight-ja">${escapeHtml(ja)}</span></span>`;
+    lastIndex = pattern.lastIndex;
+  }
+  html += escapeHtml(text.slice(lastIndex));
+  // Preserve whitespace/newlines
+  container.innerHTML = html;
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 // === SPEECH ===
@@ -725,10 +805,11 @@ function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
   const words = Object.entries(state.vocabulary).filter(([key, v]) => {
     const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
-    if (vocabFilter === 'all') return matchSearch && v.level < 3; // All excludes Mastered
+    if (vocabFilter === 'all') return matchSearch && v.level >= 0 && v.level < 3;
     if (vocabFilter === 'new') return matchSearch && v.level === 0;
     if (vocabFilter === 'learning') return matchSearch && (v.level === 1 || v.level === 2);
     if (vocabFilter === 'mature') return matchSearch && v.level >= 3;
+    if (vocabFilter === 'excluded') return matchSearch && v.level === -1;
     return matchSearch;
   }).sort((a, b) => a[0].localeCompare(b[0]));
   renderVocabList(words);
@@ -742,28 +823,48 @@ function renderVocabList(words) {
     document.getElementById('vocab-count').textContent = '';
     return;
   }
-  el.innerHTML = words.map(([key, v], idx) => `
-    <div class="vocab-card">
+  el.innerHTML = words.map(([key, v], idx) => {
+    const isExcluded = v.level === -1;
+    const isMastered = v.level >= 3;
+    let buttons = '';
+    if (isExcluded || isMastered) {
+      buttons = `${getMasteryBadge(v.level)} <button class="btn-restore" onclick="restoreWord('${key}')">Restore</button>`;
+    } else {
+      buttons = `<button class="btn-master" onclick="markMastered('${key}')">Mastered</button><button class="btn-exclude" onclick="markExcluded('${key}')">Exclude</button>`;
+    }
+    return `<div class="vocab-card">
       <div class="vocab-top">
         <div class="vocab-left">
           <div class="vocab-word-cell">${v.word} <span class="vocab-pos">${v.pos || ''}</span></div>
           <div class="vocab-ja-inline">${v.japanese}</div>
         </div>
         <div class="vocab-right">
-          ${v.level < 3 ? `<button class="btn-master" onclick="markMastered('${key}')">Mastered</button>` : getMasteryBadge(v.level)}
+          ${buttons}
           <button class="btn small" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
         </div>
       </div>
-      <button class="vocab-example-toggle" onclick="this.nextElementSibling.classList.toggle('open'); this.textContent = this.nextElementSibling.classList.contains('open') ? '▲ Close example' : '▼ Show example';">▼ Show example</button>
       <div class="vocab-example-body">
         <div class="vocab-example-en">${v.example || ''}</div>
         <div class="vocab-example-ja">${v.exampleJa || ''}</div>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
   document.getElementById('vocab-count').textContent = `${words.length} words`;
 }
 
+function markExcluded(key) {
+  if (!state.vocabulary[key]) return;
+  state.vocabulary[key].level = -1;
+  state.vocabulary[key].interval = 0;
+  saveState(); filterVocab(); showToast('Excluded: ' + state.vocabulary[key].word);
+}
+function restoreWord(key) {
+  if (!state.vocabulary[key]) return;
+  state.vocabulary[key].level = 0;
+  state.vocabulary[key].interval = 0;
+  state.vocabulary[key].nextReview = new Date().toISOString().split('T')[0];
+  saveState(); filterVocab(); showToast('Restored: ' + state.vocabulary[key].word);
+}
 function markMastered(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = 3;
@@ -776,7 +877,7 @@ function markMastered(key) {
 // === QUIZ ===
 function getDueWords() {
   const today = new Date().toISOString().split('T')[0];
-  return Object.entries(state.vocabulary).filter(([k, v]) => v.nextReview <= today && v.level > 0 && v.level < 3);
+  return Object.entries(state.vocabulary).filter(([k, v]) => v.level > 0 && v.level < 3 && v.nextReview <= today);
 }
 function getNewWords() { return Object.entries(state.vocabulary).filter(([k, v]) => v.level === 0); }
 
@@ -797,7 +898,7 @@ function loadQuizQueue() {
   document.getElementById('quiz-complete').style.display = 'none';
   if (quizMode === 'review') quizQueue = getDueWords();
   else if (quizMode === 'new') quizQueue = getNewWords().slice(0, 20);
-  else quizQueue = Object.entries(state.vocabulary).filter(([k, v]) => v.level < 3); // All excludes Mastered
+  else quizQueue = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
   quizQueue = quizQueue.sort(() => Math.random() - 0.5);
   if (quizQueue.length === 0) { document.getElementById('quiz-area').style.display = 'none'; document.getElementById('quiz-empty').style.display = 'block'; }
   else { document.getElementById('quiz-area').style.display = 'block'; document.getElementById('quiz-empty').style.display = 'none'; showFlashcard(); }
@@ -872,11 +973,11 @@ function updateReviewPage() {
   upEl.innerHTML = dates.length === 0 ? '<div class="card"><div style="color:var(--text2); font-size:13px;">No upcoming reviews</div></div>'
     : dates.map(d => { const isT = d <= new Date().toISOString().split('T')[0]; return `<div class="card" style="display:flex; justify-content:space-between; ${isT ? 'border-color:var(--orange);' : ''}"><span style="font-size:13px;">${d}${isT ? ' (Today!)' : ''}</span><span style="font-weight:700; color:${isT ? 'var(--orange)' : 'var(--accent2)'};">${upcoming[d]} words</span></div>`; }).join('');
 
-  const levels = [0, 0, 0]; // new, learning, mastered
-  Object.values(state.vocabulary).forEach(v => { if (v.level === 0) levels[0]++; else if (v.level < 3) levels[1]++; else levels[2]++; });
+  const levels = [0, 0, 0, 0]; // new, learning, mastered, excluded
+  Object.values(state.vocabulary).forEach(v => { if (v.level === -1) levels[3]++; else if (v.level === 0) levels[0]++; else if (v.level < 3) levels[1]++; else levels[2]++; });
   const total = Object.keys(state.vocabulary).length || 1;
-  const labels = ['New', 'Learning', 'Mastered'];
-  const colors = ['var(--text2)', 'var(--red)', 'var(--green)'];
+  const labels = ['New', 'Learning', 'Mastered', 'Excluded'];
+  const colors = ['var(--text2)', 'var(--red)', 'var(--green)', 'var(--border)'];
   document.getElementById('mastery-chart').innerHTML = labels.map((l, i) => {
     const pct = Math.round(levels[i] / total * 100);
     return `<div style="margin-bottom:10px;"><div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:3px;"><span>${l}</span><span>${levels[i]} (${pct}%)</span></div><div style="height:8px; background:var(--surface2); border-radius:4px; overflow:hidden;"><div style="height:100%; width:${pct}%; background:${colors[i]}; border-radius:4px;"></div></div></div>`;
@@ -1032,11 +1133,55 @@ function truncateChars(str, maxChars) {
   return str.slice(0, maxChars) + '...';
 }
 function getMasteryBadge(level) {
+  if (level === -1) return '<span class="mastery-badge mastery-excluded">Excluded</span>';
   if (level === 0) return '<span class="mastery-badge mastery-new">New</span>';
   if (level >= 3) return '<span class="mastery-badge mastery-mature">Mastered</span>';
   return '<span class="mastery-badge mastery-learning">Learning</span>';
 }
 function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+
+function exportProgress() {
+  const data = JSON.stringify(state, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'english-trainer-backup-' + new Date().toISOString().split('T')[0] + '.json';
+  a.click(); URL.revokeObjectURL(url);
+  showToast('Backup exported');
+}
+function importProgress(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      if (!imported.vocabulary) { showToast('Invalid backup file'); return; }
+      // Merge: keep imported SRS data, update word info from current data.js
+      Object.keys(imported.vocabulary).forEach(key => {
+        if (state.vocabulary[key]) {
+          // Preserve SRS progress from import
+          state.vocabulary[key].level = imported.vocabulary[key].level;
+          state.vocabulary[key].interval = imported.vocabulary[key].interval;
+          state.vocabulary[key].easeFactor = imported.vocabulary[key].easeFactor;
+          state.vocabulary[key].nextReview = imported.vocabulary[key].nextReview;
+          state.vocabulary[key].reviewCount = imported.vocabulary[key].reviewCount;
+          state.vocabulary[key].correctCount = imported.vocabulary[key].correctCount;
+          state.vocabulary[key].lastReview = imported.vocabulary[key].lastReview;
+        }
+      });
+      if (imported.essaysRead) state.essaysRead = imported.essaysRead;
+      if (imported.readCounts) state.readCounts = imported.readCounts;
+      if (imported.studyHistory) state.studyHistory = imported.studyHistory;
+      if (imported.dailyStats) state.dailyStats = imported.dailyStats;
+      saveState();
+      updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
+      showToast('Backup imported successfully');
+    } catch (err) { showToast('Error reading backup file'); }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
 
 init();
 </script>
