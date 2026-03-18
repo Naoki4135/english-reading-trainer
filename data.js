@@ -728,5 +728,151 @@ Perhaps the most productive framework acknowledges food as simultaneously susten
 特に論争を呼ぶ次元は本物性に関わる。料理人類学者は静的な概念をますます拒否し、すべての料理は接触と即興を通じて進化すると主張する。現代の東京の寿司は江戸時代の前身とほとんど似ていないが、その正当性を疑う人はほとんどいない。
 
 おそらく最も生産的な枠組みは、食が同時に栄養、芸術、商業、文化的表現であることを認め、厳格な規範ではなく継続的な対話が必要であると認識するものだろう。`
+  },
+  {
+    id: "2026-03-18-001",
+    date: "2026-03-18",
+    topic: "Finance",
+    title: "Is Passive Investing Distorting Capital Markets?",
+    difficulty: "TOEFL iBT+",
+    wordCount: 152,
+    text: `The rise of passive investing—through index funds and exchange-traded funds—has fundamentally reshaped capital allocation. Assets in passive strategies now surpass those in actively managed funds globally, prompting urgent questions about market efficiency.
+
+Proponents of passive investing argue that it democratizes access to diversified portfolios, minimizes fees, and historically outperforms most active managers over extended horizons. The evidence supporting this claim is robust: approximately 90% of large-cap active funds underperform their benchmarks over fifteen-year periods.
+
+However, critics raise legitimate concerns. When capital flows indiscriminately into index constituents regardless of fundamentals, price discovery—the mechanism by which markets assign value—may be compromised. Smaller companies excluded from major indices struggle to attract investment, potentially stifling innovation.
+
+Moreover, the concentration of voting power among a handful of index fund providers raises governance questions. Three firms now collectively hold significant stakes in virtually every major public corporation.
+
+A hybrid approach combining passive core holdings with selective active strategies may ultimately prove most prudent.`,
+    glossary: [
+      { word: "passive investing", pos: "noun phrase", japanese: "パッシブ投資", definition: "An investment strategy that tracks a market index rather than trying to beat it", example: "Passive investing has grown enormously since the 2008 financial crisis.", exampleJa: "パッシブ投資は2008年の金融危機以降、大きく成長した。" },
+      { word: "capital allocation", pos: "noun phrase", japanese: "資本配分", definition: "The process of distributing financial resources among different investments", example: "Effective capital allocation drives long-term corporate value.", exampleJa: "効果的な資本配分が長期的な企業価値を促進する。" },
+      { word: "surpass", pos: "verb", japanese: "上回る、超える", definition: "To exceed or go beyond in amount, degree, or quality", example: "China's GDP is projected to surpass that of the United States.", exampleJa: "中国のGDPは米国を上回ると予測されている。" },
+      { word: "democratize", pos: "verb", japanese: "民主化する、大衆化する", definition: "To make something accessible to everyone, not just the privileged few", example: "Technology has democratized access to financial markets.", exampleJa: "テクノロジーが金融市場へのアクセスを大衆化した。" },
+      { word: "benchmark", pos: "noun", japanese: "ベンチマーク、基準", definition: "A standard or point of reference against which things may be compared", example: "The fund failed to beat its benchmark for three consecutive years.", exampleJa: "そのファンドは3年連続でベンチマークを下回った。" },
+      { word: "indiscriminately", pos: "adverb", japanese: "無差別に、見境なく", definition: "In a way that does not show care or judgment; randomly", example: "The policy affected all sectors indiscriminately.", exampleJa: "その政策は全セクターに無差別に影響した。" },
+      { word: "price discovery", pos: "noun phrase", japanese: "価格発見（機能）", definition: "The process by which the market determines the price of a security", example: "Efficient price discovery requires active participation by informed traders.", exampleJa: "効率的な価格発見には情報を持つトレーダーの積極的な参加が必要だ。" },
+      { word: "constituents", pos: "noun", japanese: "構成銘柄、構成要素", definition: "The individual components or members that make up a whole", example: "The index added three new constituents after its quarterly review.", exampleJa: "インデックスは四半期レビュー後に3つの新しい構成銘柄を追加した。" },
+      { word: "stifling", pos: "verb/adjective", japanese: "抑圧する、窒息させる", definition: "Preventing or constraining growth or development", example: "Excessive regulation risks stifling entrepreneurial innovation.", exampleJa: "過剰な規制が起業家的イノベーションを抑圧するリスクがある。" },
+      { word: "governance", pos: "noun", japanese: "ガバナンス、統治", definition: "The system by which an organization is controlled and directed", example: "Shareholders demanded improvements in corporate governance.", exampleJa: "株主が企業ガバナンスの改善を要求した。" },
+      { word: "prudent", pos: "adjective", japanese: "賢明な、慎重な", definition: "Acting with or showing care and thought for the future", example: "A prudent investor diversifies across asset classes.", exampleJa: "賢明な投資家は資産クラス全体に分散投資する。" },
+      { word: "horizon", pos: "noun", japanese: "投資期間、見通し", definition: "The length of time over which an investment is held or a plan extends", example: "Pension funds typically operate on a long investment horizon.", exampleJa: "年金基金は通常、長い投資期間で運用される。" }
+    ],
+    translation: `パッシブ投資—インデックスファンドやETFを通じた—の台頭は資本配分を根本的に変えた。パッシブ戦略の運用資産は世界的にアクティブ運用ファンドを上回り、市場効率性に関する緊急の問題を提起している。
+
+パッシブ投資の支持者は、分散ポートフォリオへのアクセスを民主化し、手数料を最小化し、歴史的に長期間にわたってほとんどのアクティブ運用者を上回ると主張する。この主張を裏付ける証拠は堅固だ。大型株アクティブファンドの約90%が15年間でベンチマークを下回る。
+
+しかし、批判者は正当な懸念を提起する。ファンダメンタルズに関係なく資金がインデックス構成銘柄に無差別に流入すると、市場が価値を割り当てるメカニズムである価格発見が損なわれる可能性がある。主要インデックスから除外された中小企業は投資を引き付けるのに苦労し、イノベーションを阻害する可能性がある。
+
+さらに、少数のインデックスファンド提供者への議決権の集中はガバナンスの問題を提起する。3社が事実上すべての主要上場企業に重要な持ち分を保有している。
+
+パッシブのコア保有と選択的なアクティブ戦略を組み合わせたハイブリッドアプローチが最終的には最も賢明かもしれない。`
+  },
+  {
+    id: "2026-03-18-002",
+    date: "2026-03-18",
+    topic: "Psychology",
+    title: "Does Social Media Rewire the Adolescent Brain?",
+    difficulty: "TOEFL iBT+",
+    wordCount: 148,
+    text: `Neuroscientists are increasingly alarmed by the potential impact of social media on adolescent brain development. The prefrontal cortex—responsible for impulse control, decision-making, and long-term planning—does not fully mature until the mid-twenties, leaving teenagers neurologically susceptible to the dopamine-driven feedback loops embedded in social media platforms.
+
+Studies using functional magnetic resonance imaging reveal that receiving "likes" activates the same neural reward pathways as consuming sugar or winning money. This intermittent reinforcement schedule—unpredictable rewards delivered at variable intervals—mirrors the mechanisms that make slot machines addictive.
+
+Furthermore, excessive screen time appears to diminish gray matter volume in regions associated with empathy and emotional regulation. Longitudinal research suggests correlations between heavy social media use and elevated rates of anxiety and depression among adolescents.
+
+Defenders of social media emphasize its capacity for community building and identity exploration. Nevertheless, the precautionary principle suggests that regulatory frameworks should evolve alongside our understanding of these neurological effects.`,
+    glossary: [
+      { word: "prefrontal cortex", pos: "noun", japanese: "前頭前皮質", definition: "The front part of the brain involved in planning, decision-making, and moderating social behavior", example: "Damage to the prefrontal cortex impairs judgment.", exampleJa: "前頭前皮質の損傷は判断力を損なう。" },
+      { word: "neurologically", pos: "adverb", japanese: "神経学的に", definition: "In a way that relates to the anatomy and physiology of the nervous system", example: "Children are neurologically different from adults.", exampleJa: "子供は神経学的に大人と異なる。" },
+      { word: "dopamine", pos: "noun", japanese: "ドーパミン", definition: "A neurotransmitter associated with pleasure, motivation, and reward", example: "Exercise triggers the release of dopamine in the brain.", exampleJa: "運動が脳内のドーパミン放出を引き起こす。" },
+      { word: "intermittent", pos: "adjective", japanese: "断続的な、間欠的な", definition: "Occurring at irregular intervals; not continuous or steady", example: "Intermittent fasting has gained popularity as a diet strategy.", exampleJa: "断続的断食がダイエット戦略として人気を得ている。" },
+      { word: "reinforcement", pos: "noun", japanese: "強化（心理学用語）", definition: "The process of encouraging or establishing a pattern of behavior through stimulus", example: "Positive reinforcement is more effective than punishment.", exampleJa: "正の強化は罰よりも効果的である。" },
+      { word: "diminish", pos: "verb", japanese: "減少させる、低下させる", definition: "To make or become less; to reduce in size, importance, or value", example: "Nothing could diminish her enthusiasm for the project.", exampleJa: "何も彼女のプロジェクトへの熱意を減少させることはできなかった。" },
+      { word: "gray matter", pos: "noun", japanese: "灰白質", definition: "Brain tissue containing nerve cell bodies, involved in processing information", example: "Musicians tend to have greater gray matter density in auditory regions.", exampleJa: "音楽家は聴覚領域の灰白質密度が高い傾向がある。" },
+      { word: "longitudinal", pos: "adjective", japanese: "縦断的な、長期追跡の", definition: "Involving the study of subjects over a long period of time", example: "The longitudinal study tracked participants for twenty years.", exampleJa: "その縦断的研究は参加者を20年間追跡した。" },
+      { word: "empathy", pos: "noun", japanese: "共感、感情移入", definition: "The ability to understand and share the feelings of another", example: "Empathy is essential for effective leadership.", exampleJa: "共感は効果的なリーダーシップに不可欠である。" },
+      { word: "precautionary principle", pos: "noun phrase", japanese: "予防原則", definition: "The principle that action should be taken to prevent harm even before scientific certainty is established", example: "The EU applies the precautionary principle to food safety.", exampleJa: "EUは食品安全に予防原則を適用する。" },
+      { word: "susceptible", pos: "adjective", japanese: "影響を受けやすい、感受性の高い", definition: "Likely to be influenced or harmed by a particular thing", example: "Young children are especially susceptible to respiratory infections.", exampleJa: "幼い子供は呼吸器感染症に特に影響を受けやすい。" }
+    ],
+    translation: `神経科学者たちは、ソーシャルメディアが青年期の脳の発達に与える潜在的な影響についてますます警鐘を鳴らしている。衝動制御、意思決定、長期計画を担う前頭前皮質は20代半ばまで完全に成熟せず、ティーンエイジャーをソーシャルメディアプラットフォームに組み込まれたドーパミン駆動型フィードバックループに対して神経学的に脆弱な状態にしている。
+
+機能的磁気共鳴画像法を用いた研究は、「いいね」を受け取ることが砂糖を摂取したりお金を獲得したりするのと同じ神経報酬経路を活性化することを明らかにしている。この断続的強化スケジュール—不規則な間隔で予測不可能な報酬が提供される—は、スロットマシンを中毒性のあるものにするメカニズムと同じである。
+
+さらに、過度のスクリーンタイムは共感と感情調節に関連する領域の灰白質量を減少させるようだ。縦断的研究は、ソーシャルメディアの多用と青年期の不安やうつ病の増加率との相関を示唆している。
+
+ソーシャルメディアの擁護者は、コミュニティ形成とアイデンティティ探索の能力を強調する。それにもかかわらず、予防原則は、規制の枠組みがこれらの神経学的影響の理解と共に進化すべきであることを示唆している。`
+  },
+  {
+    id: "2026-03-18-003",
+    date: "2026-03-18",
+    topic: "Urban Planning",
+    title: "Can the 15-Minute City Concept Transform Urban Living?",
+    difficulty: "TOEFL iBT",
+    wordCount: 150,
+    text: `The "15-minute city" concept, popularized by Franco-Colombian urbanist Carlos Moreno, proposes that all essential services—work, shopping, healthcare, education, and leisure—should be accessible within a fifteen-minute walk or bicycle ride from any residence. Several major cities, including Paris, Melbourne, and Barcelona, have begun implementing variations of this model.
+
+Advocates contend that the 15-minute city reduces automobile dependency, lowers carbon emissions, strengthens neighborhood social cohesion, and improves physical health through increased walking and cycling. Paris has already converted extensive roadways into pedestrian zones and bicycle lanes, reporting measurable improvements in air quality.
+
+Skeptics, however, identify significant obstacles. The model presupposes a relatively even distribution of employment opportunities, which contradicts the reality of centralized business districts. Furthermore, retrofitting existing urban infrastructure requires enormous public investment, and property values in neighborhoods achieving fifteen-minute accessibility may surge, paradoxically displacing the lower-income residents the concept aims to serve.
+
+Successful implementation likely requires complementary policies addressing affordable housing and equitable transit access.`,
+    glossary: [
+      { word: "urbanist", pos: "noun", japanese: "都市計画家、都市研究者", definition: "An expert in or advocate for urban planning and city design", example: "The urbanist proposed transforming the highway into a public park.", exampleJa: "その都市計画家は高速道路を公園に変えることを提案した。" },
+      { word: "cohesion", pos: "noun", japanese: "結束、まとまり", definition: "The action or fact of forming a united whole; unity", example: "Social cohesion depends on trust between community members.", exampleJa: "社会的結束はコミュニティメンバー間の信頼に依存する。" },
+      { word: "pedestrian", pos: "noun/adjective", japanese: "歩行者（の）", definition: "A person walking rather than traveling in a vehicle; relating to walking", example: "The city expanded its pedestrian zones around the historic center.", exampleJa: "市は歴史的中心部周辺の歩行者ゾーンを拡大した。" },
+      { word: "presuppose", pos: "verb", japanese: "前提とする、仮定する", definition: "To require as a precondition; to assume beforehand", example: "The argument presupposes that economic growth is always desirable.", exampleJa: "その議論は経済成長が常に望ましいことを前提としている。" },
+      { word: "retrofitting", pos: "noun/verb", japanese: "改修、後付け改良", definition: "Adding new components or features to an existing structure or system", example: "Retrofitting old buildings with insulation reduces energy costs.", exampleJa: "古い建物に断熱材を後付けすることでエネルギーコストが削減される。" },
+      { word: "paradoxically", pos: "adverb", japanese: "逆説的に、矛盾するように", definition: "In a way that seems contradictory or opposed to common sense", example: "Paradoxically, the safety measures made people take greater risks.", exampleJa: "逆説的に、安全対策が人々をより大きなリスクを取らせた。" },
+      { word: "displacing", pos: "verb", japanese: "立ち退かせる、追い出す", definition: "Forcing someone to leave their home or usual place", example: "Gentrification is displacing long-term residents from the neighborhood.", exampleJa: "ジェントリフィケーションが長年の住民を地域から追い出している。" },
+      { word: "complementary", pos: "adjective", japanese: "補完的な、相互補完する", definition: "Combining in such a way as to enhance or emphasize each other's qualities", example: "The two policies are complementary rather than contradictory.", exampleJa: "2つの政策は矛盾するのではなく補完的である。" },
+      { word: "equitable", pos: "adjective", japanese: "公平な、公正な", definition: "Fair and impartial; treating all people equally", example: "The commission sought an equitable distribution of resources.", exampleJa: "委員会は資源の公平な分配を追求した。" },
+      { word: "automobile dependency", pos: "noun phrase", japanese: "自動車依存", definition: "A pattern of land use and transportation that requires cars for most trips", example: "American suburbs are often criticized for automobile dependency.", exampleJa: "アメリカの郊外は自動車依存でしばしば批判される。" },
+      { word: "surge", pos: "verb", japanese: "急騰する、急増する", definition: "To increase suddenly and powerfully", example: "Housing prices surged during the pandemic.", exampleJa: "パンデミック中に住宅価格が急騰した。" }
+    ],
+    translation: `フランコ・コロンビア人の都市計画家カルロス・モレノによって広められた「15分都市」の概念は、すべての必須サービス—仕事、買い物、医療、教育、レジャー—がどの住居からも徒歩または自転車で15分以内にアクセスできるべきだと提案する。パリ、メルボルン、バルセロナを含むいくつかの主要都市がこのモデルのバリエーションを実施し始めている。
+
+支持者は、15分都市が自動車依存を減らし、炭素排出を削減し、近隣の社会的結束を強化し、歩行とサイクリングの増加を通じて身体的健康を改善すると主張する。パリは既に広範な道路を歩行者ゾーンと自転車レーンに転換し、大気の質の測定可能な改善を報告している。
+
+しかし懐疑論者は重大な障害を指摘する。このモデルは雇用機会の比較的均等な分布を前提とするが、これは中心業務地区の現実と矛盾する。さらに、既存の都市インフラの改修には膨大な公共投資が必要であり、15分アクセス性を達成した地域の不動産価値が急騰し、逆説的に概念が奉仕しようとする低所得者を追い出す可能性がある。
+
+成功する実施には、手頃な住宅と公平な交通アクセスに取り組む補完的な政策が必要と思われる。`
+  },
+  {
+    id: "2026-03-18-004",
+    date: "2026-03-18",
+    topic: "Science",
+    title: "Should We Edit the Human Germline?",
+    difficulty: "Academic",
+    wordCount: 151,
+    text: `The advent of CRISPR-Cas9 gene-editing technology has reignited fierce debate over germline modification—alterations to DNA that are heritable and passed to future generations. While somatic gene therapy, which targets non-reproductive cells, has gained broad acceptance for treating diseases like sickle cell anemia, germline editing remains profoundly controversial.
+
+Proponents argue that germline editing could eradicate devastating hereditary conditions such as Huntington's disease and cystic fibrosis, sparing countless families from suffering across generations. They emphasize that prohibiting the technology merely drives research underground or to jurisdictions with weaker oversight.
+
+Opponents raise formidable objections. Off-target effects—unintended mutations at sites other than the intended location—could introduce novel pathologies that propagate through subsequent generations. Moreover, the boundary between therapeutic intervention and enhancement is inherently ambiguous. If we permit editing to prevent disease, the pressure to enhance intelligence, athleticism, or appearance becomes difficult to resist, potentially exacerbating socioeconomic inequality.
+
+The international scientific community has called for a moratorium on clinical applications of germline editing until robust governance frameworks and broad societal consensus emerge.`,
+    glossary: [
+      { word: "germline", pos: "noun/adjective", japanese: "生殖細胞系列（の）", definition: "Relating to cells that pass genetic material to offspring; heritable genetic lineage", example: "Germline mutations can affect all future descendants.", exampleJa: "生殖細胞系列の変異は将来のすべての子孫に影響しうる。" },
+      { word: "heritable", pos: "adjective", japanese: "遺伝性の、遺伝可能な", definition: "Capable of being passed from parent to offspring through genes", example: "Eye color is a heritable trait determined by multiple genes.", exampleJa: "目の色は複数の遺伝子によって決まる遺伝形質である。" },
+      { word: "somatic", pos: "adjective", japanese: "体細胞の", definition: "Relating to the body, especially as distinguished from the reproductive cells", example: "Somatic mutations are not passed on to children.", exampleJa: "体細胞の変異は子供に受け継がれない。" },
+      { word: "eradicate", pos: "verb", japanese: "根絶する、撲滅する", definition: "To destroy completely; to put an end to", example: "Vaccination campaigns have nearly eradicated polio worldwide.", exampleJa: "ワクチン接種キャンペーンが世界中でほぼポリオを根絶した。" },
+      { word: "off-target effects", pos: "noun phrase", japanese: "オフターゲット効果（意図しない部位への影響）", definition: "Unintended changes at genomic sites other than the intended target", example: "Researchers developed improved enzymes to minimize off-target effects.", exampleJa: "研究者はオフターゲット効果を最小化する改良酵素を開発した。" },
+      { word: "pathologies", pos: "noun", japanese: "病理、疾患", definition: "The causes, nature, and effects of diseases; abnormal conditions", example: "The researcher specialized in neurodegenerative pathologies.", exampleJa: "その研究者は神経変性疾患を専門としていた。" },
+      { word: "propagate", pos: "verb", japanese: "伝播する、広める", definition: "To spread and promote widely; to transmit from one generation to the next", example: "Misinformation can propagate rapidly through social networks.", exampleJa: "誤情報はソーシャルネットワークを通じて急速に伝播しうる。" },
+      { word: "ambiguous", pos: "adjective", japanese: "曖昧な、多義的な", definition: "Open to more than one interpretation; unclear or inexact", example: "The treaty's ambiguous language led to conflicting interpretations.", exampleJa: "条約の曖昧な文言が相反する解釈を招いた。" },
+      { word: "moratorium", pos: "noun", japanese: "モラトリアム、一時停止", definition: "A temporary prohibition of an activity, especially by official order", example: "The government imposed a moratorium on deep-sea mining.", exampleJa: "政府は深海採掘にモラトリアムを課した。" },
+      { word: "exacerbating", pos: "verb", japanese: "悪化させる、深刻化させる", definition: "Making a problem, bad situation, or negative feeling worse", example: "Inflation is exacerbating the cost-of-living crisis.", exampleJa: "インフレが生活費危機を悪化させている。" },
+      { word: "consensus", pos: "noun", japanese: "合意、コンセンサス", definition: "A general agreement among a group of people", example: "The committee reached consensus after extensive deliberation.", exampleJa: "委員会は広範な審議の後に合意に達した。" },
+      { word: "formidable", pos: "adjective", japanese: "手強い、恐るべき", definition: "Inspiring fear or respect through being impressively large, powerful, or capable", example: "The startup faces formidable competition from established players.", exampleJa: "そのスタートアップは確立されたプレイヤーからの手強い競争に直面している。" }
+    ],
+    translation: `CRISPR-Cas9遺伝子編集技術の登場は、生殖細胞系列の改変—遺伝性があり将来の世代に受け継がれるDNAの変更—をめぐる激しい議論を再燃させた。生殖に関わらない細胞を標的とする体細胞遺伝子治療は鎌状赤血球貧血のような疾患の治療で広く受け入れられているが、生殖細胞系列の編集は依然として深く議論を呼んでいる。
+
+支持者は、生殖細胞系列の編集がハンチントン病や嚢胞性線維症のような壊滅的な遺伝性疾患を根絶し、何世代にもわたって数え切れない家族を苦しみから救えると主張する。彼らは技術を禁止しても研究を地下や規制の弱い管轄区域に追いやるだけだと強調する。
+
+反対者は手強い反論を提起する。オフターゲット効果—意図した場所以外での意図しない変異—が後続の世代に伝播する新たな疾患を導入する可能性がある。さらに、治療的介入と強化の境界は本質的に曖昧である。病気の予防のための編集を許可すれば、知能、運動能力、外見を強化する圧力に抵抗することが困難になり、社会経済的不平等を悪化させる可能性がある。
+
+国際的な科学コミュニティは、堅固なガバナンスの枠組みと広範な社会的合意が出現するまで、生殖細胞系列編集の臨床応用にモラトリアムを求めている。`
   }
 ];

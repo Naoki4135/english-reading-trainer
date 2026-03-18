@@ -131,19 +131,13 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 /* Highlight glossary words in essay */
 .highlight-word {
   background: rgba(234, 179, 8, 0.25); border-radius: 3px; padding: 0 2px;
-  border-bottom: 2px solid var(--yellow); cursor: help; position: relative;
-  display: inline;
+  border-bottom: 2px solid var(--yellow); display: inline-flex;
+  flex-direction: column; align-items: flex-start; vertical-align: baseline;
+  gap: 2px; margin: 0 1px;
 }
 .highlight-ja {
-  display: none; font-size: 11px; color: #0f172a; line-height: 1.2;
-  position: absolute; left: 50%; transform: translateX(-50%);
-  top: 100%; margin-top: 2px;
-  background: var(--yellow); padding: 2px 6px; border-radius: 4px;
-  white-space: nowrap; z-index: 10; pointer-events: none;
-}
-.highlight-word:hover .highlight-ja,
-.highlight-word:active .highlight-ja {
-  display: block;
+  display: block; font-size: 11px; color: var(--yellow); line-height: 1.2;
+  font-weight: 600;
 }
 
 .section-toggle {
@@ -853,9 +847,15 @@ function getBestVoice() {
   if (!isSpeechSupported()) return null;
   const voices = speechSynthesis.getVoices();
   const en = voices.filter(v => v.lang.startsWith('en'));
-  const names = ['Ava','Zoe','Serena','Karen','Daniel','Samantha','Alex','Fiona'];
-  for (const n of names) { const v = en.find(v => v.name.includes(n) && (v.name.includes('Premium') || v.name.includes('Enhanced'))); if (v) return v; }
-  for (const n of names) { const v = en.find(v => v.name.includes(n)); if (v) return v; }
+  // Premium/Enhanced voices sound most natural (Apple Neural TTS)
+  const premium = ['Ava','Zoe','Serena','Samantha','Karen','Daniel','Tom','Fiona','Alex'];
+  // 1st: Premium/Enhanced (neural voices)
+  for (const n of premium) { const v = en.find(v => v.name.includes(n) && (v.name.includes('Premium') || v.name.includes('Enhanced'))); if (v) return v; }
+  // 2nd: Any voice with Premium/Enhanced tag
+  const anyPremium = en.find(v => v.name.includes('Premium') || v.name.includes('Enhanced'));
+  if (anyPremium) return anyPremium;
+  // 3rd: Named voices (non-premium)
+  for (const n of premium) { const v = en.find(v => v.name.includes(n)); if (v) return v; }
   return en.find(v => v.lang === 'en-US') || en[0] || null;
 }
 
@@ -901,8 +901,8 @@ function playSpeechSegment(index, sessionId = speechSessionId) {
   speechSegmentIndex = index;
   const utterance = new SpeechSynthesisUtterance(speechSegments[index]);
   utterance.lang = 'en-US';
-  utterance.rate = getSpeed();
-  utterance.pitch = 1;
+  utterance.rate = getSpeed() * 0.95; // slightly slower for natural pacing
+  utterance.pitch = 1.05; // subtle pitch lift for warmth
   const voice = getBestVoice();
   if (voice) utterance.voice = voice;
   utterance.onstart = () => {
