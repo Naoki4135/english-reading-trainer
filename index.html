@@ -132,10 +132,18 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .highlight-word {
   background: rgba(234, 179, 8, 0.25); border-radius: 3px; padding: 0 2px;
   border-bottom: 2px solid var(--yellow); cursor: help; position: relative;
+  display: inline;
 }
 .highlight-ja {
-  display: block; font-size: 11px; color: var(--yellow); line-height: 1.2;
-  margin-top: 1px; margin-bottom: 2px;
+  display: none; font-size: 11px; color: #0f172a; line-height: 1.2;
+  position: absolute; left: 50%; transform: translateX(-50%);
+  top: 100%; margin-top: 2px;
+  background: var(--yellow); padding: 2px 6px; border-radius: 4px;
+  white-space: nowrap; z-index: 10; pointer-events: none;
+}
+.highlight-word:hover .highlight-ja,
+.highlight-word:active .highlight-ja {
+  display: block;
 }
 
 .section-toggle {
@@ -150,6 +158,30 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .section-content { display: none; padding: 12px 0; animation: fadeIn 0.3s; }
 .section-content.open { display: block; }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* Essay groups */
+.essay-group { margin-bottom: 4px; }
+.essay-group-toggle {
+  width: 100%; text-align: left; padding: 10px 16px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text); font-size: 14px;
+  font-weight: 600; cursor: pointer; margin-bottom: 2px;
+  display: flex; justify-content: space-between; align-items: center; font-family: inherit;
+}
+.essay-group-toggle .arrow { transition: transform 0.3s; color: var(--text2); }
+.essay-group-toggle.open .arrow { transform: rotate(180deg); }
+.essay-group-content { display: none; padding: 4px 0; animation: fadeIn 0.3s; }
+.essay-group-content.open { display: block; }
+.essay-num {
+  font-size: 11px; font-weight: 700; color: var(--text2);
+  margin-right: 6px;
+}
+.read-badge {
+  font-size: 11px; color: var(--text2);
+}
+.read-badge.read-done {
+  color: var(--green); font-weight: 600;
+}
 
 /* Vocab filters */
 .vocab-filters { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
@@ -509,6 +541,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 
 <script>
 const STORAGE_KEY = 'english-reading-trainer';
+const SPEECH_SPEED_KEY = STORAGE_KEY + '-speech-speed';
 let state = loadState();
 let currentEssay = null;
 let quizMode = 'review';
@@ -518,6 +551,12 @@ let quizRevealed = false;
 let quizSessionStats = { again: 0, hard: 0, good: 0, easy: 0 };
 let isSpeaking = false;
 let repeatMode = false;
+let speechSegments = [];
+let speechSegmentIndex = 0;
+let speechSessionId = 0;
+let speechRestartTimer = null;
+let speechRateRefreshTimer = null;
+let speechRateChangedWhilePaused = false;
 
 function loadState() {
   try {
@@ -536,7 +575,37 @@ function loadState() {
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
+function formatLocalDate(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function addDaysToLocalDate(days, baseDate = new Date()) {
+  const next = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
+  next.setDate(next.getDate() + days);
+  return formatLocalDate(next);
+}
+
+function isSpeechSupported() {
+  return typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+}
+
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function getStoredSpeechSpeed() {
+  const saved = parseFloat(localStorage.getItem(SPEECH_SPEED_KEY));
+  return Number.isFinite(saved) ? clamp(saved, 0.5, 2.0) : 1.0;
+}
+
 function init() {
+  const speedInput = document.getElementById('speech-speed');
+  if (speedInput) speedInput.value = getStoredSpeechSpeed().toFixed(1);
+  updateSpeedLabel();
+  if (isSpeechSupported()) speechSynthesis.getVoices();
   buildVocabulary();
   updateDashboard();
   updateVocabPage();
@@ -566,7 +635,7 @@ function buildVocabulary() {
     }
     state.vocabulary[key] = {
       interval: 0, easeFactor: 2.5,
-      nextReview: new Date().toISOString().split('T')[0],
+      nextReview: formatLocalDate(),
       reviewCount: 0, correctCount: 0,
       level: 0, lastReview: null,
       word: allWords[key].word, japanese: allWords[key].japanese,
@@ -580,10 +649,14 @@ function buildVocabulary() {
 
 // === NAV ===
 function showPage(page) {
+  // タブ移動時に音声を停止（再生中・一時停止中どちらも）
+  if (page !== 'essay' && isSpeechSupported() && (isSpeaking || speechSynthesis.speaking || speechSynthesis.paused)) stopSpeech();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelector(`.nav-item[data-page="${page}"]`).classList.add('active');
+  const navItem = document.querySelector(`.nav-item[data-page="${page}"]`)
+    || (page === 'essay' ? document.querySelector('.nav-item[data-page="home"]') : null);
+  if (navItem) navItem.classList.add('active');
   if (page === 'home') updateDashboard();
   if (page === 'vocab') updateVocabPage();
   if (page === 'quiz') updateQuizPage();
@@ -621,14 +694,36 @@ function updateDashboard() {
   if (dueWords > 0) { badge.style.display = 'block'; badge.textContent = dueWords; }
   else badge.style.display = 'none';
 
-  document.getElementById('essay-list').innerHTML = ESSAYS.slice().reverse().map(e => {
-    const rc = state.readCounts[e.id] || 0;
-    return `<div class="essay-item" onclick="openEssay('${e.id}')">
-      <span class="essay-topic">${e.topic}</span>
-      <div class="essay-title">${e.title}</div>
-      <div class="essay-meta">${e.date} · ${e.wordCount} words · ${e.difficulty} · ${e.glossary.length} vocab${rc > 0 ? ` · Read: ${rc}` : ''}</div>
-    </div>`;
-  }).join('');
+  // エッセイを通し番号付き・10個ずつ折りたたみで表示
+  const essays = ESSAYS.slice(); // 古い順（通し番号用）
+  const totalEssays = essays.length;
+  const groupSize = 10;
+  let listHtml = '';
+  const groupCount = Math.ceil(totalEssays / groupSize);
+  for (let g = groupCount - 1; g >= 0; g--) {
+    const start = g * groupSize;
+    const end = Math.min(start + groupSize, totalEssays);
+    const groupLabel = `#${start + 1} – #${end}`;
+    const isLatest = g === groupCount - 1;
+    listHtml += `<div class="essay-group">
+      <button class="essay-group-toggle${isLatest ? ' open' : ''}" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+        ${groupLabel} <span class="arrow">▼</span>
+      </button>
+      <div class="essay-group-content${isLatest ? ' open' : ''}">`;
+    for (let i = end - 1; i >= start; i--) {
+      const e = essays[i];
+      const rc = state.readCounts[e.id] || 0;
+      const num = i + 1;
+      listHtml += `<div class="essay-item" onclick="openEssay('${e.id}')">
+        <span class="essay-num">#${num}</span>
+        <span class="essay-topic">${e.topic}</span>
+        <div class="essay-title">${e.title}</div>
+        <div class="essay-meta">${e.date} · ${e.wordCount} words · ${e.difficulty} · ${e.glossary.length} vocab · <span class="read-badge${rc > 0 ? ' read-done' : ''}">Read: ${rc}</span></div>
+      </div>`;
+    }
+    listHtml += `</div></div>`;
+  }
+  document.getElementById('essay-list').innerHTML = listHtml;
 }
 
 // === ESSAY ===
@@ -679,7 +774,7 @@ function incrementReadCount() {
   state.readCounts[currentEssay.id]++;
   document.getElementById('read-count-num').textContent = state.readCounts[currentEssay.id];
   // Record daily reading stats
-  const today = new Date().toISOString().split('T')[0];
+  const today = formatLocalDate();
   if (!state.dailyStats) state.dailyStats = {};
   if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
   state.dailyStats[today].wordsRead += currentEssay.wordCount;
@@ -740,42 +835,143 @@ function escapeHtml(str) {
 
 // === SPEECH ===
 function getSpeed() { return parseFloat(document.getElementById('speech-speed').value); }
-function updateSpeedLabel() { document.getElementById('speed-label').textContent = getSpeed().toFixed(1) + 'x'; }
+function updateSpeedLabel() {
+  const speed = getSpeed();
+  document.getElementById('speed-label').textContent = speed.toFixed(1) + 'x';
+  localStorage.setItem(SPEECH_SPEED_KEY, speed.toFixed(1));
+  if (!isSpeechSupported() || !currentEssay) return;
+  if (speechSynthesis.paused) {
+    speechRateChangedWhilePaused = true;
+    return;
+  }
+  if (!isSpeaking) return;
+  window.clearTimeout(speechRateRefreshTimer);
+  speechRateRefreshTimer = window.setTimeout(() => speakEssay(speechSegmentIndex), 120);
+}
 
 function getBestVoice() {
+  if (!isSpeechSupported()) return null;
   const voices = speechSynthesis.getVoices();
   const en = voices.filter(v => v.lang.startsWith('en'));
   const names = ['Ava','Zoe','Serena','Karen','Daniel','Samantha','Alex','Fiona'];
   for (const n of names) { const v = en.find(v => v.name.includes(n) && (v.name.includes('Premium') || v.name.includes('Enhanced'))); if (v) return v; }
   for (const n of names) { const v = en.find(v => v.name.includes(n)); if (v) return v; }
-  return en.find(v => v.lang === 'en-US') || null;
+  return en.find(v => v.lang === 'en-US') || en[0] || null;
 }
 
-function speakEssay() {
-  stopSpeech();
-  if (!currentEssay) return;
-  const u = new SpeechSynthesisUtterance(currentEssay.text);
-  u.lang = 'en-US'; u.rate = getSpeed(); u.pitch = 1;
-  const v = getBestVoice(); if (v) u.voice = v;
-  u.onstart = () => { isSpeaking = true; document.getElementById('btn-speak').style.display = 'none'; document.getElementById('btn-pause').style.display = 'inline-flex'; };
-  u.onend = () => {
-    isSpeaking = false;
-    document.getElementById('btn-speak').style.display = 'inline-flex';
-    document.getElementById('btn-pause').style.display = 'none';
-    if (repeatMode) setTimeout(() => speakEssay(), 500);
+function splitEssayForSpeech(text) {
+  const paragraphs = text.split(/\n+/).map(p => p.trim()).filter(Boolean);
+  const segments = [];
+  paragraphs.forEach(paragraph => {
+    const sentences = paragraph.match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [paragraph];
+    sentences.forEach(sentence => {
+      const trimmed = sentence.trim();
+      if (trimmed) segments.push(trimmed);
+    });
+  });
+  return segments.length ? segments : [text.trim()];
+}
+
+function resetSpeechUi() {
+  isSpeaking = false;
+  document.getElementById('btn-speak').style.display = 'inline-flex';
+  document.getElementById('btn-pause').style.display = 'none';
+  document.getElementById('btn-pause').innerHTML = '&#10074;&#10074; Pause';
+}
+
+function finishSpeechPlayback(sessionId = speechSessionId, allowRepeat = true) {
+  if (sessionId !== speechSessionId) return;
+  window.clearTimeout(speechRestartTimer);
+  window.clearTimeout(speechRateRefreshTimer);
+  speechRestartTimer = null;
+  speechRateRefreshTimer = null;
+  speechRateChangedWhilePaused = false;
+  resetSpeechUi();
+  if (allowRepeat && repeatMode && currentEssay) {
+    speechRestartTimer = window.setTimeout(() => speakEssay(0), 500);
+  }
+}
+
+function playSpeechSegment(index, sessionId = speechSessionId) {
+  if (!isSpeechSupported() || sessionId !== speechSessionId) return;
+  if (index >= speechSegments.length) {
+    finishSpeechPlayback(sessionId);
+    return;
+  }
+  speechSegmentIndex = index;
+  const utterance = new SpeechSynthesisUtterance(speechSegments[index]);
+  utterance.lang = 'en-US';
+  utterance.rate = getSpeed();
+  utterance.pitch = 1;
+  const voice = getBestVoice();
+  if (voice) utterance.voice = voice;
+  utterance.onstart = () => {
+    if (sessionId !== speechSessionId) return;
+    isSpeaking = true;
+    speechRateChangedWhilePaused = false;
+    document.getElementById('btn-speak').style.display = 'none';
+    document.getElementById('btn-pause').style.display = 'inline-flex';
+    document.getElementById('btn-pause').innerHTML = '&#10074;&#10074; Pause';
   };
-  speechSynthesis.speak(u);
+  utterance.onend = () => {
+    if (sessionId !== speechSessionId) return;
+    playSpeechSegment(index + 1, sessionId);
+  };
+  utterance.onerror = () => {
+    if (sessionId !== speechSessionId) return;
+    finishSpeechPlayback(sessionId, false);
+    showToast('Audio playback failed');
+  };
+  speechSynthesis.speak(utterance);
+}
+
+function speakEssay(startIndex = 0) {
+  if (!currentEssay) return;
+  if (!isSpeechSupported()) {
+    showToast('Speech synthesis is not supported in this browser');
+    return;
+  }
+  window.clearTimeout(speechRestartTimer);
+  window.clearTimeout(speechRateRefreshTimer);
+  speechSegments = splitEssayForSpeech(currentEssay.text);
+  speechSegmentIndex = clamp(startIndex, 0, Math.max(0, speechSegments.length - 1));
+  speechRateChangedWhilePaused = false;
+  speechSessionId++;
+  const sessionId = speechSessionId;
+  speechSynthesis.cancel();
+  speechRestartTimer = window.setTimeout(() => {
+    if (sessionId !== speechSessionId) return;
+    speechRestartTimer = null;
+    playSpeechSegment(speechSegmentIndex, sessionId);
+  }, 50);
 }
 function pauseSpeech() {
+  if (!isSpeechSupported()) return;
   if (speechSynthesis.speaking) {
-    if (speechSynthesis.paused) { speechSynthesis.resume(); document.getElementById('btn-pause').textContent = '⏸ Pause'; }
-    else { speechSynthesis.pause(); document.getElementById('btn-pause').textContent = '▶ Resume'; }
+    if (speechSynthesis.paused) {
+      if (speechRateChangedWhilePaused) {
+        speakEssay(speechSegmentIndex);
+      } else {
+        speechSynthesis.resume();
+        document.getElementById('btn-pause').innerHTML = '&#10074;&#10074; Pause';
+      }
+    } else {
+      speechSynthesis.pause();
+      document.getElementById('btn-pause').innerHTML = '&#9654; Resume';
+    }
   }
 }
 function stopSpeech() {
-  speechSynthesis.cancel(); isSpeaking = false;
-  document.getElementById('btn-speak').style.display = 'inline-flex';
-  document.getElementById('btn-pause').style.display = 'none';
+  window.clearTimeout(speechRestartTimer);
+  window.clearTimeout(speechRateRefreshTimer);
+  speechRestartTimer = null;
+  speechRateRefreshTimer = null;
+  speechRateChangedWhilePaused = false;
+  speechSegments = [];
+  speechSegmentIndex = 0;
+  speechSessionId++;
+  if (isSpeechSupported()) speechSynthesis.cancel();
+  resetSpeechUi();
 }
 function toggleRepeat() {
   repeatMode = !repeatMode;
@@ -783,13 +979,24 @@ function toggleRepeat() {
   document.getElementById('btn-repeat').classList.toggle('active-toggle', repeatMode);
 }
 function speakWord(word) {
+  if (!isSpeechSupported()) {
+    showToast('Speech synthesis is not supported in this browser');
+    return;
+  }
+  window.clearTimeout(speechRestartTimer);
+  window.clearTimeout(speechRateRefreshTimer);
+  speechRestartTimer = null;
+  speechRateRefreshTimer = null;
+  speechRateChangedWhilePaused = false;
+  speechSessionId++;
   speechSynthesis.cancel();
+  resetSpeechUi();
   const u = new SpeechSynthesisUtterance(word);
-  u.lang = 'en-US'; u.rate = 0.9;
+  u.lang = 'en-US'; u.rate = getSpeed();
   const v = getBestVoice(); if (v) u.voice = v;
   speechSynthesis.speak(u);
 }
-speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+if (isSpeechSupported()) speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
 
 function toggleSection(btn) { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); }
 
@@ -862,21 +1069,20 @@ function restoreWord(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = 0;
   state.vocabulary[key].interval = 0;
-  state.vocabulary[key].nextReview = new Date().toISOString().split('T')[0];
+  state.vocabulary[key].nextReview = formatLocalDate();
   saveState(); filterVocab(); showToast('Restored: ' + state.vocabulary[key].word);
 }
 function markMastered(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = 3;
   state.vocabulary[key].interval = 365;
-  const next = new Date(); next.setDate(next.getDate() + 365);
-  state.vocabulary[key].nextReview = next.toISOString().split('T')[0];
+  state.vocabulary[key].nextReview = addDaysToLocalDate(365);
   saveState(); filterVocab(); showToast('Marked as Mastered');
 }
 
 // === QUIZ ===
 function getDueWords() {
-  const today = new Date().toISOString().split('T')[0];
+  const today = formatLocalDate();
   return Object.entries(state.vocabulary).filter(([k, v]) => v.level > 0 && v.level < 3 && v.nextReview <= today);
 }
 function getNewWords() { return Object.entries(state.vocabulary).filter(([k, v]) => v.level === 0); }
@@ -899,7 +1105,7 @@ function loadQuizQueue() {
   if (quizMode === 'review') quizQueue = getDueWords();
   else if (quizMode === 'new') quizQueue = getNewWords().slice(0, 20);
   else quizQueue = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
-  quizQueue = quizQueue.sort(() => Math.random() - 0.5);
+  shuffleArray(quizQueue);
   if (quizQueue.length === 0) { document.getElementById('quiz-area').style.display = 'none'; document.getElementById('quiz-empty').style.display = 'block'; }
   else { document.getElementById('quiz-area').style.display = 'block'; document.getElementById('quiz-empty').style.display = 'none'; showFlashcard(); }
 }
@@ -927,13 +1133,12 @@ function rateCard(quality) {
   const [key, v] = quizQueue[quizIndex];
   const srs = state.vocabulary[key];
   if (quality === 1) { srs.interval = 0; srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.2); srs.level = 1; quizSessionStats.again++; quizQueue.push([key, v]); }
-  else if (quality === 2) { srs.interval = srs.interval === 0 ? 1 : Math.ceil(srs.interval * 1.2); srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.15); srs.level = Math.max(1, srs.level); quizSessionStats.hard++; }
-  else if (quality === 3) { srs.interval = srs.interval === 0 ? 1 : srs.interval === 1 ? 3 : Math.ceil(srs.interval * srs.easeFactor); srs.level = srs.interval >= 21 ? 3 : 1; quizSessionStats.good++; }
-  else if (quality === 4) { srs.interval = srs.interval === 0 ? 4 : Math.ceil(srs.interval * srs.easeFactor * 1.3); srs.easeFactor = Math.min(3.0, srs.easeFactor + 0.15); srs.level = srs.interval >= 21 ? 3 : 1; quizSessionStats.easy++; }
-  const next = new Date(); next.setDate(next.getDate() + srs.interval);
-  srs.nextReview = next.toISOString().split('T')[0];
+  else if (quality === 2) { srs.interval = srs.interval === 0 ? 1 : Math.ceil(srs.interval * 1.2); srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.hard++; }
+  else if (quality === 3) { srs.interval = srs.interval === 0 ? 1 : srs.interval === 1 ? 3 : Math.ceil(srs.interval * srs.easeFactor); srs.level = getSrsLevel(srs.interval); quizSessionStats.good++; }
+  else if (quality === 4) { srs.interval = srs.interval === 0 ? 4 : Math.ceil(srs.interval * srs.easeFactor * 1.3); srs.easeFactor = Math.min(3.0, srs.easeFactor + 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.easy++; }
+  srs.nextReview = addDaysToLocalDate(srs.interval);
   srs.reviewCount++; if (quality >= 2) srs.correctCount++;
-  srs.lastReview = new Date().toISOString().split('T')[0];
+  srs.lastReview = formatLocalDate();
   saveState(); quizIndex++; showFlashcard();
 }
 function showQuizComplete() {
@@ -941,7 +1146,7 @@ function showQuizComplete() {
   document.getElementById('quiz-complete').style.display = 'block';
   const t = quizSessionStats.again + quizSessionStats.hard + quizSessionStats.good + quizSessionStats.easy;
   document.getElementById('quiz-summary').innerHTML = `Reviewed: ${t} words<br>Again: ${quizSessionStats.again} · Hard: ${quizSessionStats.hard} · Good: ${quizSessionStats.good} · Easy: ${quizSessionStats.easy}`;
-  const today = new Date().toISOString().split('T')[0];
+  const today = formatLocalDate();
   const ex = state.studyHistory.find(h => h.date === today);
   if (ex) ex.reviewed += t; else state.studyHistory.push({ date: today, reviewed: t, newWords: 0 });
   // Update daily stats for charts
@@ -971,7 +1176,7 @@ function updateReviewPage() {
   const dates = Object.keys(upcoming).sort().slice(0, 7);
   const upEl = document.getElementById('upcoming-reviews');
   upEl.innerHTML = dates.length === 0 ? '<div class="card"><div style="color:var(--text2); font-size:13px;">No upcoming reviews</div></div>'
-    : dates.map(d => { const isT = d <= new Date().toISOString().split('T')[0]; return `<div class="card" style="display:flex; justify-content:space-between; ${isT ? 'border-color:var(--orange);' : ''}"><span style="font-size:13px;">${d}${isT ? ' (Today!)' : ''}</span><span style="font-weight:700; color:${isT ? 'var(--orange)' : 'var(--accent2)'};">${upcoming[d]} words</span></div>`; }).join('');
+    : dates.map(d => { const isT = d <= formatLocalDate(); return `<div class="card" style="display:flex; justify-content:space-between; ${isT ? 'border-color:var(--orange);' : ''}"><span style="font-size:13px;">${d}${isT ? ' (Today!)' : ''}</span><span style="font-weight:700; color:${isT ? 'var(--orange)' : 'var(--accent2)'};">${upcoming[d]} words</span></div>`; }).join('');
 
   const levels = [0, 0, 0, 0]; // new, learning, mastered, excluded
   Object.values(state.vocabulary).forEach(v => { if (v.level === -1) levels[3]++; else if (v.level === 0) levels[0]++; else if (v.level < 3) levels[1]++; else levels[2]++; });
@@ -995,7 +1200,7 @@ function getLast14Days() {
   const days = [];
   for (let i = 13; i >= 0; i--) {
     const d = new Date(); d.setDate(d.getDate() - i);
-    days.push(d.toISOString().split('T')[0]);
+    days.push(formatLocalDate(d));
   }
   return days;
 }
@@ -1132,6 +1337,19 @@ function truncateChars(str, maxChars) {
   if (str.length <= maxChars) return str;
   return str.slice(0, maxChars) + '...';
 }
+function shuffleArray(items) {
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [items[i], items[j]] = [items[j], items[i]];
+  }
+  return items;
+}
+function getSrsLevel(interval) {
+  if (interval >= 21) return 3;
+  if (interval >= 3) return 2;
+  if (interval > 0) return 1;
+  return 0;
+}
 function getMasteryBadge(level) {
   if (level === -1) return '<span class="mastery-badge mastery-excluded">Excluded</span>';
   if (level === 0) return '<span class="mastery-badge mastery-new">New</span>';
@@ -1145,7 +1363,7 @@ function exportProgress() {
   const blob = new Blob([data], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'english-trainer-backup-' + new Date().toISOString().split('T')[0] + '.json';
+  a.href = url; a.download = 'english-trainer-backup-' + formatLocalDate() + '.json';
   a.click(); URL.revokeObjectURL(url);
   showToast('Backup exported');
 }
