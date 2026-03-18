@@ -874,5 +874,372 @@ The international scientific community has called for a moratorium on clinical a
 反対者は手強い反論を提起する。オフターゲット効果—意図した場所以外での意図しない変異—が後続の世代に伝播する新たな疾患を導入する可能性がある。さらに、治療的介入と強化の境界は本質的に曖昧である。病気の予防のための編集を許可すれば、知能、運動能力、外見を強化する圧力に抵抗することが困難になり、社会経済的不平等を悪化させる可能性がある。
 
 国際的な科学コミュニティは、堅固なガバナンスの枠組みと広範な社会的合意が出現するまで、生殖細胞系列編集の臨床応用にモラトリアムを求めている。`
+  },
+  {
+    id: "2026-03-18-005",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "Why Gen Z Slang Spreads Like Wildfire",
+    difficulty: "TOEFL iBT",
+    wordCount: 147,
+    text: `If you've ever been told your outfit is "fire" or that someone's argument "slaps," congratulations—you've encountered Gen Z slang in the wild. But why does this generation's vocabulary spread so fast?
+
+The answer is mostly about technology. TikTok and Instagram Reels let a catchy phrase go viral overnight. A creator in Atlanta can coin a term at breakfast and hear it echoed in Tokyo by dinner. That's lowkey insane when you think about it.
+
+Linguists point out that slang has always been a way for young people to flex their identity and gatekeep their social circles. What's different now is the sheer speed. Words like "slay," "no cap," and "sus" jumped from niche online communities to mainstream media in months, not decades.
+
+Critics say this rapid turnover is dumbing down the language. That take is kinda mid, though. Language has always evolved, and today's slang is just the latest glow-up.`,
+    glossary: [
+      { word: "fire", pos: "adjective (slang)", japanese: "最高の、イケてる", definition: "Extremely good, exciting, or attractive", example: "That new album is straight fire.", exampleJa: "あの新しいアルバムはマジ最高だ。" },
+      { word: "slaps", pos: "verb (slang)", japanese: "めちゃくちゃ良い", definition: "Is excellent or impressive (especially used for music or food)", example: "This ramen absolutely slaps.", exampleJa: "このラーメンはマジでうまい。" },
+      { word: "lowkey", pos: "adverb (slang)", japanese: "密かに、ちょっと、実は", definition: "Somewhat; secretly; in a subtle or understated way", example: "I'm lowkey obsessed with that show.", exampleJa: "実はあの番組にハマっている。" },
+      { word: "flex", pos: "verb (slang)", japanese: "見せびらかす、自慢する", definition: "To show off or boast about something", example: "He's always flexing his designer clothes.", exampleJa: "彼はいつもブランド服を見せびらかしている。" },
+      { word: "gatekeep", pos: "verb (slang)", japanese: "独占する、排他的にする", definition: "To control or limit access to something, often cultural knowledge", example: "Stop gatekeeping that playlist and share it.", exampleJa: "そのプレイリストを独占しないで共有してよ。" },
+      { word: "slay", pos: "verb (slang)", japanese: "完璧にやる、最高にキメる", definition: "To do something exceptionally well; to look amazing", example: "She absolutely slayed that presentation.", exampleJa: "彼女はあのプレゼンを完璧にキメた。" },
+      { word: "no cap", pos: "phrase (slang)", japanese: "マジで、嘘じゃなく", definition: "No lie; for real; I'm being completely honest", example: "That was the best concert ever, no cap.", exampleJa: "あれは今までで最高のコンサートだった、マジで。" },
+      { word: "sus", pos: "adjective (slang)", japanese: "怪しい、疑わしい", definition: "Suspicious or suspect; giving bad vibes", example: "That email looks kinda sus—don't click the link.", exampleJa: "あのメールちょっと怪しい—リンクをクリックしないで。" },
+      { word: "mid", pos: "adjective (slang)", japanese: "微妙な、まあまあ、大したことない", definition: "Average, mediocre, or unimpressive", example: "The movie was honestly mid—nothing special.", exampleJa: "その映画は正直微妙だった—特に何もない。" },
+      { word: "glow-up", pos: "noun (slang)", japanese: "大変身、劇的な改善", definition: "A dramatic positive transformation in appearance, confidence, or quality", example: "She had a major glow-up since high school.", exampleJa: "彼女は高校時代から大変身した。" },
+      { word: "coin", pos: "verb", japanese: "（新語を）作る、生み出す", definition: "To invent or create a new word or phrase", example: "Shakespeare coined hundreds of English words.", exampleJa: "シェイクスピアは何百もの英単語を生み出した。" },
+      { word: "go viral", pos: "phrase", japanese: "バズる、爆発的に広まる", definition: "To spread rapidly and widely on the internet", example: "The video went viral within hours of being posted.", exampleJa: "その動画は投稿から数時間でバズった。" }
+    ],
+    translation: `もしあなたの服装が「fire（最高）」だと言われたり、誰かの議論が「slaps（めちゃくちゃ良い）」と言われたことがあるなら、おめでとう—あなたは野生のZ世代スラングに遭遇したのだ。でもなぜこの世代の語彙はこんなに速く広まるのか？
+
+答えは主にテクノロジーだ。TikTokやInstagram Reelsはキャッチーなフレーズを一晩でバズらせる。アトランタのクリエイターが朝食時に用語を作り、夕食までに東京で聞かれることもある。考えてみると、それはlowkey（実は）ヤバい。
+
+言語学者は、スラングは常に若者がアイデンティティをflex（見せびらかし）し、社会的サークルをgatekeep（排他的にする）手段だったと指摘する。今違うのは速度だ。「slay」「no cap」「sus」などの言葉は、数十年ではなく数ヶ月でニッチなオンラインコミュニティから主流メディアに飛び出した。
+
+批判者はこの急速な入れ替わりが言語を劣化させていると言う。でもその意見はkinda mid（微妙）だ。言語は常に進化してきたし、今日のスラングは最新のglow-up（大変身）に過ぎない。`
+  },
+  {
+    id: "2026-03-18-006",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "Ghosting: The Silent Epidemic of Modern Dating",
+    difficulty: "TOEFL iBT",
+    wordCount: 149,
+    text: `You match with someone on a dating app. The conversation is vibing—they're funny, attentive, and seem genuinely interested. You make plans to grab coffee. Then, out of nowhere, they vanish. No reply. No explanation. You've been ghosted.
+
+Ghosting—abruptly cutting off all communication without warning—has become so common that psychologists now study its effects on mental health. Research suggests that being ghosted activates the same brain regions associated with physical pain, because our brains process social rejection similarly to bodily harm.
+
+Why do people ghost? Some claim it's less awkward than an honest breakup. Others are simply overwhelmed by the paradox of choice that dating apps create. When another match is just a swipe away, investing emotional labor feels pointless.
+
+But ghosting isn't just a dating thing anymore. People ghost job interviews, friendships, even family gatherings. It's become a whole vibe—or rather, the absence of one. The real tea is that ghosting says more about the ghoster than the ghosted.`,
+    glossary: [
+      { word: "ghosting", pos: "noun/verb (slang)", japanese: "音信不通にすること、フェードアウト", definition: "Suddenly ending all communication with someone without explanation", example: "She ghosted him after their third date.", exampleJa: "彼女は3回目のデートの後、彼を音信不通にした。" },
+      { word: "vibing", pos: "verb (slang)", japanese: "いい感じになっている、波長が合っている", definition: "Getting along well; feeling good energy with someone or something", example: "We were really vibing at the party last night.", exampleJa: "昨夜のパーティーでマジで波長合ってた。" },
+      { word: "out of nowhere", pos: "phrase", japanese: "突然、どこからともなく", definition: "Unexpectedly; without warning or apparent cause", example: "The storm appeared out of nowhere.", exampleJa: "嵐が突然現れた。" },
+      { word: "the tea", pos: "noun (slang)", japanese: "真相、ゴシップ、本当のところ", definition: "The truth; gossip; the real story", example: "Spill the tea—what actually happened?", exampleJa: "本当のところ教えて—実際何があったの？" },
+      { word: "a whole vibe", pos: "phrase (slang)", japanese: "完全にそういう雰囲気", definition: "An entire mood or atmosphere; something that embodies a particular feeling", example: "This café is a whole vibe—I love the music.", exampleJa: "このカフェは雰囲気最高—音楽が好き。" },
+      { word: "swipe", pos: "noun/verb", japanese: "スワイプ（する）", definition: "To slide a finger across a screen; in dating apps, to express interest or rejection", example: "She swiped right on his profile.", exampleJa: "彼女は彼のプロフィールを右スワイプした。" },
+      { word: "emotional labor", pos: "noun", japanese: "感情労働", definition: "The effort required to manage emotions in social or professional interactions", example: "Customer service workers perform significant emotional labor.", exampleJa: "カスタマーサービスの従業員は大きな感情労働を行う。" },
+      { word: "paradox of choice", pos: "noun phrase", japanese: "選択のパラドックス", definition: "The phenomenon where having too many options leads to anxiety and indecision", example: "The paradox of choice explains why browsing Netflix feels exhausting.", exampleJa: "選択のパラドックスがNetflixの閲覧が疲れる理由を説明する。" },
+      { word: "grab coffee", pos: "phrase", japanese: "コーヒーを飲みに行く（軽いデート）", definition: "To casually meet for coffee; a low-pressure social outing", example: "Want to grab coffee sometime this week?", exampleJa: "今週のどこかでコーヒー飲みに行かない？" },
+      { word: "attentive", pos: "adjective", japanese: "気配りのある、注意深い", definition: "Paying close attention; considerate and thoughtful", example: "A good listener is always attentive to body language.", exampleJa: "良い聞き手は常にボディランゲージに注意を払う。" }
+    ],
+    translation: `マッチングアプリで誰かとマッチする。会話はvibing（いい感じ）で—面白くて、気配りがあり、本当に興味を持っているようだ。コーヒーを飲みに行く計画を立てる。そして突然、相手が消える。返信なし。説明なし。あなたはゴーストされたのだ。
+
+ゴースティング—警告なしに突然すべてのコミュニケーションを断ち切ること—は非常に一般的になり、心理学者がメンタルヘルスへの影響を研究するようになった。研究は、ゴーストされることが身体的な痛みに関連する同じ脳領域を活性化することを示唆している。なぜなら、私たちの脳は社会的拒絶を身体的な危害と同様に処理するからだ。
+
+なぜ人はゴーストするのか？正直な別れよりも気まずくないと主張する人もいる。マッチングアプリが生み出す選択のパラドックスに圧倒されている人もいる。次のマッチがスワイプ一つで得られるとき、感情労働を投資することは無意味に感じる。
+
+しかしゴースティングはもはやデートだけの話ではない。就職面接、友人関係、家族の集まりさえもゴーストする人がいる。それは完全にa whole vibe—というか、その不在だ。本当のところ（the tea）は、ゴースティングはゴーストされた側よりもゴーストした側について多くを語るということだ。`
+  },
+  {
+    id: "2026-03-18-007",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "The Rise of 'Quiet Quitting' and Hustle Culture Backlash",
+    difficulty: "TOEFL iBT",
+    wordCount: 148,
+    text: `Remember when "grinding" and "hustling" were badges of honor? When LinkedIn influencers preached that sleeping four hours a night was a flex? Well, the vibe has shifted. Enter "quiet quitting"—doing exactly what your job requires and nothing more.
+
+Despite the name, quiet quitting isn't actually about quitting. It's about setting boundaries. Employees are pushing back against the expectation to go above and beyond without recognition or compensation. They clock in, do their tasks, and bounce—no late-night emails, no weekend projects, no burnout.
+
+Corporate America is shook. Managers call it "disengagement." Workers call it "having a life." The disconnect is real.
+
+Hustle culture glorified overwork as a personality trait. But younger workers have seen their parents grind for decades only to get laid off or burned out. They're not about that life anymore.
+
+The backlash isn't laziness—it's a recalibration. People are choosing to invest their energy where it actually hits different: relationships, hobbies, and mental health.`,
+    glossary: [
+      { word: "grinding", pos: "verb (slang)", japanese: "必死に働く、がむしゃらに頑張る", definition: "Working extremely hard, often for long hours", example: "He's been grinding all week to finish the project.", exampleJa: "彼はプロジェクトを終わらせるために一週間必死に働いている。" },
+      { word: "hustling", pos: "verb (slang)", japanese: "精力的に稼ぐ、奮闘する", definition: "Working hard and energetically, often in entrepreneurial ways", example: "She's hustling with two side jobs to save for a house.", exampleJa: "彼女は家を買うために副業2つで奮闘している。" },
+      { word: "quiet quitting", pos: "noun (slang)", japanese: "静かな退職（必要最低限の仕事しかしないこと）", definition: "Doing only what is required by your job description, without extra effort", example: "Quiet quitting spread on TikTok in 2022.", exampleJa: "静かな退職は2022年にTikTokで広まった。" },
+      { word: "bounce", pos: "verb (slang)", japanese: "帰る、立ち去る", definition: "To leave a place, often quickly or casually", example: "It's getting late—I'm gonna bounce.", exampleJa: "遅くなってきた—もう帰るわ。" },
+      { word: "shook", pos: "adjective (slang)", japanese: "動揺した、衝撃を受けた", definition: "Shocked, surprised, or emotionally affected", example: "I was shook when I heard the news.", exampleJa: "そのニュースを聞いて衝撃を受けた。" },
+      { word: "not about that life", pos: "phrase (slang)", japanese: "そういうのはもう御免だ", definition: "Not interested in or willing to participate in something", example: "Working weekends? I'm not about that life.", exampleJa: "週末に仕事？もう御免だよ。" },
+      { word: "hits different", pos: "phrase (slang)", japanese: "格別に良い、特別な感じがする", definition: "Feels especially good or meaningful in a particular context", example: "Hot chocolate on a cold day hits different.", exampleJa: "寒い日のホットチョコレートは格別だ。" },
+      { word: "burnout", pos: "noun", japanese: "燃え尽き症候群", definition: "Physical or mental exhaustion caused by overwork or stress", example: "High burnout rates are driving employees to switch industries.", exampleJa: "高い燃え尽き率が従業員の業界転換を促している。" },
+      { word: "clock in", pos: "phrasal verb", japanese: "出勤する、タイムカードを押す", definition: "To record one's arrival at work; to start working", example: "I clock in at nine and leave at five—no exceptions.", exampleJa: "9時に出勤して5時に帰る—例外なし。" },
+      { word: "laid off", pos: "phrasal verb", japanese: "解雇される、リストラされる", definition: "To be dismissed from a job, typically due to business conditions", example: "Thousands were laid off during the recession.", exampleJa: "不況中に何千人もがリストラされた。" },
+      { word: "recalibration", pos: "noun", japanese: "再調整、見直し", definition: "The act of adjusting something again to a correct or improved standard", example: "The policy failure prompted a recalibration of the government's strategy.", exampleJa: "政策の失敗が政府の戦略の再調整を促した。" }
+    ],
+    translation: `「grinding（がむしゃらに働く）」や「hustling（精力的に稼ぐ）」が名誉の証だった頃を覚えているか？LinkedInのインフルエンサーが1日4時間睡眠はflex（自慢）だと説教していた頃を？さて、雰囲気は変わった。登場するのは「quiet quitting（静かな退職）」—仕事に必要なことだけをして、それ以上はしない。
+
+名前に反して、quiet quittingは実際には辞めることではない。境界線を設定することだ。従業員は認められず報酬もなく期待以上のことをするという期待に反発している。出勤し、タスクをこなし、bounce（帰る）—深夜のメールなし、週末のプロジェクトなし、燃え尽きなし。
+
+企業アメリカはshook（動揺して）いる。マネージャーはそれを「離脱」と呼ぶ。労働者はそれを「生活を持つこと」と呼ぶ。この断絶は本物だ。
+
+ハッスル文化は過労を性格特性として称賛した。しかし若い労働者は親が何十年もgrind（必死に働き）、リストラされたり燃え尽きたりするのを見てきた。彼らはもうnot about that life（そういうのは御免）なのだ。
+
+この反発は怠惰ではない—再調整だ。人々はエネルギーを実際にhits different（格別な）ところに投資することを選んでいる：人間関係、趣味、メンタルヘルス。`
+  },
+  {
+    id: "2026-03-18-008",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "From 'Salty' to 'Snatched': Food Slang That Left the Kitchen",
+    difficulty: "TOEFL iBT",
+    wordCount: 150,
+    text: `English speakers have always seasoned their language with food metaphors, but recent slang has taken this to another level. Words that once belonged strictly to the kitchen now dominate casual conversation—and understanding them is essential for anyone navigating modern English.
+
+Take "salty." In cooking, it describes excessive sodium. In slang, it means bitter or upset, usually over something petty. "She's still salty about losing that game" has nothing to do with seasoning.
+
+"Thirsty" has similarly migrated. Beyond dehydration, it now describes someone desperately seeking attention or validation. "His comments on every post are so thirsty" is a common roast.
+
+"Baked" went from describing bread to indicating someone under the influence of cannabis. "Toasted" follows the same trajectory. Meanwhile, "snatched" evolved from wig-making terminology to mean looking exceptionally good—"Your outfit is snatched" is high praise.
+
+Even "spill the tea," meaning to share gossip, originated from African American drag culture before becoming mainstream. These migrations remind us that slang is never random—it's cultural archaeology in real time.`,
+    glossary: [
+      { word: "salty", pos: "adjective (slang)", japanese: "イラっとした、ムカついている", definition: "Feeling bitter, upset, or annoyed, especially over something minor", example: "Don't be salty just because you lost the bet.", exampleJa: "賭けに負けただけでイラつくなよ。" },
+      { word: "snatched", pos: "adjective (slang)", japanese: "キマっている、完璧に見える", definition: "Looking extremely good or on point; perfectly styled", example: "Her makeup is absolutely snatched tonight.", exampleJa: "今夜の彼女のメイクは完璧にキマっている。" },
+      { word: "thirsty", pos: "adjective (slang)", japanese: "必死な、注目を求めている", definition: "Desperately seeking attention, approval, or romantic interest", example: "Posting ten selfies a day? That's thirsty.", exampleJa: "1日に10枚もセルフィーを投稿？それは必死すぎ。" },
+      { word: "roast", pos: "noun/verb (slang)", japanese: "いじる、からかう", definition: "To mock or make fun of someone in a humorous way", example: "His friends roasted him about his new haircut.", exampleJa: "友達が彼の新しい髪型をいじった。" },
+      { word: "baked", pos: "adjective (slang)", japanese: "（大麻で）キマっている", definition: "Under the influence of cannabis; very high", example: "He looked completely baked at the party.", exampleJa: "パーティーで彼は完全にキマっているように見えた。" },
+      { word: "spill the tea", pos: "phrase (slang)", japanese: "ゴシップを話す、暴露する", definition: "To share gossip or reveal secrets", example: "Come on, spill the tea about the meeting.", exampleJa: "ねえ、会議のことを教えてよ。" },
+      { word: "petty", pos: "adjective (slang)", japanese: "小さいことにこだわる、器が小さい", definition: "Giving excessive importance to trivial matters; childishly spiteful", example: "Blocking someone over a minor disagreement is so petty.", exampleJa: "ちょっとした意見の違いでブロックするのはすごく器が小さい。" },
+      { word: "drag culture", pos: "noun", japanese: "ドラッグカルチャー（男性が女性の装いをする文化）", definition: "The culture and community centered around drag performance and gender expression", example: "Many popular slang terms originated in drag culture.", exampleJa: "多くの人気スラング用語はドラッグカルチャーから生まれた。" },
+      { word: "trajectory", pos: "noun", japanese: "軌道、変遷の道筋", definition: "The path followed by something; the course of development", example: "The company's growth trajectory has been impressive.", exampleJa: "その会社の成長の軌道は印象的だった。" },
+      { word: "validation", pos: "noun", japanese: "承認、認められること", definition: "The feeling of being recognized, accepted, or approved by others", example: "Social media can create an unhealthy need for external validation.", exampleJa: "ソーシャルメディアは外部からの承認への不健全な欲求を生み出しうる。" },
+      { word: "seasoned", pos: "verb", japanese: "味付けした、風味を加えた", definition: "Added flavor or interest to something (literal: added spices)", example: "She seasoned her speech with humor and anecdotes.", exampleJa: "彼女はスピーチにユーモアと逸話で味付けした。" }
+    ],
+    translation: `英語話者は常に食べ物の比喩で言語に味付けしてきたが、最近のスラングはこれを別のレベルに引き上げた。かつてキッチンにのみ属していた言葉が今やカジュアルな会話を支配している—そしてそれを理解することは現代英語を使いこなすすべての人に不可欠だ。
+
+「salty」を例に取ろう。料理では過剰な塩分を表す。スラングでは苦々しい、怒っている、通常は些細なことに対して、という意味だ。「彼女はまだあの試合に負けたことにsaltyだ」は味付けとは何の関係もない。
+
+「thirsty」も同様に移行した。脱水状態を超えて、今では必死に注目や承認を求める人を表す。「彼の全ての投稿へのコメントはすごくthirstyだ」はよくあるいじりだ。
+
+「baked」はパンの描写から大麻の影響下にあることを示すようになった。「toasted」も同じ軌道をたどる。一方「snatched」はウィッグ作りの用語から非常に見栄えが良いことを意味するように進化した—「あなたの服装はsnatchedだ」は最高の称賛だ。
+
+「spill the tea（ゴシップを話す）」でさえ、主流になる前にアフリカ系アメリカ人のドラッグカルチャーから生まれた。これらの移行は、スラングは決してランダムではない—リアルタイムの文化的考古学であることを思い出させてくれる。`
+  },
+  {
+    id: "2026-03-18-009",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "Rizz, Main Character Energy, and the Language of Confidence",
+    difficulty: "TOEFL iBT",
+    wordCount: 151,
+    text: `In 2023, Oxford University Press crowned "rizz" its Word of the Year, marking the first time a pure slang term earned that distinction. Short for "charisma," rizz describes someone's natural ability to charm or attract others through conversation and presence. You either have it or you don't—and if you do, people notice immediately.
+
+Closely related is "main character energy"—the confidence to move through life as if you're the protagonist of your own movie. Someone with main character energy walks into a room and owns it. They're not arrogant; they're simply unbothered by others' opinions.
+
+These terms reflect a broader cultural shift toward celebrating self-assurance. Previous generations might have called this "swagger" or "moxie." Gen Z simply repackaged the concept with fresh vocabulary.
+
+But there's a catch. "Delulu"—short for delusional—describes someone whose confidence exceeds reality. The line between having rizz and being delulu is thinner than you'd think. True rizz, most agree, requires authenticity. Faking it is an instant ick.`,
+    glossary: [
+      { word: "rizz", pos: "noun (slang)", japanese: "人を惹きつける魅力、口説き力", definition: "Natural charm, charisma, or ability to attract others, especially romantically", example: "That guy has serious rizz—everyone's drawn to him.", exampleJa: "あの男はマジで魅力的だ—みんな彼に引き寄せられる。" },
+      { word: "main character energy", pos: "noun phrase (slang)", japanese: "主人公オーラ、堂々とした自信", definition: "The confidence and self-assurance to live boldly as if you're the star of your own story", example: "Walking into the interview with main character energy got her the job.", exampleJa: "主人公オーラで面接に臨んだおかげで彼女は採用された。" },
+      { word: "delulu", pos: "adjective (slang)", japanese: "妄想的な、現実離れした", definition: "Delusional; having beliefs or expectations disconnected from reality", example: "Thinking he'll text back after a month? That's delulu.", exampleJa: "1ヶ月後に彼が返信すると思ってる？それは妄想だよ。" },
+      { word: "ick", pos: "noun (slang)", japanese: "一瞬で冷める要素、ドン引きポイント", definition: "A sudden feeling of disgust or loss of attraction toward someone", example: "The way he chews with his mouth open is a major ick.", exampleJa: "口を開けて噛む彼のやり方は一瞬で冷めるポイントだ。" },
+      { word: "unbothered", pos: "adjective (slang)", japanese: "気にしない、動じない", definition: "Not worried, disturbed, or affected by something; calm and untroubled", example: "She stayed unbothered despite all the criticism.", exampleJa: "批判にも関わらず彼女は動じなかった。" },
+      { word: "owns it", pos: "phrase (slang)", japanese: "堂々としている、完全に支配する", definition: "To dominate a situation with confidence; to fully embrace something", example: "She made a mistake but totally owned it.", exampleJa: "彼女はミスをしたが完全に堂々と受け入れた。" },
+      { word: "swagger", pos: "noun", japanese: "堂々とした態度、自信に満ちた振る舞い", definition: "A very confident and typically arrogant manner of behaving or walking", example: "He walked in with the swagger of a rock star.", exampleJa: "彼はロックスターのような堂々とした態度で入ってきた。" },
+      { word: "moxie", pos: "noun", japanese: "度胸、根性", definition: "Force of character, determination, or nerve; courage and daring", example: "It takes real moxie to start a business at eighteen.", exampleJa: "18歳で起業するには本当の度胸がいる。" },
+      { word: "repackaged", pos: "verb", japanese: "新しい形に包み直した、リブランドした", definition: "Presented something existing in a new or different way", example: "The old marketing strategy was repackaged with modern branding.", exampleJa: "古いマーケティング戦略がモダンなブランディングで包み直された。" },
+      { word: "authenticity", pos: "noun", japanese: "本物であること、真正性", definition: "The quality of being genuine, real, or true to one's own character", example: "Audiences value authenticity over polished perfection.", exampleJa: "観客は磨かれた完璧さよりも本物であることを重視する。" }
+    ],
+    translation: `2023年、オックスフォード大学出版局は「rizz」を年間ワード・オブ・ザ・イヤーに選出し、純粋なスラング用語がこの栄誉を得た初めての機会となった。「charisma（カリスマ）」の短縮形で、rizzは会話と存在感を通じて他者を魅了し引き付ける自然な能力を表す。あるかないかのどちらかで—あれば、人はすぐに気づく。
+
+密接に関連するのが「main character energy（主人公オーラ）」—自分自身の映画の主人公であるかのように人生を歩む自信だ。主人公オーラを持つ人は部屋に入ると完全に支配する。傲慢なのではない。単に他人の意見に動じないのだ。
+
+これらの用語は自信を称賛する方向へのより広い文化的シフトを反映している。前の世代はこれを「swagger（堂々とした態度）」や「moxie（度胸）」と呼んだかもしれない。Z世代は新鮮な語彙でコンセプトをリパッケージしただけだ。
+
+しかし落とし穴がある。「delulu」—delusional（妄想的な）の短縮形—は自信が現実を超えている人を表す。rizzがあるのとdeluluであることの境界線は思っているより薄い。本当のrizzには、ほとんどの人が同意するように、本物であることが必要だ。偽ることは即座のick（ドン引き）だ。`
+  },
+  {
+    id: "2026-03-18-010",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "How African American Vernacular English Shapes Global Slang",
+    difficulty: "TOEFL iBT+",
+    wordCount: 152,
+    text: `Much of what the internet celebrates as trendy slang actually originates from African American Vernacular English, or AAVE. Terms like "lit," "woke," "slay," "shade," "fam," and "periodt" were used in Black communities for years—sometimes decades—before going mainstream on social media.
+
+This pattern is not new. Jazz-era slang like "cool," "hip," and "dig" followed the same path, migrating from Black cultural spaces into broader American English. What has changed is the speed and scale of adoption, driven by platforms that amplify content without crediting its origins.
+
+This raises thorny questions about cultural appropriation versus appreciation. When non-Black speakers adopt AAVE terms, are they celebrating the culture or extracting from it? Linguist April Baker-Bell argues that society often stigmatizes Black speakers of AAVE while simultaneously adopting their linguistic innovations.
+
+The double standard is glaring. A Black teenager using "finna" in a classroom might be corrected, while a white influencer using the same word receives millions of views. Understanding slang requires acknowledging whose creativity drives it and ensuring credit flows back to its source.`,
+    glossary: [
+      { word: "AAVE", pos: "noun", japanese: "アフリカ系アメリカ人土着英語", definition: "African American Vernacular English; a dialect with its own grammar, vocabulary, and pronunciation rules", example: "AAVE has its own systematic grammatical structure.", exampleJa: "AAVEには独自の体系的な文法構造がある。" },
+      { word: "lit", pos: "adjective (slang)", japanese: "最高に盛り上がっている、ヤバい", definition: "Exciting, fun, or excellent; originally meant intoxicated", example: "The party last night was absolutely lit.", exampleJa: "昨夜のパーティーはマジで最高だった。" },
+      { word: "woke", pos: "adjective (slang)", japanese: "社会問題に意識的な", definition: "Aware of and attentive to social injustice and discrimination", example: "The campaign aims to keep young voters woke about climate issues.", exampleJa: "そのキャンペーンは若い有権者に気候問題への意識を持たせることを目指す。" },
+      { word: "shade", pos: "noun (slang)", japanese: "さりげない嫌味、ディスり", definition: "Subtle disrespect or public criticism delivered indirectly", example: "She threw shade at her rival during the interview.", exampleJa: "彼女はインタビュー中にライバルにさりげなく嫌味を言った。" },
+      { word: "fam", pos: "noun (slang)", japanese: "仲間、ファミリー", definition: "Close friends; people you consider family", example: "Don't worry, fam—I got your back.", exampleJa: "心配するな、仲間—俺がついてるから。" },
+      { word: "periodt", pos: "interjection (slang)", japanese: "以上。（強調の終止符）", definition: "Period, with emphasis; used to indicate that a statement is final and undebatable", example: "She's the best singer of this generation, periodt.", exampleJa: "彼女はこの世代最高の歌手だ、以上。" },
+      { word: "finna", pos: "contraction (slang)", japanese: "〜するつもりだ", definition: "Going to; about to (contraction of 'fixing to')", example: "I'm finna leave in five minutes.", exampleJa: "あと5分で出るつもりだ。" },
+      { word: "cultural appropriation", pos: "noun", japanese: "文化の盗用", definition: "The adoption of elements of one culture by members of another, often without understanding or respect", example: "Wearing sacred symbols as fashion accessories is cultural appropriation.", exampleJa: "神聖なシンボルをファッションアクセサリーとして着用するのは文化の盗用だ。" },
+      { word: "stigmatize", pos: "verb", japanese: "汚名を着せる、差別する", definition: "To regard or treat someone as worthy of disgrace or disapproval", example: "Society continues to stigmatize people with mental health conditions.", exampleJa: "社会はメンタルヘルスの状態にある人々に汚名を着せ続けている。" },
+      { word: "double standard", pos: "noun", japanese: "二重基準、ダブルスタンダード", definition: "A rule or principle applied unfairly in different ways to different people", example: "The dress code has a clear double standard between men and women.", exampleJa: "ドレスコードには男女間に明確な二重基準がある。" },
+      { word: "glaring", pos: "adjective", japanese: "明白な、目立つ", definition: "Very obvious or conspicuous in a way that is hard to ignore", example: "There is a glaring gap between policy and practice.", exampleJa: "政策と実践の間に明白な隔たりがある。" }
+    ],
+    translation: `インターネットがトレンディなスラングとして称賛するものの多くは、実際にはアフリカ系アメリカ人土着英語（AAVE）に由来する。「lit」「woke」「slay」「shade」「fam」「periodt」などの用語は、ソーシャルメディアで主流になる前に何年も—時には何十年も—ブラックコミュニティで使われていた。
+
+このパターンは新しくない。ジャズ時代の「cool」「hip」「dig」などのスラングも同じ道をたどり、ブラックの文化空間からより広いアメリカ英語に移行した。変わったのは導入の速度と規模であり、起源をクレジットせずにコンテンツを増幅するプラットフォームによって推進されている。
+
+これは文化の盗用と評価についての厄介な問題を提起する。非ブラックの話者がAAVEの用語を採用するとき、文化を称えているのか、それとも搾取しているのか？言語学者のエイプリル・ベイカー＝ベルは、社会がAAVEのブラックの話者を差別する一方で、同時に彼らの言語的革新を採用していると主張する。
+
+ダブルスタンダードは明白だ。教室で「finna」を使うブラックのティーンエイジャーは訂正されるかもしれないが、同じ言葉を使う白人のインフルエンサーは何百万ものビューを獲得する。スラングを理解するには、誰の創造性がそれを推進しているかを認め、クレジットがその源に還元されることを確保する必要がある。`
+  },
+  {
+    id: "2026-03-18-011",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "Bet, Say Less, and the Art of Minimal Agreement",
+    difficulty: "TOEFL iBT",
+    wordCount: 148,
+    text: `Modern English speakers have developed an entire vocabulary for saying "yes" without actually saying it. "Bet" might be the most versatile. Originally gambling slang meaning "I'll take that wager," it has evolved into a universal affirmative. "Want to meet at seven?" "Bet." Done. No further discussion needed.
+
+"Say less" operates similarly but adds a layer of enthusiasm. It implies not only agreement but eagerness—"You don't need to convince me, I'm already in." When someone offers you free concert tickets and you respond with "say less," you're communicating maximum excitement with minimum words.
+
+Then there's "I'm dead" or "I'm deceased," which paradoxically expresses extreme amusement. Something so funny that it figuratively killed you. "That meme sent me" conveys the same idea—humor so powerful it transported you elsewhere.
+
+These expressions share a common thread: efficiency. Gen Z communicates through compression. Why use ten words when two will do? "It is what it is" got shortened to "it izz what it izz," then to simply "it be like that." Every generation streamlines, but this one speedruns it.`,
+    glossary: [
+      { word: "bet", pos: "interjection (slang)", japanese: "了解、いいよ、オッケー", definition: "An expression of agreement, confirmation, or acceptance", example: "Pick you up at eight? Bet.", exampleJa: "8時に迎えに行く？了解。" },
+      { word: "say less", pos: "phrase (slang)", japanese: "もう十分、喜んで（同意の表現）", definition: "I understand and agree; you don't need to say anything more", example: "Free pizza? Say less.", exampleJa: "無料のピザ？もう十分、行く。" },
+      { word: "I'm dead", pos: "phrase (slang)", japanese: "笑い死ぬ、ウケすぎる", definition: "An expression indicating something is extremely funny", example: "Did you see that video? I'm dead.", exampleJa: "あの動画見た？笑い死ぬ。" },
+      { word: "sent me", pos: "phrase (slang)", japanese: "ウケた、笑わされた", definition: "Made me laugh uncontrollably; emotionally overwhelmed me with humor", example: "His impression of the teacher absolutely sent me.", exampleJa: "彼の先生のモノマネにマジでウケた。" },
+      { word: "it be like that", pos: "phrase (slang)", japanese: "そういうもんだよ、仕方ない", definition: "That's just how things are; expressing resigned acceptance of a situation", example: "Failed the exam after studying all night? It be like that sometimes.", exampleJa: "徹夜で勉強したのに試験落ちた？まあそういうもんだよ。" },
+      { word: "speedrun", pos: "verb (slang)", japanese: "最速でやる、高速でこなす", definition: "To complete something as quickly as possible (from gaming term)", example: "She basically speedran her entire degree in two years.", exampleJa: "彼女は基本的に学位を2年で最速取得した。" },
+      { word: "versatile", pos: "adjective", japanese: "多用途な、万能な", definition: "Able to adapt or be used in many different ways", example: "Python is one of the most versatile programming languages.", exampleJa: "Pythonは最も多用途なプログラミング言語の一つだ。" },
+      { word: "affirmative", pos: "noun/adjective", japanese: "肯定（的な）、同意の", definition: "Expressing agreement or approval; a positive response", example: "The answer was a strong affirmative.", exampleJa: "答えは強い肯定だった。" },
+      { word: "figuratively", pos: "adverb", japanese: "比喩的に、文字通りではなく", definition: "In a way that uses metaphor rather than literal meaning", example: "She figuratively exploded with joy when she got the news.", exampleJa: "そのニュースを聞いて彼女は比喩的に喜びで爆発した。" },
+      { word: "compression", pos: "noun", japanese: "圧縮、短縮", definition: "The process of making something shorter or more compact", example: "Data compression reduces file sizes for faster transfer.", exampleJa: "データ圧縮がファイルサイズを減らして転送を高速化する。" },
+      { word: "streamlines", pos: "verb", japanese: "効率化する、簡素化する", definition: "To make a process or system more efficient by simplifying it", example: "The new software streamlines the approval workflow.", exampleJa: "新しいソフトウェアが承認ワークフローを効率化する。" }
+    ],
+    translation: `現代の英語話者は、実際に「yes」と言わずに「yes」を言うための語彙全体を発展させた。「bet」が最も万能かもしれない。元々は「その賭けに乗る」という意味のギャンブルスラングだったが、普遍的な肯定表現に進化した。「7時に会う？」「Bet。」終わり。それ以上の議論は不要。
+
+「say less」は同様に機能するが、熱意のレイヤーを追加する。同意だけでなく、熱心さも暗示する—「説得する必要はない、もう入っている。」誰かが無料のコンサートチケットを提供して「say less」と返答すれば、最小の言葉で最大の興奮を伝えている。
+
+それから「I'm dead」や「I'm deceased」がある。逆説的に極度の面白さを表現する。比喩的にあなたを殺すほど面白い何か。「That meme sent me」は同じ考えを伝える—別の場所に運ぶほど強力なユーモア。
+
+これらの表現は共通の糸を共有する：効率性。Z世代は圧縮を通じてコミュニケーションする。2つの言葉で済むのになぜ10個使うのか？「It is what it is」は「it izz what it izz」に短縮され、さらに単に「it be like that」になった。すべての世代が効率化するが、この世代はそれをspeedrun（最速で）する。`
+  },
+  {
+    id: "2026-03-18-012",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "Cancel Culture or Accountability? The Slang of Social Justice",
+    difficulty: "TOEFL iBT+",
+    wordCount: 150,
+    text: `Few modern terms ignite as much debate as "cancel culture." To its critics, canceling someone means destroying their career over a single mistake—mob justice executed through hashtags. To its defenders, it's simply accountability: powerful people facing consequences for harmful behavior.
+
+The vocabulary surrounding this phenomenon reveals deep ideological divisions. Supporters speak of "holding people accountable," "calling out" problematic behavior, and standing with those who have been "silenced." Opponents describe being "canceled," accuse critics of "virtue signaling," and warn against "thought policing."
+
+"Virtue signaling" itself has become a loaded weapon—the accusation that someone's expressed concern for social issues is performative rather than genuine. Meanwhile, "woke" has undergone a remarkable semantic inversion: once a badge of social awareness within Black communities, it's now frequently wielded as a pejorative by conservative commentators.
+
+"Receipts"—screenshots or evidence used to prove wrongdoing—have become central to cancel culture's infrastructure. "I have receipts" is the digital equivalent of producing a smoking gun.
+
+Perhaps the most revealing term is "main character syndrome"—the belief that the internet revolves around your opinions. Both cancelers and the canceled often suffer from it equally.`,
+    glossary: [
+      { word: "cancel culture", pos: "noun", japanese: "キャンセルカルチャー（社会的制裁文化）", definition: "The practice of withdrawing support and publicly shaming someone for objectionable behavior", example: "Cancel culture has become a divisive topic in American politics.", exampleJa: "キャンセルカルチャーはアメリカ政治で分裂を生むトピックになった。" },
+      { word: "calling out", pos: "phrasal verb (slang)", japanese: "公然と非難する、指摘する", definition: "Publicly drawing attention to someone's wrongdoing or problematic behavior", example: "She called out the company for its discriminatory hiring practices.", exampleJa: "彼女は差別的な採用慣行について会社を公然と非難した。" },
+      { word: "virtue signaling", pos: "noun", japanese: "美徳シグナリング（見せかけの善意表明）", definition: "The public expression of moral values primarily to enhance one's social standing rather than from genuine conviction", example: "Critics dismissed the CEO's apology as mere virtue signaling.", exampleJa: "批判者はCEOの謝罪を単なる美徳シグナリングとして退けた。" },
+      { word: "receipts", pos: "noun (slang)", japanese: "証拠、動かぬ証拠（スクショなど）", definition: "Evidence, usually screenshots or recordings, proving someone's wrongdoing or hypocrisy", example: "She posted receipts showing his contradictory statements.", exampleJa: "彼女は彼の矛盾した発言を示す証拠を投稿した。" },
+      { word: "pejorative", pos: "adjective/noun", japanese: "軽蔑的な、侮蔑語", definition: "Expressing contempt or disapproval; a word used in a derogatory way", example: "The term was originally neutral but has become pejorative.", exampleJa: "その用語はもともと中立的だったが軽蔑的になった。" },
+      { word: "performative", pos: "adjective", japanese: "見せかけの、パフォーマンス的な", definition: "Done for show rather than being genuine; relating to performance rather than substance", example: "The company's diversity statement felt performative rather than sincere.", exampleJa: "会社のダイバーシティ声明は誠実というよりパフォーマンス的に感じられた。" },
+      { word: "semantic inversion", pos: "noun", japanese: "意味の逆転", definition: "When the meaning of a word shifts to mean the opposite of its original sense", example: "The semantic inversion of 'woke' is a fascinating linguistic case study.", exampleJa: "『woke』の意味の逆転は興味深い言語学の事例研究だ。" },
+      { word: "smoking gun", pos: "noun", japanese: "動かぬ証拠、決定的証拠", definition: "Indisputable evidence that proves guilt or wrongdoing", example: "The leaked emails were the smoking gun in the investigation.", exampleJa: "流出したメールが調査の決定的証拠だった。" },
+      { word: "wielded", pos: "verb", japanese: "振りかざす、行使する", definition: "Used or employed something, especially power or influence, effectively", example: "The chairman wielded enormous influence over the board.", exampleJa: "会長は取締役会に対して絶大な影響力を行使した。" },
+      { word: "accountability", pos: "noun", japanese: "説明責任、責任を取ること", definition: "The obligation to accept responsibility for one's actions and their consequences", example: "Transparency and accountability are the foundations of good governance.", exampleJa: "透明性と説明責任は良いガバナンスの基盤である。" }
+    ],
+    translation: `「キャンセルカルチャー」ほど多くの議論を引き起こす現代の用語はほとんどない。批判者にとって、誰かをキャンセルすることは一つの過ちでキャリアを破壊すること—ハッシュタグを通じて執行される群衆裁判だ。擁護者にとって、それは単なる説明責任：有害な行動の結果に直面する権力者だ。
+
+この現象を取り巻く語彙は深いイデオロギー的分裂を明らかにする。支持者は「人々に説明責任を持たせる」「問題のある行動をcalling out（公然と非難する）」「silenced（沈黙させられた）」人々と共に立つと語る。反対者は「canceled（キャンセルされた）」と述べ、批判者を「virtue signaling（見せかけの善意表明）」と非難し、「thought policing（思想統制）」に警告する。
+
+「Virtue signaling」自体が込められた武器になっている—社会問題への表明された関心がperformative（見せかけ）であり本物ではないという非難。一方「woke」は驚くべき意味の逆転を経験した。かつてブラックコミュニティにおける社会的意識のバッジだったが、今では保守的な論評者によって軽蔑的に頻繁に振りかざされている。
+
+「Receipts」—不正行為を証明するスクリーンショットや証拠—はキャンセルカルチャーのインフラの中心になった。「I have receipts」は決定的証拠を提示するデジタル版だ。
+
+おそらく最も明らかにする用語は「main character syndrome」—インターネットがあなたの意見を中心に回っているという信念だ。キャンセルする側もされる側も、しばしば等しくそれに苦しんでいる。`
+  },
+  {
+    id: "2026-03-18-013",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "Touch Grass: When the Internet Tells You to Go Outside",
+    difficulty: "TOEFL iBT",
+    wordCount: 147,
+    text: `Of all the slang born from internet culture, "touch grass" might be the most self-aware. It's a blunt instruction to step away from the screen and reconnect with reality—typically directed at someone whose online behavior has become unhinged.
+
+Spending sixteen hours debating strangers on Twitter about whether a hot dog is a sandwich? Touch grass. Writing a three-thousand-word essay analyzing a celebrity's body language in a two-second clip? Definitely touch grass.
+
+The phrase captures a genuine tension in digital life. Chronically online individuals—people who spend so much time on the internet that their worldview becomes distorted—often lose perspective on what matters. They catastrophize minor events, adopt extreme positions, and forget that most people aren't terminally plugged in.
+
+Related terms paint a vivid picture. Being "terminally online" suggests an almost medical condition. "Brain rot" describes the cognitive decline from consuming too much low-quality content. A "doomscroller" compulsively reads negative news despite the anxiety it causes.
+
+Ironically, "touch grass" itself became a meme—proving that even advice to leave the internet gets absorbed back into it.`,
+    glossary: [
+      { word: "touch grass", pos: "phrase (slang)", japanese: "外に出ろ、現実に戻れ", definition: "Go outside and experience the real world; stop spending so much time online", example: "You've been arguing online for six hours—go touch grass.", exampleJa: "6時間もネットで議論してる—外に出ろよ。" },
+      { word: "chronically online", pos: "adjective phrase (slang)", japanese: "ネット漬けの、常にオンラインの", definition: "Spending an excessive amount of time on the internet, to the point of losing touch with reality", example: "Only someone chronically online would find that offensive.", exampleJa: "ネット漬けの人だけがそれを不快に感じるだろう。" },
+      { word: "brain rot", pos: "noun (slang)", japanese: "脳の腐敗（低質コンテンツの見すぎ）", definition: "The supposed mental deterioration from consuming too much trivial or low-quality internet content", example: "Watching TikTok for five hours straight is pure brain rot.", exampleJa: "TikTokを5時間ぶっ通しで見るのは純粋な脳の腐敗だ。" },
+      { word: "doomscroller", pos: "noun (slang)", japanese: "ドゥームスクローラー（悪いニュースを延々と読む人）", definition: "Someone who compulsively scrolls through bad news on social media", example: "I've become a total doomscroller since the election.", exampleJa: "選挙以来、完全にドゥームスクローラーになってしまった。" },
+      { word: "unhinged", pos: "adjective (slang)", japanese: "常軌を逸した、おかしくなった", definition: "Mentally unstable; wildly irrational or out of control", example: "That three-page text message was completely unhinged.", exampleJa: "あの3ページのテキストメッセージは完全に常軌を逸していた。" },
+      { word: "terminally", pos: "adverb (slang)", japanese: "末期的に、取り返しのつかないほど", definition: "To an extreme or incurable degree (used hyperbolically)", example: "He's terminally online—he knows every meme before it trends.", exampleJa: "彼は末期的にオンラインだ—トレンドになる前にすべてのミームを知っている。" },
+      { word: "catastrophize", pos: "verb", japanese: "大惨事のように考える、最悪の事態を想定する", definition: "To imagine the worst possible outcome; to blow something out of proportion", example: "Don't catastrophize—one bad review won't end your career.", exampleJa: "最悪の事態を想定するな—一つの悪いレビューでキャリアは終わらない。" },
+      { word: "plugged in", pos: "adjective (slang)", japanese: "情報通の、繋がっている", definition: "Connected to and aware of what's happening, especially online or in a specific community", example: "She's always plugged in to the latest industry trends.", exampleJa: "彼女は常に最新の業界トレンドに繋がっている。" },
+      { word: "self-aware", pos: "adjective", japanese: "自覚的な、自己認識のある", definition: "Having conscious knowledge of one's own character, feelings, and situation", example: "The show is refreshingly self-aware about its own clichés.", exampleJa: "その番組は自身のクリシェについて新鮮なほど自覚的だ。" },
+      { word: "blunt", pos: "adjective", japanese: "率直な、ぶっきらぼうな", definition: "Saying what you think without trying to be polite or diplomatic", example: "Her blunt feedback was hard to hear but ultimately helpful.", exampleJa: "彼女の率直なフィードバックは聞くのがつらかったが最終的に役立った。" }
+    ],
+    translation: `インターネット文化から生まれたすべてのスラングの中で、「touch grass」は最も自覚的かもしれない。画面から離れて現実と再接続しろという率直な指示で—通常、オンラインでの行動が常軌を逸した人に向けられる。
+
+ホットドッグがサンドイッチかどうかをTwitterで16時間見知らぬ人と議論してる？Touch grass。2秒のクリップでセレブのボディランゲージを分析する3000語のエッセイを書いてる？間違いなくtouch grass。
+
+このフレーズはデジタルライフの真の緊張を捉えている。Chronically online（ネット漬け）の個人—世界観が歪むほど多くの時間をインターネットで過ごす人々—は何が重要かの視点をしばしば失う。些細な出来事を大惨事のように考え、極端な立場を採用し、ほとんどの人が末期的にプラグインしていないことを忘れる。
+
+関連用語は鮮明な絵を描く。「terminally online」はほとんど医学的状態を示唆する。「brain rot」は低品質コンテンツの消費による認知的衰退を表す。「doomscroller」は不安を引き起こすにもかかわらず強迫的にネガティブなニュースを読む人だ。
+
+皮肉なことに、「touch grass」自体がミームになった—インターネットを離れるアドバイスでさえそこに吸収されることを証明している。`
+  },
+  {
+    id: "2026-03-18-014",
+    date: "2026-03-18",
+    topic: "Slang & Culture",
+    title: "Understood the Assignment: Workplace Slang Goes Corporate",
+    difficulty: "TOEFL iBT",
+    wordCount: 149,
+    text: `Corporate culture has always had its own jargon—"synergy," "circle back," "low-hanging fruit." But something interesting is happening: Gen Z employees are injecting internet slang into professional environments, and it's creating a bizarre linguistic mashup.
+
+"Understood the assignment" is perhaps the smoothest crossover. Originally used to praise someone's outfit or performance on social media, it now appears in actual performance reviews. "She really understood the assignment on the Q3 marketing strategy" is a sentence that would have baffled executives five years ago.
+
+"That tracks" has replaced "that makes sense" in countless Slack channels. "Big yikes" has become an acceptable reaction to problematic quarterly results. Some managers have even caught themselves saying "it's giving micromanagement" to describe a colleague's leadership style.
+
+Not everyone is here for it. Older employees find the casual tone unprofessional, while younger workers argue that rigid corporate speak is cringe. The generational tension is palpable.
+
+Language evolves fastest where cultures collide, and the modern office is ground zero for this particular collision.`,
+    glossary: [
+      { word: "understood the assignment", pos: "phrase (slang)", japanese: "完璧にやり遂げた、期待通りにキメた", definition: "Did exactly what was needed; performed perfectly for the situation", example: "The designer understood the assignment—the rebrand is flawless.", exampleJa: "デザイナーは完璧にやり遂げた—リブランドは非の打ちどころがない。" },
+      { word: "that tracks", pos: "phrase (slang)", japanese: "それは筋が通る、なるほど", definition: "That makes sense; that is consistent with what I know", example: "He's always late? Yeah, that tracks.", exampleJa: "彼はいつも遅刻する？うん、筋が通る。" },
+      { word: "big yikes", pos: "interjection (slang)", japanese: "うわぁ…（強い引きの表現）", definition: "An expression of shock, embarrassment, or second-hand discomfort, intensified", example: "They announced layoffs via email? Big yikes.", exampleJa: "メールで解雇を告知した？うわぁ…。" },
+      { word: "it's giving", pos: "phrase (slang)", japanese: "〜な雰囲気がする、〜っぽい", definition: "It has the vibe or energy of; it reminds me of", example: "This office renovation is giving Silicon Valley startup.", exampleJa: "このオフィス改装はシリコンバレーのスタートアップっぽい。" },
+      { word: "cringe", pos: "adjective/noun (slang)", japanese: "痛い、恥ずかしい、イタい", definition: "Causing feelings of embarrassment or awkwardness", example: "His motivational speech was honestly so cringe.", exampleJa: "彼のモチベーショナルスピーチは正直イタかった。" },
+      { word: "here for it", pos: "phrase (slang)", japanese: "大賛成、歓迎する", definition: "Enthusiastically supportive of something; fully on board", example: "A four-day work week? I'm here for it.", exampleJa: "週4日勤務？大賛成だ。" },
+      { word: "mashup", pos: "noun", japanese: "混合、ごちゃ混ぜ", definition: "A mixture or combination of different elements", example: "The restaurant's menu is a mashup of Italian and Japanese cuisine.", exampleJa: "そのレストランのメニューはイタリアンと日本料理のごちゃ混ぜだ。" },
+      { word: "crossover", pos: "noun", japanese: "クロスオーバー、分野を超えた移行", definition: "Something that moves from one category, genre, or context to another", example: "The song was a crossover hit in both pop and country markets.", exampleJa: "その曲はポップとカントリー両方の市場でクロスオーバーヒットだった。" },
+      { word: "palpable", pos: "adjective", japanese: "明白な、肌で感じられる", definition: "So strong or obvious that it can almost be physically felt", example: "The tension in the boardroom was palpable.", exampleJa: "役員室の緊張感は肌で感じられるほどだった。" },
+      { word: "ground zero", pos: "noun", japanese: "震源地、出発点", definition: "The central point or origin of something significant", example: "San Francisco was ground zero for the tech revolution.", exampleJa: "サンフランシスコはテック革命の震源地だった。" },
+      { word: "jargon", pos: "noun", japanese: "専門用語、業界用語", definition: "Special words or expressions used by a profession or group that are difficult for others to understand", example: "Medical jargon can confuse patients during consultations.", exampleJa: "医療専門用語が診察中に患者を混乱させることがある。" }
+    ],
+    translation: `企業文化には常に独自の専門用語があった—「synergy」「circle back」「low-hanging fruit」。しかし興味深いことが起きている。Z世代の従業員がインターネットスラングを職場環境に注入し、奇妙な言語的ごちゃ混ぜを生み出しているのだ。
+
+「Understood the assignment」はおそらく最もスムーズなクロスオーバーだ。元々はソーシャルメディアで誰かの服装やパフォーマンスを称賛するために使われていたが、今や実際の人事評価に登場する。「彼女はQ3のマーケティング戦略で本当にunderstood the assignmentだった」は5年前なら経営陣を困惑させたであろう文だ。
+
+「That tracks」は無数のSlackチャンネルで「that makes sense」に取って代わった。「Big yikes」は問題のある四半期業績への許容される反応になった。一部のマネージャーは同僚のリーダーシップスタイルを表すのに「it's giving マイクロマネジメント」と言ってしまったことさえある。
+
+全員が賛成しているわけではない。年配の従業員はカジュアルなトーンをプロフェッショナルでないと感じ、若い従業員は堅苦しい企業用語がcringe（イタい）と主張する。世代間の緊張は肌で感じられるほどだ。
+
+言語は文化が衝突する場所で最も速く進化し、現代のオフィスはこの特定の衝突の震源地だ。`
   }
 ];
