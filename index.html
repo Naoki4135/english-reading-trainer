@@ -415,8 +415,12 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn active" data-filter="all" onclick="setVocabFilter('all', this)">All</button>
       <button class="filter-btn" data-filter="new" onclick="setVocabFilter('new', this)">New</button>
       <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
+      <button class="filter-btn" data-filter="shuffle" onclick="setVocabFilter('shuffle', this)">Shuffle</button>
       <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
       <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
+    </div>
+    <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
+      <button class="btn" onclick="reshuffleVocab()" style="width:100%; padding:10px;">&#128256; Shuffle Order</button>
     </div>
     <div class="card" style="padding:0;">
       <div id="vocab-list"></div>
@@ -504,10 +508,39 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <canvas id="chart-reviews" height="150" style="width:100%;"></canvas>
     </div>
 
+    <div class="card-title" style="margin: 16px 0 8px;">Long-term Progress (All Time)</div>
+    <div class="card" style="padding:12px;">
+      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Cumulative Words Read</div>
+      <canvas id="chart-longterm-words" height="150" style="width:100%;"></canvas>
+    </div>
+    <div class="card" style="padding:12px; margin-top:8px;">
+      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Daily Words Read (All Time)</div>
+      <canvas id="chart-longterm-daily" height="150" style="width:100%;"></canvas>
+    </div>
+
     <div class="card-title" style="margin: 16px 0 8px;">Mastery Distribution</div>
     <div class="card" id="mastery-chart"></div>
     <div class="card-title" style="margin: 16px 0 8px;">Study History</div>
     <div class="card" id="study-history"></div>
+
+    <div class="card-title" style="margin: 16px 0 8px;">Device Sync</div>
+    <div class="card">
+      <div style="font-size:13px; margin-bottom:10px;">スマホ・タブレット間で学習データを同期</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+        <button class="btn" onclick="generateSyncCode()" style="flex:1;">&#128228; Sync Code 生成</button>
+        <button class="btn" onclick="showSyncImport()" style="flex:1;">&#128229; Sync Code 入力</button>
+      </div>
+      <div id="sync-export-area" style="display:none; margin-top:8px;">
+        <div style="font-size:11px; color:var(--text2); margin-bottom:6px;">このコードを他のデバイスで入力してください：</div>
+        <textarea id="sync-code-output" readonly style="width:100%; height:80px; background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:8px; font-size:11px; font-family:monospace; resize:none;"></textarea>
+        <button class="btn small" onclick="copySyncCode()" style="margin-top:6px;">&#128203; Copy</button>
+      </div>
+      <div id="sync-import-area" style="display:none; margin-top:8px;">
+        <div style="font-size:11px; color:var(--text2); margin-bottom:6px;">他のデバイスで生成したSync Codeを貼り付け：</div>
+        <textarea id="sync-code-input" placeholder="Sync Codeを貼り付け..." style="width:100%; height:80px; background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:8px; font-size:11px; font-family:monospace; resize:none;"></textarea>
+        <button class="btn primary small" onclick="applySyncCode()" style="margin-top:6px;">&#128260; Apply Sync</button>
+      </div>
+    </div>
 
     <div class="card-title" style="margin: 16px 0 8px;">Data Backup</div>
     <div class="card" style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -1014,8 +1047,21 @@ function setVocabFilter(filter, btn) {
   btn.classList.add('active');
   filterVocab();
 }
+let shuffledVocabCache = [];
 function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
+  const shuffleCtrl = document.getElementById('shuffle-controls');
+  shuffleCtrl.style.display = vocabFilter === 'shuffle' ? 'block' : 'none';
+
+  if (vocabFilter === 'shuffle') {
+    // Use cached shuffle order, filter by search
+    if (shuffledVocabCache.length === 0) reshuffleVocabInternal();
+    const words = shuffledVocabCache.filter(([key, v]) => {
+      return !search || key.includes(search) || v.japanese.includes(search);
+    });
+    renderVocabList(words);
+    return;
+  }
   const words = Object.entries(state.vocabulary).filter(([key, v]) => {
     const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
     if (vocabFilter === 'all') return matchSearch && v.level >= 0 && v.level < 3;
@@ -1026,6 +1072,15 @@ function filterVocab() {
     return matchSearch;
   }).sort((a, b) => a[0].localeCompare(b[0]));
   renderVocabList(words);
+}
+function reshuffleVocabInternal() {
+  shuffledVocabCache = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
+  shuffleArray(shuffledVocabCache);
+}
+function reshuffleVocab() {
+  reshuffleVocabInternal();
+  filterVocab();
+  showToast('Shuffled!');
 }
 function updateVocabPage() { filterVocab(); }
 
@@ -1200,6 +1255,7 @@ function updateReviewPage() {
 
   // Draw progress charts
   drawCharts();
+  drawLongtermCharts();
 }
 
 function getLast14Days() {
@@ -1333,6 +1389,35 @@ function drawLineChart(canvasId, labels, data, color) {
   });
 }
 
+function drawLongtermCharts() {
+  if (!state.dailyStats) return;
+  const allDates = Object.keys(state.dailyStats).sort();
+  if (allDates.length === 0) return;
+
+  // Fill in gaps between dates
+  const startDate = new Date(allDates[0] + 'T00:00:00');
+  const endDate = new Date(formatLocalDate() + 'T00:00:00');
+  const dates = [];
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    dates.push(formatLocalDate(d));
+  }
+  if (dates.length < 2) return;
+
+  const labels = dates.map(d => d.slice(5)); // MM-DD
+
+  // Cumulative words read
+  let cumulative = 0;
+  const cumulativeData = dates.map(d => {
+    cumulative += (state.dailyStats[d] || {}).wordsRead || 0;
+    return cumulative;
+  });
+  drawLineChart('chart-longterm-words', labels, cumulativeData, '#3b82f6');
+
+  // Daily words read (all time)
+  const dailyData = dates.map(d => (state.dailyStats[d] || {}).wordsRead || 0);
+  drawBarChart('chart-longterm-daily', labels, dailyData, '#f97316');
+}
+
 // === HELPERS ===
 function truncateWords(str, maxWords) {
   const words = str.split(/\s+/);
@@ -1405,6 +1490,99 @@ function importProgress(event) {
   };
   reader.readAsText(file);
   event.target.value = '';
+}
+
+// === DEVICE SYNC ===
+function generateSyncCode() {
+  document.getElementById('sync-import-area').style.display = 'none';
+  const syncData = {
+    v: 1, // version
+    ts: Date.now(),
+    readCounts: state.readCounts,
+    essaysRead: state.essaysRead,
+    dailyStats: state.dailyStats,
+    studyHistory: state.studyHistory,
+    lastStudyDate: state.lastStudyDate,
+    vocabulary: {}
+  };
+  // Only export SRS progress (not word definitions - those come from data.js)
+  Object.entries(state.vocabulary).forEach(([key, v]) => {
+    syncData.vocabulary[key] = {
+      level: v.level, interval: v.interval, easeFactor: v.easeFactor,
+      nextReview: v.nextReview, reviewCount: v.reviewCount,
+      correctCount: v.correctCount, lastReview: v.lastReview
+    };
+  });
+  const json = JSON.stringify(syncData);
+  const encoded = btoa(unescape(encodeURIComponent(json)));
+  document.getElementById('sync-code-output').value = encoded;
+  document.getElementById('sync-export-area').style.display = 'block';
+}
+function copySyncCode() {
+  const textarea = document.getElementById('sync-code-output');
+  textarea.select();
+  navigator.clipboard.writeText(textarea.value).then(() => showToast('Copied!')).catch(() => {
+    document.execCommand('copy');
+    showToast('Copied!');
+  });
+}
+function showSyncImport() {
+  document.getElementById('sync-export-area').style.display = 'none';
+  document.getElementById('sync-import-area').style.display = 'block';
+  document.getElementById('sync-code-input').value = '';
+}
+function applySyncCode() {
+  const code = document.getElementById('sync-code-input').value.trim();
+  if (!code) { showToast('Sync Codeを入力してください'); return; }
+  try {
+    const json = decodeURIComponent(escape(atob(code)));
+    const syncData = JSON.parse(json);
+    if (!syncData.v || !syncData.vocabulary) { showToast('Invalid Sync Code'); return; }
+    // Merge SRS progress
+    Object.entries(syncData.vocabulary).forEach(([key, imported]) => {
+      if (state.vocabulary[key]) {
+        const current = state.vocabulary[key];
+        // Use whichever has more recent review or higher progress
+        const importedReviews = imported.reviewCount || 0;
+        const currentReviews = current.reviewCount || 0;
+        if (importedReviews > currentReviews || (importedReviews === currentReviews && (imported.lastReview || '') > (current.lastReview || ''))) {
+          current.level = imported.level;
+          current.interval = imported.interval;
+          current.easeFactor = imported.easeFactor;
+          current.nextReview = imported.nextReview;
+          current.reviewCount = imported.reviewCount;
+          current.correctCount = imported.correctCount;
+          current.lastReview = imported.lastReview;
+        }
+      }
+    });
+    // Merge readCounts (take max)
+    if (syncData.readCounts) {
+      Object.entries(syncData.readCounts).forEach(([id, count]) => {
+        state.readCounts[id] = Math.max(state.readCounts[id] || 0, count);
+      });
+    }
+    // Merge essaysRead
+    if (syncData.essaysRead) {
+      syncData.essaysRead.forEach(id => { if (!state.essaysRead.includes(id)) state.essaysRead.push(id); });
+    }
+    // Merge dailyStats (take max for each field)
+    if (syncData.dailyStats) {
+      Object.entries(syncData.dailyStats).forEach(([date, imported]) => {
+        if (!state.dailyStats[date]) state.dailyStats[date] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
+        const s = state.dailyStats[date];
+        s.wordsRead = Math.max(s.wordsRead, imported.wordsRead || 0);
+        s.essaysRead = Math.max(s.essaysRead, imported.essaysRead || 0);
+        s.vocabCount = Math.max(s.vocabCount, imported.vocabCount || 0);
+        s.mastered = Math.max(s.mastered, imported.mastered || 0);
+        s.reviewed = Math.max(s.reviewed, imported.reviewed || 0);
+      });
+    }
+    saveState();
+    updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
+    document.getElementById('sync-import-area').style.display = 'none';
+    showToast('Sync complete!');
+  } catch (err) { showToast('Invalid Sync Code: ' + err.message); }
 }
 
 init();
