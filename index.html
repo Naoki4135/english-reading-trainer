@@ -271,6 +271,13 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .flashcard-japanese { font-size: 22px; font-weight: 600; color: var(--accent2); margin-bottom: 8px; }
 .flashcard-def { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
 .flashcard-example { font-size: 13px; color: var(--text2); font-style: italic; max-width: 500px; margin: 0 auto; }
+.flashcard-example-ja { font-size: 12px; color: var(--text2); margin-top: 4px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.flashcard-speak-btn {
+  margin-top: 12px; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--accent);
+  background: transparent; color: var(--accent2); font-size: 13px; cursor: pointer; font-family: inherit;
+}
+.flashcard-speak-btn:hover { background: var(--accent); color: white; }
+.flashcard-emoji { font-size: 48px; margin-bottom: 8px; line-height: 1; }
 .flashcard-hint { font-size: 12px; color: var(--text2); margin-top: 12px; }
 .flashcard-progress { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
 .rating-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
@@ -319,6 +326,20 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   color: var(--text2); font-size: 13px; font-weight: 600; font-family: inherit;
 }
 .tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+
+/* Listen page */
+.listen-card {
+  background: var(--surface); border-radius: 12px; padding: 14px;
+  margin-bottom: 10px; border: 1px solid var(--border);
+  cursor: pointer; transition: border-color 0.2s;
+}
+.listen-card:hover { border-color: var(--accent); }
+.listen-source { font-size: 11px; color: var(--text2); margin-top: 4px; }
+.listen-duration {
+  display: inline-block; font-size: 10px; padding: 2px 8px;
+  border-radius: 4px; background: var(--purple); color: white;
+  font-weight: 600; margin-left: 6px;
+}
 
 @media (min-width: 600px) {
   .stats-grid { grid-template-columns: repeat(3, 1fr); }
@@ -442,6 +463,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div id="quiz-area">
       <div class="flashcard-progress" id="quiz-progress"></div>
       <div class="flashcard" id="flashcard" onclick="revealFlashcard()">
+        <div class="flashcard-emoji" id="fc-emoji"></div>
         <div class="flashcard-word" id="fc-word"></div>
         <div class="flashcard-pos" id="fc-pos"></div>
         <div class="flashcard-hint" id="fc-hint">Tap to reveal</div>
@@ -449,6 +471,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
           <div class="flashcard-japanese" id="fc-japanese"></div>
           <div class="flashcard-def" id="fc-def"></div>
           <div class="flashcard-example" id="fc-example"></div>
+          <div class="flashcard-example-ja" id="fc-example-ja"></div>
+          <button class="flashcard-speak-btn" id="fc-speak-btn" onclick="event.stopPropagation();">&#128266; Pronounce</button>
         </div>
       </div>
       <div class="rating-buttons" id="rating-buttons" style="display:none;">
@@ -468,6 +492,46 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <div style="font-size:18px; font-weight:700; margin-bottom:8px;">Session Complete!</div>
         <div id="quiz-summary" style="font-size:13px; color:var(--text2);"></div>
         <button class="btn primary" style="margin-top:16px;" onclick="resetQuiz()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTENING -->
+  <div class="page" id="page-listen">
+    <div class="page-header">
+      <h1>Listening Practice</h1>
+      <p>Native English audio with transcripts</p>
+    </div>
+    <div id="listen-list"></div>
+  </div>
+
+  <!-- LISTENING DETAIL -->
+  <div class="page" id="page-listen-detail" style="padding-bottom:140px;">
+    <button class="back-btn" onclick="showPage('listen')">← Back</button>
+    <div id="listen-topic-badge" class="essay-topic"></div>
+    <h2 id="listen-title" style="font-size:18px; margin: 8px 0 4px;"></h2>
+    <div id="listen-meta" class="essay-meta" style="margin-bottom:16px;"></div>
+    <div id="listen-player" style="margin-bottom:16px; border-radius:12px; overflow:hidden; aspect-ratio:16/9; background:var(--surface2);"></div>
+    <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+      <button class="btn" id="btn-listen-translation" onclick="toggleListenTranslation()">&#127471;&#127477; Translation</button>
+      <button class="btn" id="btn-listen-highlight" onclick="toggleListenHighlight()">&#128161; Highlight</button>
+    </div>
+    <div class="card" style="margin-bottom:12px;">
+      <div style="font-size:12px; color:var(--accent2); font-weight:600; margin-bottom:8px;">Transcript</div>
+      <div class="essay-bilingual">
+        <div class="essay-en" id="listen-transcript" style="font-size:15px; line-height:1.9;"></div>
+        <div class="essay-ja-panel" id="listen-ja-panel"></div>
+      </div>
+    </div>
+    <button class="section-toggle" onclick="toggleSection(this)">
+      Glossary <span class="arrow">▼</span>
+    </button>
+    <div class="section-content">
+      <div style="overflow-x:auto;">
+        <table class="glossary-table">
+          <thead><tr><th>Word</th><th>日本語</th><th>Definition / Example</th></tr></thead>
+          <tbody id="listen-glossary-body"></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -566,6 +630,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     Quiz
     <span class="nav-badge" id="nav-due-badge" style="display:none;">0</span>
   </button>
+  <button class="nav-item" onclick="showPage('listen')" data-page="listen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+    Listen
+  </button>
   <button class="nav-item" onclick="showPage('review')" data-page="review">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
     SRS
@@ -634,6 +702,88 @@ function getStoredSpeechSpeed() {
   return Number.isFinite(saved) ? clamp(saved, 0.5, 2.0) : 1.0;
 }
 
+// Word → Emoji visual mapping for flashcards
+const WORD_EMOJI_MAP = {
+  // Nature & Environment
+  mitigation:'🛡️',adaptation:'🔄',resilience:'💪',climate:'🌍',emission:'💨',pollution:'🏭',
+  ecosystem:'🌿',biodiversity:'🦋',deforestation:'🪓',sustainability:'♻️',drought:'☀️',flood:'🌊',
+  habitat:'🏕️',conservation:'🌱',renewable:'🔋',carbon:'⚫',glacier:'🧊',extinction:'💀',
+  vegetation:'🌳',wilderness:'🏔️',erosion:'🏜️',hazard:'⚠️',inertia:'🔁',
+  // Economy & Finance
+  inflation:'📈',recession:'📉',deficit:'🔴',surplus:'🟢',tariff:'🚧',subsidy:'💰',
+  austerity:'✂️',stimulus:'💉',dividend:'💵',equity:'📊',portfolio:'📁',bond:'🔗',
+  leverage:'⚖️',liquidity:'💧',depreciation:'⬇️',appreciation:'⬆️',monopoly:'👑',
+  commodity:'🛢️',yield:'🌾',collateral:'🏠',insolvency:'🚨',volatility:'🎢',
+  // Technology
+  algorithm:'🧮',automation:'🤖',proliferation:'📡',obsolescence:'📟',surveillance:'📹',
+  infrastructure:'🏗️',innovation:'💡',encryption:'🔒',bandwidth:'📶',interface:'🖥️',
+  // Psychology & Society
+  cognition:'🧠',anxiety:'😰',empathy:'❤️',bias:'🔍',stereotype:'🏷️',conformity:'👥',
+  resilient:'💪',trauma:'💔',motivation:'🔥',perception:'👁️',consciousness:'✨',
+  resentment:'😤',cohesion:'🤝',alienation:'😔',solidarity:'✊',
+  // Politics & Law
+  sovereignty:'🏛️',legislation:'📜',jurisdiction:'⚖️',diplomacy:'🤝',sanctions:'🚫',
+  amendment:'📝',constitution:'📕',referendum:'🗳️',bureaucracy:'🏢',propaganda:'📢',
+  // Business
+  turnover:'🔄',merger:'🤝',acquisition:'🛒',revenue:'💰',franchise:'🏪',
+  stakeholder:'👤',entrepreneur:'🚀',outsourcing:'🌐',benchmark:'📏',scalability:'📐',
+  // Health & Science
+  pathogen:'🦠',immunity:'🛡️',diagnosis:'🔬',therapy:'💊',epidemic:'😷',
+  mutation:'🧬',antibody:'💉',symptom:'🤒',chronic:'⏳',prognosis:'🔮',
+  // Education
+  curriculum:'📚',pedagogy:'👩‍🏫',literacy:'📖',dissertation:'📄',accreditation:'🎓',
+  // Abstract concepts
+  paradox:'🔀',dilemma:'🤔',hypothesis:'❓',analogy:'🔗',paradigm:'🔄',
+  ambiguity:'🌫️',nuance:'🎨',pragmatic:'🎯',empirical:'📊',theoretical:'💭',
+  consensus:'✅',controversy:'⚡',precedent:'📌',phenomenon:'🌟',discourse:'💬',
+  disparity:'↔️',deterioration:'📉',proliferate:'📈',exacerbate:'🔥',unprecedented:'🆕',
+  inherent:'🧬',systemic:'🕸️',viable:'✅',pivotal:'🎯',profound:'🌊',
+  tangible:'✋',inevitable:'⏩',vulnerable:'🥺',disproportionately:'⚖️',
+  incrementally:'📶',prohibitively:'🚧',drastically:'💥',perpetual:'♾️',
+  codified:'📋',tacit:'🤫',forethought:'🔮',unforeseen:'😲',displaced:'🚶',
+  augments:'➕',supplanting:'🔄',prudent:'🧐',
+  // Emotions & Attitude
+  enthusiasm:'🙌',skepticism:'🤨',complacency:'😴',indifference:'😐',
+  contempt:'😒',gratitude:'🙏',frustration:'😤',optimism:'😊',pessimism:'😟',
+  // Slang & Informal
+  ghosting:'👻',salty:'🧂',slay:'⚔️',vibe:'✌️',flex:'💪',chill:'❄️',
+  hustle:'🏃',grind:'⚙️',lit:'🔥',savage:'🐯',clutch:'🎯',shade:'🌂',
+  splurge:'🛍️',broke:'💸',loaded:'🤑',hustle:'🏃',
+  // Food & Daily
+  cuisine:'🍽️',beverage:'🥤',nutrition:'🥗',appetite:'😋',
+  // Sports
+  curveball:'⚾',marathon:'🏃',sprint:'🏃‍♂️',
+};
+
+function getWordEmoji(word, pos, japanese) {
+  const w = word.toLowerCase().replace(/[^a-z]/g, '');
+  // Direct match
+  if (WORD_EMOJI_MAP[w]) return WORD_EMOJI_MAP[w];
+  // Stem matching (e.g., "exacerbates" → "exacerbate")
+  const stems = [w, w.replace(/s$/, ''), w.replace(/ed$/, ''), w.replace(/ing$/, ''), w.replace(/ly$/, ''), w.replace(/tion$/, ''), w.replace(/ment$/, ''), w.replace(/ness$/, ''), w.replace(/ity$/, ''), w.replace(/ous$/, ''), w.replace(/ive$/, ''), w.replace(/ies$/, 'y')];
+  for (const s of stems) { if (s && WORD_EMOJI_MAP[s]) return WORD_EMOJI_MAP[s]; }
+  // Category by Japanese keywords
+  if (japanese) {
+    if (/経済|金融|投資|資産|通貨|利益/.test(japanese)) return '💰';
+    if (/環境|気候|自然|生態/.test(japanese)) return '🌍';
+    if (/技術|科学|研究/.test(japanese)) return '🔬';
+    if (/法|規制|政策|政治/.test(japanese)) return '⚖️';
+    if (/教育|学/.test(japanese)) return '📚';
+    if (/健康|医|病/.test(japanese)) return '🏥';
+    if (/心理|感情|精神/.test(japanese)) return '🧠';
+    if (/社会|文化|人/.test(japanese)) return '👥';
+    if (/危険|リスク|脅威/.test(japanese)) return '⚠️';
+    if (/増|成長|拡大/.test(japanese)) return '📈';
+    if (/減|低下|衰退/.test(japanese)) return '📉';
+  }
+  // Fallback by pos
+  if (pos === 'noun') return '📦';
+  if (pos === 'verb') return '⚡';
+  if (pos === 'adjective') return '🏷️';
+  if (pos === 'adverb') return '💫';
+  return '📝';
+}
+
 function init() {
   const speedInput = document.getElementById('speech-speed');
   if (speedInput) speedInput.value = getStoredSpeechSpeed().toFixed(1);
@@ -694,6 +844,7 @@ function showPage(page) {
   if (page === 'vocab') updateVocabPage();
   if (page === 'quiz') updateQuizPage();
   if (page === 'review') updateReviewPage();
+  if (page === 'listen') { if (typeof updateListenPage === 'function') updateListenPage(); }
   window.scrollTo(0, 0);
 }
 
@@ -1124,6 +1275,7 @@ function markExcluded(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = -1;
   state.vocabulary[key].interval = 0;
+  shuffledVocabCache = shuffledVocabCache.filter(([k]) => k !== key);
   saveState(); filterVocab(); showToast('Excluded: ' + state.vocabulary[key].word);
 }
 function restoreWord(key) {
@@ -1138,6 +1290,7 @@ function markMastered(key) {
   state.vocabulary[key].level = 3;
   state.vocabulary[key].interval = 365;
   state.vocabulary[key].nextReview = addDaysToLocalDate(365);
+  shuffledVocabCache = shuffledVocabCache.filter(([k]) => k !== key);
   saveState(); filterVocab(); showToast('Marked as Mastered');
 }
 
@@ -1182,6 +1335,10 @@ function showFlashcard() {
   document.getElementById('fc-japanese').textContent = v.japanese;
   document.getElementById('fc-def').textContent = v.definition;
   document.getElementById('fc-example').textContent = v.example;
+  document.getElementById('fc-example-ja').textContent = v.exampleJa || '';
+  document.getElementById('fc-emoji').textContent = getWordEmoji(v.word, v.pos, v.japanese);
+  const speakBtn = document.getElementById('fc-speak-btn');
+  speakBtn.onclick = (e) => { e.stopPropagation(); speakWord(v.word); };
   document.getElementById('quiz-progress').textContent = `${quizIndex + 1} / ${quizQueue.length}`;
 }
 function revealFlashcard() {
@@ -1584,6 +1741,154 @@ function applySyncCode() {
     showToast('Sync complete!');
   } catch (err) { showToast('Invalid Sync Code: ' + err.message); }
 }
+
+// === LISTENING ===
+let currentListening = null;
+let listenHighlightMode = false;
+
+function updateListenPage() {
+  if (typeof LISTENING === 'undefined' || !LISTENING || LISTENING.length === 0) {
+    document.getElementById('listen-list').innerHTML = '<div class="empty-state"><p>No listening exercises yet.</p></div>';
+    return;
+  }
+  const html = LISTENING.map((item, i) => {
+    return `<div class="listen-card" onclick="openListening(${i})">
+      <span class="essay-topic">${item.topic || 'Listening'}</span>
+      <span class="listen-duration">${item.duration || '~1 min'}</span>
+      <div class="essay-title" style="margin-top:6px;">${item.title}</div>
+      <div class="listen-source">${item.source || ''} · ${item.difficulty || 'TOEFL iBT'}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('listen-list').innerHTML = html;
+}
+
+function openListening(index) {
+  if (typeof LISTENING === 'undefined') return;
+  currentListening = LISTENING[index];
+  if (!currentListening) return;
+  document.getElementById('listen-topic-badge').textContent = currentListening.topic || 'Listening';
+  document.getElementById('listen-title').textContent = currentListening.title;
+  document.getElementById('listen-meta').textContent = `${currentListening.source || ''} · ${currentListening.duration || ''} · ${currentListening.difficulty || ''}`;
+
+  // YouTube embed
+  const playerDiv = document.getElementById('listen-player');
+  if (currentListening.youtubeId) {
+    let src = `https://www.youtube.com/embed/${currentListening.youtubeId}?rel=0`;
+    if (currentListening.startTime) src += `&start=${currentListening.startTime}`;
+    if (currentListening.endTime) src += `&end=${currentListening.endTime}`;
+    playerDiv.innerHTML = `<iframe width="100%" height="100%" src="${src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:12px;"></iframe>`;
+  } else {
+    playerDiv.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text2);">No video available</div>';
+  }
+
+  // Transcript
+  document.getElementById('listen-transcript').textContent = currentListening.transcript || '';
+  document.getElementById('listen-ja-panel').textContent = currentListening.translation || '';
+  document.getElementById('listen-ja-panel').classList.remove('open');
+  document.getElementById('btn-listen-translation').classList.remove('active-toggle');
+  listenHighlightMode = false;
+  document.getElementById('btn-listen-highlight').classList.remove('active-toggle');
+
+  // Glossary
+  const tbody = document.getElementById('listen-glossary-body');
+  tbody.innerHTML = (currentListening.glossary || []).map(g => {
+    const key = g.word.toLowerCase();
+    const srs = state.vocabulary[key];
+    const badge = srs ? getMasteryBadge(srs.level) : '';
+    return `<tr>
+      <td>
+        <div class="glossary-word">${g.word}</div>
+        <div class="glossary-pos">${g.pos || ''}</div>
+        ${badge}
+        <button class="btn small" style="margin-top:6px;" onclick="speakWord('${g.word.replace(/'/g, "\\'")}')">&#128266;</button>
+      </td>
+      <td>${g.japanese}</td>
+      <td>
+        <div>${g.definition || ''}</div>
+        <div class="glossary-example">${g.example || ''}</div>
+        <div class="glossary-example" style="font-style:normal; margin-top:4px;">${g.exampleJa || ''}</div>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // Register glossary words to vocabulary
+  if (currentListening.glossary) {
+    currentListening.glossary.forEach(g => {
+      const key = g.word.toLowerCase();
+      if (!state.vocabulary[key]) {
+        state.vocabulary[key] = {
+          interval: 0, easeFactor: 2.5, nextReview: formatLocalDate(),
+          reviewCount: 0, correctCount: 0, level: 0, lastReview: null,
+          word: g.word, japanese: g.japanese, pos: g.pos || '',
+          definition: g.definition || '', example: g.example || '', exampleJa: g.exampleJa || '',
+          essayId: 'listen-' + index, firstSeen: formatLocalDate()
+        };
+      }
+    });
+    saveState();
+  }
+
+  showPage('listen-detail');
+}
+
+function toggleListenTranslation() {
+  const panel = document.getElementById('listen-ja-panel');
+  const btn = document.getElementById('btn-listen-translation');
+  panel.classList.toggle('open');
+  btn.classList.toggle('active-toggle');
+}
+
+function toggleListenHighlight() {
+  listenHighlightMode = !listenHighlightMode;
+  document.getElementById('btn-listen-highlight').classList.toggle('active-toggle', listenHighlightMode);
+  renderListenTranscript();
+}
+
+function renderListenTranscript() {
+  if (!currentListening) return;
+  const container = document.getElementById('listen-transcript');
+  if (!listenHighlightMode || !currentListening.glossary) {
+    container.textContent = currentListening.transcript || '';
+    return;
+  }
+  const words = currentListening.glossary.map(g => g.word).sort((a, b) => b.length - a.length);
+  const jaMap = {};
+  currentListening.glossary.forEach(g => { jaMap[g.word.toLowerCase()] = g.japanese; });
+  const pattern = new RegExp('\\b(' + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'gi');
+  const text = currentListening.transcript;
+  let html = '';
+  let lastIndex = 0;
+  let match;
+  while ((match = pattern.exec(text)) !== null) {
+    html += escapeHtml(text.slice(lastIndex, match.index));
+    const matched = match[0];
+    const ja = jaMap[matched.toLowerCase()] || '';
+    html += `<span class="highlight-word">${escapeHtml(matched)}<span class="highlight-ja">${escapeHtml(ja)}</span></span>`;
+    lastIndex = pattern.lastIndex;
+  }
+  html += escapeHtml(text.slice(lastIndex));
+  container.innerHTML = html;
+}
+
+// Extend showPage to handle listen-detail
+const _origShowPage = showPage;
+showPage = function(page) {
+  // Cleanup YouTube player when leaving listen-detail
+  if (page !== 'listen-detail') {
+    const playerDiv = document.getElementById('listen-player');
+    if (playerDiv && playerDiv.querySelector('iframe')) playerDiv.innerHTML = '';
+  }
+  if (page === 'listen-detail') {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-listen-detail').classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const navItem = document.querySelector('.nav-item[data-page="listen"]');
+    if (navItem) navItem.classList.add('active');
+    window.scrollTo(0, 0);
+    return;
+  }
+  _origShowPage(page);
+};
 
 init();
 </script>

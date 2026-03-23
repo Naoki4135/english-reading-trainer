@@ -54,6 +54,18 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 
 Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents/iCloud/`
 
+## エッセイ規模
+- エッセイは30本（アカデミック20本 + スラング10本）
+
+## UI/UX仕様
+- Premium/Enhanced Apple Neural TTS音声を優先選択
+- 再生レート0.95x、ピッチ1.05
+- 通し番号付き、10個ずつ折りたたみ表示
+- 読了回数の常時表示（緑ハイライト）
+- タブ移動時の音声自動停止
+- Glossaryハイライトはツールチップ表示（改行なし）
+- Read Completeボタンは画面下部に固定表示
+
 ## 技術スタック
 - HTML/CSS/JavaScript（単体ファイル）
 - Web Speech API（音声再生）

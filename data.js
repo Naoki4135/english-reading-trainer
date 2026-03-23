@@ -1969,5 +1969,973 @@ Finally, maintain relationships. "I'd love to stay in touch—let's connect on L
 オフボーディングのプロセスでは、引き継ぎの手伝いを申し出よう：「業務手順を文書化し、後任を教育する用意があります。」これはプロフェッショナリズムを示し、ポジティブで永続的な印象を残す。
 
 最後に、関係を維持しよう。「今後も連絡を取り合いたいです。LinkedInでつながりましょう」は将来の協力の可能性を残しておく。`
+  },
+  // ===== スラング & 口語表現エッセイ (051-060) =====
+  {
+    id: "2026-03-23-051",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Decoding the Language of Social Media and Texting",
+    difficulty: "TOEFL iBT",
+    wordCount: 152,
+    text: `Social media has created an entirely new vocabulary that older generations often find baffling. Understanding these terms is essential for navigating modern digital communication.
+
+"Ghosting" refers to suddenly cutting off all contact with someone without explanation. Originally used in dating contexts, it now applies to friendships and even professional relationships. If someone stops replying to your messages entirely, you have been ghosted.
+
+The word "lowkey" means subtly or secretly. You might say, "I lowkey love that song," meaning you enjoy it but do not want to make a big deal about it. Its opposite, "highkey," means openly or obviously.
+
+"Slay" is a term of praise meaning to do something exceptionally well. "She absolutely slayed that presentation" is a common usage.
+
+Finally, "no cap" means "no lie" or "for real." When someone says "That movie was amazing, no cap," they are emphasizing their sincerity. These expressions evolve rapidly, so staying current requires constant exposure.`,
+    glossary: [
+      { word: "baffling", pos: "adjective", japanese: "困惑させる、理解しがたい", definition: "Impossible to understand; perplexing", example: "The instructions were baffling to newcomers.", exampleJa: "その指示は初心者には理解しがたかった。" },
+      { word: "ghosting", pos: "noun/verb", japanese: "ゴースティング（突然連絡を断つこと）", definition: "Suddenly stopping all communication with someone without explanation", example: "She accused him of ghosting after three dates.", exampleJa: "彼女は3回のデート後に彼がゴースティングしたと非難した。" },
+      { word: "cutting off", pos: "phrasal verb", japanese: "断ち切る、遮断する", definition: "To stop or discontinue abruptly", example: "He cut off contact with his former partner.", exampleJa: "彼は元パートナーとの連絡を断ち切った。" },
+      { word: "lowkey", pos: "adverb/adjective", japanese: "こっそり、控えめに", definition: "In a subtle, understated, or secretive way", example: "I lowkey want to skip the meeting today.", exampleJa: "正直こっそり今日の会議をサボりたい。" },
+      { word: "highkey", pos: "adverb/adjective", japanese: "はっきりと、堂々と", definition: "Openly, obviously, or intensely", example: "I am highkey excited about the trip.", exampleJa: "その旅行にめちゃくちゃワクワクしている。" },
+      { word: "slay", pos: "verb", japanese: "やり遂げる、圧倒する（スラング）", definition: "To do something exceptionally well; to impress greatly", example: "You totally slayed your job interview.", exampleJa: "面接を完全にやり遂げたね。" },
+      { word: "no cap", pos: "phrase", japanese: "マジで、嘘じゃなく", definition: "No lie; used to emphasize that one is being truthful", example: "This is the best pizza ever, no cap.", exampleJa: "これは今まで最高のピザだ、マジで。" },
+      { word: "sincerity", pos: "noun", japanese: "誠実さ、本心", definition: "The quality of being free from pretense, deceit, or hypocrisy", example: "Her sincerity was evident in every word.", exampleJa: "彼女の誠実さはすべての言葉に表れていた。" },
+      { word: "navigating", pos: "verb", japanese: "うまく切り抜ける、対処する", definition: "Finding one's way through a complex situation", example: "Navigating office politics requires social skills.", exampleJa: "職場の人間関係をうまく切り抜けるには社交スキルが必要だ。" },
+      { word: "exposure", pos: "noun", japanese: "触れること、接触", definition: "The state of being exposed to contact with something", example: "Daily exposure to English improves fluency.", exampleJa: "毎日英語に触れることで流暢さが向上する。" },
+      { word: "evolve", pos: "verb", japanese: "進化する、変化する", definition: "To develop gradually over time", example: "Language continues to evolve with technology.", exampleJa: "言語はテクノロジーとともに進化し続ける。" }
+    ],
+    translation: `ソーシャルメディアは、年配の世代がしばしば困惑するまったく新しい語彙を生み出した。これらの用語を理解することは、現代のデジタルコミュニケーションを渡り歩くために不可欠である。
+
+「ゴースティング」とは、説明なしに突然誰かとのすべての連絡を断つことを指す。もともとは恋愛の場面で使われていたが、今では友情やビジネス上の関係にも適用される。誰かがメッセージへの返信を完全にやめたら、あなたはゴーストされたことになる。
+
+「ロウキー」は控えめに、またはこっそりという意味だ。「I lowkey love that song（こっそりあの曲好きなんだよね）」のように使い、楽しんでいるが大げさにしたくないことを意味する。反対語の「ハイキー」は公然と、明らかにという意味だ。
+
+「スレイ」は何かを非常にうまくやることを意味する褒め言葉だ。「She absolutely slayed that presentation（彼女はプレゼンを完全にやり遂げた）」が一般的な用法である。
+
+最後に、「ノーキャップ」は「嘘じゃない」「マジで」という意味だ。「That movie was amazing, no cap（あの映画は最高だった、マジで）」と言うとき、誠実さを強調している。これらの表現は急速に進化するため、最新の状態を保つには常に触れている必要がある。`
+  },
+  {
+    id: "2026-03-23-052",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Business Casual: Slang That Sneaks into the Office",
+    difficulty: "TOEFL iBT+",
+    wordCount: 154,
+    text: `Modern workplaces have adopted a surprisingly casual vocabulary, blending professional jargon with informal expressions. Understanding these terms helps you sound natural in meetings and emails.
+
+"Ballpark" means an approximate estimate. When your manager asks for a "ballpark figure," they want a rough number, not an exact calculation. The term originates from baseball, referring to the general area of the playing field.
+
+"Loop in" means to include someone in a conversation or email chain. "Let me loop in the marketing team" is a standard office phrase. Similarly, "circle back" means to return to a topic later. "Let's circle back on this after lunch" is ubiquitous in corporate settings.
+
+"Bandwidth" originally described data transfer capacity but now refers to someone's available time or energy. "I don't have the bandwidth for another project" means you are too busy.
+
+"Ping me" simply means "send me a message." These expressions, while informal, have become deeply embedded in professional communication.`,
+    glossary: [
+      { word: "ballpark", pos: "noun/adjective", japanese: "おおよその、概算の", definition: "An approximate range or rough estimate", example: "Give me a ballpark estimate of the cost.", exampleJa: "コストのおおよその見積もりを教えて。" },
+      { word: "loop in", pos: "phrasal verb", japanese: "（話し合いに）加える、巻き込む", definition: "To include someone in a discussion or communication", example: "Please loop in the finance department.", exampleJa: "財務部を話し合いに加えてください。" },
+      { word: "circle back", pos: "phrasal verb", japanese: "後で戻って議論する", definition: "To return to a topic or discussion at a later time", example: "We can circle back on pricing tomorrow.", exampleJa: "価格については明日また議論しましょう。" },
+      { word: "bandwidth", pos: "noun", japanese: "余力、対応能力（スラング）", definition: "Available capacity, time, or energy to handle tasks", example: "I lack the bandwidth to take on more work.", exampleJa: "これ以上仕事を引き受ける余力がない。" },
+      { word: "ping me", pos: "phrase", japanese: "連絡して、メッセージして", definition: "To send someone a brief message or notification", example: "Ping me when you finish the report.", exampleJa: "レポートが終わったら連絡して。" },
+      { word: "jargon", pos: "noun", japanese: "専門用語、業界用語", definition: "Special words or expressions used by a particular profession or group", example: "Medical jargon confuses most patients.", exampleJa: "医療用語はほとんどの患者を混乱させる。" },
+      { word: "ubiquitous", pos: "adjective", japanese: "至る所にある、偏在する", definition: "Present, appearing, or found everywhere", example: "Smartphones have become ubiquitous in daily life.", exampleJa: "スマートフォンは日常生活に遍在するようになった。" },
+      { word: "embedded", pos: "adjective", japanese: "組み込まれた、定着した", definition: "Firmly and deeply fixed in a surrounding context", example: "Cultural values are deeply embedded in language.", exampleJa: "文化的価値観は言語に深く根付いている。" },
+      { word: "approximate", pos: "adjective", japanese: "おおよその、概算の", definition: "Close to the actual but not completely accurate", example: "The approximate arrival time is three o'clock.", exampleJa: "おおよその到着時間は3時です。" },
+      { word: "originates", pos: "verb", japanese: "由来する、起源をもつ", definition: "Has its origin in a particular place, time, or situation", example: "The tradition originates from ancient Rome.", exampleJa: "その伝統は古代ローマに由来する。" },
+      { word: "blending", pos: "verb", japanese: "混ぜ合わせる、融合させる", definition: "Mixing or combining different things together", example: "The chef excels at blending diverse flavors.", exampleJa: "そのシェフは多様な味を融合させるのが得意だ。" }
+    ],
+    translation: `現代の職場は驚くほどカジュアルな語彙を取り入れ、専門用語とくだけた表現を融合させている。これらの用語を理解することで、会議やメールで自然に聞こえるようになる。
+
+「ボールパーク」はおおよその見積もりを意味する。上司が「ボールパーク・フィギュア」を求めるとき、正確な計算ではなく大まかな数字が欲しいということだ。この用語は野球に由来し、競技場の大まかなエリアを指している。
+
+「ループ・イン」は誰かを会話やメールチェーンに含めることを意味する。「マーケティングチームをループインさせて」は標準的なオフィスのフレーズだ。同様に、「サークル・バック」は後でトピックに戻ることを意味する。「ランチの後にこの件にサークルバックしよう」は企業環境で至る所で使われている。
+
+「バンドウィズ」はもともとデータ転送容量を表していたが、今では誰かの利用可能な時間やエネルギーを指す。「もう一つのプロジェクトに対応するバンドウィズがない」は忙しすぎるという意味だ。
+
+「ピング・ミー」は単に「メッセージを送って」という意味だ。これらの表現はくだけたものだが、プロフェッショナルなコミュニケーションに深く根付いている。`
+  },
+  {
+    id: "2026-03-23-053",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Feeling All the Feels: Emotional Slang in English",
+    difficulty: "TOEFL iBT",
+    wordCount: 148,
+    text: `English speakers have developed a rich collection of slang to describe their emotions. These colorful expressions add nuance and personality to everyday conversations.
+
+"Bummed out" means feeling disappointed or sad. "I was really bummed out when the concert got canceled" conveys genuine disappointment without sounding overly dramatic.
+
+"Stoked" is the opposite—it means extremely excited or enthusiastic. "I'm so stoked about the vacation" suggests barely containable excitement. This term originated in surfing culture during the 1960s.
+
+"Salty" describes someone who is bitter, irritated, or upset, often about something minor. "She's still salty about losing the game last week" implies lingering resentment.
+
+"Vibing" means enjoying a relaxed, positive atmosphere. "We were just vibing at the coffee shop" suggests a pleasant, easygoing experience.
+
+"Shook" means shocked or deeply affected. "I was shook when I heard the news" expresses genuine surprise. These terms reveal how language adapts to capture subtle emotional states.`,
+    glossary: [
+      { word: "bummed out", pos: "adjective/phrase", japanese: "がっかりした、落ち込んだ", definition: "Feeling disappointed, sad, or let down", example: "He was bummed out about the rain.", exampleJa: "彼は雨にがっかりしていた。" },
+      { word: "stoked", pos: "adjective", japanese: "めちゃくちゃワクワクした", definition: "Extremely excited and enthusiastic about something", example: "The kids are stoked for summer camp.", exampleJa: "子供たちはサマーキャンプにめちゃくちゃワクワクしている。" },
+      { word: "salty", pos: "adjective", japanese: "ムカついている、根に持っている（スラング）", definition: "Feeling bitter, irritated, or resentful, often over something minor", example: "Don't be salty just because you lost.", exampleJa: "負けたからってムカつかないで。" },
+      { word: "vibing", pos: "verb", japanese: "心地よく過ごす、雰囲気を楽しむ", definition: "Enjoying a relaxed, pleasant atmosphere or feeling", example: "We spent the evening vibing to music.", exampleJa: "私たちは音楽を楽しみながら夜を過ごした。" },
+      { word: "shook", pos: "adjective", japanese: "衝撃を受けた、動揺した（スラング）", definition: "Shocked, surprised, or deeply affected by something", example: "Everyone was shook by the plot twist.", exampleJa: "みんなどんでん返しに衝撃を受けた。" },
+      { word: "containable", pos: "adjective", japanese: "抑えられる、制御できる", definition: "Able to be kept under control or within limits", example: "Her excitement was barely containable.", exampleJa: "彼女の興奮はほとんど抑えきれなかった。" },
+      { word: "conveys", pos: "verb", japanese: "伝える、表現する", definition: "Communicates or makes an idea, impression, or feeling known", example: "His tone conveys confidence and warmth.", exampleJa: "彼の口調は自信と温かさを伝える。" },
+      { word: "lingering", pos: "adjective", japanese: "長引く、なかなか消えない", definition: "Lasting for a long time; slow to end", example: "She had lingering doubts about the decision.", exampleJa: "彼女はその決断について長引く疑念を持っていた。" },
+      { word: "resentment", pos: "noun", japanese: "恨み、憤り", definition: "Bitter indignation at having been treated unfairly", example: "Resentment grew among the underpaid workers.", exampleJa: "給料の低い労働者の間で憤りが高まった。" },
+      { word: "nuance", pos: "noun", japanese: "ニュアンス、微妙な差異", definition: "A subtle difference in meaning, expression, or sound", example: "Translation often loses subtle nuances of meaning.", exampleJa: "翻訳ではしばしば意味の微妙なニュアンスが失われる。" },
+      { word: "easygoing", pos: "adjective", japanese: "気楽な、のんびりした", definition: "Relaxed and casual in style or manner", example: "He has an easygoing personality everyone likes.", exampleJa: "彼はみんなに好かれる気楽な性格だ。" }
+    ],
+    translation: `英語話者は感情を表現するための豊かなスラングのコレクションを発展させてきた。これらの色彩豊かな表現は、日常会話にニュアンスと個性を加える。
+
+「バムド・アウト」はがっかりした、悲しいという意味だ。「コンサートが中止になって本当にがっかりした」は、大げさに聞こえることなく本当の失望を伝える。
+
+「ストークト」はその反対で、非常にワクワクしている、熱中しているという意味だ。「休暇にめちゃくちゃワクワクしている」は抑えきれないほどの興奮を示唆する。この用語は1960年代のサーフィン文化から生まれた。
+
+「ソルティ」は誰かが苦々しい、イライラしている、動揺していることを表し、しばしば些細なことについてだ。「彼女はまだ先週の試合に負けたことを根に持っている」は長引く恨みを暗示する。
+
+「バイビング」はリラックスした、ポジティブな雰囲気を楽しんでいることを意味する。「私たちはコーヒーショップでのんびり過ごしていた」は心地よく気楽な体験を示唆する。
+
+「シュック」は衝撃を受けた、深く影響を受けたという意味だ。「そのニュースを聞いて衝撃を受けた」は本当の驚きを表現する。これらの用語は、言語が微妙な感情の状態を捉えるためにどのように適応するかを示している。`
+  },
+  {
+    id: "2026-03-23-054",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Let's Grab a Bite: Food and Everyday Slang",
+    difficulty: "TOEFL iBT",
+    wordCount: 150,
+    text: `Food-related slang is deeply woven into English conversation. These expressions go far beyond describing meals—they capture social rituals and daily pleasures.
+
+"Grab a bite" means to eat something quickly or casually. "Want to grab a bite after work?" is one of the most common social invitations in American English. It implies something informal, not a fancy dinner.
+
+When food "hits the spot," it perfectly satisfies a craving. "That cold lemonade really hit the spot on such a hot day" expresses deep satisfaction.
+
+"Pig out" means to eat excessively. "We pigged out on pizza during the movie marathon" suggests enjoyable overindulgence without guilt.
+
+A "foodie" is someone passionate about food and cooking. Unlike a "picky eater," who is selective and hard to please, foodies embrace culinary adventure.
+
+"Hangry" is a clever blend of "hungry" and "angry," describing the irritability that comes from not eating. "Sorry I snapped at you—I was hangry" has become a socially accepted excuse.`,
+    glossary: [
+      { word: "grab a bite", pos: "phrase", japanese: "軽く食べる、さっと食事する", definition: "To eat something quickly or informally", example: "Let's grab a bite before the movie.", exampleJa: "映画の前にさっと食べよう。" },
+      { word: "hit the spot", pos: "idiom", japanese: "ぴったり満足させる", definition: "To be exactly what was needed or desired, especially food or drink", example: "That hot soup really hit the spot.", exampleJa: "あの温かいスープは本当にぴったりだった。" },
+      { word: "pig out", pos: "phrasal verb", japanese: "大食いする、食べ過ぎる", definition: "To eat an excessive amount of food", example: "We pigged out on snacks all evening.", exampleJa: "私たちは一晩中お菓子を食べまくった。" },
+      { word: "foodie", pos: "noun", japanese: "食通、グルメ好きな人", definition: "A person with a particular interest in food and cooking", example: "As a foodie, she reviews restaurants online.", exampleJa: "食通として、彼女はオンラインでレストランをレビューする。" },
+      { word: "hangry", pos: "adjective", japanese: "空腹でイライラした", definition: "Bad-tempered or irritable as a result of hunger", example: "Have a snack before you get hangry.", exampleJa: "空腹でイライラする前におやつを食べなよ。" },
+      { word: "picky eater", pos: "noun", japanese: "好き嫌いの多い人", definition: "A person who is very selective about what they eat", example: "My son is a picky eater who hates vegetables.", exampleJa: "息子は野菜が嫌いな好き嫌いの多い子だ。" },
+      { word: "craving", pos: "noun", japanese: "強い欲求、渇望", definition: "A powerful desire for something, especially food", example: "I have a craving for chocolate right now.", exampleJa: "今チョコレートがものすごく食べたい。" },
+      { word: "overindulgence", pos: "noun", japanese: "食べ過ぎ、度を越した享楽", definition: "Having too much of something enjoyable, especially food or drink", example: "Holiday overindulgence led to weight gain.", exampleJa: "休暇中の食べ過ぎが体重増加につながった。" },
+      { word: "woven into", pos: "phrase", japanese: "織り込まれた、組み込まれた", definition: "Integrated deeply into something", example: "Music is woven into their cultural identity.", exampleJa: "音楽は彼らの文化的アイデンティティに織り込まれている。" },
+      { word: "culinary", pos: "adjective", japanese: "料理の、食に関する", definition: "Related to cooking or the kitchen", example: "Paris is famous for its culinary traditions.", exampleJa: "パリは料理の伝統で有名だ。" },
+      { word: "snapped at", pos: "phrasal verb", japanese: "きつく言った、怒鳴った", definition: "Spoke to someone suddenly in a sharp, angry way", example: "She snapped at him for being late.", exampleJa: "彼女は彼が遅刻したことにきつく言った。" }
+    ],
+    translation: `食べ物に関するスラングは英語の会話に深く織り込まれている。これらの表現は食事の説明をはるかに超え、社会的な儀式や日常の楽しみを捉えている。
+
+「グラブ・ア・バイト」は素早くカジュアルに食べることを意味する。「仕事の後にさっと食べに行かない？」はアメリカ英語で最も一般的な社交的誘いの一つだ。かしこまったディナーではなく、気軽なものを暗示する。
+
+食べ物が「ヒット・ザ・スポット」するとき、それは欲求を完璧に満たす。「こんな暑い日に冷たいレモネードは本当にぴったりだった」は深い満足を表現する。
+
+「ピッグ・アウト」は食べ過ぎることを意味する。「映画マラソン中にピザを食べまくった」は罪悪感なしの楽しい食べ過ぎを示唆する。
+
+「フーディー」は食べ物や料理に情熱を持つ人だ。選り好みが激しく満足させにくい「ピッキー・イーター」とは違い、フーディーは料理の冒険を楽しむ。
+
+「ハングリー」は「空腹」と「怒り」を巧みに合わせた造語で、食べていないことから来るイライラを表す。「きつく言ってごめん、空腹でイライラしてたんだ」は社会的に受け入れられた言い訳となっている。`
+  },
+  {
+    id: "2026-03-23-055",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Cut to the Chase: Movie and TV Slang We Use Every Day",
+    difficulty: "TOEFL iBT",
+    wordCount: 153,
+    text: `Many common English expressions originated in Hollywood studios and television sets. These phrases have transcended entertainment to become part of everyday speech.
+
+"Cut to the chase" means to get to the point without wasting time. It comes from early silent films, where directors would literally cut from slow dialogue scenes to exciting chase sequences. Today, "Let's cut to the chase" is used in business meetings worldwide.
+
+"No brainer" describes a decision that requires no thought because the answer is obvious. "Accepting the promotion was a no brainer" suggests an effortless choice.
+
+"Plot twist" has moved beyond screenwriting. "In a total plot twist, she ended up marrying her high school rival" applies dramatic storytelling language to real life.
+
+"Steal the show" means to attract the most attention or praise. "The backup dancer completely stole the show" implies outperforming the main act.
+
+"Cliffhanger" originally described serialized stories that left audiences in suspense. Now people say, "Don't leave me on a cliffhanger—tell me what happened!" in casual conversation.`,
+    glossary: [
+      { word: "cut to the chase", pos: "idiom", japanese: "本題に入る、要点を言う", definition: "To get to the point without wasting time on unimportant details", example: "Let's cut to the chase and discuss pricing.", exampleJa: "本題に入って価格について話し合おう。" },
+      { word: "no brainer", pos: "noun", japanese: "考えるまでもないこと", definition: "A decision or choice that is extremely easy to make", example: "Taking the free upgrade was a no brainer.", exampleJa: "無料アップグレードを受けるのは考えるまでもなかった。" },
+      { word: "plot twist", pos: "noun", japanese: "どんでん返し、予想外の展開", definition: "An unexpected development in a story or situation", example: "The ending featured a shocking plot twist.", exampleJa: "結末には衝撃的などんでん返しがあった。" },
+      { word: "steal the show", pos: "idiom", japanese: "主役を食う、注目をさらう", definition: "To attract the most attention and praise at an event", example: "The child actor completely stole the show.", exampleJa: "子役が完全に注目をさらった。" },
+      { word: "cliffhanger", pos: "noun", japanese: "ハラハラする結末、続きが気になる展開", definition: "A story or situation that is exciting because its outcome is uncertain", example: "The season ended on a dramatic cliffhanger.", exampleJa: "シーズンはドラマチックなクリフハンガーで終わった。" },
+      { word: "transcended", pos: "verb", japanese: "超越した、超えた", definition: "Went beyond the range or limits of something", example: "Her talent transcended national boundaries.", exampleJa: "彼女の才能は国境を超越した。" },
+      { word: "serialized", pos: "adjective", japanese: "連載の、シリーズ化された", definition: "Published or broadcast in a series of installments", example: "The novel was originally serialized in a magazine.", exampleJa: "その小説はもともと雑誌に連載されていた。" },
+      { word: "suspense", pos: "noun", japanese: "サスペンス、はらはらする気持ち", definition: "A state of excited uncertainty about what may happen", example: "The audience sat in breathless suspense.", exampleJa: "観客は息をのむようなサスペンスの中にいた。" },
+      { word: "effortless", pos: "adjective", japanese: "楽な、努力を要しない", definition: "Requiring no physical or mental effort; achieved easily", example: "She made the difficult dance look effortless.", exampleJa: "彼女は難しいダンスを楽にこなしているように見せた。" },
+      { word: "outperforming", pos: "verb", japanese: "上回る、凌駕する", definition: "Performing better than someone or something else", example: "The newcomer was outperforming veteran employees.", exampleJa: "新人がベテラン社員を凌駕していた。" },
+      { word: "sequences", pos: "noun", japanese: "場面、シーン（映画の）", definition: "A set of related events or scenes that follow each other", example: "The action sequences were filmed in Prague.", exampleJa: "アクションシーンはプラハで撮影された。" }
+    ],
+    translation: `多くの一般的な英語表現はハリウッドのスタジオやテレビのセットで生まれた。これらのフレーズはエンターテインメントを超越し、日常会話の一部となっている。
+
+「カット・トゥ・ザ・チェイス」は時間を無駄にせず要点に入ることを意味する。初期のサイレント映画から来ており、監督が文字通りゆっくりした対話シーンからエキサイティングな追跡シーンにカットしたことに由来する。今日、「本題に入ろう」は世界中のビジネス会議で使われている。
+
+「ノーブレイナー」は答えが明らかなので考える必要がない決断を表す。「昇進を受けるのは考えるまでもなかった」は楽な選択を示唆する。
+
+「プロット・ツイスト」は脚本を超えて使われるようになった。「完全などんでん返しで、彼女は高校時代のライバルと結婚した」は劇的なストーリーテリングの言葉を現実に適用している。
+
+「スティール・ザ・ショー」は最も注目や称賛を集めることを意味する。「バックダンサーが完全に注目をさらった」はメインの出演者を上回ることを暗示する。
+
+「クリフハンガー」はもともと観客をサスペンスに残す連続物語を指していた。今では「クリフハンガーのまま放置しないで、何があったか教えて！」とカジュアルな会話で使われる。`
+  },
+  {
+    id: "2026-03-23-056",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Cheers, Mate: A Guide to British English Slang",
+    difficulty: "TOEFL iBT+",
+    wordCount: 151,
+    text: `British English slang often confuses American English speakers and vice versa. Understanding these distinctly British expressions opens a window into UK culture and humor.
+
+"Cheers" is remarkably versatile. While it literally means a toast when drinking, Brits use it as a casual "thank you" or even "goodbye." A bartender handing you a drink might hear "Cheers" in return, functioning identically to "Thanks."
+
+"Dodgy" describes something suspicious, unreliable, or of poor quality. "That restaurant looks a bit dodgy" warns of questionable hygiene. A "dodgy deal" implies something potentially dishonest.
+
+"Gutted" expresses extreme disappointment. "I was absolutely gutted when they lost the final" conveys devastation far beyond simple sadness.
+
+"Knackered" means utterly exhausted. "I'm completely knackered after that twelve-hour shift" suggests total physical and mental fatigue.
+
+"Brilliant" functions as enthusiastic approval—similar to "awesome" in American English. "That's brilliant!" can respond to anything from good news to a clever joke. These expressions reflect the understated, often ironic nature of British communication.`,
+    glossary: [
+      { word: "cheers", pos: "interjection", japanese: "ありがとう、乾杯、じゃあね（イギリス英語）", definition: "Used informally to mean thank you, goodbye, or as a toast", example: "Cheers for helping me with the bags.", exampleJa: "荷物を手伝ってくれてありがとう。" },
+      { word: "dodgy", pos: "adjective", japanese: "怪しい、信用できない（イギリス英語）", definition: "Suspicious, dishonest, or of low quality", example: "Avoid that dodgy website selling fake goods.", exampleJa: "偽物を売っているあの怪しいサイトは避けよう。" },
+      { word: "gutted", pos: "adjective", japanese: "非常にがっかりした（イギリス英語）", definition: "Extremely disappointed or upset", example: "He was gutted after failing the driving test.", exampleJa: "運転免許試験に落ちて彼は非常にがっかりした。" },
+      { word: "knackered", pos: "adjective", japanese: "くたくたに疲れた（イギリス英語）", definition: "Extremely tired; exhausted", example: "After the hike I was completely knackered.", exampleJa: "ハイキングの後、完全にくたくただった。" },
+      { word: "brilliant", pos: "adjective", japanese: "素晴らしい（イギリス英語での賞賛）", definition: "Used in British English to express enthusiastic approval; wonderful", example: "What a brilliant idea for the party!", exampleJa: "パーティーの素晴らしいアイデアだね！" },
+      { word: "versatile", pos: "adjective", japanese: "多用途の、万能な", definition: "Able to adapt or be adapted to many different functions or activities", example: "She is a versatile actress with great range.", exampleJa: "彼女は幅広い演技力を持つ万能な女優だ。" },
+      { word: "vice versa", pos: "adverb", japanese: "逆もまた同様", definition: "The reverse is also true; the other way around", example: "She trusts him and vice versa.", exampleJa: "彼女は彼を信頼しており、逆もまた同様だ。" },
+      { word: "identically", pos: "adverb", japanese: "まったく同じように", definition: "In an exactly similar manner", example: "The twins dressed identically for the photo.", exampleJa: "双子は写真のためにまったく同じ服を着た。" },
+      { word: "hygiene", pos: "noun", japanese: "衛生状態", definition: "Conditions or practices conducive to maintaining health and preventing disease", example: "Food hygiene standards must be strictly maintained.", exampleJa: "食品衛生基準は厳格に維持されなければならない。" },
+      { word: "devastation", pos: "noun", japanese: "打ちのめされること、壊滅", definition: "A state of great shock, sadness, or destruction", example: "The team felt complete devastation after the loss.", exampleJa: "チームは敗北後に完全に打ちのめされた。" },
+      { word: "understated", pos: "adjective", japanese: "控えめな、抑制された", definition: "Presented or expressed in a subtle and effective way", example: "British humor is famously understated and dry.", exampleJa: "イギリスのユーモアは控えめでドライなことで有名だ。" },
+      { word: "ironic", pos: "adjective", japanese: "皮肉な、アイロニックな", definition: "Using words that mean the opposite of what you really think, often humorously", example: "His ironic tone made everyone laugh.", exampleJa: "彼の皮肉な口調でみんなが笑った。" }
+    ],
+    translation: `イギリス英語のスラングはしばしばアメリカ英語話者を困惑させ、その逆も同様だ。これらの明確にイギリス的な表現を理解することは、イギリスの文化とユーモアへの窓を開く。
+
+「チアーズ」は驚くほど多用途だ。文字通りには飲むときの乾杯を意味するが、イギリス人はカジュアルな「ありがとう」やさらには「さようなら」としても使う。バーテンダーが飲み物を渡すと、「チアーズ」という返事が聞こえるかもしれないが、それは「サンクス」とまったく同じように機能する。
+
+「ドジー」は何かが怪しい、信頼できない、または品質が悪いことを表す。「あのレストランはちょっとドジーに見える」は衛生面の疑わしさを警告する。「ドジーな取引」は何か不正直な可能性があることを暗示する。
+
+「ガッテッド」は極度の失望を表す。「決勝戦で負けたとき完全にガッテッドだった」は単なる悲しみをはるかに超えた打撃を伝える。
+
+「ナッカード」は完全に疲れ果てたという意味だ。「12時間シフトの後、完全にナッカードだ」は身体的・精神的な完全な疲労を示唆する。
+
+「ブリリアント」は熱狂的な賛同として機能し、アメリカ英語の「オーサム」に似ている。「ブリリアント！」は良いニュースから気の利いたジョークまで何にでも使える。これらの表現はイギリスのコミュニケーションの控えめで、しばしば皮肉な性質を反映している。`
+  },
+  {
+    id: "2026-03-23-057",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "No Worries, Mate: Australian English Slang Explained",
+    difficulty: "TOEFL iBT",
+    wordCount: 149,
+    text: `Australian English is famous for its distinctive slang, characterized by abbreviations, unique expressions, and a laid-back tone that reflects the national character.
+
+"Arvo" means afternoon. "See you this arvo" is how Australians casually make plans. This love of abbreviation extends to "brekkie" for breakfast and "barbie" for barbecue.
+
+"Reckon" is used constantly, meaning "think" or "believe." "I reckon we should leave early" is standard Australian conversation. Unlike in American English, where it sounds old-fashioned, Australians use it naturally in every context.
+
+"Heaps" means "a lot" or "very." "Thanks heaps" means "thank you very much," and "heaps good" means "really good." It is one of the most versatile Australian slang terms.
+
+"No worries" functions as "you're welcome," "it's okay," or "no problem." Its casual warmth has spread globally, but in Australia it carries a genuine cultural philosophy of easygoing acceptance.
+
+"Chucking a sickie" means taking a day off work by pretending to be ill—a beloved Australian tradition.`,
+    glossary: [
+      { word: "arvo", pos: "noun", japanese: "午後（オーストラリア英語）", definition: "Australian slang for afternoon", example: "Let's meet at the park this arvo.", exampleJa: "今日の午後、公園で会おう。" },
+      { word: "reckon", pos: "verb", japanese: "思う、考える（オーストラリア英語で頻用）", definition: "To think, believe, or suppose", example: "I reckon the train leaves at five.", exampleJa: "電車は5時に出ると思う。" },
+      { word: "heaps", pos: "adverb/noun", japanese: "たくさん、非常に（オーストラリア英語）", definition: "A lot; very much; used as an intensifier in Australian English", example: "That movie was heaps better than expected.", exampleJa: "あの映画は予想よりずっと良かった。" },
+      { word: "no worries", pos: "phrase", japanese: "大丈夫、どういたしまして", definition: "Used to say it is fine, you are welcome, or there is no problem", example: "No worries, I can handle it myself.", exampleJa: "大丈夫、自分で対処できるよ。" },
+      { word: "chucking a sickie", pos: "phrase", japanese: "仮病で休む（オーストラリア英語）", definition: "Taking a day off work by pretending to be sick", example: "Half the office chucked a sickie on Friday.", exampleJa: "金曜日にオフィスの半分が仮病で休んだ。" },
+      { word: "brekkie", pos: "noun", japanese: "朝食（オーストラリア英語の略語）", definition: "Australian abbreviation for breakfast", example: "Let's grab brekkie at the cafe.", exampleJa: "カフェで朝食を食べよう。" },
+      { word: "barbie", pos: "noun", japanese: "バーベキュー（オーストラリア英語の略語）", definition: "Australian abbreviation for barbecue", example: "We're having a barbie on Saturday afternoon.", exampleJa: "土曜の午後にバーベキューをするよ。" },
+      { word: "laid-back", pos: "adjective", japanese: "のんびりした、リラックスした", definition: "Relaxed and unhurried in manner or attitude", example: "The town has a very laid-back atmosphere.", exampleJa: "その町はとてものんびりした雰囲気がある。" },
+      { word: "distinctive", pos: "adjective", japanese: "独特の、特徴的な", definition: "Characteristic of one person or thing and distinguishing them from others", example: "She has a very distinctive voice.", exampleJa: "彼女はとても特徴的な声をしている。" },
+      { word: "old-fashioned", pos: "adjective", japanese: "古風な、時代遅れの", definition: "No longer in style; belonging to or typical of an earlier time", example: "Some consider handwritten letters old-fashioned.", exampleJa: "手書きの手紙を古風だと思う人もいる。" },
+      { word: "beloved", pos: "adjective", japanese: "愛される、親しまれた", definition: "Dearly loved", example: "The beloved tradition continues every year.", exampleJa: "親しまれたその伝統は毎年続いている。" }
+    ],
+    translation: `オーストラリア英語は、略語、独特の表現、そして国民性を反映するのんびりとした口調を特徴とする独特のスラングで有名だ。
+
+「アーヴォ」は午後を意味する。「今日のアーヴォに会おう」はオーストラリア人がカジュアルに予定を立てる方法だ。この略語好きは朝食の「ブレッキー」やバーベキューの「バービー」にも及ぶ。
+
+「レッコン」は常に使われ、「思う」「信じる」を意味する。「早めに出発した方がいいと思う」は標準的なオーストラリアの会話だ。古風に聞こえるアメリカ英語とは異なり、オーストラリア人はあらゆる場面で自然に使う。
+
+「ヒープス」は「たくさん」「とても」を意味する。「ヒープス・サンクス」は「本当にありがとう」、「ヒープス・グッド」は「すごくいい」という意味だ。最も万能なオーストラリアのスラングの一つである。
+
+「ノー・ウォリーズ」は「どういたしまして」「大丈夫」「問題ない」として機能する。そのカジュアルな温かさは世界中に広がったが、オーストラリアでは気楽な受容という真の文化的哲学を持っている。
+
+「チャッキング・ア・シッキー」は病気のふりをして仕事を休むことを意味する。親しまれたオーストラリアの伝統だ。`
+  },
+  {
+    id: "2026-03-23-058",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "OK Boomer: How Slang Changes Across Generations",
+    difficulty: "TOEFL iBT+",
+    wordCount: 155,
+    text: `Every generation creates its own slang, and these expressions often become markers of identity that separate age groups. Examining generational slang reveals fascinating shifts in culture and values.
+
+"Boomer" originally referred to the baby boom generation born between 1946 and 1964. However, "OK Boomer" became a viral dismissal in 2019, used by younger people to reject attitudes they consider outdated. It transcended its demographic origins to mean anyone perceived as out of touch.
+
+"Vibe" and "vibe check" dominate Gen Z vocabulary. A "vibe" is an overall feeling or atmosphere, while a "vibe check" assesses whether someone's energy matches the group. "The party had great vibes" describes an enjoyable atmosphere.
+
+"Sus," short for "suspicious," gained massive popularity through the video game Among Us. "That explanation sounds sus" means something seems dishonest or untrustworthy.
+
+"GOAT" stands for "Greatest Of All Time," applied to athletes, musicians, or anyone excelling in their field. Meanwhile, older slang like "groovy" and "rad" occasionally resurfaces ironically among younger speakers, creating a playful cycle of linguistic recycling.`,
+    glossary: [
+      { word: "boomer", pos: "noun", japanese: "ベビーブーム世代の人/時代遅れの人（スラング）", definition: "Originally a baby boomer; now slang for someone perceived as out of touch", example: "OK Boomer became a meme in 2019.", exampleJa: "OKブーマーは2019年にミームになった。" },
+      { word: "vibe", pos: "noun", japanese: "雰囲気、フィーリング", definition: "A feeling, atmosphere, or overall sense of a place or situation", example: "This cafe has a really chill vibe.", exampleJa: "このカフェは本当にリラックスした雰囲気がある。" },
+      { word: "vibe check", pos: "noun", japanese: "雰囲気チェック、ノリの確認", definition: "An assessment of someone's mood or the atmosphere of a situation", example: "She did a quick vibe check on the group.", exampleJa: "彼女はグループの雰囲気を素早くチェックした。" },
+      { word: "sus", pos: "adjective", japanese: "怪しい、胡散臭い（suspicious の略）", definition: "Short for suspicious; seeming dishonest or untrustworthy", example: "His excuse for being late was really sus.", exampleJa: "遅刻の言い訳は本当に怪しかった。" },
+      { word: "GOAT", pos: "noun/acronym", japanese: "史上最高（Greatest Of All Timeの略）", definition: "An acronym meaning the greatest of all time in a particular field", example: "Many consider her the GOAT of tennis.", exampleJa: "多くの人が彼女をテニス史上最高だと考えている。" },
+      { word: "viral", pos: "adjective", japanese: "バズった、爆発的に広まった", definition: "Spreading rapidly and widely through social media or the internet", example: "The video went viral within hours.", exampleJa: "その動画は数時間で爆発的に広まった。" },
+      { word: "dismissal", pos: "noun", japanese: "退け、無視", definition: "The act of rejecting or refusing to consider something", example: "His dismissal of the idea was harsh.", exampleJa: "彼のそのアイデアの退けかたは厳しかった。" },
+      { word: "out of touch", pos: "phrase", japanese: "時代遅れの、世間とずれた", definition: "Lacking awareness of current trends, attitudes, or realities", example: "Politicians often seem out of touch with voters.", exampleJa: "政治家はしばしば有権者とずれているように見える。" },
+      { word: "demographic", pos: "adjective/noun", japanese: "人口統計の、世代層", definition: "Relating to the structure of populations or a particular section of a population", example: "The product targets a younger demographic.", exampleJa: "その製品はより若い世代層をターゲットにしている。" },
+      { word: "resurfaces", pos: "verb", japanese: "再び現れる、復活する", definition: "Comes back into use or prominence after a period of absence", example: "Old fashion trends often resurface decades later.", exampleJa: "古いファッションのトレンドは数十年後に再び現れることが多い。" },
+      { word: "linguistic", pos: "adjective", japanese: "言語の、言語学的な", definition: "Relating to language or linguistics", example: "Linguistic diversity enriches cultural understanding.", exampleJa: "言語の多様性は文化的理解を豊かにする。" },
+      { word: "ironically", pos: "adverb", japanese: "皮肉にも、アイロニーを込めて", definition: "In a way that is contrary to what is expected, often for humorous effect", example: "He ironically wore a vintage disco shirt.", exampleJa: "彼はアイロニーを込めてヴィンテージのディスコシャツを着た。" }
+    ],
+    translation: `すべての世代が独自のスラングを生み出し、これらの表現はしばしば年齢グループを分けるアイデンティティの目印となる。世代ごとのスラングを調べると、文化と価値観の興味深い変化が明らかになる。
+
+「ブーマー」はもともと1946年から1964年の間に生まれたベビーブーム世代を指していた。しかし、「OKブーマー」は2019年にバズった退け言葉となり、若者が時代遅れだと考える態度を拒否するために使われた。人口統計的な起源を超え、世間とずれていると思われる人を指すようになった。
+
+「バイブ」と「バイブチェック」はZ世代の語彙を支配している。「バイブ」は全体的な感覚や雰囲気であり、「バイブチェック」は誰かのエネルギーがグループに合っているかを評価する。「パーティーのバイブが最高だった」は楽しい雰囲気を表す。
+
+「サス」は「サスピシャス（怪しい）」の略で、ビデオゲーム「Among Us」を通じて大人気となった。「その説明はサスに聞こえる」は何かが不誠実または信頼できないように見えることを意味する。
+
+「GOAT」は「Greatest Of All Time（史上最高）」の略で、アスリート、ミュージシャン、またはその分野で秀でた人に使われる。一方、「グルーヴィー」や「ラド」のような古いスラングは若い話者の間で皮肉を込めて時折復活し、言語リサイクルの遊び心ある循環を生み出している。`
+  },
+  {
+    id: "2026-03-23-059",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Throw a Curveball: Sports Slang in Everyday English",
+    difficulty: "TOEFL iBT",
+    wordCount: 152,
+    text: `American English is saturated with sports metaphors that have become standard expressions in business, relationships, and daily conversation. Most speakers use them without even thinking about their athletic origins.
+
+"Throw a curveball" means to surprise someone with something unexpected and difficult. "The client threw us a curveball by changing requirements at the last minute" uses baseball imagery to describe a business challenge.
+
+"Game plan" refers to a strategy or plan of action. "What's our game plan for the product launch?" borrows directly from football coaching vocabulary.
+
+"Hit a home run" means to achieve a great success. "The marketing team hit a home run with that campaign" celebrates an outstanding result.
+
+"Drop the ball" means to make a mistake or fail to follow through on a responsibility. "We really dropped the ball on customer service this quarter" admits a collective failure.
+
+"Move the goalposts" means to change the rules or criteria unfairly after someone has already started working toward a goal. This soccer-derived expression is particularly common in workplace complaints about shifting expectations.`,
+    glossary: [
+      { word: "throw a curveball", pos: "idiom", japanese: "不意打ちをくらわせる、予想外のことをする", definition: "To surprise someone with something unexpected and challenging", example: "Life threw him a curveball with the diagnosis.", exampleJa: "診断結果で人生が不意打ちを食らわせた。" },
+      { word: "game plan", pos: "noun", japanese: "作戦、計画", definition: "A strategy or planned course of action", example: "We need a solid game plan for negotiations.", exampleJa: "交渉のための確実な作戦が必要だ。" },
+      { word: "hit a home run", pos: "idiom", japanese: "大成功する", definition: "To achieve a great success or accomplish something impressively", example: "The new product hit a home run in sales.", exampleJa: "新製品は売上で大成功した。" },
+      { word: "drop the ball", pos: "idiom", japanese: "へまをする、責任を果たさない", definition: "To make a mistake or fail to do something one is responsible for", example: "Don't drop the ball on the deadline.", exampleJa: "締め切りでへまをしないように。" },
+      { word: "move the goalposts", pos: "idiom", japanese: "ルールを途中で変える、基準をずらす", definition: "To unfairly change the rules or criteria after someone has started", example: "Management keeps moving the goalposts on targets.", exampleJa: "経営陣は目標の基準をずらし続けている。" },
+      { word: "saturated", pos: "adjective", japanese: "満ちあふれた、飽和した", definition: "Thoroughly soaked or filled to capacity", example: "The market is saturated with similar products.", exampleJa: "市場は類似製品で飽和している。" },
+      { word: "metaphors", pos: "noun", japanese: "比喩、メタファー", definition: "Figures of speech comparing two unlike things without using like or as", example: "Sports metaphors dominate business language.", exampleJa: "スポーツのメタファーがビジネス用語を支配している。" },
+      { word: "imagery", pos: "noun", japanese: "イメージ、比喩的表現", definition: "Visually descriptive or figurative language", example: "The poem uses vivid nature imagery.", exampleJa: "その詩は鮮やかな自然のイメージを使っている。" },
+      { word: "follow through", pos: "phrasal verb", japanese: "最後までやり遂げる", definition: "To complete an action or carry out a plan to its conclusion", example: "He promised to help but didn't follow through.", exampleJa: "彼は助けると約束したが最後までやり遂げなかった。" },
+      { word: "collective", pos: "adjective", japanese: "集団の、共同の", definition: "Done by or shared among all members of a group", example: "It was a collective decision by the team.", exampleJa: "それはチームによる集団の決定だった。" },
+      { word: "shifting", pos: "adjective", japanese: "変わりゆく、移り変わる", definition: "Continuously changing or moving", example: "Shifting priorities frustrated the project team.", exampleJa: "変わりゆく優先事項がプロジェクトチームを苛立たせた。" }
+    ],
+    translation: `アメリカ英語はスポーツのメタファーで満ちあふれており、それらはビジネス、人間関係、日常会話で標準的な表現となっている。ほとんどの話者はスポーツの起源を意識せずに使っている。
+
+「カーブボールを投げる」は予想外で困難なことで誰かを驚かせることを意味する。「クライアントが土壇場で要件を変更してカーブボールを投げてきた」は野球のイメージを使ってビジネスの課題を表している。
+
+「ゲームプラン」は戦略や行動計画を指す。「製品発売のゲームプランは何？」はフットボールのコーチ用語から直接借用している。
+
+「ホームランを打つ」は大きな成功を収めることを意味する。「マーケティングチームはそのキャンペーンでホームランを打った」は素晴らしい結果を称える。
+
+「ボールを落とす」はミスをしたり、責任を果たさないことを意味する。「今四半期はカスタマーサービスで本当にへまをした」は集団的な失敗を認める。
+
+「ゴールポストを動かす」は、誰かがすでに目標に向かって取り組み始めた後にルールや基準を不公平に変えることを意味する。このサッカー由来の表現は、変わりゆく期待に対する職場での不満で特によく使われる。`
+  },
+  {
+    id: "2026-03-23-060",
+    date: "2026-03-23",
+    topic: "Slang & Informal English",
+    title: "Show Me the Money: Slang About Wealth and Spending",
+    difficulty: "TOEFL iBT",
+    wordCount: 150,
+    text: `Money is a universal topic, and English has developed an impressive arsenal of slang to discuss finances—from being wealthy to being penniless.
+
+"Broke" is perhaps the most common way to say you have no money. "I'm broke until payday" is a relatable statement for many. Despite its simplicity, "broke" carries less stigma than formal equivalents like "financially insolvent."
+
+"Loaded" means extremely wealthy. "Her family is absolutely loaded" suggests enormous wealth, often with a hint of envy. Similarly, "rolling in it" paints a vivid picture of abundant money.
+
+"Splurge" means to spend money freely and extravagantly. "I decided to splurge on a nice dinner for my birthday" implies treating oneself without guilt.
+
+"Rip-off" describes something grossly overpriced. "Twenty dollars for a sandwich? What a rip-off!" expresses outrage at unfair pricing.
+
+"Side hustle" refers to a secondary job or income source, often entrepreneurial. "My side hustle selling handmade jewelry actually pays more than my day job" reflects the modern gig economy where multiple income streams have become the norm.`,
+    glossary: [
+      { word: "broke", pos: "adjective", japanese: "金欠の、一文無しの", definition: "Having no money; financially ruined", example: "I'm completely broke after the holiday.", exampleJa: "休暇の後、完全に金欠だ。" },
+      { word: "loaded", pos: "adjective", japanese: "大金持ちの（スラング）", definition: "Very wealthy; having a lot of money", example: "That tech entrepreneur is absolutely loaded.", exampleJa: "あのテック起業家はめちゃくちゃ金持ちだ。" },
+      { word: "splurge", pos: "verb/noun", japanese: "散財する、奮発する", definition: "To spend money freely or extravagantly", example: "She splurged on designer shoes for the wedding.", exampleJa: "彼女は結婚式のためにブランドの靴に散財した。" },
+      { word: "rip-off", pos: "noun", japanese: "ぼったくり、法外な値段のもの", definition: "Something that is unreasonably expensive; a fraud or swindle", example: "That parking fee was a total rip-off.", exampleJa: "あの駐車料金は完全なぼったくりだった。" },
+      { word: "side hustle", pos: "noun", japanese: "副業、サイドビジネス", definition: "A secondary job or business undertaken in addition to one's primary employment", example: "Her side hustle grew into a full business.", exampleJa: "彼女の副業はフルビジネスに成長した。" },
+      { word: "rolling in it", pos: "idiom", japanese: "お金がうなるほどある", definition: "Having a very large amount of money", example: "Since the promotion, they're rolling in it.", exampleJa: "昇進以来、彼らはお金がうなるほどある。" },
+      { word: "penniless", pos: "adjective", japanese: "無一文の", definition: "Having no money at all; very poor", example: "He arrived in the city completely penniless.", exampleJa: "彼は完全に無一文でその街に着いた。" },
+      { word: "arsenal", pos: "noun", japanese: "豊富な蓄え、武器庫", definition: "A collection of resources available for a certain purpose", example: "Teachers need a broad arsenal of teaching methods.", exampleJa: "教師には幅広い教授法の蓄えが必要だ。" },
+      { word: "stigma", pos: "noun", japanese: "汚名、不名誉", definition: "A mark of disgrace associated with a particular circumstance or quality", example: "There is less stigma around mental health today.", exampleJa: "今日ではメンタルヘルスに対する汚名は少なくなった。" },
+      { word: "extravagantly", pos: "adverb", japanese: "贅沢に、派手に", definition: "In a way that involves spending a lot of money unnecessarily", example: "They lived extravagantly despite their modest income.", exampleJa: "彼らは控えめな収入にもかかわらず贅沢に暮らした。" },
+      { word: "gig economy", pos: "noun", japanese: "ギグエコノミー（単発仕事中心の経済）", definition: "A labor market characterized by short-term, freelance, or flexible jobs", example: "The gig economy offers flexibility but less security.", exampleJa: "ギグエコノミーは柔軟性を提供するが安定性は低い。" },
+      { word: "entrepreneurial", pos: "adjective", japanese: "起業家的な、事業意欲のある", definition: "Relating to the activity of setting up businesses and taking financial risks", example: "She has a strong entrepreneurial spirit.", exampleJa: "彼女は強い起業家精神を持っている。" }
+    ],
+    translation: `お金は普遍的なトピックであり、英語は財務について議論するための印象的なスラングの蓄えを発展させてきた。裕福な状態から無一文まで幅広い。
+
+「ブローク」はお金がないと言う最も一般的な方法だろう。「給料日までブロークだ」は多くの人に共感される言葉だ。そのシンプルさにもかかわらず、「ブローク」は「財政的に支払い不能」のような正式な同義語よりも汚名が少ない。
+
+「ローデッド」は非常に裕福なことを意味する。「彼女の家族は完全にローデッドだ」は莫大な富を示唆し、しばしば羨望のニュアンスを含む。同様に、「ローリング・イン・イット」は豊富なお金の鮮明な絵を描く。
+
+「スプラージ」は自由に贅沢にお金を使うことを意味する。「誕生日に素敵なディナーにスプラージすることにした」は罪悪感なしに自分にご褒美をすることを暗示する。
+
+「リップオフ」はひどく高すぎるものを表す。「サンドイッチに20ドル？なんてリップオフだ！」は不当な価格に対する怒りを表現する。
+
+「サイドハッスル」は副次的な仕事や収入源を指し、しばしば起業家的なものだ。「ハンドメイドジュエリーを売る副業が本業より稼げる」は、複数の収入源が当たり前になった現代のギグエコノミーを反映している。`
+  },
+  // ===== 金融エッセイ (061-070) =====
+  {
+    id: "2026-03-23-061",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "ETFs and the Rise of Passive Investing",
+    difficulty: "TOEFL iBT+",
+    wordCount: 153,
+    text: `Exchange-traded funds, commonly known as ETFs, have revolutionized how ordinary investors access financial markets. By tracking an index such as the S&P 500, ETFs offer instant diversification at a fraction of the cost of actively managed funds.
+
+The appeal of passive investing rests on a compelling statistic: over a fifteen-year horizon, approximately 90 percent of actively managed large-cap funds underperform their benchmark index after fees. This persistent underperformance has driven massive capital flows into index-tracking products.
+
+ETFs offer several structural advantages. They trade on exchanges like individual stocks, providing intraday liquidity. Their expense ratios are typically below 0.10 percent, compared to over 1.00 percent for many active funds. Tax efficiency is another benefit, as the in-kind creation and redemption mechanism minimizes taxable capital gains distributions.
+
+However, critics argue that the proliferation of passive investing creates market distortions. When capital flows indiscriminately into all index constituents regardless of fundamentals, price discovery may be impaired, potentially creating systemic vulnerabilities.`,
+    glossary: [
+      { word: "exchange-traded fund (ETF)", pos: "noun", japanese: "上場投資信託（ETF）", definition: "An investment fund traded on stock exchanges that tracks an index, commodity, or basket of assets", example: "She invested in a broad-market ETF.", exampleJa: "彼女は幅広い市場のETFに投資した。" },
+      { word: "diversification", pos: "noun", japanese: "分散投資、多角化", definition: "The practice of spreading investments across various assets to reduce risk", example: "Diversification reduces portfolio volatility significantly.", exampleJa: "分散投資はポートフォリオの変動性を大幅に減らす。" },
+      { word: "benchmark", pos: "noun", japanese: "ベンチマーク、基準指標", definition: "A standard or point of reference against which performance is measured", example: "The fund consistently beat its benchmark index.", exampleJa: "そのファンドは常にベンチマーク指標を上回った。" },
+      { word: "underperform", pos: "verb", japanese: "下回る、期待以下の成績を出す", definition: "To perform less well than expected or less well than a standard", example: "Growth stocks underperformed value stocks last year.", exampleJa: "昨年、グロース株はバリュー株を下回った。" },
+      { word: "expense ratio", pos: "noun", japanese: "経費率、信託報酬率", definition: "The annual fee charged by a fund expressed as a percentage of assets", example: "Low expense ratios benefit long-term investors.", exampleJa: "低い経費率は長期投資家に利益をもたらす。" },
+      { word: "intraday liquidity", pos: "noun", japanese: "日中流動性", definition: "The ability to buy or sell an asset at any time during trading hours", example: "ETFs provide intraday liquidity unlike mutual funds.", exampleJa: "ETFは投資信託と異なり日中流動性を提供する。" },
+      { word: "in-kind redemption", pos: "noun", japanese: "現物償還", definition: "The process of exchanging fund shares for the underlying securities rather than cash", example: "In-kind redemption helps ETFs minimize tax events.", exampleJa: "現物償還はETFが課税イベントを最小化するのに役立つ。" },
+      { word: "capital gains", pos: "noun", japanese: "キャピタルゲイン、譲渡益", definition: "Profit from the sale of an asset such as stocks, bonds, or real estate", example: "Long-term capital gains are taxed at lower rates.", exampleJa: "長期キャピタルゲインはより低い税率で課税される。" },
+      { word: "price discovery", pos: "noun", japanese: "価格発見機能", definition: "The process by which the market determines the price of an asset", example: "Active trading aids the price discovery process.", exampleJa: "活発な取引は価格発見プロセスを助ける。" },
+      { word: "constituents", pos: "noun", japanese: "構成銘柄", definition: "The individual securities that make up an index or portfolio", example: "The index has five hundred constituents.", exampleJa: "そのインデックスは500の構成銘柄を持つ。" },
+      { word: "systemic", pos: "adjective", japanese: "システム全体の、制度的な", definition: "Relating to or affecting an entire system rather than individual parts", example: "Regulators monitor systemic risk in banking.", exampleJa: "規制当局は銀行業のシステミックリスクを監視する。" },
+      { word: "indiscriminately", pos: "adverb", japanese: "無差別に、見境なく", definition: "In a way that does not show care or judgment; randomly", example: "Capital flowed indiscriminately into all sectors.", exampleJa: "資本は全セクターに無差別に流入した。" }
+    ],
+    translation: `上場投資信託、通称ETFは、一般の投資家が金融市場にアクセスする方法を革命的に変えた。S&P 500などの指数に連動することで、ETFはアクティブ運用ファンドのコストの何分の一かで即座の分散投資を提供する。
+
+パッシブ投資の魅力は説得力のある統計に基づいている。15年の期間にわたり、アクティブ運用の大型株ファンドの約90パーセントが手数料控除後にベンチマーク指数を下回る。この持続的なアンダーパフォーマンスが、インデックス連動商品への大規模な資金流入を推進してきた。
+
+ETFはいくつかの構造的な利点を提供する。個別株のように取引所で取引され、日中流動性を提供する。経費率は通常0.10パーセント未満で、多くのアクティブファンドの1.00パーセント以上と比較される。税効率もまた利点であり、現物での設定・償還メカニズムが課税対象のキャピタルゲイン分配を最小化する。
+
+しかし、批判者はパッシブ投資の急増が市場の歪みを生み出すと主張する。ファンダメンタルズに関係なく資本がすべてのインデックス構成銘柄に無差別に流入すると、価格発見機能が損なわれ、潜在的にシステミックな脆弱性を生み出す可能性がある。`
+  },
+  {
+    id: "2026-03-23-062",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "Quantitative Easing: When Central Banks Become Market Makers",
+    difficulty: "Academic",
+    wordCount: 155,
+    text: `Quantitative easing, or QE, is an unconventional monetary policy tool employed by central banks when traditional interest rate adjustments prove insufficient to stimulate economic activity. The mechanism involves large-scale purchases of government bonds and other financial assets to inject liquidity into the financial system.
+
+The Federal Reserve first deployed QE during the 2008 financial crisis, eventually accumulating over four trillion dollars in assets on its balance sheet. The Bank of Japan and European Central Bank followed with their own programs.
+
+QE operates through several transmission channels. By purchasing long-term bonds, central banks compress yields, lowering borrowing costs for businesses and consumers. Rising asset prices generate a wealth effect that encourages spending. Additionally, increased bank reserves theoretically expand lending capacity.
+
+Critics raise legitimate concerns. QE disproportionately benefits asset owners, exacerbating wealth inequality. It can inflate asset bubbles detached from economic fundamentals. The eventual unwinding—termed "quantitative tightening"—poses significant challenges, as withdrawing liquidity risks triggering market disruptions and rising volatility.`,
+    glossary: [
+      { word: "quantitative easing (QE)", pos: "noun", japanese: "量的緩和（QE）", definition: "A monetary policy where a central bank purchases securities to increase money supply and stimulate the economy", example: "The Fed launched QE to combat the recession.", exampleJa: "FRBは不況に対抗するためにQEを開始した。" },
+      { word: "unconventional", pos: "adjective", japanese: "非伝統的な、型にはまらない", definition: "Not based on or conforming to what is generally done or believed", example: "The crisis demanded unconventional policy responses.", exampleJa: "危機は非伝統的な政策対応を求めた。" },
+      { word: "transmission channels", pos: "noun", japanese: "波及経路、伝達チャネル", definition: "The pathways through which monetary policy actions affect the real economy", example: "Interest rates are the primary transmission channel.", exampleJa: "金利は主要な波及経路である。" },
+      { word: "compress yields", pos: "phrase", japanese: "利回りを圧縮する", definition: "To push down the returns on bonds through buying pressure", example: "QE compressed yields across the maturity spectrum.", exampleJa: "QEは満期スペクトラム全体の利回りを圧縮した。" },
+      { word: "wealth effect", pos: "noun", japanese: "資産効果", definition: "The tendency for people to spend more when their perceived wealth increases", example: "Rising home prices created a positive wealth effect.", exampleJa: "住宅価格の上昇がプラスの資産効果を生み出した。" },
+      { word: "balance sheet", pos: "noun", japanese: "バランスシート、貸借対照表", definition: "A financial statement showing assets, liabilities, and equity at a point in time", example: "The central bank's balance sheet expanded dramatically.", exampleJa: "中央銀行のバランスシートは劇的に拡大した。" },
+      { word: "bank reserves", pos: "noun", japanese: "銀行準備金", definition: "Cash held by banks in their vaults or deposited at the central bank", example: "QE increased excess bank reserves substantially.", exampleJa: "QEは余剰銀行準備金を大幅に増加させた。" },
+      { word: "asset bubbles", pos: "noun", japanese: "資産バブル", definition: "Situations where asset prices rise far above their intrinsic value", example: "Low rates can fuel dangerous asset bubbles.", exampleJa: "低金利は危険な資産バブルを助長しうる。" },
+      { word: "unwinding", pos: "noun/verb", japanese: "巻き戻し、縮小", definition: "The process of reversing or reducing accumulated positions or policies", example: "The unwinding of QE proceeded cautiously.", exampleJa: "QEの巻き戻しは慎重に進められた。" },
+      { word: "quantitative tightening", pos: "noun", japanese: "量的引き締め（QT）", definition: "The process of reducing a central bank's balance sheet by selling assets or letting them mature", example: "Quantitative tightening began in late 2022.", exampleJa: "量的引き締めは2022年後半に始まった。" },
+      { word: "volatility", pos: "noun", japanese: "ボラティリティ、変動性", definition: "The degree of variation of a trading price over time", example: "Market volatility spiked during the crisis.", exampleJa: "危機の間に市場のボラティリティが急上昇した。" },
+      { word: "inject liquidity", pos: "phrase", japanese: "流動性を注入する", definition: "To increase the amount of money available in the financial system", example: "Central banks injected liquidity to stabilize markets.", exampleJa: "中央銀行は市場を安定させるため流動性を注入した。" }
+    ],
+    translation: `量的緩和、またはQEは、伝統的な金利調整が経済活動の刺激に不十分であることが判明した際に中央銀行が採用する非伝統的な金融政策手段である。そのメカニズムは、金融システムに流動性を注入するための国債やその他の金融資産の大規模購入を伴う。
+
+FRBは2008年の金融危機時に初めてQEを展開し、最終的にバランスシート上に4兆ドル以上の資産を蓄積した。日本銀行と欧州中央銀行も独自のプログラムを実施した。
+
+QEはいくつかの波及経路を通じて機能する。長期債を購入することで、中央銀行は利回りを圧縮し、企業や消費者の借入コストを低下させる。資産価格の上昇は消費を促進する資産効果を生み出す。さらに、銀行準備金の増加は理論上、融資能力を拡大する。
+
+批判者は正当な懸念を提起する。QEは資産所有者に不均衡に利益をもたらし、富の不平等を悪化させる。経済のファンダメンタルズから乖離した資産バブルを膨張させる可能性がある。最終的な巻き戻し、「量的引き締め」と呼ばれるプロセスは、流動性の引き上げが市場の混乱やボラティリティの上昇を引き起こすリスクがあるため、重大な課題をもたらす。`
+  },
+  {
+    id: "2026-03-23-063",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "ESG Investing and the Green Bond Revolution",
+    difficulty: "TOEFL iBT+",
+    wordCount: 152,
+    text: `Environmental, Social, and Governance investing—commonly abbreviated as ESG—has transformed from a niche approach into a mainstream investment philosophy commanding trillions of dollars in assets under management.
+
+ESG criteria evaluate companies beyond traditional financial metrics. Environmental factors assess carbon emissions, resource usage, and pollution. Social criteria examine labor practices, diversity, and community impact. Governance evaluates board composition, executive compensation, and shareholder rights.
+
+Green bonds represent one of the fastest-growing segments of sustainable finance. These fixed-income instruments raise capital exclusively for environmental projects such as renewable energy installations, sustainable transportation, and climate adaptation infrastructure. Global green bond issuance surpassed five hundred billion dollars annually, signaling robust institutional demand.
+
+However, "greenwashing" remains a persistent challenge. Some issuers exaggerate environmental credentials to attract ESG-conscious investors without delivering genuine sustainability outcomes. Regulators worldwide are responding with standardized taxonomies and mandatory disclosure frameworks to enhance transparency and accountability in sustainable finance markets.`,
+    glossary: [
+      { word: "ESG", pos: "noun/acronym", japanese: "ESG（環境・社会・ガバナンス）", definition: "Environmental, Social, and Governance criteria used to evaluate corporate behavior and sustainability", example: "ESG funds have attracted record inflows recently.", exampleJa: "ESGファンドは最近記録的な資金流入を集めた。" },
+      { word: "assets under management", pos: "noun", japanese: "運用資産残高（AUM）", definition: "The total market value of investments managed by a fund or institution", example: "The firm manages two trillion in assets.", exampleJa: "その会社は2兆ドルの資産を運用している。" },
+      { word: "green bond", pos: "noun", japanese: "グリーンボンド（環境債）", definition: "A bond specifically earmarked to raise money for environmental and climate projects", example: "The city issued green bonds for solar projects.", exampleJa: "市は太陽光プロジェクトのためにグリーンボンドを発行した。" },
+      { word: "fixed-income", pos: "adjective", japanese: "債券の、固定利付きの", definition: "Relating to investments that provide regular, predetermined returns such as bonds", example: "Fixed-income investors seek stable returns.", exampleJa: "債券投資家は安定したリターンを求める。" },
+      { word: "issuance", pos: "noun", japanese: "発行、発行額", definition: "The act of officially giving out or making available, especially securities", example: "Bond issuance hit record levels this quarter.", exampleJa: "今四半期の債券発行は過去最高水準に達した。" },
+      { word: "greenwashing", pos: "noun", japanese: "グリーンウォッシング（見せかけの環境配慮）", definition: "Misleading claims about the environmental benefits of a product, service, or investment", example: "Regulators are cracking down on greenwashing claims.", exampleJa: "規制当局はグリーンウォッシングの主張を取り締まっている。" },
+      { word: "taxonomies", pos: "noun", japanese: "分類体系、タクソノミー", definition: "Systems of classification; in finance, frameworks defining what qualifies as sustainable", example: "The EU taxonomy defines sustainable economic activities.", exampleJa: "EUタクソノミーは持続可能な経済活動を定義する。" },
+      { word: "mandatory disclosure", pos: "noun", japanese: "義務的開示", definition: "Required reporting of specific information by law or regulation", example: "Mandatory disclosure rules improve market transparency.", exampleJa: "義務的開示ルールは市場の透明性を向上させる。" },
+      { word: "niche", pos: "adjective/noun", japanese: "ニッチな、隙間市場の", definition: "Relating to a specialized segment of the market", example: "ESG investing started as a niche strategy.", exampleJa: "ESG投資はニッチな戦略として始まった。" },
+      { word: "credentials", pos: "noun", japanese: "資質、実績", definition: "Qualifications, achievements, or qualities that make something credible", example: "The company inflated its environmental credentials.", exampleJa: "その会社は環境面の実績を誇張した。" },
+      { word: "accountability", pos: "noun", japanese: "説明責任", definition: "The obligation to be answerable for one's actions and decisions", example: "Greater accountability is demanded of fund managers.", exampleJa: "ファンドマネージャーにはより大きな説明責任が求められる。" },
+      { word: "robust", pos: "adjective", japanese: "堅調な、力強い", definition: "Strong and healthy; vigorous", example: "Demand for green bonds remains robust globally.", exampleJa: "グリーンボンドの需要は世界的に堅調だ。" }
+    ],
+    translation: `環境・社会・ガバナンス投資、一般にESGと略されるものは、ニッチなアプローチから数兆ドルの運用資産を擁する主流の投資哲学へと変貌した。
+
+ESG基準は企業を従来の財務指標を超えて評価する。環境要因は炭素排出量、資源使用量、汚染を評価する。社会的基準は労働慣行、多様性、地域社会への影響を検討する。ガバナンスは取締役会の構成、役員報酬、株主の権利を評価する。
+
+グリーンボンドはサステナブルファイナンスの中で最も急成長しているセグメントの一つだ。これらの債券商品は、再生可能エネルギーの設置、持続可能な交通、気候適応インフラなどの環境プロジェクトのためだけに資金を調達する。世界のグリーンボンド発行額は年間5000億ドルを超え、堅調な機関投資家需要を示している。
+
+しかし、「グリーンウォッシング」は依然として根強い課題だ。一部の発行体は、真の持続可能性の成果を出すことなく、ESG意識の高い投資家を引き付けるために環境面の実績を誇張する。世界中の規制当局は、持続可能な金融市場の透明性と説明責任を強化するために、標準化された分類体系と義務的開示の枠組みで対応している。`
+  },
+  {
+    id: "2026-03-23-064",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "Inside Hedge Fund Strategies: From Long-Short to Global Macro",
+    difficulty: "Academic",
+    wordCount: 154,
+    text: `Hedge funds employ sophisticated strategies that differ fundamentally from traditional long-only investment approaches. Understanding these strategies illuminates how professional investors seek to generate returns regardless of market direction.
+
+The long-short equity strategy involves simultaneously buying undervalued stocks and short-selling overvalued ones. This approach aims to profit from both rising and falling prices while reducing net market exposure. A fund might be 130 percent long and 30 percent short, maintaining a net exposure of 100 percent.
+
+Global macro funds take directional bets on macroeconomic trends across currencies, interest rates, and commodities. George Soros famously generated one billion dollars by shorting the British pound in 1992. These funds rely heavily on macroeconomic analysis and geopolitical assessment.
+
+Event-driven strategies capitalize on corporate events such as mergers, restructurings, or bankruptcies. Merger arbitrage, for instance, involves buying the target company's shares while shorting the acquirer's, profiting from the spread between current and acquisition prices.
+
+Despite their sophistication, average hedge fund returns have lagged simple index funds over the past decade, raising questions about whether complexity justifies their substantial fee structures.`,
+    glossary: [
+      { word: "long-short equity", pos: "noun", japanese: "ロングショート戦略", definition: "A strategy that takes long positions in undervalued stocks and short positions in overvalued ones", example: "Long-short equity reduces overall market risk.", exampleJa: "ロングショート戦略は全体的な市場リスクを軽減する。" },
+      { word: "short-selling", pos: "noun/verb", japanese: "空売り、ショートセリング", definition: "Selling borrowed securities with the intention of buying them back at a lower price", example: "Short-selling profits when stock prices decline.", exampleJa: "空売りは株価が下落したときに利益を得る。" },
+      { word: "net market exposure", pos: "noun", japanese: "ネット・マーケット・エクスポージャー", definition: "The difference between long and short positions as a percentage of total portfolio", example: "The fund maintained low net market exposure.", exampleJa: "そのファンドは低いネット・マーケット・エクスポージャーを維持した。" },
+      { word: "global macro", pos: "noun/adjective", japanese: "グローバルマクロ（戦略）", definition: "A hedge fund strategy based on macroeconomic analysis of global trends", example: "Global macro funds bet on currency movements.", exampleJa: "グローバルマクロファンドは為替の動きに賭ける。" },
+      { word: "directional bets", pos: "noun", japanese: "方向性のある賭け、ディレクショナルベット", definition: "Investment positions that profit from a specific market movement up or down", example: "The manager placed directional bets on rising rates.", exampleJa: "マネージャーは金利上昇にディレクショナルベットを置いた。" },
+      { word: "event-driven", pos: "adjective", japanese: "イベントドリブン（型の）", definition: "A strategy that seeks to profit from corporate events like mergers or restructurings", example: "Event-driven funds focus on M&A activity.", exampleJa: "イベントドリブンファンドはM&A活動に焦点を当てる。" },
+      { word: "merger arbitrage", pos: "noun", japanese: "合併アービトラージ", definition: "A strategy that profits from the price spread during corporate mergers", example: "Merger arbitrage carries deal-completion risk.", exampleJa: "合併アービトラージには取引完了リスクが伴う。" },
+      { word: "acquirer", pos: "noun", japanese: "買収者、取得企業", definition: "A company or person that buys or takes over another company", example: "The acquirer offered a twenty percent premium.", exampleJa: "買収者は20パーセントのプレミアムを提示した。" },
+      { word: "fee structures", pos: "noun", japanese: "手数料体系", definition: "The arrangement of fees charged by investment managers to clients", example: "Hedge fund fee structures typically include performance fees.", exampleJa: "ヘッジファンドの手数料体系には通常成功報酬が含まれる。" },
+      { word: "lagged", pos: "verb", japanese: "下回った、遅れをとった", definition: "Failed to keep pace with; fell behind", example: "Returns lagged the benchmark by two percent.", exampleJa: "リターンはベンチマークを2パーセント下回った。" },
+      { word: "geopolitical", pos: "adjective", japanese: "地政学的な", definition: "Relating to politics, especially international relations, as influenced by geography", example: "Geopolitical tensions affect commodity prices.", exampleJa: "地政学的緊張は商品価格に影響を与える。" },
+      { word: "sophistication", pos: "noun", japanese: "精巧さ、洗練", definition: "The quality of being complex, developed, or refined", example: "The strategy's sophistication attracts institutional investors.", exampleJa: "その戦略の精巧さが機関投資家を引き付ける。" }
+    ],
+    translation: `ヘッジファンドは、伝統的なロングオンリーの投資アプローチとは根本的に異なる洗練された戦略を採用する。これらの戦略を理解することで、プロの投資家がいかに市場の方向に関係なくリターンを生み出そうとするかが明らかになる。
+
+ロングショート株式戦略は、割安な株式の買いと割高な株式の空売りを同時に行う。このアプローチは、上昇と下落の両方の価格から利益を得ながら、ネット・マーケット・エクスポージャーを低減することを目指す。ファンドは130パーセントのロングと30パーセントのショートを持ち、ネット・エクスポージャー100パーセントを維持するかもしれない。
+
+グローバルマクロファンドは、通貨、金利、商品にわたるマクロ経済トレンドにディレクショナルベットを行う。ジョージ・ソロスは1992年にイギリスポンドを空売りして10億ドルを生み出したことで有名だ。これらのファンドはマクロ経済分析と地政学的評価に大きく依存する。
+
+イベントドリブン戦略は、合併、リストラ、倒産などの企業イベントを利用する。例えば合併アービトラージは、現在の価格と買収価格のスプレッドから利益を得るために、ターゲット企業の株式を買い、買収者の株式を空売りする。
+
+その洗練さにもかかわらず、ヘッジファンドの平均リターンは過去10年間にわたりシンプルなインデックスファンドを下回っており、複雑さがその高額な手数料体系を正当化するかどうかという疑問を提起している。`
+  },
+  {
+    id: "2026-03-23-065",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "Cryptocurrency Regulation: Finding the Balance",
+    difficulty: "TOEFL iBT+",
+    wordCount: 150,
+    text: `The rapid expansion of cryptocurrency markets has forced governments worldwide to grapple with a fundamental question: how to regulate digital assets without stifling innovation.
+
+Bitcoin, launched in 2009, operates on a decentralized blockchain network that deliberately bypasses traditional financial intermediaries. This disintermediation appeals to advocates of financial sovereignty but alarms regulators concerned about money laundering, tax evasion, and consumer protection.
+
+Regulatory approaches vary dramatically. The United States applies existing securities laws, with the SEC arguing that many tokens qualify as investment contracts under the Howey Test. The European Union has implemented the Markets in Crypto-Assets regulation, creating a comprehensive licensing framework. Meanwhile, El Salvador adopted Bitcoin as legal tender—a bold experiment that attracted global attention.
+
+Stablecoins present unique regulatory challenges. Pegged to fiat currencies like the US dollar, they function as payment instruments and must maintain adequate reserves to ensure redemption at par value.
+
+Effective regulation must balance investor protection with the technological potential of blockchain. Overly restrictive approaches risk driving innovation offshore to more permissive jurisdictions.`,
+    glossary: [
+      { word: "cryptocurrency", pos: "noun", japanese: "暗号資産、暗号通貨", definition: "A digital currency that uses cryptography for security and operates on decentralized networks", example: "Bitcoin is the most well-known cryptocurrency.", exampleJa: "ビットコインは最もよく知られた暗号資産だ。" },
+      { word: "decentralized", pos: "adjective", japanese: "分散型の、非中央集権的な", definition: "Not controlled by a single authority; distributed across many participants", example: "Blockchain enables decentralized record-keeping.", exampleJa: "ブロックチェーンは分散型の記録管理を可能にする。" },
+      { word: "disintermediation", pos: "noun", japanese: "中抜き、仲介排除", definition: "The elimination of intermediaries in a transaction or supply chain", example: "DeFi achieves disintermediation of traditional banks.", exampleJa: "DeFiは伝統的な銀行の中抜きを実現する。" },
+      { word: "money laundering", pos: "noun", japanese: "マネーロンダリング、資金洗浄", definition: "The process of concealing the origins of illegally obtained money", example: "Anti-money laundering rules apply to crypto exchanges.", exampleJa: "マネーロンダリング防止規則は暗号資産取引所にも適用される。" },
+      { word: "stablecoins", pos: "noun", japanese: "ステーブルコイン（価格安定型暗号資産）", definition: "Cryptocurrencies designed to maintain a stable value by pegging to a reserve asset", example: "USDT is the largest stablecoin by market cap.", exampleJa: "USDTは時価総額最大のステーブルコインだ。" },
+      { word: "legal tender", pos: "noun", japanese: "法定通貨", definition: "Currency that must be accepted as payment by law", example: "El Salvador made Bitcoin legal tender in 2021.", exampleJa: "エルサルバドルは2021年にビットコインを法定通貨にした。" },
+      { word: "par value", pos: "noun", japanese: "額面価格", definition: "The face value of a bond or the stated value of a currency unit", example: "Stablecoins aim to maintain redemption at par value.", exampleJa: "ステーブルコインは額面価格での償還維持を目指す。" },
+      { word: "Howey Test", pos: "noun", japanese: "ハウイ・テスト（証券該当性の判定基準）", definition: "A US legal test to determine whether a transaction qualifies as an investment contract", example: "The SEC uses the Howey Test for crypto tokens.", exampleJa: "SECは暗号トークンにハウイ・テストを使用する。" },
+      { word: "permissive", pos: "adjective", japanese: "寛容な、許容的な", definition: "Allowing or characterized by great freedom of behavior", example: "Some jurisdictions have permissive crypto regulations.", exampleJa: "一部の管轄区域は寛容な暗号資産規制を持つ。" },
+      { word: "stifling", pos: "verb/adjective", japanese: "抑制する、窒息させる", definition: "Restraining or preventing something from developing or succeeding", example: "Excessive rules risk stifling technological innovation.", exampleJa: "過度な規則は技術革新を抑制するリスクがある。" },
+      { word: "fiat currencies", pos: "noun", japanese: "法定不換通貨（フィアット通貨）", definition: "Government-issued currencies not backed by a physical commodity", example: "Most modern currencies are fiat currencies.", exampleJa: "現代のほとんどの通貨は法定不換通貨だ。" }
+    ],
+    translation: `暗号資産市場の急速な拡大により、世界中の政府がイノベーションを阻害せずにデジタル資産をどう規制するかという根本的な問題に取り組むことを余儀なくされている。
+
+2009年に開始されたビットコインは、意図的に伝統的な金融仲介者を迂回する分散型ブロックチェーンネットワーク上で運営される。この仲介排除は金融主権の支持者に訴えるが、マネーロンダリング、脱税、消費者保護を懸念する規制当局を警戒させる。
+
+規制アプローチは劇的に異なる。米国は既存の証券法を適用し、SECは多くのトークンがハウイ・テストの下で投資契約に該当すると主張する。EUは暗号資産市場規制を実施し、包括的なライセンス枠組みを構築した。一方、エルサルバドルはビットコインを法定通貨として採用し、世界的な注目を集める大胆な実験を行った。
+
+ステーブルコインは独特の規制上の課題を提示する。米ドルなどの法定通貨にペッグされ、決済手段として機能するため、額面価格での償還を確保するために十分な準備金を維持しなければならない。
+
+効果的な規制は投資家保護とブロックチェーンの技術的可能性のバランスを取らなければならない。過度に制限的なアプローチは、イノベーションをより寛容な管轄区域へと海外に追いやるリスクがある。`
+  },
+  {
+    id: "2026-03-23-066",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "From Filing to First Trade: Understanding the IPO Process",
+    difficulty: "TOEFL iBT+",
+    wordCount: 148,
+    text: `An initial public offering, or IPO, marks the transformation of a private company into a publicly traded entity. This complex process involves multiple stakeholders and typically spans six to twelve months.
+
+The journey begins with selecting underwriters—investment banks that will manage the offering. Lead underwriters conduct due diligence, examining the company's financials, business model, and growth prospects. They then collaborate with the company to draft a registration statement filed with securities regulators.
+
+The prospectus, a key document within the filing, discloses material information including financial statements, risk factors, and intended use of proceeds. During the "quiet period," the company faces strict limitations on public communications.
+
+The roadshow follows, where management presents to institutional investors across major financial centers. These meetings help gauge investor appetite and determine the offering price range.
+
+On pricing night, the final share price is set based on demand. Shares begin trading the next morning, and the opening price often differs significantly from the IPO price—sometimes spectacularly so, reflecting genuine market enthusiasm or excessive hype.`,
+    glossary: [
+      { word: "initial public offering (IPO)", pos: "noun", japanese: "新規株式公開（IPO）", definition: "The first sale of a company's shares to the public on a stock exchange", example: "The tech startup filed for an IPO.", exampleJa: "そのテックスタートアップはIPOを申請した。" },
+      { word: "underwriters", pos: "noun", japanese: "引受会社、アンダーライター", definition: "Investment banks that manage the process of issuing and selling new securities", example: "Goldman Sachs served as lead underwriter.", exampleJa: "ゴールドマン・サックスが主幹事を務めた。" },
+      { word: "due diligence", pos: "noun", japanese: "デューデリジェンス、精査", definition: "A comprehensive investigation of a business or person before signing a contract", example: "Due diligence uncovered accounting irregularities.", exampleJa: "デューデリジェンスで会計上の不正が発見された。" },
+      { word: "prospectus", pos: "noun", japanese: "目論見書", definition: "A formal legal document providing details about an investment offering", example: "Investors should read the prospectus carefully.", exampleJa: "投資家は目論見書を注意深く読むべきだ。" },
+      { word: "registration statement", pos: "noun", japanese: "届出書、登録届出書", definition: "A legal document filed with regulators containing details about a securities offering", example: "The registration statement was filed with the SEC.", exampleJa: "登録届出書がSECに提出された。" },
+      { word: "quiet period", pos: "noun", japanese: "沈黙期間", definition: "A legally mandated period during which a company limits public communications before an IPO", example: "No interviews are allowed during the quiet period.", exampleJa: "沈黙期間中はインタビューが許可されない。" },
+      { word: "roadshow", pos: "noun", japanese: "ロードショー（投資家向け説明会）", definition: "A series of presentations by a company to potential investors before an IPO", example: "The CEO presented at roadshows across Asia.", exampleJa: "CEOはアジア各地のロードショーでプレゼンした。" },
+      { word: "proceeds", pos: "noun", japanese: "調達資金、収益金", definition: "Money obtained from a sale, event, or financial transaction", example: "IPO proceeds funded international expansion.", exampleJa: "IPOの調達資金は海外展開に充てられた。" },
+      { word: "gauge", pos: "verb", japanese: "測る、見極める", definition: "To estimate or determine the amount, level, or character of something", example: "The roadshow helped gauge institutional demand.", exampleJa: "ロードショーは機関投資家の需要を見極めるのに役立った。" },
+      { word: "material information", pos: "noun", japanese: "重要情報", definition: "Information that could influence an investor's decision to buy or sell", example: "Companies must disclose all material information.", exampleJa: "企業はすべての重要情報を開示しなければならない。" },
+      { word: "hype", pos: "noun", japanese: "誇大宣伝、過剰な期待", definition: "Extravagant or intensive publicity or promotion", example: "The stock fell after the initial hype faded.", exampleJa: "当初の過剰な期待が薄れた後、株価は下落した。" }
+    ],
+    translation: `新規株式公開、すなわちIPOは、非公開企業から上場企業への変革を象徴する。この複雑なプロセスには複数のステークホルダーが関与し、通常6から12か月を要する。
+
+旅は引受会社の選定から始まる。引受会社とは、公募を管理する投資銀行だ。主幹事はデューデリジェンスを実施し、会社の財務、ビジネスモデル、成長見通しを精査する。その後、会社と協力して証券規制当局に提出する登録届出書を作成する。
+
+目論見書は、届出内の重要文書であり、財務諸表、リスク要因、調達資金の使途などの重要情報を開示する。「沈黙期間」中、会社は公的なコミュニケーションに厳しい制限を受ける。
+
+次にロードショーが行われ、経営陣が主要な金融センターの機関投資家にプレゼンする。これらの会議は投資家の需要を見極め、公募価格の範囲を決定するのに役立つ。
+
+価格決定の夜、需要に基づいて最終的な株価が設定される。翌朝から株式の取引が始まり、初値はしばしばIPO価格と大きく異なる。時には劇的に異なり、真の市場の熱意や過剰な期待を反映する。`
+  },
+  {
+    id: "2026-03-23-067",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "Currency Risk and the Art of Hedging",
+    difficulty: "TOEFL iBT+",
+    wordCount: 151,
+    text: `For investors and corporations operating across borders, currency fluctuations can dramatically affect returns and profitability. Understanding and managing foreign exchange risk—commonly called FX risk—is a critical skill in global finance.
+
+Currency risk arises whenever cash flows are denominated in a foreign currency. A Japanese investor holding US equities faces two sources of return: the stock performance and the yen-dollar exchange rate movement. Even a profitable stock investment can produce losses if the foreign currency depreciates significantly against the home currency.
+
+Forward contracts are the most widely used hedging instrument. By locking in an exchange rate for a future date, companies can eliminate uncertainty about the value of foreign receivables or payables. The cost of hedging is embedded in the forward premium or discount, which reflects interest rate differentials between the two currencies.
+
+Currency options provide more flexibility. They grant the right, but not the obligation, to exchange currencies at a predetermined rate. This asymmetric payoff structure protects against adverse movements while preserving potential gains from favorable ones—but at the cost of an upfront premium.`,
+    glossary: [
+      { word: "currency risk", pos: "noun", japanese: "為替リスク", definition: "The potential for losses due to fluctuations in exchange rates", example: "Hedging reduces currency risk for exporters.", exampleJa: "ヘッジは輸出業者の為替リスクを軽減する。" },
+      { word: "foreign exchange (FX)", pos: "noun", japanese: "外国為替（FX）", definition: "The exchange of one currency for another, or the global market for such transactions", example: "FX markets trade over six trillion dollars daily.", exampleJa: "FX市場では毎日6兆ドル以上が取引される。" },
+      { word: "denominated", pos: "adjective/verb", japanese: "建ての、表示された", definition: "Expressed or measured in a particular currency", example: "The bonds are denominated in euros.", exampleJa: "その債券はユーロ建てだ。" },
+      { word: "forward contract", pos: "noun", japanese: "先渡契約、フォワード契約", definition: "An agreement to buy or sell an asset at a specified future date and price", example: "The firm used forward contracts to lock in rates.", exampleJa: "その会社は為替レートを固定するために先渡契約を使った。" },
+      { word: "receivables", pos: "noun", japanese: "売掛金、受取債権", definition: "Amounts owed to a company by its customers for goods or services delivered", example: "Foreign receivables are exposed to currency fluctuations.", exampleJa: "海外の売掛金は為替変動にさらされる。" },
+      { word: "payables", pos: "noun", japanese: "買掛金、支払債務", definition: "Amounts a company owes to its suppliers or creditors", example: "Managing payables in multiple currencies is challenging.", exampleJa: "複数通貨での買掛金管理は難しい。" },
+      { word: "forward premium", pos: "noun", japanese: "フォワードプレミアム", definition: "The amount by which a forward exchange rate exceeds the spot rate", example: "The forward premium reflects interest rate differentials.", exampleJa: "フォワードプレミアムは金利差を反映する。" },
+      { word: "interest rate differentials", pos: "noun", japanese: "金利差", definition: "The difference in interest rates between two currencies or countries", example: "Interest rate differentials drive carry trade strategies.", exampleJa: "金利差がキャリートレード戦略を駆動する。" },
+      { word: "currency options", pos: "noun", japanese: "通貨オプション", definition: "Financial derivatives giving the right to buy or sell currency at a set price", example: "Currency options offer downside protection with upside potential.", exampleJa: "通貨オプションは下方保護と上方の可能性を提供する。" },
+      { word: "asymmetric", pos: "adjective", japanese: "非対称の", definition: "Having parts that are not equal or not the same on both sides", example: "Options have an asymmetric payoff structure.", exampleJa: "オプションは非対称のペイオフ構造を持つ。" },
+      { word: "upfront premium", pos: "noun", japanese: "前払いプレミアム、オプション料", definition: "A fee paid at the beginning of a contract, especially for options", example: "The upfront premium is the cost of buying protection.", exampleJa: "前払いプレミアムはプロテクションを購入するコストだ。" },
+      { word: "depreciates", pos: "verb", japanese: "減価する、価値が下がる", definition: "Decreases in value over time", example: "The peso depreciated sharply against the dollar.", exampleJa: "ペソはドルに対して急激に減価した。" }
+    ],
+    translation: `国境を越えて活動する投資家や企業にとって、為替変動はリターンや収益性に劇的な影響を与えうる。外国為替リスク、通称FXリスクの理解と管理は、グローバルファイナンスにおける重要なスキルだ。
+
+為替リスクはキャッシュフローが外貨建てである場合に発生する。米国株式を保有する日本の投資家は、株式のパフォーマンスと円ドル為替レートの動きという2つのリターン源に直面する。たとえ利益の出る株式投資であっても、外貨が自国通貨に対して大幅に減価すれば損失を生む可能性がある。
+
+先渡契約は最も広く使用されるヘッジ手段だ。将来の日付の為替レートを固定することで、企業は外貨建ての売掛金や買掛金の価値に関する不確実性を排除できる。ヘッジのコストはフォワードプレミアムまたはディスカウントに埋め込まれており、2通貨間の金利差を反映する。
+
+通貨オプションはより柔軟性を提供する。所定のレートで通貨を交換する権利を付与するが、義務ではない。この非対称のペイオフ構造は、不利な動きに対して保護しつつ有利な動きからの潜在的利益を維持する。ただし前払いプレミアムのコストがかかる。`
+  },
+  {
+    id: "2026-03-23-068",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "Reading the Warning Signs: Predicting Economic Recessions",
+    difficulty: "TOEFL iBT+",
+    wordCount: 153,
+    text: `Economists and investors closely monitor a constellation of indicators to anticipate recessions before they officially arrive. While no single metric perfectly predicts downturns, several have demonstrated remarkable historical reliability.
+
+The inverted yield curve is perhaps the most celebrated recession indicator. Normally, long-term bonds offer higher yields than short-term ones, compensating investors for duration risk. When this relationship inverts—with short-term rates exceeding long-term rates—it signals that markets expect future economic weakness. Every US recession since 1955 has been preceded by a yield curve inversion.
+
+The Leading Economic Index, compiled by the Conference Board, aggregates ten components including manufacturing orders, building permits, and consumer expectations. Consecutive monthly declines typically foreshadow economic contraction.
+
+Rising unemployment claims provide real-time labor market signals. When initial jobless claims trend upward consistently, employers are beginning to shed workers—an early symptom of economic deterioration.
+
+Corporate earnings revisions offer another clue. When analysts systematically lower profit forecasts across multiple sectors, it reflects deteriorating business conditions that may precede broader economic decline. Monitoring these indicators collectively provides a more robust assessment than relying on any single measure.`,
+    glossary: [
+      { word: "recession", pos: "noun", japanese: "景気後退、リセッション", definition: "A significant decline in economic activity lasting more than a few months", example: "The economy entered a recession in the third quarter.", exampleJa: "経済は第3四半期にリセッションに入った。" },
+      { word: "inverted yield curve", pos: "noun", japanese: "逆イールドカーブ", definition: "A situation where short-term bond yields exceed long-term yields, signaling economic pessimism", example: "An inverted yield curve often precedes recessions.", exampleJa: "逆イールドカーブはしばしばリセッションに先行する。" },
+      { word: "duration risk", pos: "noun", japanese: "デュレーションリスク（期間リスク）", definition: "The risk that bond prices will change due to interest rate movements over time", example: "Long-term bonds carry higher duration risk.", exampleJa: "長期債はより高いデュレーションリスクを持つ。" },
+      { word: "Leading Economic Index", pos: "noun", japanese: "景気先行指数", definition: "A composite index designed to predict future economic activity", example: "The Leading Economic Index fell for six straight months.", exampleJa: "景気先行指数は6か月連続で低下した。" },
+      { word: "building permits", pos: "noun", japanese: "建築許可件数", definition: "Official approvals to begin construction on new buildings", example: "Declining building permits signal a housing slowdown.", exampleJa: "建築許可件数の減少は住宅市場の減速を示す。" },
+      { word: "foreshadow", pos: "verb", japanese: "前兆となる、予示する", definition: "To be a warning or indication of a future event", example: "Falling orders foreshadow weaker manufacturing output.", exampleJa: "受注の減少は製造業生産の弱体化の前兆となる。" },
+      { word: "unemployment claims", pos: "noun", japanese: "失業保険申請件数", definition: "Applications filed by individuals seeking government unemployment benefits", example: "Weekly unemployment claims rose above three hundred thousand.", exampleJa: "週間失業保険申請件数が30万件を超えた。" },
+      { word: "shed workers", pos: "phrase", japanese: "労働者を削減する、人員整理する", definition: "To lay off or reduce the number of employees", example: "The factory began shedding workers in October.", exampleJa: "その工場は10月に人員整理を始めた。" },
+      { word: "earnings revisions", pos: "noun", japanese: "業績予想の修正", definition: "Changes to analysts' forecasts of corporate profits", example: "Negative earnings revisions accelerated in the sector.", exampleJa: "セクター内で業績予想の下方修正が加速した。" },
+      { word: "constellation", pos: "noun", japanese: "一群、集合体", definition: "A group of related things or factors", example: "A constellation of indicators suggests slowing growth.", exampleJa: "一群の指標が成長鈍化を示唆している。" },
+      { word: "contraction", pos: "noun", japanese: "収縮、縮小", definition: "A decrease in the size, amount, or extent of economic activity", example: "GDP contraction confirmed the recession had begun.", exampleJa: "GDPの縮小がリセッションの開始を確認した。" },
+      { word: "deterioration", pos: "noun", japanese: "悪化、劣化", definition: "The process of becoming progressively worse", example: "Credit deterioration preceded the financial crisis.", exampleJa: "信用の悪化が金融危機に先行した。" }
+    ],
+    translation: `エコノミストと投資家は、リセッションが公式に到来する前に予測するため、一群の指標を綿密に監視している。単一の指標で景気後退を完璧に予測できるものはないが、いくつかは歴史的に驚くべき信頼性を示してきた。
+
+逆イールドカーブはおそらく最も有名なリセッション指標だ。通常、長期債は短期債よりも高い利回りを提供し、投資家にデュレーションリスクを補償する。この関係が逆転し、短期金利が長期金利を上回ると、市場が将来の経済的弱さを予想していることを示す。1955年以降の米国のすべてのリセッションは、イールドカーブの逆転に先行されていた。
+
+コンファレンスボードが編纂する景気先行指数は、製造業受注、建築許可件数、消費者期待を含む10の構成要素を集約する。連続的な月次低下は通常、景気縮小を予示する。
+
+失業保険申請件数の増加はリアルタイムの労働市場シグナルを提供する。新規失業保険申請が一貫して上昇傾向にある場合、雇用主が労働者の削減を始めている。これは景気悪化の初期症状だ。
+
+企業の業績予想修正もまた手がかりを提供する。アナリストが複数のセクターにわたって系統的に利益予測を引き下げるとき、それはより広範な景気後退に先行しうるビジネス環境の悪化を反映している。これらの指標を総合的に監視することは、単一の指標に依存するよりもより堅固な評価を提供する。`
+  },
+  {
+    id: "2026-03-23-069",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "Private Equity: The Engine Behind Corporate Transformation",
+    difficulty: "Academic",
+    wordCount: 152,
+    text: `Private equity firms acquire companies using a combination of investor capital and borrowed funds, aiming to improve operations and sell at a profit within three to seven years. This leveraged buyout model has become one of the most influential forces in global finance.
+
+The typical PE fund structure involves limited partners—institutional investors such as pension funds, endowments, and sovereign wealth funds—who provide capital. General partners manage the fund, making investment decisions and overseeing portfolio companies. The standard fee arrangement includes a two percent annual management fee plus twenty percent of profits above a specified hurdle rate, known as carried interest.
+
+Value creation in PE relies on multiple levers. Operational improvements streamline costs and enhance revenue. Strategic acquisitions enable bolt-on growth. Financial engineering optimizes capital structure through leverage.
+
+Critics contend that excessive leverage increases bankruptcy risk and that cost-cutting measures often result in workforce reductions. Furthermore, the illiquidity of PE investments—capital is typically locked up for ten years—makes them unsuitable for investors requiring flexible access to their funds.`,
+    glossary: [
+      { word: "private equity (PE)", pos: "noun", japanese: "プライベートエクイティ（PE、未公開株式投資）", definition: "Investment in companies that are not listed on public stock exchanges", example: "Private equity firms manage trillions in assets.", exampleJa: "プライベートエクイティ会社は数兆ドルの資産を運用する。" },
+      { word: "leveraged buyout (LBO)", pos: "noun", japanese: "レバレッジド・バイアウト（LBO）", definition: "The acquisition of a company using a significant amount of borrowed money", example: "The leveraged buyout was financed with high-yield bonds.", exampleJa: "レバレッジド・バイアウトはハイイールド債で資金調達された。" },
+      { word: "limited partners", pos: "noun", japanese: "リミテッドパートナー（出資者）", definition: "Investors who provide capital to a fund but do not manage it", example: "Pension funds are common limited partners in PE.", exampleJa: "年金基金はPEの一般的なリミテッドパートナーだ。" },
+      { word: "general partners", pos: "noun", japanese: "ジェネラルパートナー（運用者）", definition: "The managers of a fund who make investment decisions and bear unlimited liability", example: "General partners earn carried interest on profits.", exampleJa: "ジェネラルパートナーは利益に対するキャリードインタレストを得る。" },
+      { word: "carried interest", pos: "noun", japanese: "キャリードインタレスト（成功報酬）", definition: "The share of profits that fund managers receive as compensation, typically 20 percent", example: "Carried interest is taxed at capital gains rates.", exampleJa: "キャリードインタレストはキャピタルゲイン税率で課税される。" },
+      { word: "hurdle rate", pos: "noun", japanese: "ハードルレート（最低収益率）", definition: "The minimum rate of return a fund must achieve before managers earn performance fees", example: "The fund's hurdle rate is eight percent annually.", exampleJa: "ファンドのハードルレートは年8パーセントだ。" },
+      { word: "endowments", pos: "noun", japanese: "基金（大学基金など）", definition: "Funds, especially at universities, invested to provide ongoing income", example: "University endowments allocate heavily to private equity.", exampleJa: "大学基金はプライベートエクイティに多額を配分する。" },
+      { word: "bolt-on", pos: "adjective", japanese: "付加的な、追加型の", definition: "An acquisition that adds to an existing portfolio company rather than standing alone", example: "The PE firm pursued bolt-on acquisitions for growth.", exampleJa: "PE会社は成長のため付加的な買収を行った。" },
+      { word: "capital structure", pos: "noun", japanese: "資本構成", definition: "The mix of debt and equity financing used by a company", example: "PE firms optimize capital structure through leverage.", exampleJa: "PE会社はレバレッジを通じて資本構成を最適化する。" },
+      { word: "illiquidity", pos: "noun", japanese: "非流動性、換金困難性", definition: "The state of being difficult to convert into cash quickly without loss of value", example: "Illiquidity is a major drawback of PE investments.", exampleJa: "非流動性はPE投資の大きな欠点だ。" },
+      { word: "locked up", pos: "phrase", japanese: "拘束された、引き出せない", definition: "Committed and unable to be withdrawn for a specified period", example: "Capital is locked up for the fund's duration.", exampleJa: "資本はファンドの期間中引き出せない。" },
+      { word: "workforce reductions", pos: "noun", japanese: "人員削減", definition: "Decreases in the number of employees at a company", example: "Workforce reductions followed the acquisition.", exampleJa: "買収に続いて人員削減が行われた。" }
+    ],
+    translation: `プライベートエクイティ会社は、投資家の資本と借入資金の組み合わせを使って企業を買収し、3年から7年以内に事業を改善して利益を上乗せして売却することを目指す。このレバレッジド・バイアウトモデルは、グローバルファイナンスにおいて最も影響力のある力の一つとなっている。
+
+典型的なPEファンドの構造は、年金基金、大学基金、ソブリン・ウェルス・ファンドなどの機関投資家であるリミテッドパートナーが資本を提供する。ジェネラルパートナーがファンドを運用し、投資判断を行いポートフォリオ企業を監督する。標準的な手数料体系には、年間2パーセントの管理報酬に加え、指定されたハードルレートを超える利益の20パーセント、すなわちキャリードインタレストが含まれる。
+
+PEにおける価値創造は複数のレバーに依存する。事業改善はコストを合理化し収益を向上させる。戦略的買収は付加的な成長を可能にする。フィナンシャルエンジニアリングはレバレッジを通じて資本構成を最適化する。
+
+批判者は、過度なレバレッジが倒産リスクを高め、コスト削減策がしばしば人員削減をもたらすと主張する。さらに、PE投資の非流動性（資本は通常10年間拘束される）は、資金への柔軟なアクセスを必要とする投資家には不適切だ。`
+  },
+  {
+    id: "2026-03-23-070",
+    date: "2026-03-23",
+    topic: "Finance & Investment",
+    title: "Sovereign Wealth Funds: How Nations Invest Their Riches",
+    difficulty: "Academic",
+    wordCount: 155,
+    text: `Sovereign wealth funds are state-owned investment vehicles that manage national savings derived from fiscal surpluses, natural resource revenues, or foreign exchange reserves. Collectively holding over ten trillion dollars, these funds are among the most powerful institutional investors globally.
+
+The Norwegian Government Pension Fund Global, the world's largest at approximately 1.7 trillion dollars, exemplifies the resource-revenue model. Funded by petroleum earnings, it owns shares in over nine thousand companies across seventy countries, applying strict ethical guidelines that exclude investments in weapons manufacturers, coal producers, and firms involved in severe environmental damage.
+
+The Abu Dhabi Investment Authority and Singapore's GIC represent alternative models. ADIA manages oil wealth through diversified global allocations, while GIC invests Singapore's foreign reserves across asset classes including private equity, real estate, and infrastructure.
+
+Sovereign wealth funds face unique governance challenges. Political interference, lack of transparency, and conflicting mandates between financial returns and national strategic interests can undermine investment discipline. The Santiago Principles, established in 2008, provide a voluntary framework promoting transparency, sound governance, and accountability, though compliance varies significantly among member funds.`,
+    glossary: [
+      { word: "sovereign wealth fund (SWF)", pos: "noun", japanese: "ソブリン・ウェルス・ファンド（政府系ファンド）", definition: "A state-owned investment fund composed of money generated by the government", example: "Norway operates the world's largest sovereign wealth fund.", exampleJa: "ノルウェーは世界最大のソブリン・ウェルス・ファンドを運営する。" },
+      { word: "fiscal surpluses", pos: "noun", japanese: "財政黒字", definition: "Government revenue exceeding expenditure in a given period", example: "Fiscal surpluses were invested in the national fund.", exampleJa: "財政黒字は国家ファンドに投資された。" },
+      { word: "foreign exchange reserves", pos: "noun", japanese: "外貨準備高", definition: "Foreign currencies held by a central bank for international trade and financial stability", example: "China holds the world's largest foreign exchange reserves.", exampleJa: "中国は世界最大の外貨準備高を保有する。" },
+      { word: "petroleum", pos: "noun", japanese: "石油", definition: "A fossil fuel in liquid form found beneath the earth's surface", example: "Petroleum revenues fund Gulf state economies.", exampleJa: "石油収入が湾岸諸国の経済を支えている。" },
+      { word: "ethical guidelines", pos: "noun", japanese: "倫理指針", definition: "Principles or standards governing moral conduct in investment decisions", example: "The fund's ethical guidelines prohibit tobacco investments.", exampleJa: "そのファンドの倫理指針はタバコ投資を禁じている。" },
+      { word: "diversified", pos: "adjective", japanese: "分散された、多角化された", definition: "Spread across various types of investments to reduce risk", example: "A diversified portfolio withstands market volatility better.", exampleJa: "分散されたポートフォリオは市場の変動に強い。" },
+      { word: "asset classes", pos: "noun", japanese: "資産クラス（株式・債券・不動産など）", definition: "Categories of investments with similar characteristics such as stocks, bonds, or real estate", example: "Allocating across asset classes reduces overall risk.", exampleJa: "資産クラスにまたがる配分は全体的なリスクを低減する。" },
+      { word: "governance", pos: "noun", japanese: "ガバナンス、統治体制", definition: "The system of rules, practices, and processes by which an organization is directed", example: "Strong governance ensures responsible fund management.", exampleJa: "強固なガバナンスは責任ある資金運用を保証する。" },
+      { word: "mandates", pos: "noun", japanese: "任務、委任事項", definition: "Official orders or commissions to carry out a policy or task", example: "The fund has conflicting mandates between returns and policy.", exampleJa: "そのファンドにはリターンと政策の間の相反する任務がある。" },
+      { word: "Santiago Principles", pos: "noun", japanese: "サンティアゴ原則", definition: "Voluntary guidelines for sovereign wealth funds promoting transparency and governance", example: "Most major SWFs have adopted the Santiago Principles.", exampleJa: "主要なSWFのほとんどがサンティアゴ原則を採用した。" },
+      { word: "compliance", pos: "noun", japanese: "遵守、コンプライアンス", definition: "The act of obeying rules, standards, or laws", example: "Compliance with disclosure rules varies across funds.", exampleJa: "開示規則の遵守はファンドによって異なる。" },
+      { word: "allocations", pos: "noun", japanese: "配分、アロケーション", definition: "The distribution of resources or investments among different categories", example: "Strategic allocations determine long-term portfolio performance.", exampleJa: "戦略的配分が長期的なポートフォリオのパフォーマンスを決定する。" },
+      { word: "infrastructure", pos: "noun", japanese: "インフラ、社会基盤", definition: "Basic physical structures needed for society or business operations", example: "SWFs increasingly invest in infrastructure assets.", exampleJa: "SWFはインフラ資産への投資を増やしている。" }
+    ],
+    translation: `ソブリン・ウェルス・ファンドは、財政黒字、天然資源収入、または外貨準備高から得られた国家貯蓄を管理する国有投資機関だ。合計で10兆ドル以上を保有し、これらのファンドは世界で最も強力な機関投資家の一つである。
+
+ノルウェー政府年金基金グローバルは、約1.7兆ドルで世界最大であり、資源収入モデルの典型例だ。石油収入で資金を賄い、70か国以上にわたる9000社以上の企業の株式を保有し、武器製造業者、石炭生産者、深刻な環境破壊に関与する企業への投資を除外する厳格な倫理指針を適用している。
+
+アブダビ投資庁とシンガポールのGICは代替モデルを代表する。ADIAは分散されたグローバル配分を通じて石油資産を管理し、GICはプライベートエクイティ、不動産、インフラを含む資産クラスにわたってシンガポールの外貨準備を投資する。
+
+ソブリン・ウェルス・ファンドは独自のガバナンス上の課題に直面する。政治的干渉、透明性の欠如、金融リターンと国家戦略的利益の間の相反する任務は、投資規律を損なう可能性がある。2008年に設立されたサンティアゴ原則は、透明性、健全なガバナンス、説明責任を促進する自主的な枠組みを提供するが、メンバーファンド間の遵守は大きく異なる。`
+  }
+];
+
+// Listening Practice Data
+const LISTENING = [
+  {
+    id: "listen-001",
+    title: "The Power of Compound Interest",
+    topic: "Finance & Economics",
+    source: "Educational",
+    difficulty: "TOEFL iBT",
+    duration: "~1 min",
+    youtubeId: "wf91rEGw88Q",
+    startTime: 0,
+    endTime: 65,
+    transcript: `Compound interest is often called the eighth wonder of the world, and for good reason. When you invest money, you earn interest not only on your original investment but also on the interest that has already been added. This creates a snowball effect that grows exponentially over time.
+
+Let's say you invest ten thousand dollars at a five percent annual return. After one year, you have ten thousand five hundred dollars. But in year two, you earn interest on ten thousand five hundred, not just the original ten thousand. After thirty years, that initial investment grows to over forty-three thousand dollars without adding a single cent.
+
+The key takeaway is this: the earlier you start investing, the more time compound interest has to work its magic. Even small amounts invested consistently can grow into substantial wealth over decades. Time is your greatest asset when it comes to building financial security.`,
+    translation: `複利はよく世界の8番目の不思議と呼ばれますが、それには十分な理由があります。お金を投資すると、元の投資だけでなく、すでに加算された利息に対しても利息を得ることができます。これにより、時間の経過とともに指数関数的に成長する雪だるま効果が生まれます。
+
+たとえば、年利5%で1万ドルを投資したとします。1年後には1万500ドルになります。しかし2年目には、元の1万ドルではなく1万500ドルに対して利息が発生します。30年後、その初期投資は1セントも追加しなくても4万3千ドル以上に成長します。
+
+重要なポイントはこれです：投資を始めるのが早ければ早いほど、複利がその力を発揮する時間が長くなります。少額でも一貫して投資すれば、数十年かけて相当な資産に成長し得ます。経済的安全を築く上で、時間はあなたの最大の資産なのです。`,
+    glossary: [
+      { word: "compound", pos: "adjective", japanese: "複利の、複合の", definition: "Calculated on the accumulated amount including previously earned interest", example: "Compound returns accelerate wealth accumulation significantly.", exampleJa: "複利のリターンは資産蓄積を大幅に加速させる。" },
+      { word: "exponentially", pos: "adverb", japanese: "指数関数的に", definition: "At an increasingly rapid rate", example: "Data storage costs have decreased exponentially over decades.", exampleJa: "データストレージのコストは数十年で指数関数的に減少した。" },
+      { word: "snowball effect", pos: "noun", japanese: "雪だるま効果", definition: "A process that builds upon itself, becoming larger and more significant", example: "Early debt repayment creates a snowball effect on savings.", exampleJa: "早期の借金返済は貯蓄に雪だるま効果をもたらす。" },
+      { word: "substantial", pos: "adjective", japanese: "かなりの、相当な", definition: "Of considerable importance, size, or worth", example: "The company reported substantial revenue growth this quarter.", exampleJa: "同社は今四半期にかなりの収益成長を報告した。" },
+      { word: "consistently", pos: "adverb", japanese: "一貫して、継続的に", definition: "In a way that does not change or vary", example: "She consistently outperformed her quarterly sales targets.", exampleJa: "彼女は一貫して四半期の売上目標を上回った。" },
+      { word: "takeaway", pos: "noun", japanese: "要点、ポイント", definition: "A key fact, point, or idea to be remembered", example: "The main takeaway from the presentation was clear.", exampleJa: "プレゼンテーションの主な要点は明確だった。" },
+      { word: "annual return", pos: "noun", japanese: "年間リターン、年間収益率", definition: "The percentage gain or loss on an investment over one year", example: "The fund achieved a ten percent annual return consistently.", exampleJa: "そのファンドは一貫して10%の年間リターンを達成した。" }
+    ]
+  },
+  {
+    id: "listen-002",
+    title: "Why Do We Procrastinate?",
+    topic: "Psychology",
+    source: "Educational",
+    difficulty: "TOEFL iBT+",
+    duration: "~1 min",
+    youtubeId: "FWTNMzK9vG4",
+    startTime: 0,
+    endTime: 70,
+    transcript: `Procrastination isn't simply about laziness or poor time management. Psychologists now understand it as an emotional regulation problem. When we face a task that triggers negative emotions — anxiety, boredom, frustration, or self-doubt — our brain seeks immediate relief by switching to something more pleasurable.
+
+The prefrontal cortex, responsible for long-term planning and self-control, essentially loses the battle against the limbic system, which prioritizes immediate comfort. This explains why even highly motivated people procrastinate on tasks they genuinely care about.
+
+Research suggests several effective strategies to overcome procrastination. Breaking tasks into smaller, manageable chunks reduces the emotional barrier. Setting implementation intentions — specifying exactly when and where you'll do the task — dramatically increases follow-through. And perhaps most importantly, practicing self-compassion rather than self-criticism after procrastinating actually reduces future procrastination.
+
+Understanding that procrastination is about managing emotions, not managing time, is the first step toward overcoming it.`,
+    translation: `先延ばしは単なる怠惰や時間管理の下手さではありません。心理学者は今、それを感情調整の問題として理解しています。不安、退屈、フラストレーション、自己不信などのネガティブな感情を引き起こすタスクに直面すると、脳はより楽しいことに切り替えることで即座の安心を求めます。
+
+長期的な計画と自制心を担う前頭前皮質は、即座の快適さを優先する大脳辺縁系との戦いに本質的に負けてしまいます。これが、非常にモチベーションの高い人でも本当に気にかけているタスクを先延ばしにする理由を説明しています。
+
+研究は先延ばしを克服するためのいくつかの効果的な戦略を示唆しています。タスクをより小さく管理しやすい塊に分割することで感情的な障壁を減らします。実行意図を設定すること—いつどこでタスクを行うかを正確に指定すること—はフォロースルーを劇的に増加させます。そしておそらく最も重要なのは、先延ばし後に自己批判ではなくセルフ・コンパッション（自己への思いやり）を実践することが、実際に将来の先延ばしを減らすということです。
+
+先延ばしは時間を管理することではなく感情を管理することだと理解することが、それを克服する最初のステップです。`,
+    glossary: [
+      { word: "procrastination", pos: "noun", japanese: "先延ばし", definition: "The action of delaying or postponing something", example: "Chronic procrastination can severely impact academic performance.", exampleJa: "慢性的な先延ばしは学業成績に深刻な影響を与え得る。" },
+      { word: "prefrontal cortex", pos: "noun", japanese: "前頭前皮質", definition: "The front part of the brain involved in planning and decision-making", example: "The prefrontal cortex matures fully around age twenty-five.", exampleJa: "前頭前皮質は25歳頃に完全に成熟する。" },
+      { word: "limbic system", pos: "noun", japanese: "大脳辺縁系", definition: "The brain system that controls emotions and basic drives", example: "The limbic system triggers the fight-or-flight response automatically.", exampleJa: "大脳辺縁系は闘争・逃走反応を自動的に引き起こす。" },
+      { word: "self-compassion", pos: "noun", japanese: "セルフ・コンパッション、自己への思いやり", definition: "Extending kindness and understanding to oneself in difficult times", example: "Practicing self-compassion reduces anxiety and improves mental health.", exampleJa: "セルフ・コンパッションの実践は不安を減らし精神的健康を改善する。" },
+      { word: "implementation", pos: "noun", japanese: "実行、実施", definition: "The process of putting a plan or decision into effect", example: "Successful implementation requires clear communication across teams.", exampleJa: "成功した実施にはチーム間の明確なコミュニケーションが必要だ。" },
+      { word: "follow-through", pos: "noun", japanese: "やり遂げること、実行力", definition: "The completion of a planned action or task", example: "Good intentions without follow-through produce no meaningful results.", exampleJa: "実行力のない善意は意味のある結果を生まない。" },
+      { word: "manageable", pos: "adjective", japanese: "管理しやすい、扱いやすい", definition: "Able to be dealt with or controlled without difficulty", example: "Breaking large projects into manageable tasks increases productivity.", exampleJa: "大きなプロジェクトを管理しやすいタスクに分割すると生産性が上がる。" }
+    ]
+  },
+  {
+    id: "listen-003",
+    title: "How Supply Chains Actually Work",
+    topic: "Business & Economics",
+    source: "Educational",
+    difficulty: "TOEFL iBT",
+    duration: "~1 min",
+    youtubeId: "ZYT_QRn4YMo",
+    startTime: 0,
+    endTime: 65,
+    transcript: `A supply chain is the entire network of companies, people, and resources involved in creating and delivering a product to consumers. It starts with raw materials and ends when the product reaches your hands.
+
+Consider a simple cotton T-shirt. Cotton is harvested in countries like India or the United States. It's then shipped to spinning mills, often in Southeast Asia, where it becomes yarn. The yarn is woven into fabric, which is then dyed and cut. Assembly happens in factories, frequently in Bangladesh or Vietnam, where workers sew the pieces together.
+
+The finished shirts are packed into containers and shipped across oceans to distribution centers. From there, trucks deliver them to retail stores or fulfillment centers for online orders.
+
+Each step involves logistics, quality control, and coordination between dozens of suppliers. When any link in this chain breaks — whether due to natural disasters, labor shortages, or geopolitical tensions — the entire system can be disrupted, as the world painfully learned during recent global crises.`,
+    translation: `サプライチェーンとは、製品を作り消費者に届けるまでに関わる企業、人、資源の全ネットワークです。原材料から始まり、製品があなたの手に届くところで終わります。
+
+シンプルな綿のTシャツを考えてみましょう。綿はインドやアメリカなどの国で収穫されます。それから紡績工場、しばしば東南アジアの工場に送られ、そこで糸になります。糸は織られて生地になり、それから染色され裁断されます。組み立ては工場で行われ、バングラデシュやベトナムの工場が多く、労働者がパーツを縫い合わせます。
+
+完成したシャツはコンテナに詰められ、海を越えて物流センターに送られます。そこからトラックが小売店やオンライン注文用のフルフィルメントセンターに配送します。
+
+各ステップにはロジスティクス、品質管理、数十のサプライヤー間の調整が伴います。自然災害、労働力不足、地政学的緊張など、このチェーンのどのリンクが切れても、システム全体が混乱する可能性があります。最近の世界的危機の中で世界が痛感したように。`,
+    glossary: [
+      { word: "supply chain", pos: "noun", japanese: "サプライチェーン、供給網", definition: "The network of all steps involved in producing and delivering a product", example: "Global supply chain disruptions caused widespread product shortages.", exampleJa: "グローバルなサプライチェーンの混乱が広範な製品不足を引き起こした。" },
+      { word: "logistics", pos: "noun", japanese: "物流、ロジスティクス", definition: "The detailed coordination of a complex operation involving many people or supplies", example: "Efficient logistics reduced delivery times by forty percent.", exampleJa: "効率的な物流が配送時間を40%短縮した。" },
+      { word: "fulfillment center", pos: "noun", japanese: "フルフィルメントセンター、出荷拠点", definition: "A warehouse that processes and ships online orders", example: "Amazon operates fulfillment centers across thirty countries worldwide.", exampleJa: "Amazonは世界30カ国でフルフィルメントセンターを運営している。" },
+      { word: "geopolitical", pos: "adjective", japanese: "地政学的な", definition: "Relating to politics as influenced by geographical factors", example: "Geopolitical tensions significantly affected global oil prices recently.", exampleJa: "地政学的緊張が最近の世界の原油価格に大きく影響した。" },
+      { word: "disrupted", pos: "verb", japanese: "混乱させられた、中断された", definition: "Caused disorder or turmoil in a process or system", example: "The cyberattack disrupted banking services for several hours.", exampleJa: "サイバー攻撃が銀行サービスを数時間にわたり中断させた。" },
+      { word: "raw materials", pos: "noun", japanese: "原材料", definition: "Basic materials from which products are manufactured", example: "Rising raw materials costs squeezed manufacturers' profit margins.", exampleJa: "原材料コストの上昇がメーカーの利益率を圧迫した。" },
+      { word: "coordination", pos: "noun", japanese: "調整、連携", definition: "The organization of different elements to enable them to work together effectively", example: "Cross-departmental coordination improved overall project delivery speed.", exampleJa: "部門横断的な連携がプロジェクト全体の納品速度を改善した。" }
+    ]
+  },
+  {
+    id: "listen-004",
+    title: "The Science of Sleep",
+    topic: "Health & Science",
+    source: "Educational",
+    difficulty: "TOEFL iBT+",
+    duration: "~1 min",
+    youtubeId: "gedoSfZvBgE",
+    startTime: 0,
+    endTime: 70,
+    transcript: `Sleep isn't just rest — it's an active biological process that is absolutely critical for your health. During sleep, your brain undergoes remarkable maintenance that you simply cannot achieve while awake.
+
+In the first stage of deep sleep, your body repairs tissues, strengthens the immune system, and releases growth hormones. Meanwhile, your brain begins consolidating memories, transferring information from short-term to long-term storage. This is why pulling an all-nighter before an exam actually hurts your performance — without sleep, your brain literally cannot store what you studied.
+
+During REM sleep, which occurs in cycles throughout the night, your brain processes emotions and makes creative connections between seemingly unrelated ideas. Many breakthrough discoveries, including the structure of DNA and the periodic table, were reportedly inspired by dreams.
+
+Chronic sleep deprivation — consistently getting less than seven hours — has been linked to increased risk of heart disease, obesity, diabetes, and cognitive decline. Yet roughly one-third of adults in developed countries regularly fail to get adequate sleep.`,
+    translation: `睡眠は単なる休息ではありません。健康にとって絶対に不可欠な活発な生物学的プロセスです。睡眠中、脳は起きている間には単純に達成できない驚くべきメンテナンスを行います。
+
+深い睡眠の最初の段階で、体は組織を修復し、免疫システムを強化し、成長ホルモンを放出します。同時に、脳は記憶の定着を開始し、情報を短期記憶から長期記憶に移行させます。だからこそ、試験前に徹夜することは実際にはパフォーマンスを損なうのです。睡眠がなければ、脳は文字通り勉強したことを保存できません。
+
+夜を通してサイクルで起こるレム睡眠中、脳は感情を処理し、一見無関係なアイデア間に創造的なつながりを作ります。DNAの構造や周期表を含む多くの画期的な発見は、夢からインスピレーションを得たと報告されています。
+
+慢性的な睡眠不足——7時間未満の睡眠が続くこと——は、心臓病、肥満、糖尿病、認知機能低下のリスク増加と関連しています。しかし先進国の成人の約3分の1が定期的に十分な睡眠を取れていません。`,
+    glossary: [
+      { word: "consolidating", pos: "verb", japanese: "定着させる、統合する", definition: "Making something physically stronger or more solid; combining things", example: "The brain consolidates learning during deep sleep cycles.", exampleJa: "脳は深い睡眠サイクル中に学習内容を定着させる。" },
+      { word: "REM sleep", pos: "noun", japanese: "レム睡眠", definition: "Rapid Eye Movement sleep — a sleep stage associated with dreaming", example: "Adults typically experience four to five REM sleep cycles nightly.", exampleJa: "成人は通常、毎晩4〜5回のレム睡眠サイクルを経験する。" },
+      { word: "deprivation", pos: "noun", japanese: "不足、欠乏", definition: "The lack or denial of something considered essential", example: "Sleep deprivation impairs judgment as severely as alcohol intoxication.", exampleJa: "睡眠不足はアルコール中毒と同じくらい判断力を損なう。" },
+      { word: "cognitive decline", pos: "noun", japanese: "認知機能の低下", definition: "A gradual decrease in mental abilities such as memory and reasoning", example: "Regular exercise has been shown to slow cognitive decline.", exampleJa: "定期的な運動が認知機能の低下を遅らせることが示されている。" },
+      { word: "immune system", pos: "noun", japanese: "免疫システム", definition: "The body's defense mechanism against infections and diseases", example: "Stress weakens the immune system and increases infection risk.", exampleJa: "ストレスは免疫システムを弱め感染リスクを高める。" },
+      { word: "all-nighter", pos: "noun", japanese: "徹夜", definition: "An occasion when someone stays up all night, typically to study or work", example: "Pulling an all-nighter rarely improves exam performance overall.", exampleJa: "徹夜は全体的に試験のパフォーマンスを向上させることはめったにない。" },
+      { word: "breakthrough", pos: "noun/adjective", japanese: "画期的な（発見）", definition: "A sudden, dramatic, and important discovery or development", example: "The research team announced a breakthrough in cancer treatment.", exampleJa: "研究チームはがん治療における画期的な進歩を発表した。" }
+    ]
+  },
+  {
+    id: "listen-005",
+    title: "What Is Inflation and Why Does It Matter?",
+    topic: "Economics",
+    source: "Educational",
+    difficulty: "TOEFL iBT",
+    duration: "~1 min",
+    youtubeId: "T8-85cZRI9o",
+    startTime: 0,
+    endTime: 65,
+    transcript: `Inflation is the rate at which the general level of prices for goods and services rises over time. When inflation goes up, each unit of currency buys fewer things than it did before — in other words, your money loses purchasing power.
+
+Central banks, such as the Federal Reserve in the United States or the Bank of Japan, typically aim for an inflation rate of around two percent per year. This moderate level of inflation actually encourages economic growth because it motivates consumers to spend and invest rather than hoard cash.
+
+However, when inflation rises too quickly, it becomes destructive. Wages often lag behind price increases, meaning workers can afford less even as they earn the same salary. Fixed-income earners, such as retirees living on pensions, are particularly vulnerable.
+
+To combat high inflation, central banks raise interest rates, making borrowing more expensive. This slows spending and investment, which eventually brings prices down — but it can also trigger a recession if done too aggressively. Finding the right balance is one of the greatest challenges in modern economics.`,
+    translation: `インフレーションとは、商品やサービスの一般的な価格水準が時間の経過とともに上昇する割合のことです。インフレが上がると、通貨の各単位で以前より少ないものしか買えなくなります。つまり、お金の購買力が失われるのです。
+
+アメリカの連邦準備制度理事会（FRB）や日本銀行などの中央銀行は、通常年間約2%のインフレ率を目標としています。この適度なレベルのインフレは実際に経済成長を促進します。なぜなら、消費者に現金を退蔵するよりも消費と投資を動機づけるからです。
+
+しかし、インフレが急速に上昇すると破壊的になります。賃金はしばしば物価上昇に遅れをとり、同じ給料を稼いでいても労働者が買えるものが減ることを意味します。年金で暮らす退職者のような固定収入者は特に脆弱です。
+
+高インフレと戦うために、中央銀行は金利を引き上げ、借入をより高価にします。これにより支出と投資が鈍化し、最終的には物価が下がりますが、やりすぎると景気後退を引き起こす可能性があります。適切なバランスを見つけることは、現代経済学における最大の課題の一つです。`,
+    glossary: [
+      { word: "purchasing power", pos: "noun", japanese: "購買力", definition: "The amount of goods and services that can be bought with a unit of currency", example: "Inflation erodes consumers' purchasing power over time gradually.", exampleJa: "インフレは時間とともに消費者の購買力を徐々に侵食する。" },
+      { word: "moderate", pos: "adjective", japanese: "適度な、穏やかな", definition: "Average in amount, intensity, or degree; not extreme", example: "The central bank maintained a moderate monetary policy stance.", exampleJa: "中央銀行は穏やかな金融政策スタンスを維持した。" },
+      { word: "hoard", pos: "verb", japanese: "退蔵する、ため込む", definition: "To accumulate and store away large quantities of something", example: "Consumers began hoarding essential supplies during the pandemic.", exampleJa: "消費者はパンデミック中に必需品をため込み始めた。" },
+      { word: "fixed-income", pos: "adjective", japanese: "固定収入の", definition: "Having an income that does not change or increases only slowly", example: "Fixed-income retirees suffer most during high inflation periods.", exampleJa: "固定収入の退職者は高インフレ期に最も苦しむ。" },
+      { word: "lag behind", pos: "verb", japanese: "遅れをとる、後れる", definition: "To fail to keep pace with others or with expected progress", example: "Wage growth continues to lag behind rising living costs.", exampleJa: "賃金の伸びは生活費の上昇に遅れをとり続けている。" },
+      { word: "recession", pos: "noun", japanese: "景気後退、リセッション", definition: "A period of temporary economic decline during which trade and industrial activity are reduced", example: "The economy officially entered a recession after two quarters.", exampleJa: "経済は2四半期後に正式に景気後退に入った。" },
+      { word: "combat", pos: "verb", japanese: "戦う、対処する", definition: "To take action to reduce, destroy, or prevent something harmful", example: "The government introduced measures to combat rising unemployment.", exampleJa: "政府は増加する失業率に対処するための措置を導入した。" }
+    ]
   }
 ];
