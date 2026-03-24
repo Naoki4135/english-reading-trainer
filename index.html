@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>English Reading Trainer</title>
 <script src="data.js"></script>
+<script src="listening-data.js"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -265,6 +266,29 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   margin-bottom: 16px; cursor: pointer; transition: border-color 0.3s;
 }
 .flashcard:hover { border-color: var(--accent); }
+.flashcard-top-actions {
+  width: 100%; display: flex; justify-content: center; margin-bottom: 12px;
+}
+.flashcard-hint-toggle {
+  padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border);
+  background: rgba(59,130,246,0.08); color: var(--accent2); font-size: 12px;
+  font-weight: 600; cursor: pointer; font-family: inherit;
+}
+.flashcard-hint-toggle:hover { border-color: var(--accent); background: rgba(59,130,246,0.16); }
+.flashcard-hint-panel {
+  width: 100%; max-width: 520px; display: none; margin-bottom: 14px;
+  padding: 14px; border-radius: 14px; text-align: left;
+  background: rgba(15,23,42,0.5); border: 1px solid var(--border);
+}
+.flashcard-hint-panel.open { display: block; }
+.flashcard-hint-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent2); margin-bottom: 8px;
+}
+.flashcard-hint-line {
+  font-size: 13px; color: var(--text); margin-top: 6px;
+}
+.flashcard-hint-line strong { color: var(--accent2); font-weight: 700; }
 .flashcard-word { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
 .flashcard-pos { font-size: 13px; color: var(--text2); }
 .flashcard-answer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); width: 100%; }
@@ -284,15 +308,24 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .flashcard-visual-bg {
   position: absolute; inset: 0; opacity: 0.15; border-radius: 16px;
 }
-.flashcard-visual-emojis {
-  font-size: 44px; line-height: 1.3; letter-spacing: 6px;
-  position: relative; z-index: 1;
+.flashcard-visual-shell {
+  position: relative; z-index: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
 }
-.flashcard-visual-hint {
-  font-size: 11px; color: var(--text2); margin-top: 6px;
-  font-style: italic; position: relative; z-index: 1;
-  background: rgba(15,23,42,0.6); display: inline-block;
-  padding: 2px 10px; border-radius: 10px;
+.flashcard-visual-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; border-radius: 999px;
+  padding: 5px 10px; background: rgba(15,23,42,0.72);
+}
+.flashcard-visual-scene {
+  width: 100%; max-width: 240px; min-height: 132px;
+  display: flex; align-items: center; justify-content: center;
+}
+.flashcard-visual-scene svg {
+  width: 100%; height: auto; overflow: visible;
+}
+.flashcard-visual-note {
+  font-size: 11px; color: var(--text2); line-height: 1.5; max-width: 220px;
 }
 .flashcard-hint { font-size: 12px; color: var(--text2); margin-top: 12px; }
 .flashcard-progress { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
@@ -372,6 +405,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .listen-progress-fill {
   height: 100%; background: var(--accent); border-radius: 2px;
   width: 0%; transition: width 0.3s;
+}
+.listen-hidden-media {
+  position: absolute; width: 1px; height: 1px; opacity: 0;
+  pointer-events: none; overflow: hidden;
 }
 .listen-sentence {
   cursor: pointer; padding: 2px 0; border-radius: 4px; transition: background 0.2s;
@@ -519,14 +556,21 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div id="quiz-area">
       <div class="flashcard-progress" id="quiz-progress"></div>
       <div class="flashcard" id="flashcard" onclick="revealFlashcard()">
+        <div class="flashcard-top-actions">
+          <button class="flashcard-hint-toggle" id="fc-hint-toggle" onclick="event.stopPropagation(); toggleFlashcardHint()">💡 Show Hint</button>
+        </div>
+        <div class="flashcard-hint-panel" id="fc-hint-panel"></div>
         <div class="flashcard-visual" id="fc-visual">
           <div class="flashcard-visual-bg" id="fc-visual-bg"></div>
-          <div class="flashcard-visual-emojis" id="fc-emoji"></div>
-          <div class="flashcard-visual-hint" id="fc-emoji-hint"></div>
+          <div class="flashcard-visual-shell" id="fc-visual-shell">
+            <div class="flashcard-visual-badge" id="fc-visual-badge"></div>
+            <div class="flashcard-visual-scene" id="fc-illustration"></div>
+            <div class="flashcard-visual-note" id="fc-visual-note"></div>
+          </div>
         </div>
         <div class="flashcard-word" id="fc-word"></div>
         <div class="flashcard-pos" id="fc-pos"></div>
-        <div class="flashcard-hint" id="fc-hint">Tap to reveal</div>
+        <div class="flashcard-hint" id="fc-hint">Tap card to reveal the answer</div>
         <div class="flashcard-answer" id="fc-answer" style="display:none;">
           <div class="flashcard-japanese" id="fc-japanese"></div>
           <div class="flashcard-def" id="fc-def"></div>
@@ -571,6 +615,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div id="listen-topic-badge" class="essay-topic"></div>
     <h2 id="listen-title" style="font-size:18px; margin: 8px 0 4px;"></h2>
     <div id="listen-meta" class="essay-meta" style="margin-bottom:16px;"></div>
+    <video id="listen-media" class="listen-hidden-media" playsinline preload="metadata" crossorigin="anonymous"></video>
 
     <!-- Audio Controls -->
     <div class="card listen-controls-card">
@@ -734,6 +779,7 @@ let quizMode = 'review';
 let quizQueue = [];
 let quizIndex = 0;
 let quizRevealed = false;
+let quizHintVisible = false;
 let quizSessionStats = { again: 0, hard: 0, good: 0, easy: 0 };
 let isSpeaking = false;
 let repeatMode = false;
@@ -743,6 +789,7 @@ let speechSessionId = 0;
 let speechRestartTimer = null;
 let speechRateRefreshTimer = null;
 let speechRateChangedWhilePaused = false;
+let listenMedia = null;
 
 function loadState() {
   try {
@@ -785,6 +832,12 @@ function clamp(value, min, max) {
 function getStoredSpeechSpeed() {
   const saved = parseFloat(localStorage.getItem(SPEECH_SPEED_KEY));
   return Number.isFinite(saved) ? clamp(saved, 0.5, 2.0) : 1.0;
+}
+
+function getListeningItems() {
+  if (typeof LISTENING_REAL !== 'undefined' && Array.isArray(LISTENING_REAL) && LISTENING_REAL.length > 0) return LISTENING_REAL;
+  if (typeof LISTENING !== 'undefined' && Array.isArray(LISTENING)) return LISTENING;
+  return [];
 }
 
 // Word → Visual scene mapping for flashcards
@@ -1042,11 +1095,185 @@ function getWordVisual(word, pos, japanese) {
   return CATEGORY_VISUALS.default;
 }
 
+function escapeRegExp(str) {
+  return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function maskTargetWord(text, word) {
+  if (!text || !word) return text || '';
+  const parts = String(word).split(/\s+/).filter(Boolean).map(escapeRegExp);
+  if (parts.length === 0) return text;
+  const pattern = new RegExp(`\\b(${parts.join('|')})\\b`, 'gi');
+  return text.replace(pattern, match => '_'.repeat(Math.max(4, match.length)));
+}
+
+function getHintContextLabel(japanese = '', pos = '') {
+  const source = `${japanese} ${pos}`;
+  if (/経済|金融|投資|株|債券|利回り|通貨|利益/.test(source)) return '金融や経済の話でよく使う';
+  if (/環境|気候|森林|自然|生態|汚染|排出/.test(source)) return '環境や自然の話で出やすい';
+  if (/技術|科学|研究|AI|デジタル|ネット|宇宙/.test(source)) return '科学やテクノロジーの文脈で使う';
+  if (/法|政治|政策|規制|選挙|裁判/.test(source)) return '政治や制度の話で使う';
+  if (/健康|病|治療|免疫|症状|医/.test(source)) return '健康や医療の文脈で使う';
+  if (/心理|感情|脳|認知|記憶/.test(source)) return '感情や思考を説明するときに使う';
+  if (/noun/.test(pos.toLowerCase())) return '物事や概念の名前として使う';
+  if (/verb/.test(pos.toLowerCase())) return '動きや変化を表すときに使う';
+  if (/adjective|adj/.test(pos.toLowerCase())) return '性質や状態を説明するときに使う';
+  return '文脈で意味をつかむ単語';
+}
+
+function hexToRgba(hex, alpha) {
+  const value = String(hex || '#64748b').replace('#', '');
+  const normalized = value.length === 3 ? value.split('').map(ch => ch + ch).join('') : value;
+  const int = parseInt(normalized, 16);
+  if (!Number.isFinite(int)) return `rgba(100, 116, 139, ${alpha})`;
+  const r = (int >> 16) & 255;
+  const g = (int >> 8) & 255;
+  const b = int & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function getIllustrationScene(word, pos, japanese, hint) {
+  const source = `${word} ${pos} ${japanese} ${hint}`.toLowerCase();
+  const jp = `${japanese} ${hint}`;
+  if (/galax|space|planet|star|orbit|black hole|宇宙|銀河|惑星|恒星|軌道/.test(source + jp)) return { key: 'space', label: 'Space' };
+  if (/経済|金融|投資|債券|株|利回り|通貨|利益|budget|revenue|bond|yield|fund|market/.test(jp + source)) return { key: 'finance', label: 'Finance' };
+  if (/環境|気候|自然|森林|生態|汚染|排出|climate|forest|ecosystem|renewable|flood|drought/.test(jp + source)) return { key: 'environment', label: 'Nature' };
+  if (/技術|ai|デジタル|コンピュータ|algorithm|automation|chip|data|surveillance|network/.test(jp + source)) return { key: 'technology', label: 'Tech' };
+  if (/法|政治|政策|規制|選挙|裁判|jurisdiction|legislation|sovereignty|diplomacy/.test(jp + source)) return { key: 'law', label: 'Policy' };
+  if (/健康|医|病|治療|免疫|symptom|therapy|diagnosis|pathogen/.test(jp + source)) return { key: 'health', label: 'Health' };
+  if (/心理|感情|脳|認知|memory|emotion|anxiety|empathy|bias|motivation/.test(jp + source)) return { key: 'mind', label: 'Mind' };
+  if (/危険|リスク|警告|脅威|hazard|danger|risk|catastrophic|crisis/.test(jp + source)) return { key: 'danger', label: 'Risk' };
+  if (/増|成長|拡大|上昇|improve|grow|rise|increase|expand/.test(jp + source)) return { key: 'growth', label: 'Growth' };
+  if (/減|低下|下落|縮小|悪化|decline|fall|drop|decrease|erosion/.test(jp + source)) return { key: 'decline', label: 'Decline' };
+  if (/教育|学|授業|試験|school|study|learn|curriculum|pedagogy/.test(jp + source)) return { key: 'education', label: 'Learning' };
+  return { key: 'default', label: 'Concept' };
+}
+
+function renderIllustrationSvg(scene, color) {
+  const stroke = color || '#60a5fa';
+  const soft = hexToRgba(stroke, 0.16);
+  const mid = hexToRgba(stroke, 0.24);
+  switch (scene.key) {
+    case 'space':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <circle cx="120" cy="75" r="58" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <circle cx="120" cy="75" r="22" fill="${mid}" stroke="${stroke}" stroke-width="3"/>
+        <ellipse cx="120" cy="75" rx="78" ry="28" fill="none" stroke="${stroke}" stroke-width="5"/>
+        <circle cx="52" cy="45" r="7" fill="${stroke}"/>
+        <circle cx="186" cy="38" r="5" fill="${stroke}"/>
+        <circle cx="182" cy="112" r="8" fill="${stroke}"/>
+      </svg>`;
+    case 'finance':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="34" y="94" width="30" height="28" rx="8" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <rect x="82" y="74" width="30" height="48" rx="8" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <rect x="130" y="54" width="30" height="68" rx="8" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <path d="M40 52c22 10 38 14 56 6 16-8 28-6 44 8 14 12 30 13 50-6" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M182 49l16 1-7 14" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+    case 'environment':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <circle cx="88" cy="72" r="42" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <path d="M68 60c10-15 27-18 41-9 7 5 11 12 16 23-10-4-18-4-26 1-10 6-20 5-31-4z" fill="${mid}"/>
+        <path d="M154 108c0-28 18-48 44-54-6 23-18 38-35 48l16 19h-22z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M158 103c16-6 28-18 36-38" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
+      </svg>`;
+    case 'technology':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="72" y="34" width="96" height="82" rx="16" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <rect x="100" y="58" width="40" height="34" rx="8" fill="${mid}" stroke="${stroke}" stroke-width="3"/>
+        <path d="M88 24v16M112 24v16M136 24v16M160 24v16M88 110v16M112 110v16M136 110v16M160 110v16M58 50h16M58 74h16M58 98h16M166 50h16M166 74h16M166 98h16" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
+      </svg>`;
+    case 'law':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <path d="M56 56h128" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M72 56l48-22 48 22" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M84 60v46M120 60v46M156 60v46" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M68 106h104" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M186 52v14M166 84c8 6 18 6 28 0M174 66l-10 18h20zM198 66l-10 18h20z" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+    case 'health':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <path d="M120 32l42 12v30c0 28-16 46-42 58-26-12-42-30-42-58V44z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M120 54v38M101 73h38" stroke="${stroke}" stroke-width="8" stroke-linecap="round"/>
+        <path d="M176 104c0-12 9-21 21-21s21 9 21 21c0 10-8 18-21 28-13-10-21-18-21-28z" fill="${mid}" stroke="${stroke}" stroke-width="4"/>
+      </svg>`;
+    case 'mind':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <path d="M90 110c-4-10-7-18-7-28 0-27 21-49 48-49 24 0 44 19 44 42 0 14-6 24-17 32-7 5-10 11-10 18H90z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M112 59c4-8 13-13 22-13 13 0 24 10 24 23 0 9-5 16-12 20" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
+        <path d="M100 118h44M104 130h36" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+      </svg>`;
+    case 'danger':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <path d="M120 28l62 102H58z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M120 58v28M120 100h1" stroke="${stroke}" stroke-width="8" stroke-linecap="round"/>
+        <path d="M46 118l22-18M172 50l18-12" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
+      </svg>`;
+    case 'growth':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <path d="M52 110h126" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M66 96c20-16 36-21 49-14 16 8 29 6 48-8 12-9 22-12 34-12" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M188 60l14 0-4 14" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M64 118c0-22 11-38 30-46-3 17 0 31 14 40-13 3-26 5-44 6z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+      </svg>`;
+    case 'decline':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <path d="M52 40v74h136" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M70 56c20 7 34 16 48 32 13 15 26 24 50 30" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <path d="M164 108l6 16 14-9" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="78" cy="58" r="7" fill="${stroke}"/>
+      </svg>`;
+    case 'education':
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="52" y="44" width="56" height="72" rx="10" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <rect x="92" y="36" width="56" height="80" rx="10" fill="${mid}" stroke="${stroke}" stroke-width="4"/>
+        <path d="M164 44l32 32-48 48-18-14z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M148 110l14 10" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+      </svg>`;
+    default:
+      return `<svg viewBox="0 0 240 150" aria-hidden="true">
+        <rect x="56" y="36" width="128" height="78" rx="18" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
+        <path d="M88 72h64M88 92h44" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="164" cy="58" r="12" fill="${mid}" stroke="${stroke}" stroke-width="4"/>
+      </svg>`;
+  }
+}
+
+function renderWordIllustration(visual, word, pos, japanese) {
+  const scene = getIllustrationScene(word, pos, japanese, visual.h || '');
+  return {
+    badge: scene.label,
+    note: '',
+    svg: renderIllustrationSvg(scene, visual.c)
+  };
+}
+
+function buildFlashcardHint(v, visual) {
+  const example = maskTargetWord(v.example || '', v.word);
+  const lines = [
+    `<div class="flashcard-hint-title">Hint</div>`,
+    `<div class="flashcard-hint-line"><strong>Image:</strong> ${escapeHtml(visual.h || 'Think about the core idea behind the word.')}</div>`,
+    `<div class="flashcard-hint-line"><strong>Context:</strong> ${escapeHtml(getHintContextLabel(v.japanese, v.pos))}</div>`
+  ];
+  if (example) lines.push(`<div class="flashcard-hint-line"><strong>Example:</strong> ${escapeHtml(example)}</div>`);
+  return lines.join('');
+}
+
+function toggleFlashcardHint() {
+  if (quizRevealed) return;
+  quizHintVisible = !quizHintVisible;
+  document.getElementById('fc-hint-panel').classList.toggle('open', quizHintVisible);
+  document.getElementById('fc-hint-toggle').textContent = quizHintVisible ? '🙈 Hide Hint' : '💡 Show Hint';
+}
+
 function init() {
   const speedInput = document.getElementById('speech-speed');
   if (speedInput) speedInput.value = getStoredSpeechSpeed().toFixed(1);
   updateSpeedLabel();
   if (isSpeechSupported()) speechSynthesis.getVoices();
+  listenMedia = document.getElementById('listen-media');
+  if (listenMedia) setupListenMedia();
   buildVocabulary();
   updateDashboard();
   updateVocabPage();
@@ -1090,19 +1317,20 @@ function buildVocabulary() {
 
 // === NAV ===
 function showPage(page) {
-  // タブ移動時に音声を停止（再生中・一時停止中どちらも）
+  const targetPage = page === 'listen-detail' ? 'page-listen-detail' : 'page-' + page;
+  const navPage = page === 'essay' ? 'home' : (page === 'listen-detail' ? 'listen' : page);
   if (page !== 'essay' && isSpeechSupported() && (isSpeaking || speechSynthesis.speaking || speechSynthesis.paused)) stopSpeech();
+  if (page !== 'listen-detail' && currentListening) listenStop();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
+  document.getElementById(targetPage).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const navItem = document.querySelector(`.nav-item[data-page="${page}"]`)
-    || (page === 'essay' ? document.querySelector('.nav-item[data-page="home"]') : null);
+  const navItem = document.querySelector(`.nav-item[data-page="${navPage}"]`);
   if (navItem) navItem.classList.add('active');
   if (page === 'home') updateDashboard();
   if (page === 'vocab') updateVocabPage();
   if (page === 'quiz') updateQuizPage();
   if (page === 'review') updateReviewPage();
-  if (page === 'listen') { if (typeof updateListenPage === 'function') updateListenPage(); }
+  if (page === 'listen') updateListenPage();
   window.scrollTo(0, 0);
 }
 
@@ -1272,7 +1500,7 @@ function renderEssayText() {
 }
 
 function escapeHtml(str) {
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 // === SPEECH ===
@@ -1585,9 +1813,13 @@ function showFlashcard() {
   if (quizIndex >= quizQueue.length) { showQuizComplete(); return; }
   const [key, v] = quizQueue[quizIndex];
   quizRevealed = false;
+  quizHintVisible = false;
   document.getElementById('fc-word').textContent = v.word;
   document.getElementById('fc-pos').textContent = v.pos;
   document.getElementById('fc-hint').style.display = 'block';
+  document.getElementById('fc-hint-toggle').style.display = 'inline-flex';
+  document.getElementById('fc-hint-toggle').textContent = '💡 Show Hint';
+  document.getElementById('fc-hint-panel').classList.remove('open');
   document.getElementById('fc-answer').style.display = 'none';
   document.getElementById('rating-buttons').style.display = 'none';
   document.getElementById('fc-japanese').textContent = v.japanese;
@@ -1595,10 +1827,15 @@ function showFlashcard() {
   document.getElementById('fc-example').textContent = v.example;
   document.getElementById('fc-example-ja').textContent = v.exampleJa || '';
   const visual = getWordVisual(v.word, v.pos, v.japanese);
-  document.getElementById('fc-emoji').textContent = visual.e;
-  document.getElementById('fc-emoji-hint').textContent = visual.h || '';
+  const illustration = renderWordIllustration(visual, v.word, v.pos, v.japanese);
+  document.getElementById('fc-visual-badge').textContent = illustration.badge;
+  document.getElementById('fc-visual-note').textContent = illustration.note;
+  document.getElementById('fc-visual-note').style.display = illustration.note ? 'block' : 'none';
+  document.getElementById('fc-illustration').innerHTML = illustration.svg;
+  document.getElementById('fc-hint-panel').innerHTML = buildFlashcardHint(v, visual);
   document.getElementById('fc-visual-bg').style.background = `linear-gradient(135deg, ${visual.c}40, ${visual.c}10)`;
   document.getElementById('fc-visual').style.border = `1px solid ${visual.c}30`;
+  document.getElementById('fc-visual-badge').style.color = visual.c;
   const speakBtn = document.getElementById('fc-speak-btn');
   speakBtn.onclick = (e) => { e.stopPropagation(); speakWord(v.word); };
   document.getElementById('quiz-progress').textContent = `${quizIndex + 1} / ${quizQueue.length}`;
@@ -1606,6 +1843,8 @@ function showFlashcard() {
 function revealFlashcard() {
   if (quizRevealed) return; quizRevealed = true;
   document.getElementById('fc-hint').style.display = 'none';
+  document.getElementById('fc-hint-panel').classList.remove('open');
+  document.getElementById('fc-hint-toggle').style.display = 'none';
   document.getElementById('fc-answer').style.display = 'block';
   document.getElementById('rating-buttons').style.display = 'flex';
 }
@@ -2009,20 +2248,26 @@ let currentListening = null;
 let listenHighlightMode = false;
 let listenShadowMode = false;
 let listenSentences = [];
-let listenParagraphs = []; // [{start, end}] indices into listenSentences
+let listenSentenceTimings = [];
+let listenParagraphs = [];
 let listenSentIndex = 0;
-let listenSessionId = 0;
 let listenPlaying = false;
 let listenParaRepeat = false;
 let listenCurrentPara = 0;
+let listenActiveIndex = -1;
+let listenPlayedUntil = -1;
+let listenPendingPlay = false;
+let listenPendingIndex = 0;
+let listenAwaitingAdvance = false;
 
 function updateListenPage() {
-  if (typeof LISTENING === 'undefined' || !LISTENING || LISTENING.length === 0) {
+  const items = getListeningItems();
+  if (items.length === 0) {
     document.getElementById('listen-list').innerHTML = '<div class="empty-state"><p>No listening exercises yet.</p></div>';
     return;
   }
   const wc = (t) => t ? t.split(/\s+/).filter(Boolean).length : 0;
-  const html = LISTENING.map((item, i) => {
+  const html = items.map((item, i) => {
     const words = wc(item.transcript);
     return `<div class="listen-card" onclick="openListening(${i})">
       <span class="essay-topic">${item.topic || 'Listening'}</span>
@@ -2034,8 +2279,17 @@ function updateListenPage() {
   document.getElementById('listen-list').innerHTML = html;
 }
 
+function cleanTranscriptText(text) {
+  return (text || '')
+    .replace(/\[[^\]]+\]/g, ' ')
+    .replace(/\s+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/[ \t]{2,}/g, ' ')
+    .trim();
+}
+
 function splitTranscriptSentences(text) {
-  const paragraphs = text.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+  const paragraphs = cleanTranscriptText(text).split(/\n\n+/).map(p => p.trim()).filter(Boolean);
   const sentences = [];
   const paraRanges = [];
   paragraphs.forEach(para => {
@@ -2050,12 +2304,128 @@ function splitTranscriptSentences(text) {
   return { sentences, paraRanges };
 }
 
-function openListening(index) {
-  if (typeof LISTENING === 'undefined') return;
-  currentListening = LISTENING[index];
-  if (!currentListening) return;
+function estimateListenTimings(sentences, durationSeconds) {
+  if (!sentences.length) return [];
+  const fallbackDuration = Math.max(durationSeconds || 0, sentences.length * 3.2, 12);
+  const weights = sentences.map(sentence => Math.max(3, sentence.split(/\s+/).filter(Boolean).length));
+  const totalWeight = weights.reduce((sum, weight) => sum + weight, 0) || 1;
+  let elapsed = 0;
+  return weights.map((weight, index) => {
+    const start = elapsed;
+    elapsed += fallbackDuration * (weight / totalWeight);
+    return { start, end: index === weights.length - 1 ? fallbackDuration : elapsed };
+  });
+}
 
-  // Stop any ongoing speech
+function refreshListenTimings(durationSeconds = 0) {
+  const mediaDuration = listenMedia && Number.isFinite(listenMedia.duration) && listenMedia.duration > 0 ? listenMedia.duration : 0;
+  listenSentenceTimings = estimateListenTimings(listenSentences, mediaDuration || durationSeconds || (currentListening && currentListening.durationSeconds) || 0);
+}
+
+function setupListenMedia() {
+  if (!listenMedia || listenMedia.dataset.ready === 'true') return;
+  listenMedia.dataset.ready = 'true';
+
+  listenMedia.addEventListener('loadedmetadata', () => {
+    refreshListenTimings((currentListening && currentListening.durationSeconds) || 0);
+    listenMedia.playbackRate = getListenSpeed();
+    if (listenPendingPlay) {
+      const nextIndex = listenPendingIndex;
+      listenPendingPlay = false;
+      playListeningFromIndex(nextIndex);
+      return;
+    }
+    if (listenSentenceTimings[listenSentIndex]) {
+      listenMedia.currentTime = listenSentenceTimings[listenSentIndex].start;
+    }
+  });
+
+  listenMedia.addEventListener('play', () => {
+    listenPlaying = true;
+    listenAwaitingAdvance = false;
+    document.getElementById('listen-btn-play').style.display = 'none';
+    document.getElementById('listen-btn-pause').style.display = 'inline-flex';
+    document.getElementById('listen-btn-pause').innerHTML = '&#10074;&#10074; Pause';
+    updateListenProgress();
+  });
+
+  listenMedia.addEventListener('pause', () => {
+    listenPlaying = false;
+    if (listenAwaitingAdvance) {
+      document.getElementById('listen-btn-play').style.display = 'inline-flex';
+      document.getElementById('listen-btn-play').innerHTML = '&#9654; Next';
+      document.getElementById('listen-btn-pause').style.display = 'none';
+    } else if (listenMedia.currentTime > 0 && !listenMedia.ended) {
+      document.getElementById('listen-btn-play').style.display = 'none';
+      document.getElementById('listen-btn-pause').style.display = 'inline-flex';
+      document.getElementById('listen-btn-pause').innerHTML = '&#9654; Resume';
+    }
+    updateListenProgress();
+  });
+
+  listenMedia.addEventListener('timeupdate', () => {
+    if (!listenSentenceTimings.length) return;
+    const time = listenMedia.currentTime;
+    let activeIdx = listenSentenceTimings.findIndex(timing => time >= timing.start && time < timing.end);
+    if (activeIdx === -1 && time >= listenSentenceTimings[listenSentenceTimings.length - 1].end) activeIdx = listenSentenceTimings.length - 1;
+    if (activeIdx >= 0) {
+      listenSentIndex = activeIdx;
+      listenCurrentPara = findParaForSentence(activeIdx);
+      highlightListenSentence(activeIdx);
+    }
+
+    if (listenParaRepeat && listenParagraphs.length > 0) {
+      const para = listenParagraphs[listenCurrentPara] || listenParagraphs[0];
+      const paraEnd = listenSentenceTimings[Math.max(para.end - 1, 0)];
+      if (paraEnd && time >= paraEnd.end - 0.05) {
+        listenMedia.currentTime = listenSentenceTimings[para.start].start;
+        return;
+      }
+    }
+
+    if (listenShadowMode && !listenAwaitingAdvance && activeIdx >= 0) {
+      const timing = listenSentenceTimings[activeIdx];
+      if (time >= timing.end - 0.05) {
+        const nextIndex = activeIdx + 1;
+        if (nextIndex >= listenSentences.length) {
+          listenMedia.pause();
+          listenResetUi();
+          showToast('Listening complete!');
+          return;
+        }
+        listenAwaitingAdvance = true;
+        listenSentIndex = nextIndex;
+        listenMedia.pause();
+        listenMedia.currentTime = listenSentenceTimings[nextIndex].start;
+        highlightListenSentence(nextIndex);
+        updateListenProgress();
+        return;
+      }
+    }
+
+    updateListenProgress();
+  });
+
+  listenMedia.addEventListener('ended', () => {
+    listenPlaying = false;
+    listenAwaitingAdvance = false;
+    listenSentIndex = Math.max(0, listenSentences.length - 1);
+    if (listenSentences.length > 0) highlightListenSentence(listenSentences.length - 1);
+    updateListenProgress();
+    listenResetUi();
+    showToast('Listening complete!');
+  });
+
+  listenMedia.addEventListener('error', () => {
+    listenStop();
+    showToast('Audio playback failed');
+  });
+}
+
+function openListening(index) {
+  const items = getListeningItems();
+  currentListening = items[index];
+  if (!currentListening) return;
   listenStop();
 
   document.getElementById('listen-topic-badge').textContent = currentListening.topic || 'Listening';
@@ -2068,35 +2438,32 @@ function openListening(index) {
   listenParagraphs = parsed.paraRanges;
   listenSentIndex = 0;
   listenCurrentPara = 0;
+  listenActiveIndex = -1;
+  listenPlayedUntil = -1;
+  refreshListenTimings(currentListening.durationSeconds || 0);
 
-  // Speed
   const speedInput = document.getElementById('listen-speed');
   speedInput.value = getStoredSpeechSpeed().toFixed(1);
   updateListenSpeedLabel();
 
-  // Progress
   document.getElementById('listen-sent-total').textContent = listenSentences.length;
   document.getElementById('listen-sent-current').textContent = '0';
   document.getElementById('listen-progress-fill').style.width = '0%';
 
-  // Reset UI
-  document.getElementById('listen-btn-play').style.display = 'inline-flex';
-  document.getElementById('listen-btn-pause').style.display = 'none';
+  listenResetUi();
   listenParaRepeat = false;
   document.getElementById('listen-btn-repeat-para').innerHTML = '&#128257; Para Repeat: OFF';
   document.getElementById('listen-btn-repeat-para').classList.remove('active-toggle');
   listenShadowMode = false;
   document.getElementById('btn-listen-shadow').classList.remove('active-toggle');
+  listenHighlightMode = false;
+  document.getElementById('btn-listen-highlight').classList.remove('active-toggle');
 
-  // Render transcript with sentence spans
   renderListenTranscript();
 
-  // Translation
   document.getElementById('listen-ja-panel').textContent = currentListening.translation || '';
   document.getElementById('listen-ja-panel').classList.remove('open');
   document.getElementById('btn-listen-translation').classList.remove('active-toggle');
-  listenHighlightMode = false;
-  document.getElementById('btn-listen-highlight').classList.remove('active-toggle');
 
   // Glossary
   const tbody = document.getElementById('listen-glossary-body');
@@ -2135,6 +2502,15 @@ function openListening(index) {
       }
     });
     saveState();
+  }
+
+  if (listenMedia) {
+    listenPendingPlay = false;
+    listenPendingIndex = 0;
+    listenMedia.pause();
+    listenMedia.src = currentListening.audioUrl || '';
+    listenMedia.load();
+    listenMedia.playbackRate = getListenSpeed();
   }
 
   showPage('listen-detail');
@@ -2183,27 +2559,73 @@ function updateListenSpeedLabel() {
   const speed = getListenSpeed();
   document.getElementById('listen-speed-label').textContent = speed.toFixed(1) + 'x';
   localStorage.setItem(SPEECH_SPEED_KEY, speed.toFixed(1));
+  if (listenMedia) listenMedia.playbackRate = speed;
 }
 
 function updateListenProgress() {
-  document.getElementById('listen-sent-current').textContent = listenSentIndex;
-  const pct = listenSentences.length > 0 ? (listenSentIndex / listenSentences.length * 100) : 0;
-  document.getElementById('listen-progress-fill').style.width = pct + '%';
+  const current = listenSentences.length === 0 ? 0 : (listenPlaying || (listenMedia && listenMedia.currentTime > 0) ? Math.min(listenSentIndex + 1, listenSentences.length) : 0);
+  document.getElementById('listen-sent-current').textContent = current;
+  let pct = 0;
+  if (listenMedia && Number.isFinite(listenMedia.duration) && listenMedia.duration > 0) pct = listenMedia.currentTime / listenMedia.duration * 100;
+  else if (listenSentences.length > 0) pct = (current / listenSentences.length) * 100;
+  document.getElementById('listen-progress-fill').style.width = `${Math.max(0, Math.min(100, pct))}%`;
 }
 
 function highlightListenSentence(idx) {
-  document.querySelectorAll('.listen-sentence').forEach(el => {
-    el.classList.remove('active');
-  });
+  if (idx === listenActiveIndex) return;
+  if (listenActiveIndex >= 0) {
+    const prevActive = document.getElementById('ls-' + listenActiveIndex);
+    if (prevActive) prevActive.classList.remove('active');
+  }
   const el = document.getElementById('ls-' + idx);
   if (el) {
     el.classList.add('active');
     el.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
-  // Mark previous as played
-  for (let i = 0; i < idx; i++) {
-    const prev = document.getElementById('ls-' + i);
-    if (prev) prev.classList.add('played');
+  if (idx < listenPlayedUntil) {
+    for (let i = 0; i < listenSentences.length; i++) {
+      const sentence = document.getElementById('ls-' + i);
+      if (sentence) sentence.classList.toggle('played', i < idx);
+    }
+  } else {
+    for (let i = listenPlayedUntil + 1; i < idx; i++) {
+      const prev = document.getElementById('ls-' + i);
+      if (prev) prev.classList.add('played');
+    }
+  }
+  listenActiveIndex = idx;
+  listenPlayedUntil = Math.max(listenPlayedUntil, idx - 1);
+}
+
+function clearListenHighlights() {
+  document.querySelectorAll('.listen-sentence').forEach(el => el.classList.remove('active', 'played'));
+  listenActiveIndex = -1;
+  listenPlayedUntil = -1;
+}
+
+function seekListenToSentence(idx) {
+  if (!listenMedia || !listenSentenceTimings[idx]) return;
+  listenSentIndex = idx;
+  listenCurrentPara = findParaForSentence(idx);
+  listenMedia.currentTime = Math.max(0, listenSentenceTimings[idx].start + 0.01);
+  highlightListenSentence(idx);
+  updateListenProgress();
+}
+
+function playListeningFromIndex(idx) {
+  if (!currentListening || !listenMedia) return;
+  const safeIndex = clamp(idx, 0, Math.max(0, listenSentences.length - 1));
+  listenPendingIndex = safeIndex;
+  if (listenMedia.readyState < 1) {
+    listenPendingPlay = true;
+    listenMedia.load();
+    return;
+  }
+  listenPendingPlay = false;
+  seekListenToSentence(safeIndex);
+  const playPromise = listenMedia.play();
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(() => showToast('Audio playback failed'));
   }
 }
 
@@ -2214,103 +2636,39 @@ function findParaForSentence(sentIdx) {
   return 0;
 }
 
-function listenPlaySentence(idx, sessionId) {
-  if (!isSpeechSupported() || sessionId !== listenSessionId) return;
-  if (idx >= listenSentences.length) {
-    // End of transcript
-    listenResetUi();
-    showToast('Listening complete!');
-    return;
-  }
-
-  // Para repeat check
-  if (listenParaRepeat) {
-    const para = listenParagraphs[listenCurrentPara];
-    if (idx >= para.end) {
-      // Restart paragraph
-      idx = para.start;
-    }
-  }
-
-  listenSentIndex = idx;
-  updateListenProgress();
-  highlightListenSentence(idx);
-  listenCurrentPara = findParaForSentence(idx);
-
-  const utterance = new SpeechSynthesisUtterance(listenSentences[idx]);
-  utterance.lang = 'en-US';
-  utterance.rate = getListenSpeed() * 0.95;
-  utterance.pitch = 1.05;
-  const voice = getBestVoice();
-  if (voice) utterance.voice = voice;
-
-  utterance.onstart = () => {
-    if (sessionId !== listenSessionId) return;
-    listenPlaying = true;
-    document.getElementById('listen-btn-play').style.display = 'none';
-    document.getElementById('listen-btn-pause').style.display = 'inline-flex';
-    document.getElementById('listen-btn-pause').innerHTML = '&#10074;&#10074; Pause';
-  };
-
-  utterance.onend = () => {
-    if (sessionId !== listenSessionId) return;
-    // Shadow mode: pause after each sentence
-    if (listenShadowMode) {
-      listenPlaying = false;
-      document.getElementById('listen-btn-play').style.display = 'inline-flex';
-      document.getElementById('listen-btn-play').innerHTML = '&#9654; Next';
-      document.getElementById('listen-btn-pause').style.display = 'none';
-      // Store next index
-      listenSentIndex = idx + 1;
-      updateListenProgress();
-      return;
-    }
-    listenPlaySentence(idx + 1, sessionId);
-  };
-
-  utterance.onerror = () => {
-    if (sessionId !== listenSessionId) return;
-    listenResetUi();
-    showToast('Audio playback failed');
-  };
-
-  speechSynthesis.speak(utterance);
-}
-
 function listenPlay() {
   if (!currentListening) return;
-  if (!isSpeechSupported()) { showToast('Speech synthesis not supported'); return; }
-  listenSessionId++;
-  speechSynthesis.cancel();
-  const sessionId = listenSessionId;
-  document.getElementById('listen-btn-play').innerHTML = '&#9654; Play';
-  setTimeout(() => listenPlaySentence(listenSentIndex, sessionId), 50);
+  if (listenAwaitingAdvance) {
+    playListeningFromIndex(listenSentIndex);
+    return;
+  }
+  playListeningFromIndex(listenSentIndex);
 }
 
 function listenPause() {
-  if (!isSpeechSupported()) return;
-  if (speechSynthesis.speaking) {
-    if (speechSynthesis.paused) {
-      speechSynthesis.resume();
-      document.getElementById('listen-btn-pause').innerHTML = '&#10074;&#10074; Pause';
-    } else {
-      speechSynthesis.pause();
-      document.getElementById('listen-btn-pause').innerHTML = '&#9654; Resume';
-    }
+  if (!listenMedia) return;
+  if (listenMedia.paused) {
+    const playPromise = listenMedia.play();
+    if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(() => showToast('Audio playback failed'));
+    return;
   }
+  listenAwaitingAdvance = false;
+  listenMedia.pause();
 }
 
 function listenStop() {
-  listenSessionId++;
   listenPlaying = false;
-  if (isSpeechSupported()) speechSynthesis.cancel();
+  listenAwaitingAdvance = false;
+  listenPendingPlay = false;
+  if (listenMedia) {
+    listenMedia.pause();
+    if (listenMedia.readyState >= 1) listenMedia.currentTime = 0;
+  }
   listenSentIndex = 0;
+  listenCurrentPara = 0;
   updateListenProgress();
   listenResetUi();
-  // Clear highlights
-  document.querySelectorAll('.listen-sentence').forEach(el => {
-    el.classList.remove('active', 'played');
-  });
+  clearListenHighlights();
 }
 
 function listenResetUi() {
@@ -2318,19 +2676,16 @@ function listenResetUi() {
   document.getElementById('listen-btn-play').style.display = 'inline-flex';
   document.getElementById('listen-btn-play').innerHTML = '&#9654; Play';
   document.getElementById('listen-btn-pause').style.display = 'none';
+  document.getElementById('listen-btn-pause').innerHTML = '&#10074;&#10074; Pause';
 }
 
 function listenPlayFromSentence(idx) {
-  listenSentIndex = idx;
-  listenCurrentPara = findParaForSentence(idx);
-  listenPlay();
+  playListeningFromIndex(idx);
 }
 
 function listenPlayFromPara(paraIdx) {
   if (paraIdx < 0 || paraIdx >= listenParagraphs.length) return;
-  listenCurrentPara = paraIdx;
-  listenSentIndex = listenParagraphs[paraIdx].start;
-  listenPlay();
+  playListeningFromIndex(listenParagraphs[paraIdx].start);
 }
 
 function toggleParaRepeat() {
@@ -2358,25 +2713,6 @@ function toggleListenHighlight() {
   document.getElementById('btn-listen-highlight').classList.toggle('active-toggle', listenHighlightMode);
   renderListenTranscript();
 }
-
-// Extend showPage to handle listen-detail
-const _origShowPage = showPage;
-showPage = function(page) {
-  // Stop listen speech when leaving
-  if (page !== 'listen-detail' && listenPlaying) {
-    listenStop();
-  }
-  if (page === 'listen-detail') {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-listen-detail').classList.add('active');
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    const navItem = document.querySelector('.nav-item[data-page="listen"]');
-    if (navItem) navItem.classList.add('active');
-    window.scrollTo(0, 0);
-    return;
-  }
-  _origShowPage(page);
-};
 
 init();
 </script>
