@@ -2779,9 +2779,6 @@ const LISTENING = [
     source: "Educational",
     difficulty: "TOEFL iBT",
     duration: "~1 min",
-    youtubeId: "wf91rEGw88Q",
-    startTime: 0,
-    endTime: 65,
     transcript: `Compound interest is often called the eighth wonder of the world, and for good reason. When you invest money, you earn interest not only on your original investment but also on the interest that has already been added. This creates a snowball effect that grows exponentially over time.
 
 Let's say you invest ten thousand dollars at a five percent annual return. After one year, you have ten thousand five hundred dollars. But in year two, you earn interest on ten thousand five hundred, not just the original ten thousand. After thirty years, that initial investment grows to over forty-three thousand dollars without adding a single cent.
@@ -2809,9 +2806,6 @@ The key takeaway is this: the earlier you start investing, the more time compoun
     source: "Educational",
     difficulty: "TOEFL iBT+",
     duration: "~1 min",
-    youtubeId: "FWTNMzK9vG4",
-    startTime: 0,
-    endTime: 70,
     transcript: `Procrastination isn't simply about laziness or poor time management. Psychologists now understand it as an emotional regulation problem. When we face a task that triggers negative emotions — anxiety, boredom, frustration, or self-doubt — our brain seeks immediate relief by switching to something more pleasurable.
 
 The prefrontal cortex, responsible for long-term planning and self-control, essentially loses the battle against the limbic system, which prioritizes immediate comfort. This explains why even highly motivated people procrastinate on tasks they genuinely care about.
@@ -2843,9 +2837,6 @@ Understanding that procrastination is about managing emotions, not managing time
     source: "Educational",
     difficulty: "TOEFL iBT",
     duration: "~1 min",
-    youtubeId: "ZYT_QRn4YMo",
-    startTime: 0,
-    endTime: 65,
     transcript: `A supply chain is the entire network of companies, people, and resources involved in creating and delivering a product to consumers. It starts with raw materials and ends when the product reaches your hands.
 
 Consider a simple cotton T-shirt. Cotton is harvested in countries like India or the United States. It's then shipped to spinning mills, often in Southeast Asia, where it becomes yarn. The yarn is woven into fabric, which is then dyed and cut. Assembly happens in factories, frequently in Bangladesh or Vietnam, where workers sew the pieces together.
@@ -2877,9 +2868,6 @@ Each step involves logistics, quality control, and coordination between dozens o
     source: "Educational",
     difficulty: "TOEFL iBT+",
     duration: "~1 min",
-    youtubeId: "gedoSfZvBgE",
-    startTime: 0,
-    endTime: 70,
     transcript: `Sleep isn't just rest — it's an active biological process that is absolutely critical for your health. During sleep, your brain undergoes remarkable maintenance that you simply cannot achieve while awake.
 
 In the first stage of deep sleep, your body repairs tissues, strengthens the immune system, and releases growth hormones. Meanwhile, your brain begins consolidating memories, transferring information from short-term to long-term storage. This is why pulling an all-nighter before an exam actually hurts your performance — without sleep, your brain literally cannot store what you studied.
@@ -2911,9 +2899,6 @@ Chronic sleep deprivation — consistently getting less than seven hours — has
     source: "Educational",
     difficulty: "TOEFL iBT",
     duration: "~1 min",
-    youtubeId: "T8-85cZRI9o",
-    startTime: 0,
-    endTime: 65,
     transcript: `Inflation is the rate at which the general level of prices for goods and services rises over time. When inflation goes up, each unit of currency buys fewer things than it did before — in other words, your money loses purchasing power.
 
 Central banks, such as the Federal Reserve in the United States or the Bank of Japan, typically aim for an inflation rate of around two percent per year. This moderate level of inflation actually encourages economic growth because it motivates consumers to spend and invest rather than hoard cash.
@@ -2937,5 +2922,395 @@ To combat high inflation, central banks raise interest rates, making borrowing m
       { word: "recession", pos: "noun", japanese: "景気後退、リセッション", definition: "A period of temporary economic decline during which trade and industrial activity are reduced", example: "The economy officially entered a recession after two quarters.", exampleJa: "経済は2四半期後に正式に景気後退に入った。" },
       { word: "combat", pos: "verb", japanese: "戦う、対処する", definition: "To take action to reduce, destroy, or prevent something harmful", example: "The government introduced measures to combat rising unemployment.", exampleJa: "政府は増加する失業率に対処するための措置を導入した。" }
     ]
-  }
+  },
+  {
+  id: "listen-006",
+  title: "The Global Shift Toward Remote Work",
+  topic: "Business & Workplace Trends",
+  source: "Business News Broadcast",
+  difficulty: "TOEFL iBT+",
+  duration: "~5 min",
+  transcript: `Good evening. Tonight, we take a closer look at one of the most significant transformations in the modern workplace: the global shift toward remote work.
+
+Before 2020, remote work was largely considered a perk offered by forward-thinking technology companies. According to data from the International Labour Organization, only about 7.9 percent of the global workforce worked from home on a regular basis prior to the pandemic. That figure surged dramatically when governments around the world imposed lockdowns, forcing businesses of all sizes to adapt virtually overnight.
+
+Fast forward to today, and the landscape has changed permanently. A recent survey conducted by McKinsey & Company found that 58 percent of American workers now have the option to work from home at least one day per week, while 35 percent can work remotely full-time. These numbers represent a fundamental restructuring of how and where work gets done.
+
+The benefits of remote work are well documented. Employees consistently report higher levels of job satisfaction, citing the elimination of lengthy commutes and greater flexibility in managing their personal lives. A Stanford University study demonstrated that remote workers were 13 percent more productive than their in-office counterparts, a finding that challenged long-held assumptions about the necessity of physical supervision.
+
+However, the transition has not been without its challenges. Many organizations have struggled with maintaining company culture in a distributed environment. Spontaneous interactions — the kind that happen in hallways and break rooms — are difficult to replicate through video calls and messaging platforms. Some managers have expressed concern about reduced collaboration and the potential erosion of team cohesion.
+
+Furthermore, the remote work revolution has exposed significant inequalities. Workers in knowledge-based industries such as finance, technology, and consulting have benefited disproportionately, while those in manufacturing, healthcare, and service sectors have no such option. This divide has prompted discussions about a two-tier workforce and the social implications that come with it.
+
+Companies have responded with a variety of strategies. The hybrid model, which combines remote and in-office work, has emerged as the most popular approach. Major corporations including Google, Microsoft, and JPMorgan Chase have implemented structured hybrid schedules, typically requiring employees to be present in the office two to three days per week. Proponents argue that this model captures the best of both worlds: the flexibility of remote work and the collaborative energy of in-person interaction.
+
+On the other end of the spectrum, some companies have gone fully remote. GitLab, Automattic, and Zapier operate without any physical offices, relying entirely on digital infrastructure to coordinate their global teams. These organizations have developed sophisticated asynchronous communication protocols and documentation practices that allow employees across multiple time zones to work effectively without real-time interaction.
+
+The economic implications are equally profound. Commercial real estate markets in major cities have been significantly affected, with office vacancy rates reaching historic highs. Conversely, suburban and rural areas have experienced population growth as workers freed from geographic constraints seek more affordable housing and better quality of life.
+
+Looking ahead, experts predict that the evolution of remote work will continue to accelerate. Advances in virtual reality and artificial intelligence are expected to create more immersive and productive remote collaboration experiences. The question is no longer whether remote work is viable, but rather how organizations can optimize it to serve both their business objectives and the well-being of their employees.
+
+That is all for tonight's report. Stay tuned for more updates.`,
+  translation: `こんばんは。今夜は、現代の職場における最も重要な変革の一つ、リモートワークへの世界的シフトについて詳しくお伝えします。
+
+2020年以前、リモートワークは主に先進的なテクノロジー企業が提供する特典と見なされていました。国際労働機関のデータによると、パンデミック前に定期的に在宅勤務をしていたのは、世界の労働力のわずか約7.9パーセントでした。この数字は、世界中の政府がロックダウンを実施し、あらゆる規模の企業が一夜にして適応を迫られた際に、劇的に急増しました。
+
+時を現在に早送りすると、状況は恒久的に変化しています。マッキンゼー・アンド・カンパニーが実施した最近の調査によると、アメリカの労働者の58パーセントが週に少なくとも1日は在宅勤務の選択肢を持ち、35パーセントがフルタイムでリモートワークが可能です。これらの数字は、仕事がどのように、どこで行われるかについての根本的な再構築を表しています。
+
+リモートワークの利点は十分に文書化されています。従業員は一貫してより高い仕事の満足度を報告しており、長時間の通勤の解消と私生活の管理における柔軟性の向上を挙げています。スタンフォード大学の研究は、リモートワーカーがオフィス勤務の同僚よりも13パーセント生産性が高いことを示し、物理的な監督の必要性に関する長年の仮定に疑問を投げかけました。
+
+しかし、この移行には課題がなかったわけではありません。多くの組織が分散環境で企業文化を維持することに苦心しています。廊下や休憩室で起こるような自発的なやり取りは、ビデオ通話やメッセージングプラットフォームでは再現が困難です。一部の管理者は、コラボレーションの減少やチームの結束力の潜在的な低下について懸念を示しています。
+
+さらに、リモートワーク革命は重大な不平等を露呈しました。金融、テクノロジー、コンサルティングなどの知識ベースの産業の労働者が不釣り合いに恩恵を受けている一方で、製造業、医療、サービス業の労働者にはそのような選択肢がありません。この格差は、二層構造の労働力とそれに伴う社会的影響についての議論を促しています。
+
+企業はさまざまな戦略で対応しています。リモートワークとオフィス勤務を組み合わせたハイブリッドモデルが、最も人気のあるアプローチとして浮上しています。Google、Microsoft、JPモルガン・チェースを含む大企業は、構造化されたハイブリッドスケジュールを導入しており、通常、従業員に週2〜3日の出社を求めています。推進派は、このモデルがリモートワークの柔軟性と対面でのやり取りの協力的なエネルギーという両方の良いところを捉えていると主張しています。
+
+その一方で、完全リモートに移行した企業もあります。GitLab、Automattic、Zapierは物理的なオフィスを一切持たず、グローバルチームの調整を完全にデジタルインフラに依存して運営しています。これらの組織は、複数のタイムゾーンにまたがる従業員がリアルタイムのやり取りなしに効果的に働けるよう、洗練された非同期コミュニケーションプロトコルと文書化の実践を開発しています。
+
+経済的な影響も同様に深刻です。主要都市の商業用不動産市場は大きな影響を受けており、オフィスの空室率は歴史的な高水準に達しています。逆に、地理的制約から解放された労働者がより手頃な住宅とより良い生活の質を求める中、郊外や地方では人口増加が見られています。
+
+将来を見据えると、専門家はリモートワークの進化が加速し続けると予測しています。バーチャルリアリティと人工知能の進歩により、より没入感のある生産的なリモートコラボレーション体験が生まれると期待されています。問題はもはやリモートワークが実現可能かどうかではなく、組織がビジネス目標と従業員の幸福の両方に資するようにそれをいかに最適化できるかということです。
+
+今夜のレポートは以上です。引き続き最新情報をお届けします。`,
+  glossary: [
+    { word: "perk", pos: "noun", japanese: "特典、恩恵", definition: "An advantage or benefit that comes with a job or situation", example: "Free lunches and gym memberships are common perks at tech companies.", exampleJa: "無料の昼食やジムの会員権は、テック企業でよくある特典です。" },
+    { word: "surge", pos: "verb", japanese: "急増する", definition: "To increase suddenly and dramatically", example: "Demand for laptops surged when offices closed.", exampleJa: "オフィスが閉鎖されたとき、ノートパソコンの需要が急増しました。" },
+    { word: "commute", pos: "noun", japanese: "通勤", definition: "The regular journey between home and workplace", example: "Her daily commute takes about an hour each way.", exampleJa: "彼女の毎日の通勤は片道約1時間かかります。" },
+    { word: "counterpart", pos: "noun", japanese: "対応する相手、同等の立場の人", definition: "A person or thing that corresponds to another", example: "The CEO met with her counterpart at the rival firm.", exampleJa: "CEOはライバル企業の同等の立場の人物と会いました。" },
+    { word: "supervision", pos: "noun", japanese: "監督、管理", definition: "The act of watching and directing someone's work or activities", example: "Young employees often need close supervision during training.", exampleJa: "若い従業員は研修中、きめ細かな監督が必要なことが多いです。" },
+    { word: "erosion", pos: "noun", japanese: "浸食、低下", definition: "The gradual wearing away or decline of something", example: "There has been a slow erosion of public trust in the institution.", exampleJa: "その機関に対する国民の信頼は徐々に低下しています。" },
+    { word: "cohesion", pos: "noun", japanese: "結束力、まとまり", definition: "The quality of forming a united whole", example: "Team cohesion is essential for completing complex projects.", exampleJa: "チームの結束力は、複雑なプロジェクトを完了するために不可欠です。" },
+    { word: "disproportionately", pos: "adverb", japanese: "不釣り合いに、偏って", definition: "To a degree that is too large or too small in comparison", example: "Low-income communities are disproportionately affected by pollution.", exampleJa: "低所得のコミュニティは、汚染の影響を不釣り合いに受けています。" },
+    { word: "two-tier", pos: "adjective", japanese: "二層構造の", definition: "Having two separate levels or categories", example: "Critics warn of a two-tier education system.", exampleJa: "批評家は二層構造の教育制度について警告しています。" },
+    { word: "hybrid", pos: "adjective", japanese: "ハイブリッドの、混合の", definition: "Combining two different elements or approaches", example: "The hybrid model allows employees to split time between home and office.", exampleJa: "ハイブリッドモデルにより、従業員は自宅とオフィスの間で時間を分けることができます。" },
+    { word: "proponent", pos: "noun", japanese: "支持者、推進者", definition: "A person who advocates for something", example: "Proponents of renewable energy argue it will create millions of jobs.", exampleJa: "再生可能エネルギーの支持者は、それが何百万もの雇用を生み出すと主張しています。" },
+    { word: "asynchronous", pos: "adjective", japanese: "非同期の", definition: "Not occurring at the same time; not requiring simultaneous participation", example: "Asynchronous communication lets team members respond when convenient.", exampleJa: "非同期コミュニケーションにより、チームメンバーは都合の良い時に返信できます。" },
+    { word: "vacancy rate", pos: "noun", japanese: "空室率", definition: "The percentage of available units that are unoccupied", example: "The office vacancy rate in downtown Manhattan exceeded 20 percent.", exampleJa: "マンハッタン中心部のオフィス空室率は20パーセントを超えました。" },
+    { word: "viable", pos: "adjective", japanese: "実現可能な、実行可能な", definition: "Capable of working successfully; feasible", example: "Solar power has become a viable alternative to fossil fuels.", exampleJa: "太陽光発電は化石燃料に代わる実行可能な選択肢になっています。" },
+    { word: "immersive", pos: "adjective", japanese: "没入感のある", definition: "Providing a deeply engaging and absorbing experience", example: "Virtual reality creates an immersive learning environment.", exampleJa: "バーチャルリアリティは没入感のある学習環境を作り出します。" }
+  ]
+},
+
+{
+  id: "listen-007",
+  title: "Why We Make Bad Financial Decisions",
+  topic: "Behavioral Economics & Personal Finance",
+  source: "Podcast Episode",
+  difficulty: "TOEFL iBT+",
+  duration: "~5 min",
+  transcript: `Hey everyone, welcome back to "Mind and Money," the podcast where we explore the fascinating intersection of psychology and personal finance. I'm your host, and today we're diving into a question that I think we've all asked ourselves at some point: why do we make such bad financial decisions?
+
+Now, before you start feeling guilty about that impulse purchase you made last week, let me reassure you — it's not entirely your fault. Our brains, as remarkable as they are, were simply not designed for the financial world we live in today. We evolved to survive on the savanna, not to manage 401(k) plans and cryptocurrency portfolios. And that mismatch between our ancient wiring and modern financial complexity is at the heart of a field called behavioral economics.
+
+So let's start with one of the big ones: loss aversion. This is a concept popularized by the Nobel Prize-winning psychologist Daniel Kahneman. The basic idea is beautifully simple — we feel the pain of losing something about twice as intensely as we feel the pleasure of gaining the same thing. Think about it. If you found a hundred-dollar bill on the street, you'd be happy, right? But if you lost a hundred dollars, that negative emotion would hit you much harder and last much longer. This asymmetry has enormous consequences for how we invest. It's the reason so many people sell their winning stocks too early, locking in small gains, while holding onto their losers far too long, hoping they'll somehow bounce back. Rationally, it makes no sense. Emotionally, it makes perfect sense.
+
+Then there's what psychologists call present bias. This is our tendency to prioritize immediate rewards over future benefits, even when the future benefits are objectively much larger. It's the reason you might choose to spend five thousand dollars on a vacation today rather than investing it for retirement, where compound interest could turn it into fifty thousand dollars over thirty years. Your future self would definitely prefer the fifty thousand, but your present self wants the beach. And your present self usually wins.
+
+Here's another one that really gets people into trouble: the anchoring effect. Our brains tend to latch onto the first piece of information we receive and use it as a reference point for all subsequent judgments. This is why retailers mark up prices before offering discounts. When you see a jacket originally priced at two hundred dollars marked down to one hundred and twenty, your brain processes it as a great deal. You're saving eighty dollars! But the real question should be: is this jacket worth one hundred and twenty dollars to me? The anchor — that original two hundred dollar price — distorts your perception of value.
+
+Social proof is another powerful force working against our financial rationality. We are deeply social creatures, and we have a strong tendency to follow the crowd, especially in situations of uncertainty. During the cryptocurrency boom of 2021, millions of people invested not because they understood blockchain technology, but because everyone else seemed to be getting rich. The fear of missing out, or FOMO, overrode careful analysis. And when the market crashed, many of those same people lost substantial amounts of money.
+
+Now, there's also the fascinating phenomenon of mental accounting. This term, coined by the economist Richard Thaler, describes our tendency to treat money differently depending on where it comes from or what we label it. For example, people who receive a tax refund often spend it more freely than their regular salary, even though both are equally their money. A dollar is a dollar, but our brains don't see it that way.
+
+So what can we do about all of this? Well, the first step is simply awareness. Once you understand these biases, you can start to recognize them in your own behavior. Beyond that, automation is your best friend. Set up automatic transfers to your savings account so that your present bias doesn't sabotage your future. Use rules-based investing strategies that take emotion out of the equation. And the next time you see a big red "SALE" sign, pause and ask yourself whether you actually need what you're about to buy, or whether your brain is just reacting to an anchor.
+
+Thanks for listening, everyone. Until next time, stay curious and stay financially mindful.`,
+  translation: `皆さん、こんにちは。心理学と個人の財務管理の魅力的な交差点を探る番組「マインド・アンド・マネー」へようこそ。ホストの私から、今日は皆さんが一度は自問したことがあるであろう質問について掘り下げていきます。なぜ私たちはこんなにもまずいお金の決断をしてしまうのでしょうか？
+
+先週の衝動買いについて罪悪感を感じ始める前に、安心させてください。それは全面的にあなたのせいではありません。私たちの脳は、いかに優れていようとも、今日私たちが生きる金融の世界のために設計されたものではないのです。私たちはサバンナで生き延びるために進化したのであって、401(k)プランや暗号通貨のポートフォリオを管理するためではありません。そして、私たちの古代の配線と現代の金融の複雑さとの間のこのミスマッチこそが、行動経済学と呼ばれる分野の核心にあるものです。
+
+では、大きなものの一つから始めましょう。損失回避です。これはノーベル賞を受賞した心理学者ダニエル・カーネマンによって広められた概念です。基本的な考え方は美しいほどシンプルです。私たちは何かを失う痛みを、同じものを得る喜びの約2倍の強さで感じるのです。考えてみてください。道で100ドル札を見つけたら、嬉しいですよね？でも100ドルを失ったら、そのネガティブな感情ははるかに強く、はるかに長く続くでしょう。この非対称性は、私たちの投資行動に多大な影響を与えます。多くの人が勝っている株を早めに売って小さな利益を確定する一方で、負けている株を何とか回復するだろうと期待してずっと長く持ち続ける理由がこれです。合理的には意味がありません。感情的には完全に理にかなっています。
+
+次に、心理学者が現在バイアスと呼ぶものがあります。これは、将来の利益が客観的にはるかに大きい場合でも、目の前の報酬を優先する傾向のことです。退職後のために投資すれば複利の力で30年後に5万ドルになるかもしれないのに、今日5000ドルを休暇に使うことを選んでしまう理由がこれです。未来のあなたは間違いなく5万ドルの方を好むでしょうが、今のあなたはビーチが欲しい。そして今のあなたがたいてい勝ちます。
+
+もう一つ、本当に人を困らせるものがあります。アンカリング効果です。私たちの脳は、最初に受け取った情報に固執し、それをその後のすべての判断の基準点として使う傾向があります。小売業者が割引を提示する前に価格をつり上げるのはこのためです。元の価格が200ドルのジャケットが120ドルに値下げされているのを見ると、あなたの脳はそれをお買い得だと処理します。80ドルも節約できる！でも本当の質問は、このジャケットは自分にとって120ドルの価値があるか？ということであるべきです。アンカー、つまりあの元の200ドルの価格が、あなたの価値の認識を歪めているのです。
+
+社会的証明も、私たちの金融的合理性に反して働く強力な力です。私たちは深く社会的な生き物であり、特に不確実な状況では群れに従う強い傾向があります。2021年の暗号通貨ブームの際、何百万人もの人々がブロックチェーン技術を理解していたからではなく、他の皆がお金持ちになっているように見えたから投資しました。取り残されることへの恐怖、つまりFOMOが、慎重な分析を上回ったのです。そして市場が暴落したとき、それらの同じ人々の多くがかなりの金額を失いました。
+
+さて、メンタルアカウンティングという魅力的な現象もあります。経済学者リチャード・セイラーが考案したこの用語は、お金の出所やラベルの付け方によって、お金を異なる扱いをする傾向を表しています。例えば、税金の還付を受けた人は、通常の給与よりも気軽に使う傾向がありますが、どちらも等しく自分のお金です。1ドルは1ドルですが、私たちの脳はそうは見ていません。
+
+では、これらすべてに対して何ができるでしょうか？まず、最初のステップは単に気づくことです。これらのバイアスを理解すれば、自分自身の行動の中でそれらを認識し始めることができます。それ以上に、自動化があなたの最良の味方です。現在バイアスが将来を台無しにしないよう、貯蓄口座への自動振替を設定しましょう。感情を排除したルールベースの投資戦略を使いましょう。そして次に大きな赤い「セール」の看板を見たとき、立ち止まって、これから買おうとしているものが本当に必要なのか、それとも脳がアンカーに反応しているだけなのかを自問してください。
+
+皆さん、お聴きいただきありがとうございます。次回まで、好奇心を持ち、お金に対して意識的でいてください。`,
+  glossary: [
+    { word: "impulse purchase", pos: "noun", japanese: "衝動買い", definition: "A buying decision made spontaneously without prior planning", example: "She made an impulse purchase of a designer handbag she didn't need.", exampleJa: "彼女は必要のないブランドのハンドバッグを衝動買いしました。" },
+    { word: "loss aversion", pos: "noun", japanese: "損失回避", definition: "The psychological tendency to prefer avoiding losses over acquiring equivalent gains", example: "Loss aversion explains why investors hold losing stocks too long.", exampleJa: "損失回避は、投資家が負けている株を長く持ちすぎる理由を説明します。" },
+    { word: "asymmetry", pos: "noun", japanese: "非対称性", definition: "A lack of equality or equivalence between parts or aspects", example: "There is an asymmetry between how we perceive gains and losses.", exampleJa: "私たちが利益と損失をどう認識するかには非対称性があります。" },
+    { word: "present bias", pos: "noun", japanese: "現在バイアス", definition: "The tendency to overvalue immediate rewards at the expense of long-term benefits", example: "Present bias leads people to spend now rather than save for the future.", exampleJa: "現在バイアスは、将来のために貯蓄するよりも今お金を使う行動につながります。" },
+    { word: "compound interest", pos: "noun", japanese: "複利", definition: "Interest calculated on both the initial principal and accumulated interest", example: "Thanks to compound interest, her small investment grew significantly over twenty years.", exampleJa: "複利のおかげで、彼女の小さな投資は20年で大幅に成長しました。" },
+    { word: "anchoring effect", pos: "noun", japanese: "アンカリング効果", definition: "A cognitive bias where initial information disproportionately influences subsequent decisions", example: "The anchoring effect makes sale prices seem more attractive than they really are.", exampleJa: "アンカリング効果は、セール価格を実際以上に魅力的に見せます。" },
+    { word: "latch onto", pos: "phrasal verb", japanese: "固執する、しがみつく", definition: "To attach oneself firmly to something; to seize upon", example: "Consumers tend to latch onto the first price they see.", exampleJa: "消費者は最初に目にした価格に固執する傾向があります。" },
+    { word: "social proof", pos: "noun", japanese: "社会的証明", definition: "The influence created when people assume others' actions reflect correct behavior", example: "Social proof drives many people to invest in trending assets.", exampleJa: "社会的証明は、多くの人をトレンドの資産への投資に駆り立てます。" },
+    { word: "FOMO", pos: "noun", japanese: "取り残される恐怖", definition: "Fear of missing out; anxiety that others are having rewarding experiences without you", example: "FOMO caused many inexperienced investors to buy cryptocurrency at its peak.", exampleJa: "FOMOにより、多くの経験の浅い投資家がピーク時に暗号通貨を購入しました。" },
+    { word: "override", pos: "verb", japanese: "上回る、無効にする", definition: "To use authority or force to cancel or set aside something", example: "Emotions can override rational thinking during a market crash.", exampleJa: "市場の暴落時には、感情が合理的な思考を上回ることがあります。" },
+    { word: "mental accounting", pos: "noun", japanese: "メンタルアカウンティング（心の会計）", definition: "The tendency to categorize and treat money differently based on its source or intended use", example: "Mental accounting explains why people treat bonus money differently from salary.", exampleJa: "メンタルアカウンティングは、人がボーナスと給与を異なる扱いをする理由を説明します。" },
+    { word: "coin", pos: "verb", japanese: "（新語を）作り出す", definition: "To invent or create a new word or phrase", example: "The term 'paradigm shift' was coined by Thomas Kuhn in 1962.", exampleJa: "「パラダイムシフト」という用語は、1962年にトーマス・クーンによって作られました。" },
+    { word: "tax refund", pos: "noun", japanese: "税金の還付金", definition: "Money returned by the government when taxes paid exceed what is owed", example: "Many families use their tax refund to pay off credit card debt.", exampleJa: "多くの家庭が税金の還付金をクレジットカードの借金の返済に使います。" },
+    { word: "sabotage", pos: "verb", japanese: "妨害する、台無しにする", definition: "To deliberately destroy or undermine something", example: "Don't let short-term desires sabotage your long-term financial goals.", exampleJa: "短期的な欲求が長期的な経済目標を台無しにしないようにしましょう。" },
+    { word: "rules-based", pos: "adjective", japanese: "ルールに基づいた", definition: "Following predetermined rules rather than subjective judgment", example: "A rules-based investment strategy removes emotional decision-making.", exampleJa: "ルールに基づいた投資戦略は、感情的な意思決定を排除します。" },
+    { word: "mismatch", pos: "noun", japanese: "ミスマッチ、不一致", definition: "A failure to correspond or match; an incompatibility", example: "There is a mismatch between our instincts and modern financial systems.", exampleJa: "私たちの本能と現代の金融システムの間にはミスマッチがあります。" }
+  ]
+},
+
+{
+  id: "listen-008",
+  title: "The Hidden Power of Everyday Habits",
+  topic: "Psychology & Self-Improvement",
+  source: "TED Talk Presentation",
+  difficulty: "Academic",
+  duration: "~5 min",
+  transcript: `I want to start with a question. How many of you have ever set a New Year's resolution and given up on it by February? Go ahead, raise your hands. Yeah, that's what I thought — almost everyone.
+
+Now, here's the thing. The problem wasn't your willpower. The problem wasn't your motivation. The problem was that you were thinking about change in entirely the wrong way. You were thinking big when you should have been thinking small.
+
+Let me explain. We live in a culture that celebrates dramatic transformations. We love the stories of people who lost a hundred pounds, who built billion-dollar companies from their garage, who completely reinvented themselves overnight. These stories are inspiring, absolutely. But they're also misleading. Because the truth is, the most powerful changes in our lives don't come from grand, sweeping gestures. They come from tiny, almost invisible actions that we repeat every single day. They come from habits.
+
+James Clear, the author of "Atomic Habits," describes this with a beautiful metaphor. Imagine an ice cube sitting on a table in a room that is twenty-five degrees below zero Celsius. Now, slowly, degree by degree, the temperature begins to rise. Twenty-four below. Twenty-three. Twenty-two. Nothing happens. The ice cube just sits there. This continues for what feels like forever. Negative ten, negative five, negative one. Still nothing visible. Then, at zero degrees, the ice begins to melt. It seems like it happened suddenly, but of course it didn't. All those earlier degrees were building up the potential energy. They all mattered. Every single one.
+
+This is exactly how habits work. You go to the gym for a week, and you look the same. You study a new language for a month, and you can barely order coffee. You save a small amount from each paycheck, and your bank account barely changes. It feels like nothing is happening. But something is happening. You just can't see it yet.
+
+The science behind this is compelling. Researchers at University College London found that, on average, it takes sixty-six days for a new behavior to become automatic. Not twenty-one days, as the popular myth suggests. Sixty-six. And during those sixty-six days, you are literally rewiring your brain. Neural pathways are being strengthened. The basal ganglia, the part of your brain responsible for automatic behavior, is slowly taking over from the prefrontal cortex, which handles conscious decision-making. In other words, what starts as an effortful choice gradually becomes something you do without thinking.
+
+But here's where it gets really interesting. The compounding effect of habits is staggering. Let me give you some numbers. If you improve by just one percent every day for an entire year, you don't end up one percent better. You end up thirty-seven times better. That's the mathematics of compound growth applied to human behavior. Conversely, if you decline by one percent every day, you'll end up at nearly zero. The difference between these two trajectories is the difference between a life that continuously improves and one that gradually deteriorates.
+
+So how do we harness this power? I want to share three principles that the research consistently supports.
+
+First, make it obvious. Design your environment so that the cues for your desired habits are visible and unavoidable. If you want to read more, put a book on your pillow every morning. If you want to eat healthier, place fruits and vegetables at eye level in your refrigerator. Environment design is more powerful than willpower because it works even when your motivation is low.
+
+Second, make it small. This is perhaps the most counterintuitive but most effective strategy. Want to start exercising? Commit to just two minutes a day. Two minutes. That sounds absurdly easy, and that's exactly the point. The goal is not the workout itself — the goal is to become the type of person who works out. Once the identity shift happens, scaling up becomes natural.
+
+Third, never miss twice. You will have bad days. You will skip a session, eat the junk food, forget to meditate. That's completely normal. Perfection is not the goal. The goal is resilience. If you miss one day, make it a rule to get back on track the very next day. One missed day is an accident. Two missed days is the beginning of a new habit — a bad one.
+
+Ladies and gentlemen, every action you take is a vote for the type of person you want to become. No single vote is decisive, but as the votes accumulate, they build an undeniable pattern. You are, quite literally, the sum of your habits.
+
+So my challenge to you today is simple. Don't try to change your life. Try to change just one small thing. Do it again tomorrow. And the day after that. Because the extraordinary is nothing more than the ordinary, repeated.
+
+Thank you.`,
+  translation: `まず質問から始めたいと思います。新年の抱負を立てて、2月までにやめてしまった経験がある方はどれくらいいますか？どうぞ、手を挙げてください。ええ、思った通りです。ほぼ全員ですね。
+
+さて、ここがポイントです。問題はあなたの意志力ではありませんでした。問題はあなたのモチベーションでもありませんでした。問題は、あなたが変化について全く間違った考え方をしていたということです。小さく考えるべきだったのに、大きく考えていたのです。
+
+説明させてください。私たちは劇的な変身を称賛する文化に生きています。45キロ減量した人、ガレージから数十億ドルの企業を築いた人、一夜にして完全に生まれ変わった人の物語が大好きです。これらの物語は確かに感動的です。しかし、誤解を招くものでもあります。なぜなら、真実は、私たちの人生で最も強力な変化は、壮大で大げさな行動からではなく、毎日繰り返す小さな、ほとんど目に見えない行動から来るからです。それは習慣から来るのです。
+
+「アトミック・ハビッツ」の著者ジェームズ・クリアは、これを美しい比喩で表現しています。摂氏マイナス25度の部屋のテーブルの上に置かれた氷の塊を想像してください。ゆっくりと、1度ずつ、温度が上がり始めます。マイナス24度。マイナス23度。マイナス22度。何も起きません。氷の塊はそこにじっとしているだけです。これが永遠のように続きます。マイナス10度、マイナス5度、マイナス1度。まだ目に見える変化はありません。そして、0度で、氷が溶け始めます。突然起こったように見えますが、もちろんそうではありません。それ以前のすべての温度上昇が潜在的なエネルギーを蓄積していたのです。すべてが重要でした。一つ残らず。
+
+これはまさに習慣の仕組みです。1週間ジムに通っても、見た目は同じです。1ヶ月新しい言語を勉強しても、コーヒーの注文もやっとです。給料から少額ずつ貯金しても、銀行口座はほとんど変わりません。何も起きていないように感じます。でも何かが起きています。まだ見えないだけです。
+
+この背景にある科学は説得力があります。ユニバーシティ・カレッジ・ロンドンの研究者たちは、新しい行動が自動的になるまでに平均66日かかることを発見しました。一般的な通説が示す21日ではありません。66日です。そしてその66日間で、あなたは文字通り脳の配線を変えているのです。神経経路が強化されています。自動的な行動を担当する脳の部分である大脳基底核が、意識的な意思決定を処理する前頭前皮質から徐々に引き継いでいるのです。言い換えれば、努力を要する選択として始まったものが、徐々に考えなくてもできることになっていきます。
+
+しかし、ここからが本当に面白いところです。習慣の複利効果は驚異的です。数字をお見せしましょう。毎日たった1パーセント改善すれば、1年で1パーセント良くなるのではありません。37倍良くなるのです。これは複利成長の数学を人間の行動に適用したものです。逆に、毎日1パーセント低下すれば、ほぼゼロになります。この二つの軌道の差は、継続的に改善し続ける人生と、徐々に悪化する人生の違いです。
+
+では、この力をどう活用すればよいのでしょうか？研究が一貫して支持する3つの原則をお伝えしたいと思います。
+
+第一に、明確にすること。望ましい習慣のきっかけが目に見えて避けられないように環境をデザインしましょう。もっと読書したいなら、毎朝枕の上に本を置きましょう。より健康的に食べたいなら、冷蔵庫の目の高さに果物と野菜を置きましょう。環境デザインは意志力よりも強力です。なぜなら、モチベーションが低いときでも機能するからです。
+
+第二に、小さくすること。これはおそらく最も直感に反するが、最も効果的な戦略です。運動を始めたいですか？1日たった2分だけ約束してください。2分です。馬鹿みたいに簡単に聞こえますが、まさにそれがポイントです。目標はワークアウトそのものではありません。目標は運動する人になることです。アイデンティティの変化が起こったら、スケールアップは自然にできるようになります。
+
+第三に、2日続けて休まないこと。調子の悪い日はあるでしょう。セッションをスキップし、ジャンクフードを食べ、瞑想を忘れることもあるでしょう。それは完全に普通のことです。完璧は目標ではありません。目標はレジリエンスです。1日休んだら、翌日すぐに軌道に戻ることをルールにしてください。1日の欠席は事故です。2日の欠席は新しい習慣の始まりです。悪い習慣の。
+
+皆さん、あなたが取るすべての行動は、なりたい自分への一票です。一つの票が決定的になることはありませんが、票が積み重なるにつれて、否定しようのないパターンが構築されます。あなたは、文字通り、習慣の総和なのです。
+
+ですから、今日の私からの挑戦はシンプルです。人生を変えようとしないでください。たった一つの小さなことを変えてみてください。明日もそれをやってください。そしてその次の日も。なぜなら、非凡とは平凡の繰り返しに過ぎないからです。
+
+ありがとうございました。`,
+  glossary: [
+    { word: "resolution", pos: "noun", japanese: "決意、抱負", definition: "A firm decision to do or not to do something", example: "Her New Year's resolution was to exercise three times a week.", exampleJa: "彼女の新年の抱負は、週3回運動することでした。" },
+    { word: "willpower", pos: "noun", japanese: "意志力", definition: "The ability to control one's own actions, emotions, or urges", example: "Dieting requires tremendous willpower, especially in the beginning.", exampleJa: "ダイエットには、特に最初は、大変な意志力が必要です。" },
+    { word: "misleading", pos: "adjective", japanese: "誤解を招く", definition: "Giving the wrong idea or impression", example: "The advertisement was misleading because it exaggerated the product's benefits.", exampleJa: "その広告は製品の利点を誇張していたため、誤解を招くものでした。" },
+    { word: "sweeping", pos: "adjective", japanese: "大規模な、全面的な", definition: "Wide-ranging and significant in effect", example: "The government announced sweeping reforms to the healthcare system.", exampleJa: "政府は医療制度の全面的な改革を発表しました。" },
+    { word: "metaphor", pos: "noun", japanese: "比喩、メタファー", definition: "A figure of speech that describes something by comparing it to something else", example: "The melting ice cube is a perfect metaphor for gradual change.", exampleJa: "溶ける氷の塊は、段階的な変化の完璧な比喩です。" },
+    { word: "neural pathway", pos: "noun", japanese: "神経経路", definition: "A connected series of neurons that transmit signals in the brain", example: "Repeated practice strengthens neural pathways associated with that skill.", exampleJa: "繰り返しの練習は、そのスキルに関連する神経経路を強化します。" },
+    { word: "basal ganglia", pos: "noun", japanese: "大脳基底核", definition: "A group of structures in the brain involved in habit formation and automatic behavior", example: "The basal ganglia play a key role in turning conscious actions into automatic habits.", exampleJa: "大脳基底核は、意識的な行動を自動的な習慣に変える上で重要な役割を果たします。" },
+    { word: "prefrontal cortex", pos: "noun", japanese: "前頭前皮質", definition: "The front part of the brain responsible for planning, decision-making, and self-control", example: "The prefrontal cortex is not fully developed until the mid-twenties.", exampleJa: "前頭前皮質は25歳頃まで完全には発達しません。" },
+    { word: "effortful", pos: "adjective", japanese: "努力を要する", definition: "Requiring considerable mental or physical effort", example: "Learning to drive is effortful at first but becomes automatic with practice.", exampleJa: "運転を学ぶことは最初は努力を要しますが、練習により自動的になります。" },
+    { word: "compounding", pos: "adjective", japanese: "複利の、蓄積する", definition: "Increasing or growing by accumulation over successive periods", example: "The compounding effect of daily reading builds enormous knowledge over years.", exampleJa: "毎日の読書の複利効果は、何年にもわたって莫大な知識を蓄積します。" },
+    { word: "staggering", pos: "adjective", japanese: "驚異的な", definition: "Astonishingly large or great", example: "The staggering growth rate surprised even the most optimistic analysts.", exampleJa: "その驚異的な成長率は、最も楽観的なアナリストさえも驚かせました。" },
+    { word: "trajectory", pos: "noun", japanese: "軌道、軌跡", definition: "The path or progression of something over time", example: "Small daily choices determine the trajectory of your entire life.", exampleJa: "日々の小さな選択が、人生全体の軌道を決定します。" },
+    { word: "counterintuitive", pos: "adjective", japanese: "直感に反する", definition: "Contrary to what common sense would suggest", example: "It seems counterintuitive, but working less can sometimes increase productivity.", exampleJa: "直感に反するようですが、仕事を減らすことで生産性が上がる場合があります。" },
+    { word: "resilience", pos: "noun", japanese: "回復力、レジリエンス", definition: "The capacity to recover quickly from difficulties", example: "Resilience is more important than perfection when building new habits.", exampleJa: "新しい習慣を身につける際、レジリエンスは完璧さよりも重要です。" },
+    { word: "deteriorate", pos: "verb", japanese: "悪化する", definition: "To become progressively worse", example: "Without maintenance, the building began to deteriorate rapidly.", exampleJa: "メンテナンスなしでは、建物は急速に悪化し始めました。" },
+    { word: "harness", pos: "verb", japanese: "活用する、利用する", definition: "To control and make use of something for a particular purpose", example: "We need to harness the power of habit to achieve lasting change.", exampleJa: "永続的な変化を達成するために、習慣の力を活用する必要があります。" },
+    { word: "cue", pos: "noun", japanese: "きっかけ、合図", definition: "A signal or trigger that prompts a particular action or behavior", example: "Placing your running shoes by the door serves as a cue to exercise.", exampleJa: "ランニングシューズをドアのそばに置くことは、運動のきっかけになります。" }
+  ]
+},
+
+{
+  id: "listen-009",
+  title: "Quarterly Review Meeting",
+  topic: "Business Communication & Meeting Skills",
+  source: "Business Meeting Transcript",
+  difficulty: "TOEFL iBT+",
+  duration: "~5 min",
+  transcript: `Speaker A: All right, everyone, let's get started. Thank you for joining today's quarterly review meeting. I know everyone's busy, so I'll try to keep us on track. As you know, we're here to review Q3 performance and discuss our priorities for Q4. Sarah, would you like to kick things off with the sales update?
+
+Speaker B: Sure, thanks, David. So, looking at our Q3 numbers, overall revenue came in at fourteen point two million dollars, which represents a seven percent increase year over year. That's slightly below our target of eight percent, but considering the challenging market conditions we faced, I think the team did an excellent job. Our enterprise segment was the strongest performer, growing by twelve percent. However, I do need to flag that our small and medium business segment contracted by about three percent compared to last year.
+
+Speaker A: Thanks, Sarah. Can you elaborate on what's driving the decline in the SMB segment?
+
+Speaker B: Absolutely. There are two main factors at play. First, we've seen increased competition from lower-cost providers who are specifically targeting that segment with aggressive pricing. Second, our customer churn rate in SMB increased from eight percent to eleven percent, which is a red flag. We've been losing clients primarily due to pricing sensitivity, and to a lesser extent, onboarding issues. I've been working with the product team to address the onboarding experience, and we should see improvements in Q4.
+
+Speaker C: If I may jump in here, David. From the product side, we've actually already rolled out a simplified onboarding flow that reduces setup time by about forty percent. Early feedback has been very positive. We're also piloting a new self-service portal that should help reduce the burden on our support team while giving SMB clients more autonomy.
+
+Speaker A: That's great to hear, Michael. What's the timeline for the full rollout of the self-service portal?
+
+Speaker C: We're targeting mid-November for the beta launch, and assuming everything goes smoothly, a full rollout by the end of January. We've allocated additional engineering resources to make sure we hit that deadline.
+
+Speaker A: Good. Let's make sure we stay on top of that timeline. Now, Sarah, what's the pipeline looking like for Q4?
+
+Speaker B: The pipeline is actually quite healthy. We have about twenty-two million in qualified opportunities, which is a fifteen percent increase from where we were at this point last year. The big opportunity I want to highlight is the Henderson Group deal. If we close that, it would be worth approximately two point five million in annual recurring revenue. We're in final negotiations right now, and I'm cautiously optimistic.
+
+Speaker A: That would be a significant win. What are the main risks on that deal?
+
+Speaker B: The primary risk is their internal budget approval process. They have a new CFO who's scrutinizing all major expenditures. We've prepared a comprehensive ROI analysis to support their business case, and our champion inside the organization is confident it'll get approved, but there's always an element of uncertainty with new leadership.
+
+Speaker A: Understood. Let's make sure we provide whatever support they need to get that over the finish line. Michael, any product updates that could help strengthen our position?
+
+Speaker C: Actually, yes. We're launching version three point zero of our analytics dashboard next month, which includes several features that the Henderson Group specifically requested during the evaluation process. I'd recommend scheduling a preview demo for their team once we have a stable build ready. That could be a strong differentiator.
+
+Speaker A: Excellent idea. Sarah, can you coordinate with Michael on that?
+
+Speaker B: Already on it. We'll set something up for the first week of November.
+
+Speaker A: Perfect. Let me summarize our key action items. First, Sarah and Michael will coordinate a product demo for the Henderson Group by early November. Second, Michael's team will stay on track for the self-service portal beta launch in mid-November. Third, Sarah will present a detailed plan to address SMB churn at our next leadership meeting. Does anyone have anything else to add before we wrap up?
+
+Speaker C: Just one thing. I'd like to propose that we schedule a cross-functional workshop in October to align our product roadmap with the sales team's priorities for next year. The earlier we can get that alignment, the better positioned we'll be.
+
+Speaker A: Great suggestion. Let's get that on the calendar. All right, thanks everyone for a productive meeting. Let's execute on these action items and reconvene in two weeks for a progress check. Have a great rest of your day.`,
+  translation: `Speaker A: では皆さん、始めましょう。今日の四半期レビュー会議にご参加いただきありがとうございます。皆さん忙しいのは分かっていますので、スムーズに進めるようにします。ご存知の通り、今日はQ3の業績を振り返り、Q4の優先事項を話し合うために集まっています。サラ、営業の報告から始めてもらえますか？
+
+Speaker B: もちろん、ありがとう、デイビッド。Q3の数字を見ると、全体の売上は1,420万ドルで、前年比7パーセントの増加です。目標の8パーセントをわずかに下回っていますが、直面した厳しい市場環境を考慮すると、チームは素晴らしい仕事をしたと思います。エンタープライズセグメントが最も好調で、12パーセント成長しました。ただし、中小企業セグメントが前年比で約3パーセント縮小したことは指摘しておく必要があります。
+
+Speaker A: ありがとう、サラ。SMBセグメントの減少の要因について詳しく説明してもらえますか？
+
+Speaker B: もちろんです。主に二つの要因があります。まず、そのセグメントを積極的な価格設定で狙い撃ちする低コストプロバイダーからの競争が激化しています。次に、SMBの顧客離脱率が8パーセントから11パーセントに上昇しており、これは警告サインです。主に価格感度が原因でクライアントを失っており、それに次いでオンボーディングの問題があります。プロダクトチームと協力してオンボーディング体験の改善に取り組んでおり、Q4には改善が見られるはずです。
+
+Speaker C: ここで口を挟んでもいいですか、デイビッド。プロダクト側では、実はすでにセットアップ時間を約40パーセント短縮する簡素化されたオンボーディングフローを展開しています。初期のフィードバックは非常に好意的です。また、サポートチームの負担を軽減しつつ、SMBクライアントにより多くの自律性を与える新しいセルフサービスポータルの試験運用も行っています。
+
+Speaker A: それは良いニュースですね、マイケル。セルフサービスポータルの全面展開のタイムラインはどうなっていますか？
+
+Speaker C: ベータ版の開始を11月中旬に予定しており、すべてが順調に進めば、1月末までに全面展開する予定です。その期限に間に合うよう、追加のエンジニアリングリソースを割り当てています。
+
+Speaker A: 良いですね。そのタイムラインをしっかり管理していきましょう。さて、サラ、Q4のパイプラインはどんな状況ですか？
+
+Speaker B: パイプラインは実はかなり健全です。認定済みの案件で約2,200万ドルあり、昨年の同時期より15パーセント増加しています。特に強調したい大きな案件は、ヘンダーソン・グループの契約です。これが成立すれば、年間経常収益で約250万ドルの価値になります。現在最終交渉中で、慎重ながらも楽観的です。
+
+Speaker A: それは大きな成果になりますね。その案件の主なリスクは何ですか？
+
+Speaker B: 主なリスクは、彼らの社内予算承認プロセスです。新しいCFOがすべての主要な支出を精査しています。彼らのビジネスケースを支援するための包括的なROI分析を準備しており、社内の推進者は承認されると確信していますが、新しいリーダーシップには常に不確実性の要素があります。
+
+Speaker A: 了解です。それを最後まで成立させるために必要なサポートを確実に提供しましょう。マイケル、我々のポジションを強化するのに役立つプロダクトの更新はありますか？
+
+Speaker C: 実はあります。来月、アナリティクスダッシュボードのバージョン3.0をリリースする予定で、ヘンダーソン・グループが評価プロセス中に特にリクエストした機能がいくつか含まれています。安定したビルドの準備ができ次第、彼らのチーム向けにプレビューデモをスケジュールすることをお勧めします。それは強力な差別化要因になりえます。
+
+Speaker A: 素晴らしいアイデアですね。サラ、マイケルと連携してもらえますか？
+
+Speaker B: もう取りかかっています。11月の第1週に何か設定しましょう。
+
+Speaker A: 完璧です。主要なアクションアイテムをまとめさせてください。第一に、サラとマイケルが11月初旬までにヘンダーソン・グループ向けのプロダクトデモを調整します。第二に、マイケルのチームは11月中旬のセルフサービスポータルのベータ版リリースをスケジュール通りに進めます。第三に、サラは次のリーダーシップ会議でSMBの顧客離脱に対処するための詳細な計画を発表します。終わりにする前に、何か追加したいことはありますか？
+
+Speaker C: 一つだけ。10月に部門横断ワークショップを開催し、来年の営業チームの優先事項と製品ロードマップを一致させることを提案したいと思います。早くその連携ができれば、より良い体制を整えられます。
+
+Speaker A: 素晴らしい提案ですね。カレンダーに入れましょう。では、皆さん、生産的な会議をありがとうございました。これらのアクションアイテムを実行し、2週間後に進捗確認のために再集合しましょう。良い一日をお過ごしください。`,
+  glossary: [
+    { word: "kick things off", pos: "phrasal verb", japanese: "始める、口火を切る", definition: "To start an event, meeting, or activity", example: "Let's kick things off with a quick introduction from each team member.", exampleJa: "各チームメンバーの簡単な自己紹介から始めましょう。" },
+    { word: "year over year", pos: "adverb", japanese: "前年比で", definition: "Comparing a metric from one year to the same period in the previous year", example: "Revenue grew five percent year over year.", exampleJa: "売上は前年比で5パーセント成長しました。" },
+    { word: "flag", pos: "verb", japanese: "注意を促す、指摘する", definition: "To draw attention to something important or problematic", example: "I need to flag a potential issue with the supplier contract.", exampleJa: "サプライヤー契約に関する潜在的な問題を指摘する必要があります。" },
+    { word: "churn rate", pos: "noun", japanese: "顧客離脱率", definition: "The percentage of customers who stop using a service during a given period", example: "Reducing churn rate by two percent would significantly improve profitability.", exampleJa: "顧客離脱率を2パーセント削減すれば、収益性が大幅に改善されるでしょう。" },
+    { word: "onboarding", pos: "noun", japanese: "オンボーディング（導入プロセス）", definition: "The process of integrating a new customer or employee into a system or organization", example: "A smooth onboarding experience is crucial for customer retention.", exampleJa: "スムーズなオンボーディング体験は、顧客維持に不可欠です。" },
+    { word: "roll out", pos: "phrasal verb", japanese: "展開する、開始する", definition: "To officially launch or introduce something new", example: "We plan to roll out the new feature across all regions by March.", exampleJa: "3月までに全地域で新機能を展開する予定です。" },
+    { word: "pilot", pos: "verb", japanese: "試験運用する", definition: "To test something on a small scale before full implementation", example: "We're piloting the program in three offices before expanding nationally.", exampleJa: "全国展開する前に、3つのオフィスでプログラムを試験運用しています。" },
+    { word: "pipeline", pos: "noun", japanese: "パイプライン（見込み案件の総量）", definition: "The total of potential sales or deals at various stages of negotiation", example: "Our sales pipeline is worth over thirty million dollars this quarter.", exampleJa: "今四半期の営業パイプラインは3,000万ドル以上の価値があります。" },
+    { word: "annual recurring revenue", pos: "noun", japanese: "年間経常収益（ARR）", definition: "The predictable revenue a company expects to receive annually from subscriptions", example: "The company's annual recurring revenue exceeded fifty million dollars.", exampleJa: "同社の年間経常収益は5,000万ドルを超えました。" },
+    { word: "cautiously optimistic", pos: "adjective", japanese: "慎重ながらも楽観的な", definition: "Hopeful but careful not to be overconfident", example: "I'm cautiously optimistic that we'll close the deal by year-end.", exampleJa: "年末までに契約を成立させられると、慎重ながらも楽観的に考えています。" },
+    { word: "scrutinize", pos: "verb", japanese: "精査する、細かく調べる", definition: "To examine something very carefully and critically", example: "The auditor scrutinized every line of the financial statements.", exampleJa: "監査人は財務諸表のすべての行を精査しました。" },
+    { word: "champion", pos: "noun", japanese: "推進者、味方", definition: "A person who actively supports or advocates for a cause within an organization", example: "Having a strong champion inside the client's organization is key to winning the deal.", exampleJa: "クライアントの組織内に強力な推進者がいることが、契約獲得の鍵です。" },
+    { word: "differentiator", pos: "noun", japanese: "差別化要因", definition: "A feature or quality that distinguishes something from competitors", example: "Our customer service is our biggest differentiator in the market.", exampleJa: "当社のカスタマーサービスは、市場における最大の差別化要因です。" },
+    { word: "action item", pos: "noun", japanese: "アクションアイテム（実行すべき課題）", definition: "A specific task assigned to someone as a result of a meeting or discussion", example: "Let me summarize the action items from today's meeting.", exampleJa: "今日の会議のアクションアイテムをまとめさせてください。" },
+    { word: "cross-functional", pos: "adjective", japanese: "部門横断の", definition: "Involving or relating to multiple departments or areas of expertise", example: "Cross-functional collaboration is essential for product development.", exampleJa: "部門横断の協力は、製品開発に不可欠です。" },
+    { word: "reconvene", pos: "verb", japanese: "再集合する、再開する", definition: "To meet again after a pause or adjournment", example: "Let's reconvene after lunch to continue the discussion.", exampleJa: "昼食後に再集合して議論を続けましょう。" },
+    { word: "over the finish line", pos: "idiom", japanese: "最後まで成し遂げる", definition: "To bring something to successful completion", example: "We need one more push to get this project over the finish line.", exampleJa: "このプロジェクトを最後まで成し遂げるには、もう一押し必要です。" }
+  ]
+},
+
+{
+  id: "listen-010",
+  title: "Understanding the Bond Market: Yields, Duration, and Credit Risk",
+  topic: "Fixed Income & Financial Markets",
+  source: "Financial Education Lecture",
+  difficulty: "Academic",
+  duration: "~5 min",
+  transcript: `Welcome to today's session on fixed income fundamentals. In this lecture, we will explore three critical concepts that every finance professional must understand: bond yields, duration, and credit risk. By the end, you should have a solid framework for analyzing and evaluating fixed income securities.
+
+Let's begin with bond yields. When most people think about bonds, they think about the coupon rate — the fixed interest payment that a bondholder receives, typically expressed as a percentage of the bond's face value. For example, a bond with a face value of one thousand dollars and a five percent coupon rate pays fifty dollars per year in interest. Simple enough.
+
+However, the coupon rate alone does not tell the full story. What matters more to investors is the yield to maturity, or YTM. The yield to maturity represents the total return an investor can expect if the bond is held until it matures, assuming all coupon payments are reinvested at the same rate. Unlike the coupon rate, YTM takes into account the current market price of the bond, which may be above or below its face value. When a bond trades above its face value, we say it is trading at a premium, and its YTM will be lower than its coupon rate. When it trades below face value, it is trading at a discount, and the YTM will be higher than the coupon rate.
+
+This brings us to one of the most fundamental relationships in the bond market: the inverse relationship between bond prices and yields. When interest rates rise, bond prices fall, and when interest rates fall, bond prices rise. This occurs because newly issued bonds will offer higher coupon rates when interest rates rise, making existing bonds with lower coupons less attractive by comparison. Investors will only buy these older bonds at a discount, which drives their prices down but their yields up.
+
+Now let's turn to duration, which is perhaps the most important risk metric in fixed income analysis. Duration measures a bond's sensitivity to changes in interest rates. More specifically, it estimates the percentage change in a bond's price for a one percent change in yield. A bond with a duration of five years, for example, would be expected to decline in value by approximately five percent if interest rates rose by one percentage point.
+
+There are several types of duration, but the two most commonly used are Macaulay duration and modified duration. Macaulay duration, named after the economist Frederick Macaulay, measures the weighted average time until a bondholder receives the bond's cash flows. Modified duration adjusts Macaulay duration to provide a more direct measure of price sensitivity.
+
+Several factors influence a bond's duration. First, maturity: longer-maturity bonds have higher durations and are therefore more sensitive to interest rate changes. Second, coupon rate: bonds with higher coupon rates have lower durations because a greater proportion of their total return comes from earlier cash flows. Third, yield level: at higher yield levels, duration tends to be shorter because the present value of distant cash flows becomes smaller.
+
+For portfolio managers, understanding duration is essential for managing interest rate risk. A common strategy is duration matching, where a portfolio manager constructs a bond portfolio whose duration matches the duration of the institution's liabilities. This approach helps ensure that changes in interest rates affect both assets and liabilities equally, thereby neutralizing the interest rate risk.
+
+Finally, let's discuss credit risk, which refers to the possibility that a bond issuer may fail to make the required interest or principal payments on time. This is also known as default risk. Credit risk is fundamentally different from interest rate risk because it relates to the financial health of the issuer rather than to broad market conditions.
+
+Credit rating agencies such as Moody's, Standard and Poor's, and Fitch Ratings assess the creditworthiness of bond issuers and assign ratings accordingly. Investment-grade bonds, rated BBB minus or above by Standard and Poor's, are considered relatively safe and typically offer lower yields. High-yield bonds, sometimes called junk bonds, are rated below investment grade and carry a significantly higher risk of default. To compensate investors for this additional risk, high-yield bonds offer higher yields, which is known as the credit spread.
+
+The credit spread is the difference in yield between a corporate bond and a comparable government bond. It serves as a measure of the market's perception of credit risk. When economic conditions deteriorate, credit spreads tend to widen as investors demand higher compensation for the increased probability of default. Conversely, during periods of economic expansion and confidence, credit spreads tend to narrow.
+
+It is also important to understand the concept of credit migration. A bond's credit rating is not static — it can be upgraded or downgraded over time based on changes in the issuer's financial condition. A downgrade can have severe consequences for bondholders, as it typically triggers a decline in the bond's price and an increase in its yield. In extreme cases, a rapid series of downgrades can lead to forced selling by institutional investors who are prohibited from holding bonds below a certain rating threshold.
+
+To summarize, bond yields tell us the return we can expect from a fixed income investment. Duration tells us how sensitive that investment is to interest rate changes. And credit risk tells us how likely we are to actually receive those expected returns. These three dimensions — return, interest rate sensitivity, and creditworthiness — form the foundation of fixed income analysis and are indispensable tools for any professional working in the bond market.
+
+Thank you for your attention. In our next session, we will explore more advanced topics, including convexity and the term structure of interest rates.`,
+  translation: `本日の債券の基礎に関するセッションへようこそ。この講義では、すべての金融プロフェッショナルが理解すべき三つの重要な概念を探ります：債券利回り、デュレーション、そして信用リスクです。終わる頃には、債券証券を分析・評価するための確固たる枠組みを持てるようになるはずです。
+
+まず債券利回りから始めましょう。ほとんどの人が債券について考えるとき、クーポンレートを思い浮かべます。これは債券保有者が受け取る固定利息で、通常は債券の額面の百分率で表されます。例えば、額面1,000ドル、クーポンレート5パーセントの債券は、年間50ドルの利息を支払います。十分シンプルですね。
+
+しかし、クーポンレートだけでは全体像は分かりません。投資家にとってより重要なのは、最終利回り（YTM）です。最終利回りは、すべてのクーポン支払いが同じ利率で再投資されると仮定した場合に、債券を満期まで保有したときに投資家が期待できる総リターンを表します。クーポンレートとは異なり、YTMは債券の現在の市場価格を考慮に入れており、市場価格は額面より上にも下にもなり得ます。債券が額面より高い価格で取引されるとき、プレミアムで取引されているといい、YTMはクーポンレートよりも低くなります。額面より低い価格で取引される場合はディスカウントで取引されているといい、YTMはクーポンレートよりも高くなります。
+
+これは、債券市場で最も基本的な関係の一つにつながります：債券価格と利回りの逆相関関係です。金利が上昇すると債券価格は下落し、金利が下落すると債券価格は上昇します。これは、金利が上昇すると新規発行の債券がより高いクーポンレートを提供するため、より低いクーポンの既存債券が比較して魅力が低くなるために起こります。投資家はこれらの古い債券をディスカウントでしか買わなくなり、価格は下がりますが利回りは上がります。
+
+次にデュレーションについて見ていきましょう。これは債券分析において最も重要なリスク指標と言えるでしょう。デュレーションは、金利変動に対する債券の感応度を測定します。より具体的には、利回りが1パーセント変化した場合の債券価格の変化率を推定します。例えば、デュレーションが5年の債券は、金利が1パーセントポイント上昇した場合、約5パーセント価値が下落すると予想されます。
+
+デュレーションにはいくつかの種類がありますが、最も一般的に使用されるのはマコーレー・デュレーションと修正デュレーションの二つです。経済学者フレデリック・マコーレーにちなんで名付けられたマコーレー・デュレーションは、債券保有者が債券のキャッシュフローを受け取るまでの加重平均時間を測定します。修正デュレーションは、マコーレー・デュレーションを調整して、価格感応度のより直接的な指標を提供します。
+
+いくつかの要因が債券のデュレーションに影響を与えます。第一に満期：満期が長い債券はデュレーションが高く、したがって金利変動に対する感応度が高くなります。第二にクーポンレート：クーポンレートが高い債券はデュレーションが低くなります。なぜなら、総リターンのより大きな割合が早期のキャッシュフローから来るからです。第三に利回り水準：利回り水準が高いほど、将来のキャッシュフローの現在価値が小さくなるため、デュレーションは短くなる傾向があります。
+
+ポートフォリオマネージャーにとって、デュレーションの理解は金利リスクの管理に不可欠です。一般的な戦略はデュレーション・マッチングで、ポートフォリオマネージャーが、機関の負債のデュレーションと一致するデュレーションを持つ債券ポートフォリオを構築するものです。このアプローチにより、金利の変動が資産と負債に等しく影響を与え、金利リスクを中和することができます。
+
+最後に、信用リスクについて議論しましょう。これは、債券発行体が必要な利息または元本の支払いを期日通りに行えない可能性を指します。これはデフォルトリスクとも呼ばれます。信用リスクは金利リスクとは根本的に異なります。なぜなら、広範な市場環境ではなく、発行体の財務健全性に関連するものだからです。
+
+ムーディーズ、スタンダード・アンド・プアーズ、フィッチ・レーティングスなどの格付け機関は、債券発行体の信用力を評価し、それに応じた格付けを付与します。投資適格債は、スタンダード・アンド・プアーズでBBBマイナス以上の格付けで、比較的安全と見なされ、通常はより低い利回りを提供します。ハイイールド債は、ジャンク債とも呼ばれ、投資適格未満の格付けで、デフォルトのリスクが大幅に高くなります。この追加のリスクを投資家に補償するために、ハイイールド債はより高い利回りを提供しますが、これはクレジットスプレッドとして知られています。
+
+クレジットスプレッドは、社債と同等の政府債の利回りの差です。これは、市場の信用リスクに対する認識の指標となります。経済状況が悪化すると、投資家がデフォルトの確率上昇に対してより高い補償を要求するため、クレジットスプレッドは拡大する傾向があります。逆に、経済拡大と信頼の時期には、クレジットスプレッドは縮小する傾向があります。
+
+信用格付けの移行（クレジット・マイグレーション）の概念を理解することも重要です。債券の信用格付けは静的ではなく、発行体の財務状況の変化に基づいて時間の経過とともに格上げまたは格下げされる可能性があります。格下げは債券保有者に深刻な影響を及ぼす可能性があり、通常は債券価格の下落と利回りの上昇を引き起こします。極端な場合、急速な一連の格下げは、一定の格付け基準以下の債券の保有を禁じられている機関投資家による強制売却につながる可能性があります。
+
+まとめると、債券利回りは債券投資から期待できるリターンを教えてくれます。デュレーションは、その投資が金利変動にどれだけ敏感であるかを教えてくれます。そして信用リスクは、期待されるリターンを実際に受け取れる可能性を教えてくれます。これら三つの次元、すなわちリターン、金利感応度、信用力は、債券分析の基盤を形成し、債券市場で働くすべてのプロフェッショナルにとって不可欠なツールです。
+
+ご清聴ありがとうございました。次回のセッションでは、コンベクシティや金利の期間構造など、より高度なトピックを探ります。`,
+  glossary: [
+    { word: "fixed income", pos: "noun", japanese: "債券（固定利付証券）", definition: "An investment that provides returns in the form of fixed periodic payments and eventual return of principal", example: "Pension funds typically allocate a large portion of their assets to fixed income.", exampleJa: "年金基金は通常、資産の大部分を債券に配分します。" },
+    { word: "coupon rate", pos: "noun", japanese: "クーポンレート（表面利率）", definition: "The annual interest rate paid on a bond, expressed as a percentage of face value", example: "A bond with a three percent coupon rate pays thirty dollars per year on a thousand-dollar face value.", exampleJa: "クーポンレート3パーセントの債券は、額面1,000ドルに対して年間30ドルを支払います。" },
+    { word: "face value", pos: "noun", japanese: "額面価格", definition: "The nominal value of a bond, repaid to the holder at maturity", example: "Most corporate bonds have a face value of one thousand dollars.", exampleJa: "ほとんどの社債の額面価格は1,000ドルです。" },
+    { word: "yield to maturity", pos: "noun", japanese: "最終利回り（YTM）", definition: "The total return anticipated on a bond if held until it matures", example: "The yield to maturity on the ten-year Treasury is currently four point two percent.", exampleJa: "10年物国債の最終利回りは現在4.2パーセントです。" },
+    { word: "premium", pos: "noun", japanese: "プレミアム（額面超過価格）", definition: "The amount by which a bond's market price exceeds its face value", example: "Bonds with high coupon rates often trade at a premium.", exampleJa: "クーポンレートの高い債券は、しばしばプレミアムで取引されます。" },
+    { word: "inverse relationship", pos: "noun", japanese: "逆相関関係", definition: "A relationship where one variable increases as the other decreases", example: "There is an inverse relationship between bond prices and interest rates.", exampleJa: "債券価格と金利の間には逆相関関係があります。" },
+    { word: "duration", pos: "noun", japanese: "デュレーション（金利感応度）", definition: "A measure of a bond's sensitivity to changes in interest rates", example: "A portfolio with a duration of seven years carries significant interest rate risk.", exampleJa: "デュレーション7年のポートフォリオは、かなりの金利リスクを抱えています。" },
+    { word: "modified duration", pos: "noun", japanese: "修正デュレーション", definition: "An adjusted measure of duration that directly estimates price sensitivity to yield changes", example: "Modified duration is widely used by traders to assess interest rate exposure.", exampleJa: "修正デュレーションは、金利エクスポージャーを評価するためにトレーダーに広く使われています。" },
+    { word: "duration matching", pos: "noun", japanese: "デュレーション・マッチング", definition: "A strategy that aligns the duration of assets with liabilities to neutralize interest rate risk", example: "Insurance companies use duration matching to protect against interest rate fluctuations.", exampleJa: "保険会社は金利変動から守るためにデュレーション・マッチングを使用しています。" },
+    { word: "default risk", pos: "noun", japanese: "デフォルトリスク（債務不履行リスク）", definition: "The risk that a borrower will be unable to make required debt payments", example: "Government bonds generally carry lower default risk than corporate bonds.", exampleJa: "国債は一般的に社債よりもデフォルトリスクが低いです。" },
+    { word: "creditworthiness", pos: "noun", japanese: "信用力", definition: "An assessment of how likely a borrower is to repay their debts", example: "Lenders evaluate creditworthiness before approving loan applications.", exampleJa: "金融機関はローンの申請を承認する前に信用力を評価します。" },
+    { word: "investment-grade", pos: "adjective", japanese: "投資適格の", definition: "A bond rating indicating relatively low risk of default", example: "Many pension funds are restricted to holding only investment-grade bonds.", exampleJa: "多くの年金基金は、投資適格債のみを保有するよう制限されています。" },
+    { word: "credit spread", pos: "noun", japanese: "クレジットスプレッド（信用スプレッド）", definition: "The yield difference between a corporate bond and a comparable government bond", example: "Credit spreads widened sharply during the financial crisis.", exampleJa: "クレジットスプレッドは金融危機の間に急激に拡大しました。" },
+    { word: "credit migration", pos: "noun", japanese: "信用格付けの移行", definition: "The movement of a bond's credit rating to a higher or lower category over time", example: "Credit migration risk must be considered in long-term bond portfolios.", exampleJa: "信用格付けの移行リスクは、長期債券ポートフォリオにおいて考慮する必要があります。" },
+    { word: "threshold", pos: "noun", japanese: "閾値、基準値", definition: "A level or point at which something begins or changes", example: "If the credit rating falls below the investment-grade threshold, many funds must sell.", exampleJa: "信用格付けが投資適格の閾値を下回ると、多くのファンドは売却しなければなりません。" },
+    { word: "convexity", pos: "noun", japanese: "コンベクシティ（凸性）", definition: "A measure of the curvature in the relationship between bond prices and yields", example: "Convexity provides a more accurate estimate of price changes for large yield movements.", exampleJa: "コンベクシティは、大きな利回り変動に対する価格変化のより正確な推定を提供します。" },
+    { word: "indispensable", pos: "adjective", japanese: "不可欠な", definition: "Absolutely necessary; impossible to do without", example: "A solid understanding of duration is indispensable for bond portfolio managers.", exampleJa: "デュレーションの確実な理解は、債券ポートフォリオマネージャーにとって不可欠です。" }
+  ]
+}
 ];

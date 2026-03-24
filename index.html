@@ -340,6 +340,46 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   border-radius: 4px; background: var(--purple); color: white;
   font-weight: 600; margin-left: 6px;
 }
+.listen-controls-card {
+  padding: 14px; margin-bottom: 12px;
+}
+.listen-main-controls {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.listen-speed-row {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+}
+.listen-progress-bar {
+  height: 4px; background: var(--surface2); border-radius: 2px;
+  overflow: hidden; margin-bottom: 4px;
+}
+.listen-progress-fill {
+  height: 100%; background: var(--accent); border-radius: 2px;
+  width: 0%; transition: width 0.3s;
+}
+.listen-sentence {
+  cursor: pointer; padding: 2px 0; border-radius: 4px; transition: background 0.2s;
+}
+.listen-sentence:hover { background: rgba(59,130,246,0.1); }
+.listen-sentence.active {
+  background: rgba(59,130,246,0.2); border-radius: 4px;
+  box-shadow: inset 3px 0 0 var(--accent);
+  padding-left: 8px;
+}
+.listen-sentence.played { color: var(--text2); }
+.listen-para-label {
+  display: inline-block; font-size: 10px; color: var(--accent2);
+  font-weight: 700; margin: 12px 0 4px; cursor: pointer;
+  padding: 2px 8px; border-radius: 4px; background: var(--surface2);
+}
+.listen-para-label:hover { background: var(--accent); color: white; }
+.shadow-pause-indicator {
+  text-align: center; padding: 8px; margin: 4px 0;
+  background: var(--yellow-bg); border-radius: 8px;
+  font-size: 12px; color: var(--yellow); font-weight: 600;
+  display: none;
+}
+.shadow-pause-indicator.show { display: block; }
 
 @media (min-width: 600px) {
   .stats-grid { grid-template-columns: repeat(3, 1fr); }
@@ -511,18 +551,43 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div id="listen-topic-badge" class="essay-topic"></div>
     <h2 id="listen-title" style="font-size:18px; margin: 8px 0 4px;"></h2>
     <div id="listen-meta" class="essay-meta" style="margin-bottom:16px;"></div>
-    <div id="listen-player" style="margin-bottom:16px; border-radius:12px; overflow:hidden; aspect-ratio:16/9; background:var(--surface2);"></div>
-    <div style="display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;">
+
+    <!-- Audio Controls -->
+    <div class="card listen-controls-card">
+      <div class="listen-main-controls">
+        <button class="btn primary" onclick="listenPlay()" id="listen-btn-play">&#9654; Play</button>
+        <button class="btn" onclick="listenPause()" id="listen-btn-pause" style="display:none;">&#10074;&#10074; Pause</button>
+        <button class="btn" onclick="listenStop()">&#9632; Stop</button>
+        <button class="btn" id="listen-btn-repeat-para" onclick="toggleParaRepeat()">&#128257; Para Repeat: OFF</button>
+      </div>
+      <div class="listen-speed-row">
+        <span style="font-size:12px; color:var(--text2);">Speed</span>
+        <input type="range" min="0.5" max="2.0" step="0.1" value="1.0" id="listen-speed" oninput="updateListenSpeedLabel()" style="width:100px; accent-color:var(--accent);">
+        <span id="listen-speed-label" style="font-size:12px; min-width:32px;">1.0x</span>
+      </div>
+      <div class="listen-progress-bar">
+        <div class="listen-progress-fill" id="listen-progress-fill"></div>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text2);">
+        <span id="listen-sent-current">0</span>
+        <span>/ <span id="listen-sent-total">0</span> sentences</span>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
       <button class="btn" id="btn-listen-translation" onclick="toggleListenTranslation()">&#127471;&#127477; Translation</button>
       <button class="btn" id="btn-listen-highlight" onclick="toggleListenHighlight()">&#128161; Highlight</button>
+      <button class="btn" id="btn-listen-shadow" onclick="toggleShadowMode()">&#127908; Shadow</button>
     </div>
-    <div class="card" style="margin-bottom:12px;">
+
+    <div class="card" style="margin-bottom:12px; padding:12px;">
       <div style="font-size:12px; color:var(--accent2); font-weight:600; margin-bottom:8px;">Transcript</div>
       <div class="essay-bilingual">
         <div class="essay-en" id="listen-transcript" style="font-size:15px; line-height:1.9;"></div>
         <div class="essay-ja-panel" id="listen-ja-panel"></div>
       </div>
     </div>
+
     <button class="section-toggle" onclick="toggleSection(this)">
       Glossary <span class="arrow">▼</span>
     </button>
@@ -1745,44 +1810,91 @@ function applySyncCode() {
 // === LISTENING ===
 let currentListening = null;
 let listenHighlightMode = false;
+let listenShadowMode = false;
+let listenSentences = [];
+let listenParagraphs = []; // [{start, end}] indices into listenSentences
+let listenSentIndex = 0;
+let listenSessionId = 0;
+let listenPlaying = false;
+let listenParaRepeat = false;
+let listenCurrentPara = 0;
 
 function updateListenPage() {
   if (typeof LISTENING === 'undefined' || !LISTENING || LISTENING.length === 0) {
     document.getElementById('listen-list').innerHTML = '<div class="empty-state"><p>No listening exercises yet.</p></div>';
     return;
   }
+  const wc = (t) => t ? t.split(/\s+/).filter(Boolean).length : 0;
   const html = LISTENING.map((item, i) => {
+    const words = wc(item.transcript);
     return `<div class="listen-card" onclick="openListening(${i})">
       <span class="essay-topic">${item.topic || 'Listening'}</span>
       <span class="listen-duration">${item.duration || '~1 min'}</span>
       <div class="essay-title" style="margin-top:6px;">${item.title}</div>
-      <div class="listen-source">${item.source || ''} · ${item.difficulty || 'TOEFL iBT'}</div>
+      <div class="listen-source">${item.source || ''} · ${item.difficulty || 'TOEFL iBT'} · ${words} words</div>
     </div>`;
   }).join('');
   document.getElementById('listen-list').innerHTML = html;
+}
+
+function splitTranscriptSentences(text) {
+  const paragraphs = text.split(/\n\n+/).map(p => p.trim()).filter(Boolean);
+  const sentences = [];
+  const paraRanges = [];
+  paragraphs.forEach(para => {
+    const start = sentences.length;
+    const sents = para.match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [para];
+    sents.forEach(s => {
+      const trimmed = s.trim();
+      if (trimmed) sentences.push(trimmed);
+    });
+    paraRanges.push({ start, end: sentences.length });
+  });
+  return { sentences, paraRanges };
 }
 
 function openListening(index) {
   if (typeof LISTENING === 'undefined') return;
   currentListening = LISTENING[index];
   if (!currentListening) return;
+
+  // Stop any ongoing speech
+  listenStop();
+
   document.getElementById('listen-topic-badge').textContent = currentListening.topic || 'Listening';
   document.getElementById('listen-title').textContent = currentListening.title;
   document.getElementById('listen-meta').textContent = `${currentListening.source || ''} · ${currentListening.duration || ''} · ${currentListening.difficulty || ''}`;
 
-  // YouTube embed
-  const playerDiv = document.getElementById('listen-player');
-  if (currentListening.youtubeId) {
-    let src = `https://www.youtube.com/embed/${currentListening.youtubeId}?rel=0`;
-    if (currentListening.startTime) src += `&start=${currentListening.startTime}`;
-    if (currentListening.endTime) src += `&end=${currentListening.endTime}`;
-    playerDiv.innerHTML = `<iframe width="100%" height="100%" src="${src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:12px;"></iframe>`;
-  } else {
-    playerDiv.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text2);">No video available</div>';
-  }
+  // Parse sentences
+  const parsed = splitTranscriptSentences(currentListening.transcript || '');
+  listenSentences = parsed.sentences;
+  listenParagraphs = parsed.paraRanges;
+  listenSentIndex = 0;
+  listenCurrentPara = 0;
 
-  // Transcript
-  document.getElementById('listen-transcript').textContent = currentListening.transcript || '';
+  // Speed
+  const speedInput = document.getElementById('listen-speed');
+  speedInput.value = getStoredSpeechSpeed().toFixed(1);
+  updateListenSpeedLabel();
+
+  // Progress
+  document.getElementById('listen-sent-total').textContent = listenSentences.length;
+  document.getElementById('listen-sent-current').textContent = '0';
+  document.getElementById('listen-progress-fill').style.width = '0%';
+
+  // Reset UI
+  document.getElementById('listen-btn-play').style.display = 'inline-flex';
+  document.getElementById('listen-btn-pause').style.display = 'none';
+  listenParaRepeat = false;
+  document.getElementById('listen-btn-repeat-para').innerHTML = '&#128257; Para Repeat: OFF';
+  document.getElementById('listen-btn-repeat-para').classList.remove('active-toggle');
+  listenShadowMode = false;
+  document.getElementById('btn-listen-shadow').classList.remove('active-toggle');
+
+  // Render transcript with sentence spans
+  renderListenTranscript();
+
+  // Translation
   document.getElementById('listen-ja-panel').textContent = currentListening.translation || '';
   document.getElementById('listen-ja-panel').classList.remove('open');
   document.getElementById('btn-listen-translation').classList.remove('active-toggle');
@@ -1821,7 +1933,7 @@ function openListening(index) {
           reviewCount: 0, correctCount: 0, level: 0, lastReview: null,
           word: g.word, japanese: g.japanese, pos: g.pos || '',
           definition: g.definition || '', example: g.example || '', exampleJa: g.exampleJa || '',
-          essayId: 'listen-' + index, firstSeen: formatLocalDate()
+          essayId: currentListening.id || 'listen-' + index, firstSeen: formatLocalDate()
         };
       }
     });
@@ -1829,6 +1941,212 @@ function openListening(index) {
   }
 
   showPage('listen-detail');
+}
+
+function renderListenTranscript() {
+  if (!currentListening) return;
+  const container = document.getElementById('listen-transcript');
+  const glossaryWords = (currentListening.glossary || []).map(g => g.word).sort((a, b) => b.length - a.length);
+  const jaMap = {};
+  (currentListening.glossary || []).forEach(g => { jaMap[g.word.toLowerCase()] = g.japanese; });
+  const pattern = glossaryWords.length > 0 ?
+    new RegExp('\\b(' + glossaryWords.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'gi') : null;
+
+  let html = '';
+  listenParagraphs.forEach((para, pi) => {
+    html += `<div class="listen-para-label" onclick="listenPlayFromPara(${pi})">&#9654; Para ${pi + 1}</div>`;
+    for (let si = para.start; si < para.end; si++) {
+      let sentHtml = escapeHtml(listenSentences[si]);
+      if (listenHighlightMode && pattern) {
+        sentHtml = '';
+        let lastIdx = 0;
+        const text = listenSentences[si];
+        let m;
+        pattern.lastIndex = 0;
+        while ((m = pattern.exec(text)) !== null) {
+          sentHtml += escapeHtml(text.slice(lastIdx, m.index));
+          const ja = jaMap[m[0].toLowerCase()] || '';
+          sentHtml += `<span class="highlight-word">${escapeHtml(m[0])}<span class="highlight-ja">${escapeHtml(ja)}</span></span>`;
+          lastIdx = pattern.lastIndex;
+        }
+        sentHtml += escapeHtml(text.slice(lastIdx));
+      }
+      html += `<span class="listen-sentence" id="ls-${si}" onclick="listenPlayFromSentence(${si})">${sentHtml} </span>`;
+    }
+    html += '<br>';
+  });
+  container.innerHTML = html;
+}
+
+function getListenSpeed() {
+  return parseFloat(document.getElementById('listen-speed').value);
+}
+
+function updateListenSpeedLabel() {
+  const speed = getListenSpeed();
+  document.getElementById('listen-speed-label').textContent = speed.toFixed(1) + 'x';
+  localStorage.setItem(SPEECH_SPEED_KEY, speed.toFixed(1));
+}
+
+function updateListenProgress() {
+  document.getElementById('listen-sent-current').textContent = listenSentIndex;
+  const pct = listenSentences.length > 0 ? (listenSentIndex / listenSentences.length * 100) : 0;
+  document.getElementById('listen-progress-fill').style.width = pct + '%';
+}
+
+function highlightListenSentence(idx) {
+  document.querySelectorAll('.listen-sentence').forEach(el => {
+    el.classList.remove('active');
+  });
+  const el = document.getElementById('ls-' + idx);
+  if (el) {
+    el.classList.add('active');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  // Mark previous as played
+  for (let i = 0; i < idx; i++) {
+    const prev = document.getElementById('ls-' + i);
+    if (prev) prev.classList.add('played');
+  }
+}
+
+function findParaForSentence(sentIdx) {
+  for (let i = 0; i < listenParagraphs.length; i++) {
+    if (sentIdx >= listenParagraphs[i].start && sentIdx < listenParagraphs[i].end) return i;
+  }
+  return 0;
+}
+
+function listenPlaySentence(idx, sessionId) {
+  if (!isSpeechSupported() || sessionId !== listenSessionId) return;
+  if (idx >= listenSentences.length) {
+    // End of transcript
+    listenResetUi();
+    showToast('Listening complete!');
+    return;
+  }
+
+  // Para repeat check
+  if (listenParaRepeat) {
+    const para = listenParagraphs[listenCurrentPara];
+    if (idx >= para.end) {
+      // Restart paragraph
+      idx = para.start;
+    }
+  }
+
+  listenSentIndex = idx;
+  updateListenProgress();
+  highlightListenSentence(idx);
+  listenCurrentPara = findParaForSentence(idx);
+
+  const utterance = new SpeechSynthesisUtterance(listenSentences[idx]);
+  utterance.lang = 'en-US';
+  utterance.rate = getListenSpeed() * 0.95;
+  utterance.pitch = 1.05;
+  const voice = getBestVoice();
+  if (voice) utterance.voice = voice;
+
+  utterance.onstart = () => {
+    if (sessionId !== listenSessionId) return;
+    listenPlaying = true;
+    document.getElementById('listen-btn-play').style.display = 'none';
+    document.getElementById('listen-btn-pause').style.display = 'inline-flex';
+    document.getElementById('listen-btn-pause').innerHTML = '&#10074;&#10074; Pause';
+  };
+
+  utterance.onend = () => {
+    if (sessionId !== listenSessionId) return;
+    // Shadow mode: pause after each sentence
+    if (listenShadowMode) {
+      listenPlaying = false;
+      document.getElementById('listen-btn-play').style.display = 'inline-flex';
+      document.getElementById('listen-btn-play').innerHTML = '&#9654; Next';
+      document.getElementById('listen-btn-pause').style.display = 'none';
+      // Store next index
+      listenSentIndex = idx + 1;
+      updateListenProgress();
+      return;
+    }
+    listenPlaySentence(idx + 1, sessionId);
+  };
+
+  utterance.onerror = () => {
+    if (sessionId !== listenSessionId) return;
+    listenResetUi();
+    showToast('Audio playback failed');
+  };
+
+  speechSynthesis.speak(utterance);
+}
+
+function listenPlay() {
+  if (!currentListening) return;
+  if (!isSpeechSupported()) { showToast('Speech synthesis not supported'); return; }
+  listenSessionId++;
+  speechSynthesis.cancel();
+  const sessionId = listenSessionId;
+  document.getElementById('listen-btn-play').innerHTML = '&#9654; Play';
+  setTimeout(() => listenPlaySentence(listenSentIndex, sessionId), 50);
+}
+
+function listenPause() {
+  if (!isSpeechSupported()) return;
+  if (speechSynthesis.speaking) {
+    if (speechSynthesis.paused) {
+      speechSynthesis.resume();
+      document.getElementById('listen-btn-pause').innerHTML = '&#10074;&#10074; Pause';
+    } else {
+      speechSynthesis.pause();
+      document.getElementById('listen-btn-pause').innerHTML = '&#9654; Resume';
+    }
+  }
+}
+
+function listenStop() {
+  listenSessionId++;
+  listenPlaying = false;
+  if (isSpeechSupported()) speechSynthesis.cancel();
+  listenSentIndex = 0;
+  updateListenProgress();
+  listenResetUi();
+  // Clear highlights
+  document.querySelectorAll('.listen-sentence').forEach(el => {
+    el.classList.remove('active', 'played');
+  });
+}
+
+function listenResetUi() {
+  listenPlaying = false;
+  document.getElementById('listen-btn-play').style.display = 'inline-flex';
+  document.getElementById('listen-btn-play').innerHTML = '&#9654; Play';
+  document.getElementById('listen-btn-pause').style.display = 'none';
+}
+
+function listenPlayFromSentence(idx) {
+  listenSentIndex = idx;
+  listenCurrentPara = findParaForSentence(idx);
+  listenPlay();
+}
+
+function listenPlayFromPara(paraIdx) {
+  if (paraIdx < 0 || paraIdx >= listenParagraphs.length) return;
+  listenCurrentPara = paraIdx;
+  listenSentIndex = listenParagraphs[paraIdx].start;
+  listenPlay();
+}
+
+function toggleParaRepeat() {
+  listenParaRepeat = !listenParaRepeat;
+  const btn = document.getElementById('listen-btn-repeat-para');
+  btn.innerHTML = listenParaRepeat ? '&#128257; Para Repeat: ON' : '&#128257; Para Repeat: OFF';
+  btn.classList.toggle('active-toggle', listenParaRepeat);
+}
+
+function toggleShadowMode() {
+  listenShadowMode = !listenShadowMode;
+  document.getElementById('btn-listen-shadow').classList.toggle('active-toggle', listenShadowMode);
+  if (listenShadowMode) showToast('Shadow mode: pauses after each sentence');
 }
 
 function toggleListenTranslation() {
@@ -1844,39 +2162,12 @@ function toggleListenHighlight() {
   renderListenTranscript();
 }
 
-function renderListenTranscript() {
-  if (!currentListening) return;
-  const container = document.getElementById('listen-transcript');
-  if (!listenHighlightMode || !currentListening.glossary) {
-    container.textContent = currentListening.transcript || '';
-    return;
-  }
-  const words = currentListening.glossary.map(g => g.word).sort((a, b) => b.length - a.length);
-  const jaMap = {};
-  currentListening.glossary.forEach(g => { jaMap[g.word.toLowerCase()] = g.japanese; });
-  const pattern = new RegExp('\\b(' + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'gi');
-  const text = currentListening.transcript;
-  let html = '';
-  let lastIndex = 0;
-  let match;
-  while ((match = pattern.exec(text)) !== null) {
-    html += escapeHtml(text.slice(lastIndex, match.index));
-    const matched = match[0];
-    const ja = jaMap[matched.toLowerCase()] || '';
-    html += `<span class="highlight-word">${escapeHtml(matched)}<span class="highlight-ja">${escapeHtml(ja)}</span></span>`;
-    lastIndex = pattern.lastIndex;
-  }
-  html += escapeHtml(text.slice(lastIndex));
-  container.innerHTML = html;
-}
-
 // Extend showPage to handle listen-detail
 const _origShowPage = showPage;
 showPage = function(page) {
-  // Cleanup YouTube player when leaving listen-detail
-  if (page !== 'listen-detail') {
-    const playerDiv = document.getElementById('listen-player');
-    if (playerDiv && playerDiv.querySelector('iframe')) playerDiv.innerHTML = '';
+  // Stop listen speech when leaving
+  if (page !== 'listen-detail' && listenPlaying) {
+    listenStop();
   }
   if (page === 'listen-detail') {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
