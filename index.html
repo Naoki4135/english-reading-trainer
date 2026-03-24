@@ -277,7 +277,23 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   background: transparent; color: var(--accent2); font-size: 13px; cursor: pointer; font-family: inherit;
 }
 .flashcard-speak-btn:hover { background: var(--accent); color: white; }
-.flashcard-emoji { font-size: 48px; margin-bottom: 8px; line-height: 1; }
+.flashcard-visual {
+  width: 100%; max-width: 280px; border-radius: 16px; padding: 20px 16px 12px;
+  margin-bottom: 12px; text-align: center; position: relative; overflow: hidden;
+}
+.flashcard-visual-bg {
+  position: absolute; inset: 0; opacity: 0.15; border-radius: 16px;
+}
+.flashcard-visual-emojis {
+  font-size: 44px; line-height: 1.3; letter-spacing: 6px;
+  position: relative; z-index: 1;
+}
+.flashcard-visual-hint {
+  font-size: 11px; color: var(--text2); margin-top: 6px;
+  font-style: italic; position: relative; z-index: 1;
+  background: rgba(15,23,42,0.6); display: inline-block;
+  padding: 2px 10px; border-radius: 10px;
+}
 .flashcard-hint { font-size: 12px; color: var(--text2); margin-top: 12px; }
 .flashcard-progress { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
 .rating-buttons { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
@@ -503,7 +519,11 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div id="quiz-area">
       <div class="flashcard-progress" id="quiz-progress"></div>
       <div class="flashcard" id="flashcard" onclick="revealFlashcard()">
-        <div class="flashcard-emoji" id="fc-emoji"></div>
+        <div class="flashcard-visual" id="fc-visual">
+          <div class="flashcard-visual-bg" id="fc-visual-bg"></div>
+          <div class="flashcard-visual-emojis" id="fc-emoji"></div>
+          <div class="flashcard-visual-hint" id="fc-emoji-hint"></div>
+        </div>
         <div class="flashcard-word" id="fc-word"></div>
         <div class="flashcard-pos" id="fc-pos"></div>
         <div class="flashcard-hint" id="fc-hint">Tap to reveal</div>
@@ -767,86 +787,259 @@ function getStoredSpeechSpeed() {
   return Number.isFinite(saved) ? clamp(saved, 0.5, 2.0) : 1.0;
 }
 
-// Word → Emoji visual mapping for flashcards
-const WORD_EMOJI_MAP = {
+// Word → Visual scene mapping for flashcards
+// Returns {emojis, hint, color} for each word
+const WORD_VISUAL_MAP = {
   // Nature & Environment
-  mitigation:'🛡️',adaptation:'🔄',resilience:'💪',climate:'🌍',emission:'💨',pollution:'🏭',
-  ecosystem:'🌿',biodiversity:'🦋',deforestation:'🪓',sustainability:'♻️',drought:'☀️',flood:'🌊',
-  habitat:'🏕️',conservation:'🌱',renewable:'🔋',carbon:'⚫',glacier:'🧊',extinction:'💀',
-  vegetation:'🌳',wilderness:'🏔️',erosion:'🏜️',hazard:'⚠️',inertia:'🔁',
+  mitigation:{e:'🌍🛡️💨',h:'地球を守る盾',c:'#22c55e'},
+  adaptation:{e:'🌊🏠🔧',h:'環境に合わせて変化',c:'#06b6d4'},
+  resilience:{e:'🌱💪🔄',h:'倒れても何度でも立ち上がる',c:'#22c55e'},
+  climate:{e:'🌡️🌍☀️',h:'地球全体の天候パターン',c:'#06b6d4'},
+  emission:{e:'🏭💨🌫️',h:'工場から出る排気ガス',c:'#6b7280'},
+  pollution:{e:'🏭🌫️🐟',h:'汚染された空気と水',c:'#6b7280'},
+  ecosystem:{e:'🌳🦋🐸',h:'生き物がつながる自然の輪',c:'#22c55e'},
+  biodiversity:{e:'🦁🌺🐠',h:'多様な生き物の共存',c:'#22c55e'},
+  deforestation:{e:'🌳🪓😢',h:'森林が切り倒される',c:'#ef4444'},
+  sustainability:{e:'♻️🌱🌍',h:'未来のために持続する',c:'#22c55e'},
+  drought:{e:'☀️🏜️💧',h:'雨が降らず大地が渇く',c:'#f97316'},
+  flood:{e:'🌧️🌊🏠',h:'水があふれ出す',c:'#3b82f6'},
+  habitat:{e:'🏔️🐻🌲',h:'動物たちが暮らす場所',c:'#22c55e'},
+  conservation:{e:'🌿🤲🦜',h:'自然を大切に守る',c:'#22c55e'},
+  renewable:{e:'☀️💨🔋',h:'太陽・風から繰り返し得るエネルギー',c:'#22c55e'},
+  carbon:{e:'⚫💨🌡️',h:'温暖化の原因物質',c:'#6b7280'},
+  glacier:{e:'🏔️🧊❄️',h:'巨大な氷の山',c:'#06b6d4'},
+  extinction:{e:'🦕💀🌑',h:'種が完全に消えてしまう',c:'#ef4444'},
+  erosion:{e:'🌊🏖️⬇️',h:'少しずつ削り取られていく',c:'#f97316'},
+  hazard:{e:'⚠️💥🚧',h:'危険が潜んでいる',c:'#ef4444'},
+  inertia:{e:'🪨➡️➡️',h:'止まらず動き続ける力',c:'#6b7280'},
+  vegetation:{e:'🌳🌿🌾',h:'大地を覆う植物たち',c:'#22c55e'},
+
   // Economy & Finance
-  inflation:'📈',recession:'📉',deficit:'🔴',surplus:'🟢',tariff:'🚧',subsidy:'💰',
-  austerity:'✂️',stimulus:'💉',dividend:'💵',equity:'📊',portfolio:'📁',bond:'🔗',
-  leverage:'⚖️',liquidity:'💧',depreciation:'⬇️',appreciation:'⬆️',monopoly:'👑',
-  commodity:'🛢️',yield:'🌾',collateral:'🏠',insolvency:'🚨',volatility:'🎢',
+  inflation:{e:'💵📈🛒',h:'物の値段がどんどん上がる',c:'#ef4444'},
+  recession:{e:'📉🏢😰',h:'経済が縮小していく',c:'#ef4444'},
+  deficit:{e:'💰📉🔴',h:'出ていくお金が多すぎる',c:'#ef4444'},
+  surplus:{e:'💰📈🟢',h:'入ってくるお金が余る',c:'#22c55e'},
+  tariff:{e:'🚢🚧💰',h:'輸入品にかかる税金',c:'#f97316'},
+  subsidy:{e:'🏛️➡️💰',h:'政府からの資金援助',c:'#3b82f6'},
+  austerity:{e:'✂️💰😣',h:'支出を厳しく切り詰める',c:'#6b7280'},
+  stimulus:{e:'💉💰📈',h:'経済を元気にする注入',c:'#22c55e'},
+  dividend:{e:'📊➡️💵',h:'株から受け取るご褒美',c:'#22c55e'},
+  equity:{e:'🏢📊💹',h:'会社の所有権＝株',c:'#3b82f6'},
+  portfolio:{e:'📁📊🎯',h:'投資の組み合わせ',c:'#a78bfa'},
+  bond:{e:'📜🏛️💵',h:'お金を貸す約束の証書',c:'#3b82f6'},
+  leverage:{e:'⚖️💰📈',h:'借金で投資を大きくする',c:'#f97316'},
+  liquidity:{e:'💧💰🔄',h:'すぐに現金に変えられる',c:'#06b6d4'},
+  depreciation:{e:'💴⬇️📉',h:'価値がだんだん下がる',c:'#ef4444'},
+  appreciation:{e:'💴⬆️📈',h:'価値がだんだん上がる',c:'#22c55e'},
+  monopoly:{e:'👑🏢🚫',h:'たった一社が市場を支配',c:'#f97316'},
+  commodity:{e:'🛢️🌾⛏️',h:'原油・穀物などの原材料',c:'#f97316'},
+  yield:{e:'🌱➡️🌾',h:'投資から得られる実り',c:'#22c55e'},
+  collateral:{e:'🏠🔒💰',h:'借金の担保に差し出すもの',c:'#3b82f6'},
+  insolvency:{e:'💰❌😱',h:'借金を返せなくなる状態',c:'#ef4444'},
+  volatility:{e:'📈📉🎢',h:'価格が激しく上下する',c:'#f97316'},
+  benchmark:{e:'📏🎯📊',h:'比較の基準となるもの',c:'#3b82f6'},
+
   // Technology
-  algorithm:'🧮',automation:'🤖',proliferation:'📡',obsolescence:'📟',surveillance:'📹',
-  infrastructure:'🏗️',innovation:'💡',encryption:'🔒',bandwidth:'📶',interface:'🖥️',
+  algorithm:{e:'🧮⚙️💻',h:'問題を解く手順書',c:'#a78bfa'},
+  automation:{e:'🤖⚙️🔄',h:'機械が自動で動く',c:'#a78bfa'},
+  proliferation:{e:'1️⃣➡️🔢',h:'急速に数が増える',c:'#f97316'},
+  obsolescence:{e:'📟➡️🗑️',h:'時代遅れになって捨てられる',c:'#6b7280'},
+  surveillance:{e:'📹👁️🔍',h:'監視カメラで見張る',c:'#ef4444'},
+  infrastructure:{e:'🏗️🛣️🌉',h:'社会を支える土台',c:'#3b82f6'},
+  innovation:{e:'💡🚀✨',h:'新しいアイデアで世界を変える',c:'#eab308'},
+  encryption:{e:'🔑🔒📧',h:'情報を鍵で守る',c:'#a78bfa'},
+
   // Psychology & Society
-  cognition:'🧠',anxiety:'😰',empathy:'❤️',bias:'🔍',stereotype:'🏷️',conformity:'👥',
-  resilient:'💪',trauma:'💔',motivation:'🔥',perception:'👁️',consciousness:'✨',
-  resentment:'😤',cohesion:'🤝',alienation:'😔',solidarity:'✊',
+  cognition:{e:'🧠💭🔍',h:'考え・理解する脳の働き',c:'#a78bfa'},
+  anxiety:{e:'😰💭❗',h:'心配で胸がざわつく',c:'#ef4444'},
+  empathy:{e:'❤️🤝😢',h:'他人の気持ちを感じ取る',c:'#ec4899'},
+  bias:{e:'👁️📐↗️',h:'片寄った見方をしてしまう',c:'#f97316'},
+  stereotype:{e:'🏷️👥🔲',h:'型にはめた固定観念',c:'#6b7280'},
+  conformity:{e:'👤👤👤',h:'みんなと同じにする',c:'#6b7280'},
+  trauma:{e:'💔😣🩹',h:'心に深く残る傷',c:'#ef4444'},
+  motivation:{e:'🔥🎯💪',h:'やる気に火がつく',c:'#f97316'},
+  perception:{e:'👁️🧠💡',h:'物事をどう見て感じるか',c:'#a78bfa'},
+  resentment:{e:'😤💢👊',h:'不公平さへの怒りがくすぶる',c:'#ef4444'},
+  cohesion:{e:'🧩🤝💪',h:'バラバラがひとつにまとまる',c:'#22c55e'},
+
   // Politics & Law
-  sovereignty:'🏛️',legislation:'📜',jurisdiction:'⚖️',diplomacy:'🤝',sanctions:'🚫',
-  amendment:'📝',constitution:'📕',referendum:'🗳️',bureaucracy:'🏢',propaganda:'📢',
+  sovereignty:{e:'🏛️👑🗺️',h:'国が自分で決める権利',c:'#3b82f6'},
+  legislation:{e:'📜🏛️⚖️',h:'国会で法律を作る',c:'#3b82f6'},
+  jurisdiction:{e:'⚖️🗺️📋',h:'法が適用される範囲',c:'#3b82f6'},
+  diplomacy:{e:'🤝🌍🕊️',h:'国同士の平和的な交渉',c:'#22c55e'},
+  sanctions:{e:'🚫💰🌍',h:'罰として経済を制限する',c:'#ef4444'},
+  referendum:{e:'🗳️👥❓',h:'国民みんなで投票して決める',c:'#3b82f6'},
+  bureaucracy:{e:'🏢📋🐌',h:'お役所の複雑な手続き',c:'#6b7280'},
+  propaganda:{e:'📢🎭🧠',h:'情報を操作して考えを誘導',c:'#ef4444'},
+
   // Business
-  turnover:'🔄',merger:'🤝',acquisition:'🛒',revenue:'💰',franchise:'🏪',
-  stakeholder:'👤',entrepreneur:'🚀',outsourcing:'🌐',benchmark:'📏',scalability:'📐',
+  turnover:{e:'🚪🔄👥',h:'人が次々入れ替わる',c:'#f97316'},
+  merger:{e:'🏢➕🏢',h:'二つの会社が一つになる',c:'#3b82f6'},
+  acquisition:{e:'🏢🛒💰',h:'会社を買い取る',c:'#3b82f6'},
+  revenue:{e:'🏢💰📈',h:'事業で入ってくるお金',c:'#22c55e'},
+  franchise:{e:'🏪🔄🏪',h:'同じ看板のお店を展開',c:'#eab308'},
+  stakeholder:{e:'👤📊🎯',h:'関係者・利害関係のある人',c:'#3b82f6'},
+  entrepreneur:{e:'💡🚀💰',h:'アイデアで事業を起こす人',c:'#eab308'},
+  outsourcing:{e:'🏢➡️🌐',h:'仕事を外部に任せる',c:'#06b6d4'},
+  scalability:{e:'📐📈🚀',h:'規模を大きくできる力',c:'#a78bfa'},
+
   // Health & Science
-  pathogen:'🦠',immunity:'🛡️',diagnosis:'🔬',therapy:'💊',epidemic:'😷',
-  mutation:'🧬',antibody:'💉',symptom:'🤒',chronic:'⏳',prognosis:'🔮',
+  pathogen:{e:'🦠😷💊',h:'病気を引き起こす微生物',c:'#ef4444'},
+  immunity:{e:'🛡️🦠💪',h:'体を病気から守るバリア',c:'#22c55e'},
+  diagnosis:{e:'🔬🩺📋',h:'病気の原因を突き止める',c:'#3b82f6'},
+  therapy:{e:'💊🩺😊',h:'治療して元気にする',c:'#22c55e'},
+  epidemic:{e:'🦠📈😷',h:'病気が急速に広がる',c:'#ef4444'},
+  mutation:{e:'🧬🔀❓',h:'遺伝子が変異する',c:'#a78bfa'},
+  symptom:{e:'🤒🩺❗',h:'病気のサイン・兆候',c:'#f97316'},
+  prognosis:{e:'🔮🩺📊',h:'病気の将来の見通し',c:'#a78bfa'},
+
   // Education
-  curriculum:'📚',pedagogy:'👩‍🏫',literacy:'📖',dissertation:'📄',accreditation:'🎓',
+  curriculum:{e:'📚📋🎓',h:'学校で学ぶ内容のプラン',c:'#3b82f6'},
+  pedagogy:{e:'👩‍🏫📖💡',h:'教え方の理論と技術',c:'#eab308'},
+  literacy:{e:'📖✍️💬',h:'読み書きできる力',c:'#3b82f6'},
+  accreditation:{e:'🎓✅📜',h:'公式に認められた資格',c:'#22c55e'},
+
   // Abstract concepts
-  paradox:'🔀',dilemma:'🤔',hypothesis:'❓',analogy:'🔗',paradigm:'🔄',
-  ambiguity:'🌫️',nuance:'🎨',pragmatic:'🎯',empirical:'📊',theoretical:'💭',
-  consensus:'✅',controversy:'⚡',precedent:'📌',phenomenon:'🌟',discourse:'💬',
-  disparity:'↔️',deterioration:'📉',proliferate:'📈',exacerbate:'🔥',unprecedented:'🆕',
-  inherent:'🧬',systemic:'🕸️',viable:'✅',pivotal:'🎯',profound:'🌊',
-  tangible:'✋',inevitable:'⏩',vulnerable:'🥺',disproportionately:'⚖️',
-  incrementally:'📶',prohibitively:'🚧',drastically:'💥',perpetual:'♾️',
-  codified:'📋',tacit:'🤫',forethought:'🔮',unforeseen:'😲',displaced:'🚶',
-  augments:'➕',supplanting:'🔄',prudent:'🧐',
+  paradox:{e:'⬆️⬇️🤯',h:'矛盾しているのに真実',c:'#a78bfa'},
+  dilemma:{e:'↙️🤔↗️',h:'どちらを選んでも困る',c:'#f97316'},
+  hypothesis:{e:'💭❓🔬',h:'まだ証明されていない予想',c:'#a78bfa'},
+  paradigm:{e:'🔲➡️🔷',h:'物事の見方が根本から変わる',c:'#a78bfa'},
+  ambiguity:{e:'🌫️❓🔍',h:'はっきりしない曖昧さ',c:'#6b7280'},
+  nuance:{e:'🎨🔍✨',h:'微妙で繊細な違い',c:'#a78bfa'},
+  consensus:{e:'👥✅🤝',h:'みんなが同意する',c:'#22c55e'},
+  controversy:{e:'⚡💬👥',h:'意見が真っ二つに割れる',c:'#ef4444'},
+  precedent:{e:'📌⬅️⚖️',h:'前例として使われる過去の判断',c:'#3b82f6'},
+  phenomenon:{e:'🌟🔍😲',h:'観察される不思議な現象',c:'#eab308'},
+  discourse:{e:'💬📚🎓',h:'知的な議論・対話',c:'#3b82f6'},
+  disparity:{e:'📏↔️😣',h:'大きすぎる格差',c:'#ef4444'},
+  tangible:{e:'✋📦👀',h:'手で触れて確認できる',c:'#22c55e'},
+  inevitable:{e:'⏩🔒💯',h:'絶対に避けられない',c:'#6b7280'},
+  vulnerable:{e:'🥺🛡️❌',h:'守りが弱くて傷つきやすい',c:'#ef4444'},
+  unprecedented:{e:'🆕❗🌟',h:'歴史上一度もなかった',c:'#eab308'},
+  viable:{e:'✅🌱💡',h:'実現できる可能性がある',c:'#22c55e'},
+  pivotal:{e:'🔑⚖️💫',h:'全体を左右する重要な転換点',c:'#eab308'},
+  profound:{e:'🌊🧠✨',h:'とても深くて意味がある',c:'#a78bfa'},
+  perpetual:{e:'♾️🔄⏳',h:'永遠に終わらない',c:'#6b7280'},
+  prudent:{e:'🧐📋✅',h:'慎重に考えてから行動する',c:'#3b82f6'},
+  tacit:{e:'🤫💭🤝',h:'言葉にしなくても伝わる',c:'#a78bfa'},
+  unforeseen:{e:'😲❓💥',h:'まったく予想していなかった',c:'#f97316'},
+  exacerbate:{e:'🔥💨📈',h:'悪い状況をさらに悪化させる',c:'#ef4444'},
+  deterioration:{e:'🏚️📉💔',h:'だんだんボロボロになる',c:'#ef4444'},
+
   // Emotions & Attitude
-  enthusiasm:'🙌',skepticism:'🤨',complacency:'😴',indifference:'😐',
-  contempt:'😒',gratitude:'🙏',frustration:'😤',optimism:'😊',pessimism:'😟',
+  enthusiasm:{e:'🙌🔥😄',h:'ワクワクが止まらない',c:'#eab308'},
+  skepticism:{e:'🤨🔍❓',h:'本当かな？と疑ってかかる',c:'#6b7280'},
+  complacency:{e:'😴💤😌',h:'うまくいってると油断する',c:'#6b7280'},
+  gratitude:{e:'🙏❤️😊',h:'ありがとうの気持ち',c:'#ec4899'},
+  frustration:{e:'😤💢🚧',h:'思い通りにいかずイライラ',c:'#ef4444'},
+  optimism:{e:'😊☀️📈',h:'きっとうまくいく！',c:'#eab308'},
+  pessimism:{e:'😟🌧️📉',h:'きっとダメだろう…',c:'#6b7280'},
+
   // Slang & Informal
-  ghosting:'👻',salty:'🧂',slay:'⚔️',vibe:'✌️',flex:'💪',chill:'❄️',
-  hustle:'🏃',grind:'⚙️',lit:'🔥',savage:'🐯',clutch:'🎯',shade:'🌂',
-  splurge:'🛍️',broke:'💸',loaded:'🤑',hustle:'🏃',
+  ghosting:{e:'👻📱❌',h:'突然メッセージを無視する',c:'#a78bfa'},
+  salty:{e:'🧂😤💢',h:'些細なことで根に持つ',c:'#f97316'},
+  slay:{e:'👑💅✨',h:'カッコよく圧倒する',c:'#eab308'},
+  vibe:{e:'🎵✌️😎',h:'その場の雰囲気・ノリ',c:'#a78bfa'},
+  stoked:{e:'🔥🤩🎉',h:'めっちゃワクワクしてる！',c:'#eab308'},
+  bummed:{e:'😞💧👎',h:'ガッカリして落ち込む',c:'#6b7280'},
+  shook:{e:'😱💫❗',h:'衝撃で言葉が出ない',c:'#ef4444'},
+  vibing:{e:'🎶😌☕',h:'心地よく過ごしてる',c:'#22c55e'},
+  hustle:{e:'🏃💨💰',h:'がむしゃらに稼ぐ',c:'#f97316'},
+  splurge:{e:'🛍️💳🤩',h:'パーッと散財する',c:'#ec4899'},
+  broke:{e:'👛💸😢',h:'財布がカラッポ',c:'#ef4444'},
+  loaded:{e:'🤑💰💎',h:'お金がザクザク',c:'#22c55e'},
+  ballpark:{e:'⚾📏🤏',h:'だいたいこのくらい',c:'#3b82f6'},
+  bandwidth:{e:'🧠⚡📶',h:'対応する余力がない',c:'#a78bfa'},
+  hangry:{e:'🍔😤💢',h:'お腹すいてイライラ',c:'#f97316'},
+  foodie:{e:'🍽️📸🤤',h:'美味しいもの大好き人間',c:'#eab308'},
+  cliffhanger:{e:'🧗😱❓',h:'続きが気になる〜！',c:'#a78bfa'},
+  nobrainer:{e:'🧠❌✅',h:'考えるまでもなく簡単',c:'#22c55e'},
+  gutted:{e:'😭💔⬇️',h:'ショックで打ちのめされる',c:'#ef4444'},
+  knackered:{e:'😩💤🛌',h:'くたくたでもう動けない',c:'#6b7280'},
+  dodgy:{e:'🤨👀⚠️',h:'なんか怪しい…信用できない',c:'#f97316'},
+  arvo:{e:'☀️⬇️🕐',h:'午後（オーストラリア語）',c:'#eab308'},
+  sus:{e:'🤨🔍👀',h:'なんか怪しいぞ？',c:'#f97316'},
+  goat:{e:'🏆👑🐐',h:'史上最高の存在',c:'#eab308'},
+
   // Food & Daily
-  cuisine:'🍽️',beverage:'🥤',nutrition:'🥗',appetite:'😋',
+  cuisine:{e:'👨‍🍳🍽️🌍',h:'国ごとの料理の伝統',c:'#f97316'},
+  craving:{e:'🤤💭🍫',h:'どうしても食べたい！',c:'#ec4899'},
+  commute:{e:'🏠🚃🏢',h:'毎日の通勤',c:'#6b7280'},
+
   // Sports
-  curveball:'⚾',marathon:'🏃',sprint:'🏃‍♂️',
+  curveball:{e:'⚾📐😲',h:'予想外の変化球が来た！',c:'#3b82f6'},
+  gameplan:{e:'📋🏈🎯',h:'勝つための作戦',c:'#3b82f6'},
+
+  // Finance-specific
+  etf:{e:'📊🧺📈',h:'株の詰め合わせパック',c:'#3b82f6'},
+  ipo:{e:'🏢🔔📈',h:'会社が初めて株を公開',c:'#eab308'},
+  hedgefund:{e:'🏦🎲📊',h:'高度な戦略で稼ぐファンド',c:'#a78bfa'},
+  cryptocurrency:{e:'₿🔗💻',h:'デジタルなお金',c:'#f97316'},
+  stablecoin:{e:'💲🔒⚖️',h:'価値が安定した暗号通貨',c:'#3b82f6'},
+  underwriter:{e:'📝🏦✍️',h:'証券の引き受けを担当',c:'#3b82f6'},
+  prospectus:{e:'📜🔍💼',h:'投資の詳細が書かれた説明書',c:'#3b82f6'},
+  creditspread:{e:'📊↔️💰',h:'社債と国債の利回り差',c:'#a78bfa'},
+  duration:{e:'📏⏳📉',h:'金利変動への感応度',c:'#3b82f6'},
+  defaultrisk:{e:'💰❌😨',h:'お金が返ってこないリスク',c:'#ef4444'},
 };
 
-function getWordEmoji(word, pos, japanese) {
+// Category-based fallback visuals
+const CATEGORY_VISUALS = {
+  finance: {e:'💹📊💰',h:'金融・経済の概念',c:'#3b82f6'},
+  environment: {e:'🌍🌿💧',h:'環境・自然に関する概念',c:'#22c55e'},
+  technology: {e:'💻⚙️🔧',h:'テクノロジーの概念',c:'#a78bfa'},
+  law: {e:'⚖️📜🏛️',h:'法律・政治の概念',c:'#3b82f6'},
+  education: {e:'📚✏️🎓',h:'教育・学問の概念',c:'#eab308'},
+  health: {e:'🏥💊🩺',h:'健康・医療の概念',c:'#22c55e'},
+  psychology: {e:'🧠💭🔍',h:'心理・思考の概念',c:'#a78bfa'},
+  society: {e:'👥🌐🏙️',h:'社会・文化の概念',c:'#06b6d4'},
+  danger: {e:'⚠️🔴❗',h:'危険・リスクに関する概念',c:'#ef4444'},
+  increase: {e:'📈⬆️🚀',h:'増加・成長を表す概念',c:'#22c55e'},
+  decrease: {e:'📉⬇️😟',h:'減少・低下を表す概念',c:'#ef4444'},
+  noun: {e:'📦🏷️🔤',h:'名詞',c:'#6b7280'},
+  verb: {e:'⚡▶️🔄',h:'動詞',c:'#3b82f6'},
+  adjective: {e:'🎨✨🔤',h:'形容詞',c:'#eab308'},
+  adverb: {e:'💫🔤➡️',h:'副詞',c:'#a78bfa'},
+  default: {e:'📝🔤💡',h:'',c:'#6b7280'},
+};
+
+function getWordVisual(word, pos, japanese) {
   const w = word.toLowerCase().replace(/[^a-z]/g, '');
   // Direct match
-  if (WORD_EMOJI_MAP[w]) return WORD_EMOJI_MAP[w];
-  // Stem matching (e.g., "exacerbates" → "exacerbate")
-  const stems = [w, w.replace(/s$/, ''), w.replace(/ed$/, ''), w.replace(/ing$/, ''), w.replace(/ly$/, ''), w.replace(/tion$/, ''), w.replace(/ment$/, ''), w.replace(/ness$/, ''), w.replace(/ity$/, ''), w.replace(/ous$/, ''), w.replace(/ive$/, ''), w.replace(/ies$/, 'y')];
-  for (const s of stems) { if (s && WORD_EMOJI_MAP[s]) return WORD_EMOJI_MAP[s]; }
+  if (WORD_VISUAL_MAP[w]) return WORD_VISUAL_MAP[w];
+  // Stem matching
+  const stems = [w, w.replace(/s$/, ''), w.replace(/ed$/, ''), w.replace(/ing$/, ''),
+    w.replace(/ly$/, ''), w.replace(/tion$/, ''), w.replace(/ment$/, ''),
+    w.replace(/ness$/, ''), w.replace(/ity$/, ''), w.replace(/ous$/, ''),
+    w.replace(/ive$/, ''), w.replace(/ies$/, 'y'), w.replace(/ation$/, ''),
+    w.replace(/ence$/, ''), w.replace(/ance$/, ''), w.replace(/al$/, '')];
+  for (const s of stems) { if (s && WORD_VISUAL_MAP[s]) return WORD_VISUAL_MAP[s]; }
+  // Multi-word compound match (e.g. "no brainer" → "nobrainer")
+  const compound = w.replace(/[\s-]/g, '');
+  if (WORD_VISUAL_MAP[compound]) return WORD_VISUAL_MAP[compound];
   // Category by Japanese keywords
   if (japanese) {
-    if (/経済|金融|投資|資産|通貨|利益/.test(japanese)) return '💰';
-    if (/環境|気候|自然|生態/.test(japanese)) return '🌍';
-    if (/技術|科学|研究/.test(japanese)) return '🔬';
-    if (/法|規制|政策|政治/.test(japanese)) return '⚖️';
-    if (/教育|学/.test(japanese)) return '📚';
-    if (/健康|医|病/.test(japanese)) return '🏥';
-    if (/心理|感情|精神/.test(japanese)) return '🧠';
-    if (/社会|文化|人/.test(japanese)) return '👥';
-    if (/危険|リスク|脅威/.test(japanese)) return '⚠️';
-    if (/増|成長|拡大/.test(japanese)) return '📈';
-    if (/減|低下|衰退/.test(japanese)) return '📉';
+    if (/経済|金融|投資|資産|通貨|利益|債券|株|ファンド|為替|利回り/.test(japanese)) return CATEGORY_VISUALS.finance;
+    if (/環境|気候|自然|生態|森林|汚染|排出/.test(japanese)) return CATEGORY_VISUALS.environment;
+    if (/技術|科学|研究|デジタル|ネット|AI|コンピュータ/.test(japanese)) return CATEGORY_VISUALS.technology;
+    if (/法|規制|政策|政治|選挙|裁判|憲法/.test(japanese)) return CATEGORY_VISUALS.law;
+    if (/教育|学|大学|授業|試験/.test(japanese)) return CATEGORY_VISUALS.education;
+    if (/健康|医|病|治療|症状|免疫/.test(japanese)) return CATEGORY_VISUALS.health;
+    if (/心理|感情|精神|脳|認知|記憶/.test(japanese)) return CATEGORY_VISUALS.psychology;
+    if (/社会|文化|人|集団|差別/.test(japanese)) return CATEGORY_VISUALS.society;
+    if (/危険|リスク|脅威|警告|被害/.test(japanese)) return CATEGORY_VISUALS.danger;
+    if (/増|成長|拡大|上昇|向上|加速/.test(japanese)) return CATEGORY_VISUALS.increase;
+    if (/減|低下|衰退|下落|縮小|悪化/.test(japanese)) return CATEGORY_VISUALS.decrease;
   }
   // Fallback by pos
-  if (pos === 'noun') return '📦';
-  if (pos === 'verb') return '⚡';
-  if (pos === 'adjective') return '🏷️';
-  if (pos === 'adverb') return '💫';
-  return '📝';
+  if (pos) {
+    const p = pos.toLowerCase();
+    if (p.includes('noun')) return CATEGORY_VISUALS.noun;
+    if (p.includes('verb')) return CATEGORY_VISUALS.verb;
+    if (p.includes('adjective') || p.includes('adj')) return CATEGORY_VISUALS.adjective;
+    if (p.includes('adverb') || p.includes('adv')) return CATEGORY_VISUALS.adverb;
+  }
+  return CATEGORY_VISUALS.default;
 }
 
 function init() {
@@ -1401,7 +1594,11 @@ function showFlashcard() {
   document.getElementById('fc-def').textContent = v.definition;
   document.getElementById('fc-example').textContent = v.example;
   document.getElementById('fc-example-ja').textContent = v.exampleJa || '';
-  document.getElementById('fc-emoji').textContent = getWordEmoji(v.word, v.pos, v.japanese);
+  const visual = getWordVisual(v.word, v.pos, v.japanese);
+  document.getElementById('fc-emoji').textContent = visual.e;
+  document.getElementById('fc-emoji-hint').textContent = visual.h || '';
+  document.getElementById('fc-visual-bg').style.background = `linear-gradient(135deg, ${visual.c}40, ${visual.c}10)`;
+  document.getElementById('fc-visual').style.border = `1px solid ${visual.c}30`;
   const speakBtn = document.getElementById('fc-speak-btn');
   speakBtn.onclick = (e) => { e.stopPropagation(); speakWord(v.word); };
   document.getElementById('quiz-progress').textContent = `${quizIndex + 1} / ${quizQueue.length}`;
