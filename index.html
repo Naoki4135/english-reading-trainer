@@ -82,6 +82,44 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .essay-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 .essay-meta { font-size: 11px; color: var(--text2); }
+.recent-opened-list {
+  display: grid; gap: 10px; margin-bottom: 16px;
+}
+.recent-opened-card {
+  background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(96,165,250,0.05));
+  border: 1px solid rgba(96,165,250,0.35);
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.recent-opened-card:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent2);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.24);
+}
+.recent-opened-top {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;
+}
+.recent-opened-rank {
+  width: 22px; height: 22px; border-radius: 999px;
+  background: rgba(255,255,255,0.14); color: var(--accent2);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; flex-shrink: 0;
+}
+.recent-opened-title {
+  font-size: 16px; font-weight: 700; line-height: 1.5; margin-bottom: 6px;
+}
+.recent-opened-meta {
+  display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  font-size: 12px; color: var(--text2);
+}
+.recent-opened-read {
+  color: var(--accent2); font-weight: 600;
+}
+.recent-opened-empty {
+  color: var(--text2); font-size: 13px;
+}
 
 /* Essay bilingual layout */
 .essay-bilingual { display: flex; gap: 0; margin-bottom: 16px; }
@@ -387,10 +425,15 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .flashcard-visual-scene {
   width: 100%; max-width: 240px; min-height: 132px;
+  aspect-ratio: 240 / 150;
   display: flex; align-items: center; justify-content: center;
 }
+.flashcard-visual-scene img,
 .flashcard-visual-scene svg {
-  width: 100%; height: auto; overflow: visible;
+  width: 100%; height: 100%; display: block; overflow: visible;
+}
+.flashcard-visual-scene img {
+  object-fit: contain;
 }
 .flashcard-visual-note {
   font-size: 11px; color: var(--text2); line-height: 1.5; max-width: 220px;
@@ -537,7 +580,9 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="btn primary small" onclick="startReview()">Start</button>
       </div>
     </div>
-    <div class="card-title" style="margin: 16px 0 8px;">Recent Essays</div>
+    <div class="card-title" style="margin: 16px 0 8px;">Recently Opened</div>
+    <div id="recent-opened-list" class="recent-opened-list"></div>
+    <div class="card-title" style="margin: 16px 0 8px;">Essay Library</div>
     <div id="essay-list"></div>
   </div>
 
@@ -872,10 +917,11 @@ function loadState() {
       if (!p.studyHistory) p.studyHistory = [];
       if (!p.readCounts) p.readCounts = {};
       if (!p.dailyStats) p.dailyStats = {};
+      if (!p.recentEssayIds) p.recentEssayIds = [];
       return p;
     }
   } catch (e) { localStorage.removeItem(STORAGE_KEY); }
-  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, lastStudyDate: null };
+  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], lastStudyDate: null };
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
@@ -1334,6 +1380,20 @@ function renderWordIllustration(visual, word, pos, japanese) {
   };
 }
 
+function buildSvgDataUri(svgMarkup) {
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgMarkup)}`;
+}
+
+function setFlashcardIllustration(illustration) {
+  const container = document.getElementById('fc-illustration');
+  if (!container) return;
+  container.innerHTML = '';
+  const img = document.createElement('img');
+  img.alt = `${illustration.badge || 'Concept'} illustration`;
+  img.src = buildSvgDataUri(illustration.svg || '');
+  container.appendChild(img);
+}
+
 function buildFlashcardHint(v, visual) {
   const example = maskTargetWord(v.example || '', v.word);
   const lines = [
@@ -1451,6 +1511,30 @@ function updateDashboard() {
   if (dueWords > 0) { badge.style.display = 'block'; badge.textContent = dueWords; }
   else badge.style.display = 'none';
 
+  const recentOpened = (state.recentEssayIds || [])
+    .map(id => ESSAYS.find(e => e.id === id))
+    .filter(Boolean)
+    .slice(0, 3);
+  const recentOpenedList = document.getElementById('recent-opened-list');
+  if (recentOpened.length === 0) {
+    recentOpenedList.innerHTML = `<div class="card recent-opened-empty">Open an essay and the last three you viewed will appear here.</div>`;
+  } else {
+    recentOpenedList.innerHTML = recentOpened.map((essay, index) => {
+      const rc = state.readCounts[essay.id] || 0;
+      return `<div class="recent-opened-card" onclick="openEssay('${essay.id}')">
+        <div class="recent-opened-top">
+          <span class="recent-opened-rank">${index + 1}</span>
+          <span class="essay-topic">${essay.topic}</span>
+        </div>
+        <div class="recent-opened-title">${essay.title}</div>
+        <div class="recent-opened-meta">
+          <span>${essay.date} · ${essay.wordCount} words · ${essay.difficulty}</span>
+          <span class="recent-opened-read">Read: ${rc}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
   // エッセイを通し番号付き・10個ずつ折りたたみで表示
   const essays = ESSAYS.slice(); // 古い順（通し番号用）
   const totalEssays = essays.length;
@@ -1487,6 +1571,8 @@ function updateDashboard() {
 function openEssay(id) {
   currentEssay = ESSAYS.find(e => e.id === id);
   if (!currentEssay) return;
+  if (!state.recentEssayIds) state.recentEssayIds = [];
+  state.recentEssayIds = [id, ...state.recentEssayIds.filter(existingId => existingId !== id)].slice(0, 10);
   document.getElementById('essay-topic-badge').textContent = currentEssay.topic;
   document.getElementById('essay-view-title').textContent = currentEssay.title;
   document.getElementById('essay-view-meta').textContent = `${currentEssay.date} · ${currentEssay.wordCount} words · ${currentEssay.difficulty}`;
@@ -1518,10 +1604,11 @@ function openEssay(id) {
     </tr>`;
   }).join('');
 
-  if (!state.essaysRead.includes(id)) { state.essaysRead.push(id); saveState(); }
+  if (!state.essaysRead.includes(id)) state.essaysRead.push(id);
   // Read count display
   const count = state.readCounts[id] || 0;
   document.getElementById('read-count-num').textContent = count;
+  saveState();
   showPage('essay');
 }
 
@@ -2115,7 +2202,7 @@ function showFlashcard() {
   document.getElementById('fc-visual-badge').textContent = illustration.badge;
   document.getElementById('fc-visual-note').textContent = illustration.note;
   document.getElementById('fc-visual-note').style.display = illustration.note ? 'block' : 'none';
-  document.getElementById('fc-illustration').innerHTML = illustration.svg;
+  setFlashcardIllustration(illustration);
   document.getElementById('fc-hint-panel').innerHTML = buildFlashcardHint(v, visual);
   document.getElementById('fc-visual-bg').style.background = `linear-gradient(135deg, ${visual.c}40, ${visual.c}10)`;
   document.getElementById('fc-visual').style.border = `1px solid ${visual.c}30`;
@@ -2425,6 +2512,7 @@ function importProgress(event) {
       if (imported.readCounts) state.readCounts = imported.readCounts;
       if (imported.studyHistory) state.studyHistory = imported.studyHistory;
       if (imported.dailyStats) state.dailyStats = imported.dailyStats;
+      if (imported.recentEssayIds) state.recentEssayIds = imported.recentEssayIds;
       saveState();
       updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
       showToast('Backup imported successfully');
@@ -2442,6 +2530,7 @@ function generateSyncCode() {
     ts: Date.now(),
     readCounts: state.readCounts,
     essaysRead: state.essaysRead,
+    recentEssayIds: state.recentEssayIds,
     dailyStats: state.dailyStats,
     studyHistory: state.studyHistory,
     lastStudyDate: state.lastStudyDate,
@@ -2507,6 +2596,11 @@ function applySyncCode() {
     // Merge essaysRead
     if (syncData.essaysRead) {
       syncData.essaysRead.forEach(id => { if (!state.essaysRead.includes(id)) state.essaysRead.push(id); });
+    }
+    if (syncData.recentEssayIds) {
+      state.recentEssayIds = [...syncData.recentEssayIds, ...(state.recentEssayIds || [])]
+        .filter((id, index, arr) => arr.indexOf(id) === index)
+        .slice(0, 10);
     }
     // Merge dailyStats (take max for each field)
     if (syncData.dailyStats) {
