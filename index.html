@@ -116,6 +116,46 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   border-radius: 8px; background: var(--surface); border: 1px solid var(--border); font-size: 13px;
 }
 .speed-control input[type="range"] { width: 80px; accent-color: var(--accent); }
+/* Duo mode */
+.duo-card {
+  padding: 16px; border-bottom: 1px solid var(--border);
+}
+.duo-card:last-child { border-bottom: none; }
+.duo-sentence {
+  font-size: 15px; line-height: 1.8; margin-bottom: 12px;
+  color: var(--text); font-style: italic;
+}
+.duo-sentence .duo-target {
+  color: var(--accent2); font-weight: 700; font-style: normal;
+  border-bottom: 2px solid var(--accent); padding-bottom: 1px;
+}
+.duo-words {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.duo-word-row {
+  display: flex; align-items: baseline; gap: 8px; font-size: 13px;
+}
+.duo-word-en { font-weight: 700; color: var(--accent2); min-width: 120px; }
+.duo-word-pos { font-size: 10px; color: var(--text2); font-style: italic; min-width: 50px; }
+.duo-word-ja { color: var(--text); }
+.duo-speak-btn {
+  padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2); font-size: 11px;
+  cursor: pointer; font-family: inherit; margin-left: auto; flex-shrink: 0;
+}
+.duo-speak-btn:hover { border-color: var(--accent); }
+.duo-sentence-speak {
+  display: inline-block; margin-left: 6px; cursor: pointer;
+  font-size: 14px; vertical-align: middle;
+}
+
+.speed-btn {
+  width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text); font-size: 16px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-family: inherit; line-height: 1;
+}
+.speed-btn:hover { border-color: var(--accent); background: var(--accent); color: white; }
 
 /* Glossary */
 .glossary-table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -488,9 +528,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="btn" id="btn-translation" onclick="toggleTranslation()">&#127471;&#127477; Translation</button>
       <button class="btn" id="btn-highlight" onclick="toggleHighlight()">&#128161; Highlight</button>
       <div class="speed-control">
-        <span>Speed</span>
-        <input type="range" min="0.5" max="2.0" step="0.1" value="1.0" id="speech-speed" oninput="updateSpeedLabel()">
-        <span id="speed-label">1.0x</span>
+        <button class="speed-btn" onclick="adjustSpeed(-0.1)">−</button>
+        <span id="speed-label" style="min-width:40px; text-align:center; font-weight:600;">1.0x</span>
+        <button class="speed-btn" onclick="adjustSpeed(0.1)">+</button>
+        <input type="range" min="0.8" max="1.5" step="0.1" value="1.0" id="speech-speed" oninput="updateSpeedLabel()">
       </div>
     </div>
 
@@ -531,6 +572,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
       <button class="filter-btn" data-filter="shuffle" onclick="setVocabFilter('shuffle', this)">Shuffle</button>
       <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
+      <button class="filter-btn" data-filter="duo" onclick="setVocabFilter('duo', this)">Duo</button>
       <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
     </div>
     <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
@@ -626,9 +668,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="btn" id="listen-btn-repeat-para" onclick="toggleParaRepeat()">&#128257; Para Repeat: OFF</button>
       </div>
       <div class="listen-speed-row">
-        <span style="font-size:12px; color:var(--text2);">Speed</span>
-        <input type="range" min="0.5" max="2.0" step="0.1" value="1.0" id="listen-speed" oninput="updateListenSpeedLabel()" style="width:100px; accent-color:var(--accent);">
-        <span id="listen-speed-label" style="font-size:12px; min-width:32px;">1.0x</span>
+        <button class="speed-btn" onclick="adjustListenSpeed(-0.1)">−</button>
+        <span id="listen-speed-label" style="font-size:12px; min-width:40px; text-align:center; font-weight:600;">1.0x</span>
+        <button class="speed-btn" onclick="adjustListenSpeed(0.1)">+</button>
+        <input type="range" min="0.8" max="1.5" step="0.1" value="1.0" id="listen-speed" oninput="updateListenSpeedLabel()" style="width:100px; accent-color:var(--accent);">
       </div>
       <div class="listen-progress-bar">
         <div class="listen-progress-fill" id="listen-progress-fill"></div>
@@ -831,7 +874,21 @@ function clamp(value, min, max) {
 
 function getStoredSpeechSpeed() {
   const saved = parseFloat(localStorage.getItem(SPEECH_SPEED_KEY));
-  return Number.isFinite(saved) ? clamp(saved, 0.5, 2.0) : 1.0;
+  return Number.isFinite(saved) ? clamp(saved, 0.8, 1.5) : 1.0;
+}
+
+function adjustSpeed(delta) {
+  const input = document.getElementById('speech-speed');
+  const newVal = clamp(Math.round((parseFloat(input.value) + delta) * 10) / 10, 0.8, 1.5);
+  input.value = newVal.toFixed(1);
+  updateSpeedLabel();
+}
+
+function adjustListenSpeed(delta) {
+  const input = document.getElementById('listen-speed');
+  const newVal = clamp(Math.round((parseFloat(input.value) + delta) * 10) / 10, 0.8, 1.5);
+  input.value = newVal.toFixed(1);
+  updateListenSpeedLabel();
 }
 
 function getListeningItems() {
@@ -1244,7 +1301,7 @@ function renderWordIllustration(visual, word, pos, japanese) {
   const scene = getIllustrationScene(word, pos, japanese, visual.h || '');
   return {
     badge: scene.label,
-    note: '',
+    note: visual.h || '',
     svg: renderIllustrationSvg(scene, visual.c)
   };
 }
@@ -1680,15 +1737,17 @@ function toggleSection(btn) { btn.classList.toggle('open'); btn.nextElementSibli
 let vocabFilter = 'all';
 function setVocabFilter(filter, btn) {
   vocabFilter = filter;
+  vocabShuffled = false;
   document.querySelectorAll('#vocab-filters .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   filterVocab();
 }
 let shuffledVocabCache = [];
+let vocabShuffled = false;
 function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
   const shuffleCtrl = document.getElementById('shuffle-controls');
-  shuffleCtrl.style.display = vocabFilter === 'shuffle' ? 'block' : 'none';
+  shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo') ? 'block' : 'none';
 
   if (vocabFilter === 'shuffle') {
     // Use cached shuffle order, filter by search
@@ -1699,15 +1758,25 @@ function filterVocab() {
     renderVocabList(words);
     return;
   }
-  const words = Object.entries(state.vocabulary).filter(([key, v]) => {
+  let words = Object.entries(state.vocabulary).filter(([key, v]) => {
     const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
     if (vocabFilter === 'all') return matchSearch && v.level >= 0 && v.level < 3;
     if (vocabFilter === 'new') return matchSearch && v.level === 0;
     if (vocabFilter === 'learning') return matchSearch && (v.level === 1 || v.level === 2);
     if (vocabFilter === 'mature') return matchSearch && v.level >= 3;
     if (vocabFilter === 'excluded') return matchSearch && v.level === -1;
+    if (vocabFilter === 'duo') return matchSearch && v.level >= 0 && v.level < 3;
     return matchSearch;
-  }).sort((a, b) => a[0].localeCompare(b[0]));
+  });
+  if (vocabFilter === 'learning' && vocabShuffled) {
+    shuffleArray(words);
+  } else {
+    words.sort((a, b) => a[0].localeCompare(b[0]));
+  }
+  if (vocabFilter === 'duo') {
+    renderDuoList(words);
+    return;
+  }
   renderVocabList(words);
 }
 function reshuffleVocabInternal() {
@@ -1715,7 +1784,11 @@ function reshuffleVocabInternal() {
   shuffleArray(shuffledVocabCache);
 }
 function reshuffleVocab() {
-  reshuffleVocabInternal();
+  if (vocabFilter === 'learning') {
+    vocabShuffled = true;
+  } else {
+    reshuffleVocabInternal();
+  }
   filterVocab();
   showToast('Shuffled!');
 }
@@ -1755,6 +1828,107 @@ function renderVocabList(words) {
     </div>`;
   }).join('');
   document.getElementById('vocab-count').textContent = `${words.length} words`;
+}
+
+// Duo 3.0 style: group words into sets of 3-4, generate contextual sentence
+function renderDuoList(words) {
+  const el = document.getElementById('vocab-list');
+  if (words.length === 0) {
+    el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words for Duo mode</div>';
+    document.getElementById('vocab-count').textContent = '';
+    return;
+  }
+  // Group words into sets of 3-4
+  const groupSize = 3 + Math.floor(Math.random() * 2); // 3 or 4
+  const groups = [];
+  const shuffled = words.slice();
+  shuffleArray(shuffled);
+  for (let i = 0; i < shuffled.length; i += groupSize) {
+    groups.push(shuffled.slice(i, i + groupSize));
+  }
+
+  el.innerHTML = groups.map((group, gi) => {
+    const wordList = group.map(([k, v]) => v);
+    const sentence = generateDuoSentence(wordList);
+    const wordsHtml = group.map(([key, v]) => {
+      return `<div class="duo-word-row">
+        <span class="duo-word-en">${v.word}</span>
+        <span class="duo-word-pos">${v.pos || ''}</span>
+        <span class="duo-word-ja">${v.japanese}</span>
+        <button class="duo-speak-btn" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
+      </div>`;
+    }).join('');
+
+    // Highlight target words in sentence
+    const targetWords = group.map(([k, v]) => v.word).sort((a, b) => b.length - a.length);
+    let sentHtml = escapeHtml(sentence);
+    targetWords.forEach(tw => {
+      const re = new RegExp('\\b(' + tw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')\\b', 'gi');
+      sentHtml = sentHtml.replace(re, '<span class="duo-target">$1</span>');
+    });
+
+    return `<div class="duo-card">
+      <div class="duo-sentence">${sentHtml}
+        <span class="duo-sentence-speak" onclick="speakDuoSentence(${gi})">&#128266;</span>
+      </div>
+      <div class="duo-words">${wordsHtml}</div>
+    </div>`;
+  }).join('');
+
+  // Store sentences for TTS
+  window._duoSentences = groups.map((group) => {
+    return generateDuoSentence(group.map(([k, v]) => v));
+  });
+
+  document.getElementById('vocab-count').textContent = `${groups.length} groups · ${words.length} words`;
+}
+
+function generateDuoSentence(wordObjs) {
+  // Create a natural sentence containing all target words
+  // Use the words' existing examples as inspiration, combine them into one sentence
+  const words = wordObjs.map(w => w.word);
+
+  // Template-based sentence generation using word categories
+  const templates = [
+    (ws) => `The ${ws[0]} of ${ws[1] || 'the situation'} has led to significant ${ws[2] || 'changes'} in recent years.`,
+    (ws) => `Experts argue that ${ws[0]} and ${ws[1] || 'innovation'} are essential for addressing ${ws[2] || 'challenges'} effectively.`,
+    (ws) => `Despite the ${ws[0]}, the team demonstrated remarkable ${ws[1] || 'resilience'} throughout the ${ws[2] || 'project'}.`,
+    (ws) => `The rapid ${ws[0]} of technology has created both ${ws[1] || 'opportunities'} and ${ws[2] || 'risks'} for investors.`,
+    (ws) => `Research indicates that ${ws[0]} can ${ws[1] || 'influence'} long-term ${ws[2] || 'outcomes'} more than previously thought.`,
+    (ws) => `The government announced a new policy to promote ${ws[0]} while reducing ${ws[1] || 'inequality'} and enhancing ${ws[2] || 'growth'}.`,
+    (ws) => `Many analysts remain ${ws[0]} about the ${ws[1] || 'market'} outlook, citing ${ws[2] || 'uncertainty'} as a key concern.`,
+    (ws) => `The ${ws[0]} between economic ${ws[1] || 'growth'} and environmental ${ws[2] || 'protection'} remains a central debate.`,
+  ];
+
+  // Use example sentences from the words if available
+  // Check if any word has a good example that contains other target words
+  for (const wo of wordObjs) {
+    if (wo.example) {
+      let matchCount = 0;
+      for (const w of words) {
+        if (wo.example.toLowerCase().includes(w.toLowerCase())) matchCount++;
+      }
+      if (matchCount >= 2) return wo.example;
+    }
+  }
+
+  // Generate a sentence that naturally includes all words
+  // Try to use the words in their natural form
+  const idx = Math.floor(Math.random() * templates.length);
+  return templates[idx](words);
+}
+
+function speakDuoSentence(groupIdx) {
+  if (window._duoSentences && window._duoSentences[groupIdx]) {
+    if (!isSpeechSupported()) { showToast('Speech not supported'); return; }
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(window._duoSentences[groupIdx]);
+    u.lang = 'en-US';
+    u.rate = getStoredSpeechSpeed() * 0.95;
+    u.pitch = 1.05;
+    const v = getBestVoice(); if (v) u.voice = v;
+    speechSynthesis.speak(u);
+  }
 }
 
 function markExcluded(key) {
