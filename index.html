@@ -121,13 +121,39 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   padding: 16px; border-bottom: 1px solid var(--border);
 }
 .duo-card:last-child { border-bottom: none; }
+.duo-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 12px;
+}
+.duo-card-meta {
+  font-size: 11px; color: var(--text2);
+}
+.duo-card-play {
+  padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text); font-size: 12px;
+  cursor: pointer; font-family: inherit; flex-shrink: 0;
+}
+.duo-card-play:hover { border-color: var(--accent); color: var(--accent); }
+.duo-sentence-list {
+  display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;
+}
+.duo-sentence-block {
+  padding: 12px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--surface2);
+}
+.duo-sentence-row {
+  display: flex; align-items: flex-start; gap: 10px;
+}
 .duo-sentence {
-  font-size: 15px; line-height: 1.8; margin-bottom: 12px;
+  flex: 1; font-size: 15px; line-height: 1.8; margin: 0;
   color: var(--text); font-style: italic;
 }
 .duo-sentence .duo-target {
   color: var(--accent2); font-weight: 700; font-style: normal;
   border-bottom: 2px solid var(--accent); padding-bottom: 1px;
+}
+.duo-sentence-ja {
+  margin-top: 8px; font-size: 13px; line-height: 1.7; color: var(--text2);
 }
 .duo-words {
   display: flex; flex-direction: column; gap: 6px;
@@ -145,9 +171,11 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .duo-speak-btn:hover { border-color: var(--accent); }
 .duo-sentence-speak {
-  display: inline-block; margin-left: 6px; cursor: pointer;
-  font-size: 14px; vertical-align: middle;
+  padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text2); cursor: pointer;
+  font-size: 12px; font-family: inherit; flex-shrink: 0;
 }
+.duo-sentence-speak:hover { border-color: var(--accent); color: var(--accent); }
 
 .speed-btn {
   width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
@@ -1356,6 +1384,8 @@ function buildVocabulary() {
       state.vocabulary[key].definition = allWords[key].definition || '';
       state.vocabulary[key].example = allWords[key].example || '';
       state.vocabulary[key].exampleJa = allWords[key].exampleJa || '';
+      state.vocabulary[key].essayId = allWords[key].essayId;
+      state.vocabulary[key].firstSeen = allWords[key].firstSeen;
       return;
     }
     state.vocabulary[key] = {
@@ -1729,6 +1759,51 @@ function speakWord(word) {
   const v = getBestVoice(); if (v) u.voice = v;
   speechSynthesis.speak(u);
 }
+
+function speakTextSequence(texts, rateMultiplier = 0.95) {
+  if (!isSpeechSupported()) {
+    showToast('Speech synthesis is not supported in this browser');
+    return;
+  }
+  const queue = (texts || []).map(text => String(text || '').trim()).filter(Boolean);
+  if (!queue.length) return;
+  window.clearTimeout(speechRestartTimer);
+  window.clearTimeout(speechRateRefreshTimer);
+  speechRestartTimer = null;
+  speechRateRefreshTimer = null;
+  speechRateChangedWhilePaused = false;
+  speechSegments = [];
+  speechSegmentIndex = 0;
+  speechSessionId++;
+  const sessionId = speechSessionId;
+  speechSynthesis.cancel();
+  resetSpeechUi();
+
+  const playNext = (index) => {
+    if (sessionId !== speechSessionId || index >= queue.length) return;
+    const utterance = new SpeechSynthesisUtterance(queue[index]);
+    utterance.lang = 'en-US';
+    utterance.rate = getSpeed() * rateMultiplier;
+    utterance.pitch = 1.05;
+    const voice = getBestVoice();
+    if (voice) utterance.voice = voice;
+    utterance.onend = () => {
+      if (sessionId !== speechSessionId) return;
+      playNext(index + 1);
+    };
+    utterance.onerror = () => {
+      if (sessionId !== speechSessionId) return;
+      showToast('Audio playback failed');
+    };
+    speechSynthesis.speak(utterance);
+  };
+
+  speechRestartTimer = window.setTimeout(() => {
+    if (sessionId !== speechSessionId) return;
+    speechRestartTimer = null;
+    playNext(0);
+  }, 50);
+}
 if (isSpeechSupported()) speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
 
 function toggleSection(btn) { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); }
@@ -1748,6 +1823,21 @@ function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
   const shuffleCtrl = document.getElementById('shuffle-controls');
   shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo') ? 'block' : 'none';
+
+  if (vocabFilter === 'duo') {
+    let duoWords;
+    if (vocabShuffled) {
+      if (shuffledVocabCache.length === 0) reshuffleVocabInternal();
+      duoWords = shuffledVocabCache.filter(([key, v]) => !search || key.includes(search) || v.japanese.includes(search));
+    } else {
+      duoWords = Object.entries(state.vocabulary).filter(([key, v]) => {
+        const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
+        return matchSearch && v.level >= 0 && v.level < 3;
+      }).sort((a, b) => a[0].localeCompare(b[0]));
+    }
+    renderDuoList(duoWords);
+    return;
+  }
 
   if (vocabFilter === 'shuffle') {
     // Use cached shuffle order, filter by search
@@ -1773,10 +1863,6 @@ function filterVocab() {
   } else {
     words.sort((a, b) => a[0].localeCompare(b[0]));
   }
-  if (vocabFilter === 'duo') {
-    renderDuoList(words);
-    return;
-  }
   renderVocabList(words);
 }
 function reshuffleVocabInternal() {
@@ -1786,6 +1872,9 @@ function reshuffleVocabInternal() {
 function reshuffleVocab() {
   if (vocabFilter === 'learning') {
     vocabShuffled = true;
+  } else if (vocabFilter === 'duo') {
+    vocabShuffled = true;
+    reshuffleVocabInternal();
   } else {
     reshuffleVocabInternal();
   }
@@ -1830,27 +1919,32 @@ function renderVocabList(words) {
   document.getElementById('vocab-count').textContent = `${words.length} words`;
 }
 
-// Duo 3.0 style: group words into sets of 3-4, generate contextual sentence
+// Duo mode: show natural example sentences grouped by source/topic
 function renderDuoList(words) {
   const el = document.getElementById('vocab-list');
   if (words.length === 0) {
+    window._duoSentenceCards = [];
     el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words for Duo mode</div>';
     document.getElementById('vocab-count').textContent = '';
     return;
   }
-  // Group words into sets of 3-4
-  const groupSize = 3 + Math.floor(Math.random() * 2); // 3 or 4
-  const groups = [];
-  const shuffled = words.slice();
-  shuffleArray(shuffled);
-  for (let i = 0; i < shuffled.length; i += groupSize) {
-    groups.push(shuffled.slice(i, i + groupSize));
-  }
+  const cards = buildDuoCards(words);
 
-  el.innerHTML = groups.map((group, gi) => {
-    const wordList = group.map(([k, v]) => v);
-    const sentence = generateDuoSentence(wordList);
-    const wordsHtml = group.map(([key, v]) => {
+  el.innerHTML = cards.map((card, gi) => {
+    const sentenceHtml = card.entries.map((entry, sentenceIdx) => {
+      const sentHtml = highlightDuoTargets(entry.example, [entry.word]);
+      const translationHtml = entry.exampleJa ? `<div class="duo-sentence-ja">${escapeHtml(entry.exampleJa)}</div>` : '';
+      return `<div class="duo-sentence-block">
+        <div class="duo-sentence-row">
+          <div class="duo-sentence">${sentHtml}</div>
+          <button class="duo-sentence-speak" onclick="speakDuoSentence(${gi}, ${sentenceIdx})">&#128266;</button>
+        </div>
+        ${translationHtml}
+      </div>`;
+    }).join('');
+
+    const wordsHtml = card.entries.map((entry) => {
+      const v = entry;
       return `<div class="duo-word-row">
         <span class="duo-word-en">${v.word}</span>
         <span class="duo-word-pos">${v.pos || ''}</span>
@@ -1859,76 +1953,92 @@ function renderDuoList(words) {
       </div>`;
     }).join('');
 
-    // Highlight target words in sentence
-    const targetWords = group.map(([k, v]) => v.word).sort((a, b) => b.length - a.length);
-    let sentHtml = escapeHtml(sentence);
-    targetWords.forEach(tw => {
-      const re = new RegExp('\\b(' + tw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')\\b', 'gi');
-      sentHtml = sentHtml.replace(re, '<span class="duo-target">$1</span>');
-    });
-
     return `<div class="duo-card">
-      <div class="duo-sentence">${sentHtml}
-        <span class="duo-sentence-speak" onclick="speakDuoSentence(${gi})">&#128266;</span>
+      <div class="duo-card-head">
+        <div class="duo-card-meta">${card.entries.length} natural example${card.entries.length > 1 ? 's' : ''}</div>
+        <button class="duo-card-play" onclick="speakDuoCard(${gi})">&#128266; Play All</button>
       </div>
+      <div class="duo-sentence-list">${sentenceHtml}</div>
       <div class="duo-words">${wordsHtml}</div>
     </div>`;
   }).join('');
 
-  // Store sentences for TTS
-  window._duoSentences = groups.map((group) => {
-    return generateDuoSentence(group.map(([k, v]) => v));
+  window._duoSentenceCards = cards.map(card => card.entries.map(entry => entry.example));
+
+  document.getElementById('vocab-count').textContent = `${cards.length} cards · ${words.length} example sentences`;
+}
+
+function buildDuoCards(words) {
+  const groupedBySource = new Map();
+  words.forEach(([key, value]) => {
+    const sourceId = value.essayId || 'misc';
+    if (!groupedBySource.has(sourceId)) groupedBySource.set(sourceId, []);
+    groupedBySource.get(sourceId).push([key, value]);
   });
 
-  document.getElementById('vocab-count').textContent = `${groups.length} groups · ${words.length} words`;
-}
+  const sourceBuckets = Array.from(groupedBySource.values());
+  if (vocabShuffled) {
+    shuffleArray(sourceBuckets);
+    sourceBuckets.forEach(bucket => shuffleArray(bucket));
+  }
 
-function generateDuoSentence(wordObjs) {
-  // Create a natural sentence containing all target words
-  // Use the words' existing examples as inspiration, combine them into one sentence
-  const words = wordObjs.map(w => w.word);
-
-  // Template-based sentence generation using word categories
-  const templates = [
-    (ws) => `The ${ws[0]} of ${ws[1] || 'the situation'} has led to significant ${ws[2] || 'changes'} in recent years.`,
-    (ws) => `Experts argue that ${ws[0]} and ${ws[1] || 'innovation'} are essential for addressing ${ws[2] || 'challenges'} effectively.`,
-    (ws) => `Despite the ${ws[0]}, the team demonstrated remarkable ${ws[1] || 'resilience'} throughout the ${ws[2] || 'project'}.`,
-    (ws) => `The rapid ${ws[0]} of technology has created both ${ws[1] || 'opportunities'} and ${ws[2] || 'risks'} for investors.`,
-    (ws) => `Research indicates that ${ws[0]} can ${ws[1] || 'influence'} long-term ${ws[2] || 'outcomes'} more than previously thought.`,
-    (ws) => `The government announced a new policy to promote ${ws[0]} while reducing ${ws[1] || 'inequality'} and enhancing ${ws[2] || 'growth'}.`,
-    (ws) => `Many analysts remain ${ws[0]} about the ${ws[1] || 'market'} outlook, citing ${ws[2] || 'uncertainty'} as a key concern.`,
-    (ws) => `The ${ws[0]} between economic ${ws[1] || 'growth'} and environmental ${ws[2] || 'protection'} remains a central debate.`,
-  ];
-
-  // Use example sentences from the words if available
-  // Check if any word has a good example that contains other target words
-  for (const wo of wordObjs) {
-    if (wo.example) {
-      let matchCount = 0;
-      for (const w of words) {
-        if (wo.example.toLowerCase().includes(w.toLowerCase())) matchCount++;
-      }
-      if (matchCount >= 2) return wo.example;
+  const cards = [];
+  sourceBuckets.forEach((bucket) => {
+    for (let i = 0; i < bucket.length; i += 3) {
+      const entries = bucket.slice(i, i + 3).map(([key, value]) => {
+        const example = (value.example || '').trim();
+        const exampleJa = (value.exampleJa || '').trim();
+        return {
+          key,
+          ...value,
+          example: example || buildDuoFallbackExample(value),
+          exampleJa: exampleJa || buildDuoFallbackTranslation(value)
+        };
+      });
+      if (entries.length) cards.push({ sourceId: bucket[0][1].essayId || '', entries });
     }
-  }
+  });
 
-  // Generate a sentence that naturally includes all words
-  // Try to use the words in their natural form
-  const idx = Math.floor(Math.random() * templates.length);
-  return templates[idx](words);
+  return cards;
 }
 
-function speakDuoSentence(groupIdx) {
-  if (window._duoSentences && window._duoSentences[groupIdx]) {
-    if (!isSpeechSupported()) { showToast('Speech not supported'); return; }
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(window._duoSentences[groupIdx]);
-    u.lang = 'en-US';
-    u.rate = getStoredSpeechSpeed() * 0.95;
-    u.pitch = 1.05;
-    const v = getBestVoice(); if (v) u.voice = v;
-    speechSynthesis.speak(u);
+function buildDuoFallbackExample(word) {
+  if (word.definition) {
+    const def = String(word.definition).trim().replace(/\.$/, '');
+    return `${word.word} refers to ${def.toLowerCase()}.`;
   }
+  return `Please review how "${word.word}" is used in context.`;
+}
+
+function buildDuoFallbackTranslation(word) {
+  if (word.japanese) return `${word.word} は「${word.japanese}」という意味です。`;
+  return '';
+}
+
+function highlightDuoTargets(sentence, targetWords) {
+  let html = escapeHtml(sentence);
+  (targetWords || [])
+    .map(word => String(word || '').trim())
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length)
+    .forEach((word) => {
+      const parts = word.split(/\s+/).map(escapeRegExp);
+      const pattern = new RegExp(`\\b(${parts.join('\\s+')})\\b`, 'gi');
+      html = html.replace(pattern, '<span class="duo-target">$1</span>');
+    });
+  return html;
+}
+
+function speakDuoCard(groupIdx) {
+  if (!window._duoSentenceCards || !window._duoSentenceCards[groupIdx]) return;
+  speakTextSequence(window._duoSentenceCards[groupIdx], 0.95);
+}
+
+function speakDuoSentence(groupIdx, sentenceIdx) {
+  if (!window._duoSentenceCards || !window._duoSentenceCards[groupIdx]) return;
+  const sentence = window._duoSentenceCards[groupIdx][sentenceIdx];
+  if (!sentence) return;
+  speakTextSequence([sentence], 0.95);
 }
 
 function markExcluded(key) {
