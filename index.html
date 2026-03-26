@@ -649,7 +649,11 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
     </div>
     <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
-      <button class="btn" onclick="reshuffleVocab()" style="width:100%; padding:10px;">&#128256; Shuffle Order</button>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn" onclick="reshuffleVocab()" style="flex:1; min-width:150px; padding:10px;">&#128256; Shuffle Order</button>
+        <button class="btn" id="btn-duo-play-all" onclick="speakAllDuoSentences()" style="display:none; flex:1; min-width:150px; padding:10px;">&#9654; Play All</button>
+        <button class="btn" id="btn-duo-stop" onclick="stopSpeech()" style="display:none; flex:1; min-width:150px; padding:10px;">&#9632; Stop</button>
+      </div>
     </div>
     <div class="card" style="padding:0;">
       <div id="vocab-list"></div>
@@ -1380,18 +1384,10 @@ function renderWordIllustration(visual, word, pos, japanese) {
   };
 }
 
-function buildSvgDataUri(svgMarkup) {
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svgMarkup)}`;
-}
-
 function setFlashcardIllustration(illustration) {
   const container = document.getElementById('fc-illustration');
   if (!container) return;
-  container.innerHTML = '';
-  const img = document.createElement('img');
-  img.alt = `${illustration.badge || 'Concept'} illustration`;
-  img.src = buildSvgDataUri(illustration.svg || '');
-  container.appendChild(img);
+  container.innerHTML = illustration.svg || '';
 }
 
 function buildFlashcardHint(v, visual) {
@@ -1847,7 +1843,7 @@ function speakWord(word) {
   speechSynthesis.speak(u);
 }
 
-function speakTextSequence(texts, rateMultiplier = 0.95) {
+function speakTextSequence(texts, rateMultiplier = 0.95, gapMs = 0) {
   if (!isSpeechSupported()) {
     showToast('Speech synthesis is not supported in this browser');
     return;
@@ -1876,7 +1872,16 @@ function speakTextSequence(texts, rateMultiplier = 0.95) {
     if (voice) utterance.voice = voice;
     utterance.onend = () => {
       if (sessionId !== speechSessionId) return;
-      playNext(index + 1);
+      if (index + 1 >= queue.length) return;
+      if (gapMs > 0) {
+        speechRestartTimer = window.setTimeout(() => {
+          if (sessionId !== speechSessionId) return;
+          speechRestartTimer = null;
+          playNext(index + 1);
+        }, gapMs);
+      } else {
+        playNext(index + 1);
+      }
     };
     utterance.onerror = () => {
       if (sessionId !== speechSessionId) return;
@@ -1909,7 +1914,11 @@ let vocabShuffled = false;
 function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
   const shuffleCtrl = document.getElementById('shuffle-controls');
+  const duoPlayAllBtn = document.getElementById('btn-duo-play-all');
+  const duoStopBtn = document.getElementById('btn-duo-stop');
   shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo') ? 'block' : 'none';
+  duoPlayAllBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
+  duoStopBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
 
   if (vocabFilter === 'duo') {
     let duoWords;
@@ -2018,18 +2027,8 @@ function renderDuoList(words) {
   const cards = buildDuoCards(words);
 
   el.innerHTML = cards.map((card, gi) => {
-    const sentenceHtml = card.entries.map((entry, sentenceIdx) => {
-      const sentHtml = highlightDuoTargets(entry.example, [entry.word]);
-      const translationHtml = entry.exampleJa ? `<div class="duo-sentence-ja">${escapeHtml(entry.exampleJa)}</div>` : '';
-      return `<div class="duo-sentence-block">
-        <div class="duo-sentence-row">
-          <div class="duo-sentence">${sentHtml}</div>
-          <button class="duo-sentence-speak" onclick="speakDuoSentence(${gi}, ${sentenceIdx})">&#128266;</button>
-        </div>
-        ${translationHtml}
-      </div>`;
-    }).join('');
-
+    const sentHtml = highlightDuoTargets(card.sentence, card.entries.map(entry => entry.word));
+    const translationHtml = card.translation ? `<div class="duo-sentence-ja">${escapeHtml(card.translation)}</div>` : '';
     const wordsHtml = card.entries.map((entry) => {
       const v = entry;
       return `<div class="duo-word-row">
@@ -2042,50 +2041,45 @@ function renderDuoList(words) {
 
     return `<div class="duo-card">
       <div class="duo-card-head">
-        <div class="duo-card-meta">${card.entries.length} natural example${card.entries.length > 1 ? 's' : ''}</div>
-        <button class="duo-card-play" onclick="speakDuoCard(${gi})">&#128266; Play All</button>
+        <div class="duo-card-meta">${card.entries.length} target word${card.entries.length > 1 ? 's' : ''}${card.sourceLabel ? ' · ' + escapeHtml(card.sourceLabel) : ''}</div>
+        <button class="duo-card-play" onclick="speakDuoSentence(${gi})">&#128266; Play</button>
       </div>
-      <div class="duo-sentence-list">${sentenceHtml}</div>
+      <div class="duo-sentence-block">
+        <div class="duo-sentence">${sentHtml}</div>
+        ${translationHtml}
+      </div>
       <div class="duo-words">${wordsHtml}</div>
     </div>`;
   }).join('');
 
-  window._duoSentenceCards = cards.map(card => card.entries.map(entry => entry.example));
+  window._duoSentenceCards = cards;
 
-  document.getElementById('vocab-count').textContent = `${cards.length} cards · ${words.length} example sentences`;
+  document.getElementById('vocab-count').textContent = `${cards.length} sentences · ${words.length} words`;
 }
 
 function buildDuoCards(words) {
   const groupedBySource = new Map();
   words.forEach(([key, value]) => {
-    const sourceId = value.essayId || 'misc';
+    const sourceId = value.essayId || `fallback-${key}`;
     if (!groupedBySource.has(sourceId)) groupedBySource.set(sourceId, []);
-    groupedBySource.get(sourceId).push([key, value]);
+    groupedBySource.get(sourceId).push({ key, ...value });
   });
 
-  const sourceBuckets = Array.from(groupedBySource.values());
+  const sourceBuckets = Array.from(groupedBySource.entries());
   if (vocabShuffled) {
     shuffleArray(sourceBuckets);
-    sourceBuckets.forEach(bucket => shuffleArray(bucket));
+    sourceBuckets.forEach(([, bucket]) => shuffleArray(bucket));
   }
 
   const cards = [];
-  sourceBuckets.forEach((bucket) => {
-    for (let i = 0; i < bucket.length; i += 3) {
-      const entries = bucket.slice(i, i + 3).map(([key, value]) => {
-        const example = (value.example || '').trim();
-        const exampleJa = (value.exampleJa || '').trim();
-        return {
-          key,
-          ...value,
-          example: example || buildDuoFallbackExample(value),
-          exampleJa: exampleJa || buildDuoFallbackTranslation(value)
-        };
-      });
-      if (entries.length) cards.push({ sourceId: bucket[0][1].essayId || '', entries });
-    }
+  sourceBuckets.forEach(([sourceId, bucket]) => {
+    const sourceInfo = getDuoSourceInfo(sourceId);
+    const candidates = buildDuoSentenceCandidates(sourceId, bucket, sourceInfo);
+    const selectedCards = selectDuoSentenceCandidates(candidates, bucket, sourceInfo);
+    cards.push(...selectedCards);
   });
 
+  if (vocabShuffled) shuffleArray(cards);
   return cards;
 }
 
@@ -2102,6 +2096,146 @@ function buildDuoFallbackTranslation(word) {
   return '';
 }
 
+function getDuoSourceInfo(sourceId) {
+  const essay = ESSAYS.find(item => item.id === sourceId);
+  if (essay) {
+    return {
+      label: essay.topic || essay.title || '',
+      text: essay.text || '',
+      translation: essay.translation || ''
+    };
+  }
+  const listening = getListeningItems().find(item => item.id === sourceId);
+  if (listening) {
+    return {
+      label: listening.topic || listening.title || '',
+      text: listening.transcript || listening.text || '',
+      translation: listening.translation || ''
+    };
+  }
+  return { label: '', text: '', translation: '' };
+}
+
+function splitEnglishParagraph(text) {
+  return (String(text || '').match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [])
+    .map(sentence => sentence.trim())
+    .filter(Boolean);
+}
+
+function splitJapaneseParagraph(text) {
+  return (String(text || '').match(/[^。！？\n]+[。！？]?/g) || [])
+    .map(sentence => sentence.trim())
+    .filter(Boolean);
+}
+
+function pickAlignedSentence(sentences, index, totalEnglishSentences) {
+  if (!sentences.length) return '';
+  if (sentences.length === totalEnglishSentences) return sentences[index] || '';
+  if (totalEnglishSentences <= 1) return sentences[0] || '';
+  const mappedIndex = Math.round((index / (totalEnglishSentences - 1)) * Math.max(0, sentences.length - 1));
+  return sentences[mappedIndex] || sentences[index] || '';
+}
+
+function getAlignedDuoSentences(englishText, japaneseText) {
+  const englishParagraphs = String(englishText || '').split(/\n+/).map(text => text.trim()).filter(Boolean);
+  const japaneseParagraphs = String(japaneseText || '').split(/\n+/).map(text => text.trim()).filter(Boolean);
+  const paragraphCount = Math.max(englishParagraphs.length, japaneseParagraphs.length);
+  const pairs = [];
+  for (let index = 0; index < paragraphCount; index++) {
+    const englishSentences = splitEnglishParagraph(englishParagraphs[index] || '');
+    const japaneseSentences = splitJapaneseParagraph(japaneseParagraphs[index] || '');
+    englishSentences.forEach((sentence, sentenceIdx) => {
+      pairs.push({
+        sentence,
+        translation: pickAlignedSentence(japaneseSentences, sentenceIdx, englishSentences.length)
+      });
+    });
+  }
+  return pairs;
+}
+
+function duoSentenceContainsWord(sentence, word) {
+  if (!sentence || !word) return false;
+  const parts = String(word).trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
+  if (!parts.length) return false;
+  const pattern = new RegExp(`\\b${parts.join('[\\s-]+')}\\b`, 'i');
+  return pattern.test(sentence);
+}
+
+function buildDuoSentenceCandidates(sourceId, entries, sourceInfo) {
+  if (!sourceInfo.text) return [];
+  return getAlignedDuoSentences(sourceInfo.text, sourceInfo.translation)
+    .map((pair, index) => {
+      const matchedEntries = entries.filter(entry => duoSentenceContainsWord(pair.sentence, entry.word));
+      if (!matchedEntries.length) return null;
+      return {
+        id: `${sourceId}-${index}`,
+        sourceId,
+        sourceLabel: sourceInfo.label || '',
+        sentence: pair.sentence,
+        translation: pair.translation || '',
+        entries: matchedEntries
+      };
+    })
+    .filter(Boolean);
+}
+
+function buildDuoFallbackCard(entry, sourceInfo) {
+  return {
+    id: `fallback-${entry.key}`,
+    sourceId: entry.essayId || '',
+    sourceLabel: sourceInfo.label ? `${sourceInfo.label} · fallback` : 'Fallback example',
+    sentence: (entry.example || '').trim() || buildDuoFallbackExample(entry),
+    translation: (entry.exampleJa || '').trim() || buildDuoFallbackTranslation(entry),
+    entries: [entry]
+  };
+}
+
+function selectDuoSentenceCandidates(candidates, entries, sourceInfo) {
+  const uncovered = new Set(entries.map(entry => entry.key));
+  const usedCandidateIds = new Set();
+  const cards = [];
+  const sortedCandidates = candidates.slice().sort((a, b) => {
+    const countDiff = b.entries.length - a.entries.length;
+    if (countDiff) return countDiff;
+    return a.sentence.length - b.sentence.length;
+  });
+
+  while (uncovered.size) {
+    let bestCandidate = null;
+    let bestCoverage = 0;
+    sortedCandidates.forEach((candidate) => {
+      if (usedCandidateIds.has(candidate.id)) return;
+      const coverage = candidate.entries.filter(entry => uncovered.has(entry.key)).length;
+      if (coverage <= 0) return;
+      if (!bestCandidate || coverage > bestCoverage || (coverage === bestCoverage && candidate.entries.length > bestCandidate.entries.length) || (coverage === bestCoverage && candidate.entries.length === bestCandidate.entries.length && candidate.sentence.length < bestCandidate.sentence.length)) {
+        bestCandidate = candidate;
+        bestCoverage = coverage;
+      }
+    });
+    if (!bestCandidate) break;
+    if (bestCandidate.entries.length < 2 && cards.some(card => card.entries.length >= 2)) break;
+    cards.push(bestCandidate);
+    usedCandidateIds.add(bestCandidate.id);
+    bestCandidate.entries.forEach(entry => uncovered.delete(entry.key));
+  }
+
+  entries.forEach((entry) => {
+    if (!uncovered.has(entry.key)) return;
+    const singleCandidate = sortedCandidates.find(candidate => !usedCandidateIds.has(candidate.id) && candidate.entries.some(candidateEntry => candidateEntry.key === entry.key));
+    if (singleCandidate) {
+      cards.push(singleCandidate);
+      usedCandidateIds.add(singleCandidate.id);
+      singleCandidate.entries.forEach(candidateEntry => uncovered.delete(candidateEntry.key));
+      return;
+    }
+    cards.push(buildDuoFallbackCard(entry, sourceInfo));
+    uncovered.delete(entry.key);
+  });
+
+  return cards;
+}
+
 function highlightDuoTargets(sentence, targetWords) {
   let html = escapeHtml(sentence);
   (targetWords || [])
@@ -2110,20 +2244,20 @@ function highlightDuoTargets(sentence, targetWords) {
     .sort((a, b) => b.length - a.length)
     .forEach((word) => {
       const parts = word.split(/\s+/).map(escapeRegExp);
-      const pattern = new RegExp(`\\b(${parts.join('\\s+')})\\b`, 'gi');
+      const pattern = new RegExp(`\\b(${parts.join('[\\s-]+')})\\b`, 'gi');
       html = html.replace(pattern, '<span class="duo-target">$1</span>');
     });
   return html;
 }
 
-function speakDuoCard(groupIdx) {
-  if (!window._duoSentenceCards || !window._duoSentenceCards[groupIdx]) return;
-  speakTextSequence(window._duoSentenceCards[groupIdx], 0.95);
+function speakAllDuoSentences() {
+  if (!window._duoSentenceCards || window._duoSentenceCards.length === 0) return;
+  speakTextSequence(window._duoSentenceCards.map(card => card.sentence), 0.95, 500);
 }
 
-function speakDuoSentence(groupIdx, sentenceIdx) {
+function speakDuoSentence(groupIdx) {
   if (!window._duoSentenceCards || !window._duoSentenceCards[groupIdx]) return;
-  const sentence = window._duoSentenceCards[groupIdx][sentenceIdx];
+  const sentence = window._duoSentenceCards[groupIdx].sentence;
   if (!sentence) return;
   speakTextSequence([sentence], 0.95);
 }
