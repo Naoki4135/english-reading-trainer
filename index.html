@@ -408,35 +408,22 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .flashcard-speak-btn:hover { background: var(--accent); color: white; }
 .flashcard-visual {
-  width: 100%; max-width: 280px; border-radius: 16px; padding: 20px 16px 12px;
+  width: 100%; max-width: 280px; border-radius: 16px; padding: 20px 16px 14px;
   margin-bottom: 12px; text-align: center; position: relative; overflow: hidden;
 }
 .flashcard-visual-bg {
   position: absolute; inset: 0; opacity: 0.15; border-radius: 16px;
 }
-.flashcard-visual-shell {
-  position: relative; z-index: 1; display: flex; flex-direction: column;
-  align-items: center; gap: 10px;
+.flashcard-visual-emojis {
+  position: relative; z-index: 1;
+  font-size: 52px; line-height: 1.2; letter-spacing: 8px;
+  margin-bottom: 8px;
 }
-.flashcard-visual-badge {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-  text-transform: uppercase; border-radius: 999px;
-  padding: 5px 10px; background: rgba(15,23,42,0.72);
-}
-.flashcard-visual-scene {
-  width: 100%; max-width: 240px; min-height: 132px;
-  aspect-ratio: 240 / 150;
-  display: flex; align-items: center; justify-content: center;
-}
-.flashcard-visual-scene img,
-.flashcard-visual-scene svg {
-  width: 100%; height: 100%; display: block; overflow: visible;
-}
-.flashcard-visual-scene img {
-  object-fit: contain;
-}
-.flashcard-visual-note {
-  font-size: 11px; color: var(--text2); line-height: 1.5; max-width: 220px;
+.flashcard-visual-hint {
+  position: relative; z-index: 1;
+  font-size: 12px; color: var(--text2); line-height: 1.5;
+  background: rgba(15,23,42,0.6); display: inline-block;
+  padding: 3px 12px; border-radius: 10px;
 }
 .flashcard-hint { font-size: 12px; color: var(--text2); margin-top: 12px; }
 .flashcard-progress { font-size: 12px; color: var(--text2); margin-bottom: 16px; }
@@ -681,11 +668,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <div class="flashcard-hint-panel" id="fc-hint-panel"></div>
         <div class="flashcard-visual" id="fc-visual">
           <div class="flashcard-visual-bg" id="fc-visual-bg"></div>
-          <div class="flashcard-visual-shell" id="fc-visual-shell">
-            <div class="flashcard-visual-badge" id="fc-visual-badge"></div>
-            <div class="flashcard-visual-scene" id="fc-illustration"></div>
-            <div class="flashcard-visual-note" id="fc-visual-note"></div>
-          </div>
+          <div class="flashcard-visual-emojis" id="fc-emojis"></div>
+          <div class="flashcard-visual-hint" id="fc-visual-hint"></div>
         </div>
         <div class="flashcard-word" id="fc-word"></div>
         <div class="flashcard-pos" id="fc-pos"></div>
@@ -1256,139 +1240,6 @@ function getHintContextLabel(japanese = '', pos = '') {
   return '文脈で意味をつかむ単語';
 }
 
-function hexToRgba(hex, alpha) {
-  const value = String(hex || '#64748b').replace('#', '');
-  const normalized = value.length === 3 ? value.split('').map(ch => ch + ch).join('') : value;
-  const int = parseInt(normalized, 16);
-  if (!Number.isFinite(int)) return `rgba(100, 116, 139, ${alpha})`;
-  const r = (int >> 16) & 255;
-  const g = (int >> 8) & 255;
-  const b = int & 255;
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-
-function getIllustrationScene(word, pos, japanese, hint) {
-  const source = `${word} ${pos} ${japanese} ${hint}`.toLowerCase();
-  const jp = `${japanese} ${hint}`;
-  if (/galax|space|planet|star|orbit|black hole|宇宙|銀河|惑星|恒星|軌道/.test(source + jp)) return { key: 'space', label: 'Space' };
-  if (/経済|金融|投資|債券|株|利回り|通貨|利益|budget|revenue|bond|yield|fund|market/.test(jp + source)) return { key: 'finance', label: 'Finance' };
-  if (/環境|気候|自然|森林|生態|汚染|排出|climate|forest|ecosystem|renewable|flood|drought/.test(jp + source)) return { key: 'environment', label: 'Nature' };
-  if (/技術|ai|デジタル|コンピュータ|algorithm|automation|chip|data|surveillance|network/.test(jp + source)) return { key: 'technology', label: 'Tech' };
-  if (/法|政治|政策|規制|選挙|裁判|jurisdiction|legislation|sovereignty|diplomacy/.test(jp + source)) return { key: 'law', label: 'Policy' };
-  if (/健康|医|病|治療|免疫|symptom|therapy|diagnosis|pathogen/.test(jp + source)) return { key: 'health', label: 'Health' };
-  if (/心理|感情|脳|認知|memory|emotion|anxiety|empathy|bias|motivation/.test(jp + source)) return { key: 'mind', label: 'Mind' };
-  if (/危険|リスク|警告|脅威|hazard|danger|risk|catastrophic|crisis/.test(jp + source)) return { key: 'danger', label: 'Risk' };
-  if (/増|成長|拡大|上昇|improve|grow|rise|increase|expand/.test(jp + source)) return { key: 'growth', label: 'Growth' };
-  if (/減|低下|下落|縮小|悪化|decline|fall|drop|decrease|erosion/.test(jp + source)) return { key: 'decline', label: 'Decline' };
-  if (/教育|学|授業|試験|school|study|learn|curriculum|pedagogy/.test(jp + source)) return { key: 'education', label: 'Learning' };
-  return { key: 'default', label: 'Concept' };
-}
-
-function renderIllustrationSvg(scene, color) {
-  const stroke = color || '#60a5fa';
-  const soft = hexToRgba(stroke, 0.16);
-  const mid = hexToRgba(stroke, 0.24);
-  switch (scene.key) {
-    case 'space':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <circle cx="120" cy="75" r="58" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <circle cx="120" cy="75" r="22" fill="${mid}" stroke="${stroke}" stroke-width="3"/>
-        <ellipse cx="120" cy="75" rx="78" ry="28" fill="none" stroke="${stroke}" stroke-width="5"/>
-        <circle cx="52" cy="45" r="7" fill="${stroke}"/>
-        <circle cx="186" cy="38" r="5" fill="${stroke}"/>
-        <circle cx="182" cy="112" r="8" fill="${stroke}"/>
-      </svg>`;
-    case 'finance':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <rect x="34" y="94" width="30" height="28" rx="8" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <rect x="82" y="74" width="30" height="48" rx="8" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <rect x="130" y="54" width="30" height="68" rx="8" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <path d="M40 52c22 10 38 14 56 6 16-8 28-6 44 8 14 12 30 13 50-6" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M182 49l16 1-7 14" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`;
-    case 'environment':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <circle cx="88" cy="72" r="42" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <path d="M68 60c10-15 27-18 41-9 7 5 11 12 16 23-10-4-18-4-26 1-10 6-20 5-31-4z" fill="${mid}"/>
-        <path d="M154 108c0-28 18-48 44-54-6 23-18 38-35 48l16 19h-22z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M158 103c16-6 28-18 36-38" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
-      </svg>`;
-    case 'technology':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <rect x="72" y="34" width="96" height="82" rx="16" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <rect x="100" y="58" width="40" height="34" rx="8" fill="${mid}" stroke="${stroke}" stroke-width="3"/>
-        <path d="M88 24v16M112 24v16M136 24v16M160 24v16M88 110v16M112 110v16M136 110v16M160 110v16M58 50h16M58 74h16M58 98h16M166 50h16M166 74h16M166 98h16" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
-      </svg>`;
-    case 'law':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <path d="M56 56h128" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M72 56l48-22 48 22" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M84 60v46M120 60v46M156 60v46" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M68 106h104" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M186 52v14M166 84c8 6 18 6 28 0M174 66l-10 18h20zM198 66l-10 18h20z" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`;
-    case 'health':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <path d="M120 32l42 12v30c0 28-16 46-42 58-26-12-42-30-42-58V44z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M120 54v38M101 73h38" stroke="${stroke}" stroke-width="8" stroke-linecap="round"/>
-        <path d="M176 104c0-12 9-21 21-21s21 9 21 21c0 10-8 18-21 28-13-10-21-18-21-28z" fill="${mid}" stroke="${stroke}" stroke-width="4"/>
-      </svg>`;
-    case 'mind':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <path d="M90 110c-4-10-7-18-7-28 0-27 21-49 48-49 24 0 44 19 44 42 0 14-6 24-17 32-7 5-10 11-10 18H90z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M112 59c4-8 13-13 22-13 13 0 24 10 24 23 0 9-5 16-12 20" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
-        <path d="M100 118h44M104 130h36" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-      </svg>`;
-    case 'danger':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <path d="M120 28l62 102H58z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M120 58v28M120 100h1" stroke="${stroke}" stroke-width="8" stroke-linecap="round"/>
-        <path d="M46 118l22-18M172 50l18-12" stroke="${stroke}" stroke-width="4" stroke-linecap="round"/>
-      </svg>`;
-    case 'growth':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <path d="M52 110h126" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M66 96c20-16 36-21 49-14 16 8 29 6 48-8 12-9 22-12 34-12" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M188 60l14 0-4 14" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M64 118c0-22 11-38 30-46-3 17 0 31 14 40-13 3-26 5-44 6z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
-      </svg>`;
-    case 'decline':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <path d="M52 40v74h136" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M70 56c20 7 34 16 48 32 13 15 26 24 50 30" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <path d="M164 108l6 16 14-9" fill="none" stroke="${stroke}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="78" cy="58" r="7" fill="${stroke}"/>
-      </svg>`;
-    case 'education':
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <rect x="52" y="44" width="56" height="72" rx="10" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <rect x="92" y="36" width="56" height="80" rx="10" fill="${mid}" stroke="${stroke}" stroke-width="4"/>
-        <path d="M164 44l32 32-48 48-18-14z" fill="${soft}" stroke="${stroke}" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M148 110l14 10" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-      </svg>`;
-    default:
-      return `<svg viewBox="0 0 240 150" aria-hidden="true">
-        <rect x="56" y="36" width="128" height="78" rx="18" fill="${soft}" stroke="${stroke}" stroke-width="4"/>
-        <path d="M88 72h64M88 92h44" stroke="${stroke}" stroke-width="6" stroke-linecap="round"/>
-        <circle cx="164" cy="58" r="12" fill="${mid}" stroke="${stroke}" stroke-width="4"/>
-      </svg>`;
-  }
-}
-
-function renderWordIllustration(visual, word, pos, japanese) {
-  const scene = getIllustrationScene(word, pos, japanese, visual.h || '');
-  return {
-    badge: scene.label,
-    note: visual.h || '',
-    svg: renderIllustrationSvg(scene, visual.c)
-  };
-}
-
-function setFlashcardIllustration(illustration) {
-  const container = document.getElementById('fc-illustration');
-  if (!container) return;
-  container.innerHTML = illustration.svg || '';
-}
 
 function buildFlashcardHint(v, visual) {
   const example = maskTargetWord(v.example || '', v.word);
@@ -2332,15 +2183,12 @@ function showFlashcard() {
   document.getElementById('fc-example').textContent = v.example;
   document.getElementById('fc-example-ja').textContent = v.exampleJa || '';
   const visual = getWordVisual(v.word, v.pos, v.japanese);
-  const illustration = renderWordIllustration(visual, v.word, v.pos, v.japanese);
-  document.getElementById('fc-visual-badge').textContent = illustration.badge;
-  document.getElementById('fc-visual-note').textContent = illustration.note;
-  document.getElementById('fc-visual-note').style.display = illustration.note ? 'block' : 'none';
-  setFlashcardIllustration(illustration);
+  document.getElementById('fc-emojis').textContent = visual.e;
+  document.getElementById('fc-visual-hint').textContent = visual.h || '';
+  document.getElementById('fc-visual-hint').style.display = visual.h ? 'inline-block' : 'none';
   document.getElementById('fc-hint-panel').innerHTML = buildFlashcardHint(v, visual);
   document.getElementById('fc-visual-bg').style.background = `linear-gradient(135deg, ${visual.c}40, ${visual.c}10)`;
   document.getElementById('fc-visual').style.border = `1px solid ${visual.c}30`;
-  document.getElementById('fc-visual-badge').style.color = visual.c;
   const speakBtn = document.getElementById('fc-speak-btn');
   speakBtn.onclick = (e) => { e.stopPropagation(); speakWord(v.word); };
   document.getElementById('quiz-progress').textContent = `${quizIndex + 1} / ${quizQueue.length}`;
