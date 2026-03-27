@@ -638,8 +638,9 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <button class="btn" onclick="reshuffleVocab()" style="flex:1; min-width:150px; padding:10px;">&#128256; Shuffle Order</button>
-        <button class="btn" id="btn-duo-play-all" onclick="speakAllDuoSentences()" style="display:none; flex:1; min-width:150px; padding:10px;">&#9654; Play All</button>
-        <button class="btn" id="btn-duo-stop" onclick="stopSpeech()" style="display:none; flex:1; min-width:150px; padding:10px;">&#9632; Stop</button>
+        <button class="btn" id="btn-duo-play-all" onclick="speakAllDuoSentences()" style="display:none; flex:1; min-width:120px; padding:10px;">&#9654; Play All</button>
+        <button class="btn" id="btn-duo-pause" onclick="toggleDuoPause()" style="display:none; flex:1; min-width:120px; padding:10px;">&#10074;&#10074; Pause</button>
+        <button class="btn" id="btn-duo-stop" onclick="stopSpeech()" style="display:none; flex:1; min-width:120px; padding:10px;">&#9632; Stop</button>
       </div>
     </div>
     <div class="card" style="padding:0;">
@@ -1175,6 +1176,82 @@ const CATEGORY_VISUALS = {
   default: {e:'📝🔤💡',h:'',c:'#6b7280'},
 };
 
+// Dynamic visual generation from Japanese meaning for words without direct mapping
+function getDynamicVisualFromMeaning(japanese, pos) {
+  if (!japanese) return null;
+  const ja = japanese;
+  // Movement & Action
+  if (/走|動|飛|跳|進|急|速|追/.test(ja)) return {e:'🏃💨⚡',h:ja,c:'#f97316'};
+  if (/戦|争|攻|撃|闘|衝突/.test(ja)) return {e:'⚔️💥🛡️',h:ja,c:'#ef4444'};
+  if (/作|造|建|構築|組み立/.test(ja)) return {e:'🔨🏗️✨',h:ja,c:'#eab308'};
+  if (/壊|破|崩|滅/.test(ja)) return {e:'💥🔨😱',h:ja,c:'#ef4444'};
+  if (/送|届|運|配|輸/.test(ja)) return {e:'📦🚚➡️',h:ja,c:'#06b6d4'};
+  if (/集|募|蓄|貯|積/.test(ja)) return {e:'📥📦📈',h:ja,c:'#22c55e'};
+  if (/分|割|離|別|区/.test(ja)) return {e:'✂️↔️📊',h:ja,c:'#a78bfa'};
+  if (/結|繋|接|連|合|統/.test(ja)) return {e:'🔗🤝🧩',h:ja,c:'#3b82f6'};
+  if (/守|防|保護|安全/.test(ja)) return {e:'🛡️🔒💪',h:ja,c:'#22c55e'};
+  if (/探|調|検|捜|究/.test(ja)) return {e:'🔍🧐📋',h:ja,c:'#a78bfa'};
+  if (/選|択|決|判/.test(ja)) return {e:'🤔↗️✅',h:ja,c:'#3b82f6'};
+  if (/待|忍|耐/.test(ja)) return {e:'⏳😌🕐',h:ja,c:'#6b7280'};
+  if (/変|化|転|移|遷/.test(ja)) return {e:'🔄🦋✨',h:ja,c:'#a78bfa'};
+  if (/禁|止|阻|妨|制限/.test(ja)) return {e:'🚫🛑✋',h:ja,c:'#ef4444'};
+  if (/許|認|承/.test(ja)) return {e:'✅👍🔓',h:ja,c:'#22c55e'};
+  // People & Roles
+  if (/人|者|人間|市民|住民/.test(ja)) return {e:'👤👥🌐',h:ja,c:'#06b6d4'};
+  if (/子|赤ちゃん|幼/.test(ja)) return {e:'👶🍼🧒',h:ja,c:'#ec4899'};
+  if (/先生|教|師|指導/.test(ja)) return {e:'👩‍🏫📖✏️',h:ja,c:'#eab308'};
+  if (/王|女王|皇|支配/.test(ja)) return {e:'👑🏰⚜️',h:ja,c:'#eab308'};
+  if (/友|仲間|味方/.test(ja)) return {e:'🤝😊👫',h:ja,c:'#22c55e'};
+  if (/敵|対|反/.test(ja)) return {e:'😠⚔️💢',h:ja,c:'#ef4444'};
+  // Feelings
+  if (/喜|嬉|楽|幸|歓/.test(ja)) return {e:'😊🎉✨',h:ja,c:'#eab308'};
+  if (/悲|哀|泣|涙|嘆/.test(ja)) return {e:'😢💧💔',h:ja,c:'#3b82f6'};
+  if (/怒|激|憤|苛/.test(ja)) return {e:'😡🔥💢',h:ja,c:'#ef4444'};
+  if (/恐|怖|不安|怯/.test(ja)) return {e:'😨👻💀',h:ja,c:'#6b7280'};
+  if (/驚|衝撃|びっくり/.test(ja)) return {e:'😲⚡❗',h:ja,c:'#f97316'};
+  if (/愛|恋|慈/.test(ja)) return {e:'❤️💕😍',h:ja,c:'#ec4899'};
+  // Nature (more specific)
+  if (/水|海|川|波|湖/.test(ja)) return {e:'🌊💧🐟',h:ja,c:'#3b82f6'};
+  if (/火|炎|燃|熱/.test(ja)) return {e:'🔥🌡️💥',h:ja,c:'#ef4444'};
+  if (/山|岩|丘/.test(ja)) return {e:'🏔️⛰️🪨',h:ja,c:'#6b7280'};
+  if (/空|天|雲|風/.test(ja)) return {e:'☁️🌤️💨',h:ja,c:'#06b6d4'};
+  if (/星|宇宙|月/.test(ja)) return {e:'⭐🌙🚀',h:ja,c:'#a78bfa'};
+  if (/花|草|植物|種/.test(ja)) return {e:'🌸🌿🌱',h:ja,c:'#22c55e'};
+  if (/動物|獣|生物/.test(ja)) return {e:'🦁🐾🌿',h:ja,c:'#22c55e'};
+  // Objects & Places
+  if (/家|住|部屋|建物/.test(ja)) return {e:'🏠🏢🏗️',h:ja,c:'#f97316'};
+  if (/道|路|道路|街/.test(ja)) return {e:'🛣️🏙️🚶',h:ja,c:'#6b7280'};
+  if (/食|料理|味|栄養/.test(ja)) return {e:'🍽️🥘😋',h:ja,c:'#f97316'};
+  if (/本|書|読|文/.test(ja)) return {e:'📚📖✍️',h:ja,c:'#3b82f6'};
+  if (/音|声|歌|楽/.test(ja)) return {e:'🎵🎶🔊',h:ja,c:'#a78bfa'};
+  if (/光|輝|明|照/.test(ja)) return {e:'💡☀️✨',h:ja,c:'#eab308'};
+  if (/闇|暗|影|陰/.test(ja)) return {e:'🌑🌘😶',h:ja,c:'#6b7280'};
+  // Time
+  if (/時|時間|期|瞬/.test(ja)) return {e:'⏰⏳🕐',h:ja,c:'#6b7280'};
+  if (/始|開|初/.test(ja)) return {e:'🎬▶️🌅',h:ja,c:'#22c55e'};
+  if (/終|末|完/.test(ja)) return {e:'🏁🌅✅',h:ja,c:'#6b7280'};
+  // Quality & State
+  if (/大|巨|広|膨大/.test(ja)) return {e:'🐘📐🌍',h:ja,c:'#3b82f6'};
+  if (/小|微|少|僅/.test(ja)) return {e:'🐜🔬📏',h:ja,c:'#06b6d4'};
+  if (/強|力|頑|堅/.test(ja)) return {e:'💪🦾🏋️',h:ja,c:'#f97316'};
+  if (/弱|脆|もろ/.test(ja)) return {e:'🥀😓💧',h:ja,c:'#6b7280'};
+  if (/新|革|斬新/.test(ja)) return {e:'🆕✨🚀',h:ja,c:'#eab308'};
+  if (/古|旧|伝統/.test(ja)) return {e:'🏛️📜⏳',h:ja,c:'#6b7280'};
+  if (/正|正確|真|本当/.test(ja)) return {e:'✅✨🎯',h:ja,c:'#22c55e'};
+  if (/偽|嘘|誤/.test(ja)) return {e:'❌🎭⚠️',h:ja,c:'#ef4444'};
+  if (/美|綺麗|優雅/.test(ja)) return {e:'🌹✨💎',h:ja,c:'#ec4899'};
+  if (/重要|大切|肝心/.test(ja)) return {e:'⭐🔑💎',h:ja,c:'#eab308'};
+  if (/複雑|難|困/.test(ja)) return {e:'🧩🤯🔀',h:ja,c:'#a78bfa'};
+  if (/簡単|容易|単純/.test(ja)) return {e:'✅😊👌',h:ja,c:'#22c55e'};
+  // Communication
+  if (/話|言|語|述|伝|発言|議論/.test(ja)) return {e:'💬🗣️📢',h:ja,c:'#3b82f6'};
+  if (/書|記|筆|執/.test(ja)) return {e:'✍️📝📄',h:ja,c:'#3b82f6'};
+  if (/見|視|観|眺|目/.test(ja)) return {e:'👁️🔍👀',h:ja,c:'#a78bfa'};
+  if (/聞|聴|耳/.test(ja)) return {e:'👂🎧🔊',h:ja,c:'#06b6d4'};
+  if (/考|思|想|念/.test(ja)) return {e:'🤔💭💡',h:ja,c:'#a78bfa'};
+  return null;
+}
+
 function getWordVisual(word, pos, japanese) {
   const w = word.toLowerCase().replace(/[^a-z]/g, '');
   // Direct match
@@ -1202,6 +1279,11 @@ function getWordVisual(word, pos, japanese) {
     if (/危険|リスク|脅威|警告|被害/.test(japanese)) return CATEGORY_VISUALS.danger;
     if (/増|成長|拡大|上昇|向上|加速/.test(japanese)) return CATEGORY_VISUALS.increase;
     if (/減|低下|衰退|下落|縮小|悪化/.test(japanese)) return CATEGORY_VISUALS.decrease;
+  }
+  // Dynamic visual from Japanese meaning keywords (more granular than category)
+  if (japanese) {
+    const dynamicVisual = getDynamicVisualFromMeaning(japanese, pos);
+    if (dynamicVisual) return dynamicVisual;
   }
   // Fallback by pos
   if (pos) {
@@ -1767,8 +1849,10 @@ function filterVocab() {
   const shuffleCtrl = document.getElementById('shuffle-controls');
   const duoPlayAllBtn = document.getElementById('btn-duo-play-all');
   const duoStopBtn = document.getElementById('btn-duo-stop');
+  const duoPauseBtn = document.getElementById('btn-duo-pause');
   shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo') ? 'block' : 'none';
   duoPlayAllBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
+  duoPauseBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
   duoStopBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
 
   if (vocabFilter === 'duo') {
@@ -1890,10 +1974,14 @@ function renderDuoList(words) {
       </div>`;
     }).join('');
 
-    return `<div class="duo-card">
+    const excludeKeys = card.entries.map(e => e.key).join(',');
+    return `<div class="duo-card" id="duo-card-${gi}">
       <div class="duo-card-head">
         <div class="duo-card-meta">${card.entries.length} target word${card.entries.length > 1 ? 's' : ''}${card.sourceLabel ? ' · ' + escapeHtml(card.sourceLabel) : ''}</div>
-        <button class="duo-card-play" onclick="speakDuoSentence(${gi})">&#128266; Play</button>
+        <div style="display:flex; gap:6px; align-items:center;">
+          <button class="duo-card-play" onclick="speakDuoSentence(${gi})">&#128266; Play</button>
+          <button class="btn-exclude" onclick="excludeDuoCard('${excludeKeys}', ${gi})" style="padding:4px 8px; font-size:10px;">Exclude</button>
+        </div>
       </div>
       <div class="duo-sentence-block">
         <div class="duo-sentence">${sentHtml}</div>
@@ -2104,6 +2192,29 @@ function highlightDuoTargets(sentence, targetWords) {
 function speakAllDuoSentences() {
   if (!window._duoSentenceCards || window._duoSentenceCards.length === 0) return;
   speakTextSequence(window._duoSentenceCards.map(card => card.sentence), 0.95, 500);
+  updateDuoPauseBtn();
+}
+
+function toggleDuoPause() {
+  if (!isSpeechSupported()) return;
+  if (speechSynthesis.paused) {
+    speechSynthesis.resume();
+  } else if (speechSynthesis.speaking) {
+    speechSynthesis.pause();
+  }
+  updateDuoPauseBtn();
+}
+
+function updateDuoPauseBtn() {
+  const btn = document.getElementById('btn-duo-pause');
+  if (!btn) return;
+  if (speechSynthesis.paused) {
+    btn.innerHTML = '&#9654; Resume';
+    btn.classList.add('active-toggle');
+  } else {
+    btn.innerHTML = '&#10074;&#10074; Pause';
+    btn.classList.remove('active-toggle');
+  }
 }
 
 function speakDuoSentence(groupIdx) {
@@ -2111,6 +2222,23 @@ function speakDuoSentence(groupIdx) {
   const sentence = window._duoSentenceCards[groupIdx].sentence;
   if (!sentence) return;
   speakTextSequence([sentence], 0.95);
+}
+
+function excludeDuoCard(keysStr, cardIdx) {
+  const keys = keysStr.split(',').filter(Boolean);
+  const words = [];
+  keys.forEach(key => {
+    if (state.vocabulary[key] && state.vocabulary[key].level !== -1) {
+      state.vocabulary[key].level = -1;
+      state.vocabulary[key].interval = 0;
+      shuffledVocabCache = shuffledVocabCache.filter(([k]) => k !== key);
+      words.push(state.vocabulary[key].word);
+    }
+  });
+  saveState();
+  const el = document.getElementById('duo-card-' + cardIdx);
+  if (el) { el.style.opacity = '0.3'; el.style.pointerEvents = 'none'; }
+  if (words.length > 0) showToast('Excluded: ' + words.join(', '));
 }
 
 function markExcluded(key) {
