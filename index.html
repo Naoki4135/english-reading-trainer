@@ -6,8 +6,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>English Reading Trainer</title>
-<script src="data.js"></script>
-<script src="listening-data.js"></script>
+<script src="data.js?v=20260328"></script>
+<script src="listening-data.js?v=20260328"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -633,6 +633,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn" data-filter="shuffle" onclick="setVocabFilter('shuffle', this)">Shuffle</button>
       <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
       <button class="filter-btn" data-filter="duo" onclick="setVocabFilter('duo', this)">Duo</button>
+      <button class="filter-btn" data-filter="duo-seq" onclick="setVocabFilter('duo-seq', this)">Duo Seq</button>
       <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
     </div>
     <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
@@ -1850,10 +1851,11 @@ function filterVocab() {
   const duoPlayAllBtn = document.getElementById('btn-duo-play-all');
   const duoStopBtn = document.getElementById('btn-duo-stop');
   const duoPauseBtn = document.getElementById('btn-duo-pause');
+  const isDuo = vocabFilter === 'duo' || vocabFilter === 'duo-seq';
   shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo') ? 'block' : 'none';
-  duoPlayAllBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
-  duoPauseBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
-  duoStopBtn.style.display = vocabFilter === 'duo' ? 'inline-flex' : 'none';
+  duoPlayAllBtn.style.display = isDuo ? 'inline-flex' : 'none';
+  duoPauseBtn.style.display = isDuo ? 'inline-flex' : 'none';
+  duoStopBtn.style.display = isDuo ? 'inline-flex' : 'none';
 
   if (vocabFilter === 'duo') {
     let duoWords;
@@ -1867,6 +1869,15 @@ function filterVocab() {
       }).sort((a, b) => a[0].localeCompare(b[0]));
     }
     renderDuoList(duoWords);
+    return;
+  }
+
+  if (vocabFilter === 'duo-seq') {
+    const duoWords = Object.entries(state.vocabulary).filter(([key, v]) => {
+      const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
+      return matchSearch && v.level >= 0 && v.level < 3;
+    }).sort((a, b) => a[0].localeCompare(b[0]));
+    renderDuoSeqList(duoWords);
     return;
   }
 
@@ -1996,6 +2007,71 @@ function renderDuoList(words) {
   document.getElementById('vocab-count').textContent = `${cards.length} sentences · ${words.length} words`;
 }
 
+// Duo Seq mode: sequential numbered list with collapsible groups of 10
+function renderDuoSeqList(words) {
+  const el = document.getElementById('vocab-list');
+  if (words.length === 0) {
+    window._duoSentenceCards = [];
+    el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words for Duo Seq mode</div>';
+    document.getElementById('vocab-count').textContent = '';
+    return;
+  }
+  const cards = buildDuoCards(words);
+  window._duoSentenceCards = cards;
+
+  const groupSize = 10;
+  const totalCards = cards.length;
+  const groupCount = Math.ceil(totalCards / groupSize);
+  let html = '';
+
+  for (let g = 0; g < groupCount; g++) {
+    const start = g * groupSize;
+    const end = Math.min(start + groupSize, totalCards);
+    const groupLabel = `#${start + 1} – #${end}`;
+    const isFirst = g === 0;
+    html += `<div class="essay-group">
+      <button class="essay-group-toggle${isFirst ? ' open' : ''}" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+        ${groupLabel} <span class="arrow">▼</span>
+      </button>
+      <div class="essay-group-content${isFirst ? ' open' : ''}">`;
+
+    for (let i = start; i < end; i++) {
+      const card = cards[i];
+      const gi = i;
+      const seqNum = i + 1;
+      const sentHtml = highlightDuoTargets(card.sentence, card.entries.map(entry => entry.word));
+      const translationHtml = card.translation ? `<div class="duo-sentence-ja">${escapeHtml(card.translation)}</div>` : '';
+      const wordsHtml = card.entries.map((v) => {
+        return `<div class="duo-word-row">
+          <span class="duo-word-en">${v.word}</span>
+          <span class="duo-word-pos">${v.pos || ''}</span>
+          <span class="duo-word-ja">${v.japanese}</span>
+          <button class="duo-speak-btn" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
+        </div>`;
+      }).join('');
+      const excludeKeys = card.entries.map(e => e.key).join(',');
+      html += `<div class="duo-card" id="duo-card-${gi}">
+        <div class="duo-card-head">
+          <div class="duo-card-meta"><span style="font-weight:700; color:var(--accent2); margin-right:6px;">#${seqNum}</span>${card.entries.length} target word${card.entries.length > 1 ? 's' : ''}${card.sourceLabel ? ' · ' + escapeHtml(card.sourceLabel) : ''}</div>
+          <div style="display:flex; gap:6px; align-items:center;">
+            <button class="duo-card-play" onclick="speakDuoSentence(${gi})">&#128266; Play</button>
+            <button class="btn-exclude" onclick="excludeDuoCard('${excludeKeys}', ${gi})" style="padding:4px 8px; font-size:10px;">Exclude</button>
+          </div>
+        </div>
+        <div class="duo-sentence-block">
+          <div class="duo-sentence">${sentHtml}</div>
+          ${translationHtml}
+        </div>
+        <div class="duo-words">${wordsHtml}</div>
+      </div>`;
+    }
+    html += `</div></div>`;
+  }
+
+  el.innerHTML = html;
+  document.getElementById('vocab-count').textContent = `${cards.length} sentences · ${words.length} words`;
+}
+
 function buildDuoCards(words) {
   const groupedBySource = new Map();
   words.forEach(([key, value]) => {
@@ -2105,6 +2181,8 @@ function buildDuoSentenceCandidates(sourceId, entries, sourceInfo) {
   if (!sourceInfo.text) return [];
   return getAlignedDuoSentences(sourceInfo.text, sourceInfo.translation)
     .map((pair, index) => {
+      // Skip sentences over 20 words for DUO mode
+      if (pair.sentence.split(/\s+/).filter(Boolean).length > 20) return null;
       const matchedEntries = entries.filter(entry => duoSentenceContainsWord(pair.sentence, entry.word));
       if (!matchedEntries.length) return null;
       return {
@@ -2191,7 +2269,7 @@ function highlightDuoTargets(sentence, targetWords) {
 
 function speakAllDuoSentences() {
   if (!window._duoSentenceCards || window._duoSentenceCards.length === 0) return;
-  speakTextSequence(window._duoSentenceCards.map(card => card.sentence), 0.95, 500);
+  speakTextSequence(window._duoSentenceCards.map(card => card.sentence), 0.95, 1000);
   updateDuoPauseBtn();
 }
 
@@ -2312,8 +2390,8 @@ function showFlashcard() {
   document.getElementById('fc-example-ja').textContent = v.exampleJa || '';
   const visual = getWordVisual(v.word, v.pos, v.japanese);
   document.getElementById('fc-emojis').textContent = visual.e;
-  document.getElementById('fc-visual-hint').textContent = visual.h || '';
-  document.getElementById('fc-visual-hint').style.display = visual.h ? 'inline-block' : 'none';
+  document.getElementById('fc-visual-hint').textContent = '';
+  document.getElementById('fc-visual-hint').style.display = 'none';
   document.getElementById('fc-hint-panel').innerHTML = buildFlashcardHint(v, visual);
   document.getElementById('fc-visual-bg').style.background = `linear-gradient(135deg, ${visual.c}40, ${visual.c}10)`;
   document.getElementById('fc-visual').style.border = `1px solid ${visual.c}30`;
