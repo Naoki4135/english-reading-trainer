@@ -3312,7 +3312,11 @@ Thank you for your attention. In our next session, we will explore more advanced
     { word: "convexity", pos: "noun", japanese: "コンベクシティ（凸性）", definition: "A measure of the curvature in the relationship between bond prices and yields", example: "Convexity provides a more accurate estimate of price changes for large yield movements.", exampleJa: "コンベクシティは、大きな利回り変動に対する価格変化のより正確な推定を提供します。" },
     { word: "indispensable", pos: "adjective", japanese: "不可欠な", definition: "Absolutely necessary; impossible to do without", example: "A solid understanding of duration is indispensable for bond portfolio managers.", exampleJa: "デュレーションの確実な理解は、債券ポートフォリオマネージャーにとって不可欠です。" }
   ]
-},
+}
+];
+
+// Essays 71-120
+ESSAYS.push(
 {
   id: "2026-03-25-071",
   date: "2026-03-25",
@@ -4494,5 +4498,4 @@ Thank you for your attention. In our next session, we will explore more advanced
   ],
   translation: `マーケット・マイクロストラクチャーは、証券が取引され価格が形成されるメカニズムを研究する分野である。その中核には指値注文板がある。これは指定された価格で買い注文と売り注文を継続的にマッチングさせる電子台帳である。ビッド・アスク・スプレッド、すなわち買い手が支払う最高価格と売り手が受け入れる最低価格の差は、市場流動性と取引コストの重要な指標として機能する。マーケットメーカーはビッドとアスクの両方の価格を提示することで流動性を提供し、在庫リスクを負う対価としてスプレッドを獲得する。高頻度取引の台頭はマイクロストラクチャーのダイナミクスを根本的に変えた。HFT企業はコロケーションされたサーバーと超低レイテンシーのアルゴリズムを使用し、1秒間に数千回の取引を執行して、瞬時のアービトラージ機会を捕捉し継続的に流動性を提供する。批判者はHFTがストレス局面で消失するファントム・リクイディティを生み出し、フラッシュ・クラッシュを悪化させると主張する。規制当局はサーキットブレーカー、注文の最低滞留時間、そして注文板を操作するために設計されたスプーフィングやレイヤリング戦略の監視強化といった対策で対応してきた。`
 }
-
-];
+);

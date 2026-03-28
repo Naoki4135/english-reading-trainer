@@ -638,7 +638,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     </div>
     <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="btn" onclick="reshuffleVocab()" style="flex:1; min-width:150px; padding:10px;">&#128256; Shuffle Order</button>
+        <button class="btn" id="btn-shuffle-order" onclick="reshuffleVocab()" style="flex:1; min-width:150px; padding:10px;">&#128256; Shuffle Order</button>
         <button class="btn" id="btn-duo-play-all" onclick="speakAllDuoSentences()" style="display:none; flex:1; min-width:120px; padding:10px;">&#9654; Play All</button>
         <button class="btn" id="btn-duo-pause" onclick="toggleDuoPause()" style="display:none; flex:1; min-width:120px; padding:10px;">&#10074;&#10074; Pause</button>
         <button class="btn" id="btn-duo-stop" onclick="stopSpeech()" style="display:none; flex:1; min-width:120px; padding:10px;">&#9632; Stop</button>
@@ -660,7 +660,9 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="tab active" onclick="setQuizMode('review', this)">Due Review (<span id="quiz-due-count">0</span>)</button>
       <button class="tab" onclick="setQuizMode('new', this)">New Words (<span id="quiz-new-count">0</span>)</button>
       <button class="tab" onclick="setQuizMode('all', this)">All Words</button>
+      <button class="tab" onclick="setQuizMode('duo-sentences', this)">Duo Sentences (<span id="quiz-duo-count">0</span>)</button>
     </div>
+    <!-- Word flashcard area -->
     <div id="quiz-area">
       <div class="flashcard-progress" id="quiz-progress"></div>
       <div class="flashcard" id="flashcard" onclick="revealFlashcard()">
@@ -689,6 +691,26 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="rating-btn rating-hard" onclick="rateCard(2)">Hard</button>
         <button class="rating-btn rating-good" onclick="rateCard(3)">Good</button>
         <button class="rating-btn rating-easy" onclick="rateCard(4)">Easy</button>
+      </div>
+    </div>
+    <!-- Duo sentence flashcard area -->
+    <div id="duo-quiz-area" style="display:none;">
+      <div class="flashcard-progress" id="duo-quiz-progress"></div>
+      <div class="flashcard" id="duo-flashcard" onclick="revealDuoFlashcard()">
+        <div style="font-size:11px; color:var(--text2); margin-bottom:8px;" id="duo-fc-source"></div>
+        <div style="font-size:17px; line-height:1.7; color:var(--text); padding:8px 0;" id="duo-fc-sentence"></div>
+        <button class="flashcard-speak-btn" id="duo-fc-speak" onclick="event.stopPropagation();" style="margin:8px 0;">&#128266; Listen</button>
+        <div class="flashcard-hint" id="duo-fc-hint">Tap card to reveal Japanese translation</div>
+        <div id="duo-fc-answer" style="display:none;">
+          <div style="font-size:15px; color:var(--accent); line-height:1.6; padding:12px 0; border-top:1px solid var(--border);" id="duo-fc-translation"></div>
+          <div id="duo-fc-words" style="margin-top:8px;"></div>
+        </div>
+      </div>
+      <div class="rating-buttons" id="duo-rating-buttons" style="display:none;">
+        <button class="rating-btn rating-again" onclick="rateDuoCard(1)">Again</button>
+        <button class="rating-btn rating-hard" onclick="rateDuoCard(2)">Hard</button>
+        <button class="rating-btn rating-good" onclick="rateDuoCard(3)">Good</button>
+        <button class="rating-btn rating-easy" onclick="rateDuoCard(4)">Easy</button>
       </div>
     </div>
     <div class="empty-state" id="quiz-empty" style="display:none;">
@@ -908,10 +930,11 @@ function loadState() {
       if (!p.readCounts) p.readCounts = {};
       if (!p.dailyStats) p.dailyStats = {};
       if (!p.recentEssayIds) p.recentEssayIds = [];
+      if (!p.duoSrs) p.duoSrs = {};
       return p;
     }
   } catch (e) { localStorage.removeItem(STORAGE_KEY); }
-  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], lastStudyDate: null };
+  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], duoSrs: {}, lastStudyDate: null };
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
@@ -1852,7 +1875,8 @@ function filterVocab() {
   const duoStopBtn = document.getElementById('btn-duo-stop');
   const duoPauseBtn = document.getElementById('btn-duo-pause');
   const isDuo = vocabFilter === 'duo' || vocabFilter === 'duo-seq';
-  shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo') ? 'block' : 'none';
+  shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo' || vocabFilter === 'duo-seq') ? 'block' : 'none';
+  document.getElementById('btn-shuffle-order').style.display = (vocabFilter === 'duo-seq') ? 'none' : 'inline-flex';
   duoPlayAllBtn.style.display = isDuo ? 'inline-flex' : 'none';
   duoPauseBtn.style.display = isDuo ? 'inline-flex' : 'none';
   duoStopBtn.style.display = isDuo ? 'inline-flex' : 'none';
@@ -2352,6 +2376,7 @@ function getNewWords() { return Object.entries(state.vocabulary).filter(([k, v])
 function updateQuizPage() {
   document.getElementById('quiz-due-count').textContent = getDueWords().length;
   document.getElementById('quiz-new-count').textContent = getNewWords().length;
+  document.getElementById('quiz-duo-count').textContent = getDueSentences().length;
   loadQuizQueue();
 }
 function setQuizMode(mode, btn) {
@@ -2364,6 +2389,15 @@ function loadQuizQueue() {
   quizIndex = 0;
   quizSessionStats = { again: 0, hard: 0, good: 0, easy: 0 };
   document.getElementById('quiz-complete').style.display = 'none';
+
+  if (quizMode === 'duo-sentences') {
+    document.getElementById('quiz-area').style.display = 'none';
+    document.getElementById('duo-quiz-area').style.display = 'block';
+    loadDuoSentenceQueue();
+    return;
+  }
+
+  document.getElementById('duo-quiz-area').style.display = 'none';
   if (quizMode === 'review') quizQueue = getDueWords();
   else if (quizMode === 'new') quizQueue = getNewWords().slice(0, 20);
   else quizQueue = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
@@ -2421,13 +2455,13 @@ function rateCard(quality) {
 }
 function showQuizComplete() {
   document.getElementById('quiz-area').style.display = 'none';
+  document.getElementById('duo-quiz-area').style.display = 'none';
   document.getElementById('quiz-complete').style.display = 'block';
   const t = quizSessionStats.again + quizSessionStats.hard + quizSessionStats.good + quizSessionStats.easy;
-  document.getElementById('quiz-summary').innerHTML = `Reviewed: ${t} words<br>Again: ${quizSessionStats.again} · Hard: ${quizSessionStats.hard} · Good: ${quizSessionStats.good} · Easy: ${quizSessionStats.easy}`;
+  document.getElementById('quiz-summary').innerHTML = `Reviewed: ${t} cards<br>Again: ${quizSessionStats.again} · Hard: ${quizSessionStats.hard} · Good: ${quizSessionStats.good} · Easy: ${quizSessionStats.easy}`;
   const today = formatLocalDate();
   const ex = state.studyHistory.find(h => h.date === today);
   if (ex) ex.reviewed += t; else state.studyHistory.push({ date: today, reviewed: t, newWords: 0 });
-  // Update daily stats for charts
   if (!state.dailyStats) state.dailyStats = {};
   if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
   state.dailyStats[today].reviewed += t;
@@ -2437,6 +2471,105 @@ function showQuizComplete() {
 }
 function resetQuiz() { document.getElementById('quiz-complete').style.display = 'none'; updateQuizPage(); }
 function startReview() { showPage('quiz'); setQuizMode('review', document.querySelector('#quiz-tabs .tab')); }
+
+// === DUO SENTENCE QUIZ ===
+let duoQuizQueue = [];
+let duoQuizIndex = 0;
+let duoQuizRevealed = false;
+
+function buildAllDuoSentenceCards() {
+  const words = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0);
+  if (!words.length) return [];
+  return buildDuoCards(words);
+}
+
+function ensureDuoSrs(cardId) {
+  if (!state.duoSrs) state.duoSrs = {};
+  if (!state.duoSrs[cardId]) {
+    state.duoSrs[cardId] = {
+      interval: 0, easeFactor: 2.5, level: 0,
+      nextReview: formatLocalDate(), reviewCount: 0, correctCount: 0, lastReview: null
+    };
+  }
+  return state.duoSrs[cardId];
+}
+
+function getDueSentences() {
+  const today = formatLocalDate();
+  const allCards = buildAllDuoSentenceCards();
+  return allCards.filter(card => {
+    const srs = state.duoSrs && state.duoSrs[card.id];
+    if (!srs) return false;
+    return srs.level > 0 && srs.level < 3 && srs.nextReview <= today;
+  });
+}
+
+function loadDuoSentenceQueue() {
+  duoQuizIndex = 0;
+  const allCards = buildAllDuoSentenceCards();
+  const today = formatLocalDate();
+  // Due cards first, then new (unreviewed) cards
+  const due = allCards.filter(card => {
+    const srs = state.duoSrs && state.duoSrs[card.id];
+    return srs && srs.level > 0 && srs.level < 3 && srs.nextReview <= today;
+  });
+  const newCards = allCards.filter(card => {
+    return !state.duoSrs || !state.duoSrs[card.id] || state.duoSrs[card.id].level === 0;
+  }).slice(0, 10);
+  duoQuizQueue = [...due, ...newCards];
+  shuffleArray(duoQuizQueue);
+  if (duoQuizQueue.length === 0) {
+    document.getElementById('duo-quiz-area').style.display = 'none';
+    document.getElementById('quiz-empty').style.display = 'block';
+  } else {
+    document.getElementById('duo-quiz-area').style.display = 'block';
+    document.getElementById('quiz-empty').style.display = 'none';
+    showDuoFlashcard();
+  }
+}
+
+function showDuoFlashcard() {
+  if (duoQuizIndex >= duoQuizQueue.length) { showQuizComplete(); return; }
+  const card = duoQuizQueue[duoQuizIndex];
+  duoQuizRevealed = false;
+  document.getElementById('duo-fc-source').textContent = card.sourceLabel || '';
+  document.getElementById('duo-fc-sentence').innerHTML = highlightDuoTargets(card.sentence, card.entries.map(e => e.word));
+  document.getElementById('duo-fc-hint').style.display = 'block';
+  document.getElementById('duo-fc-answer').style.display = 'none';
+  document.getElementById('duo-rating-buttons').style.display = 'none';
+  document.getElementById('duo-fc-translation').textContent = card.translation || '';
+  document.getElementById('duo-fc-words').innerHTML = card.entries.map(e =>
+    `<div style="display:flex; align-items:center; gap:8px; padding:4px 0; font-size:13px;">
+      <span style="font-weight:700; color:var(--accent2);">${e.word}</span>
+      <span style="color:var(--text2); font-style:italic; font-size:11px;">${e.pos || ''}</span>
+      <span style="color:var(--text);">${e.japanese}</span>
+    </div>`
+  ).join('');
+  const speakBtn = document.getElementById('duo-fc-speak');
+  speakBtn.onclick = (e) => { e.stopPropagation(); speakTextSequence([card.sentence], 0.95); };
+  document.getElementById('duo-quiz-progress').textContent = `${duoQuizIndex + 1} / ${duoQuizQueue.length}`;
+}
+
+function revealDuoFlashcard() {
+  if (duoQuizRevealed) return;
+  duoQuizRevealed = true;
+  document.getElementById('duo-fc-hint').style.display = 'none';
+  document.getElementById('duo-fc-answer').style.display = 'block';
+  document.getElementById('duo-rating-buttons').style.display = 'flex';
+}
+
+function rateDuoCard(quality) {
+  const card = duoQuizQueue[duoQuizIndex];
+  const srs = ensureDuoSrs(card.id);
+  if (quality === 1) { srs.interval = 0; srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.2); srs.level = 1; quizSessionStats.again++; duoQuizQueue.push(card); }
+  else if (quality === 2) { srs.interval = srs.interval === 0 ? 1 : Math.ceil(srs.interval * 1.2); srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.hard++; }
+  else if (quality === 3) { srs.interval = srs.interval === 0 ? 1 : srs.interval === 1 ? 3 : Math.ceil(srs.interval * srs.easeFactor); srs.level = getSrsLevel(srs.interval); quizSessionStats.good++; }
+  else if (quality === 4) { srs.interval = srs.interval === 0 ? 4 : Math.ceil(srs.interval * srs.easeFactor * 1.3); srs.easeFactor = Math.min(3.0, srs.easeFactor + 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.easy++; }
+  srs.nextReview = addDaysToLocalDate(srs.interval);
+  srs.reviewCount++; if (quality >= 2) srs.correctCount++;
+  srs.lastReview = formatLocalDate();
+  saveState(); duoQuizIndex++; showDuoFlashcard();
+}
 
 // === REVIEW ===
 function updateReviewPage() {
@@ -2701,6 +2834,7 @@ function importProgress(event) {
       if (imported.studyHistory) state.studyHistory = imported.studyHistory;
       if (imported.dailyStats) state.dailyStats = imported.dailyStats;
       if (imported.recentEssayIds) state.recentEssayIds = imported.recentEssayIds;
+      if (imported.duoSrs) state.duoSrs = imported.duoSrs;
       saveState();
       updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
       showToast('Backup imported successfully');
@@ -2722,6 +2856,7 @@ function generateSyncCode() {
     dailyStats: state.dailyStats,
     studyHistory: state.studyHistory,
     lastStudyDate: state.lastStudyDate,
+    duoSrs: state.duoSrs || {},
     vocabulary: {}
   };
   // Only export SRS progress (not word definitions - those come from data.js)
@@ -2800,6 +2935,16 @@ function applySyncCode() {
         s.vocabCount = Math.max(s.vocabCount, imported.vocabCount || 0);
         s.mastered = Math.max(s.mastered, imported.mastered || 0);
         s.reviewed = Math.max(s.reviewed, imported.reviewed || 0);
+      });
+    }
+    // Merge duoSrs
+    if (syncData.duoSrs) {
+      if (!state.duoSrs) state.duoSrs = {};
+      Object.entries(syncData.duoSrs).forEach(([id, imported]) => {
+        const current = state.duoSrs[id];
+        if (!current || (imported.reviewCount || 0) > (current.reviewCount || 0)) {
+          state.duoSrs[id] = imported;
+        }
       });
     }
     saveState();
