@@ -571,6 +571,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div id="recent-opened-list" class="recent-opened-list"></div>
     <div class="card-title" style="margin: 16px 0 8px;">Essay Library</div>
     <div id="essay-list"></div>
+    <div id="read-essays-section" style="margin-top:16px;"></div>
   </div>
 
   <!-- ESSAY VIEW -->
@@ -656,11 +657,14 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <h1>Quiz</h1>
       <p>Flashcard practice with spaced repetition</p>
     </div>
+    <div style="display:flex; gap:8px; margin-bottom:12px;">
+      <button class="btn" id="quiz-mode-words" onclick="setQuizType('words')" style="flex:1; padding:10px; font-weight:700;">Words</button>
+      <button class="btn" id="quiz-mode-duo" onclick="setQuizType('duo')" style="flex:1; padding:10px; font-weight:700;">Duo Sentences</button>
+    </div>
     <div class="tabs" id="quiz-tabs">
-      <button class="tab active" onclick="setQuizMode('review', this)">Due Review (<span id="quiz-due-count">0</span>)</button>
-      <button class="tab" onclick="setQuizMode('new', this)">New Words (<span id="quiz-new-count">0</span>)</button>
-      <button class="tab" onclick="setQuizMode('all', this)">All Words</button>
-      <button class="tab" onclick="setQuizMode('duo-sentences', this)">Duo Sentences (<span id="quiz-duo-count">0</span>)</button>
+      <button class="tab active" onclick="setQuizMode('review', this)">Due (<span id="quiz-due-count">0</span>)</button>
+      <button class="tab" onclick="setQuizMode('new', this)">New (<span id="quiz-new-count">0</span>)</button>
+      <button class="tab" onclick="setQuizMode('all', this)">All</button>
     </div>
     <!-- Word flashcard area -->
     <div id="quiz-area">
@@ -698,7 +702,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <div class="flashcard-progress" id="duo-quiz-progress"></div>
       <div class="flashcard" id="duo-flashcard" onclick="revealDuoFlashcard()">
         <div style="font-size:11px; color:var(--text2); margin-bottom:8px;" id="duo-fc-source"></div>
-        <div style="font-size:17px; line-height:1.7; color:var(--text); padding:8px 0;" id="duo-fc-sentence"></div>
+        <div class="duo-sentence" style="font-size:17px; line-height:1.7; color:var(--text); padding:8px 0;" id="duo-fc-sentence"></div>
         <button class="flashcard-speak-btn" id="duo-fc-speak" onclick="event.stopPropagation();" style="margin:8px 0;">&#128266; Listen</button>
         <div class="flashcard-hint" id="duo-fc-hint">Tap card to reveal Japanese translation</div>
         <div id="duo-fc-answer" style="display:none;">
@@ -903,6 +907,7 @@ const STORAGE_KEY = 'english-reading-trainer';
 const SPEECH_SPEED_KEY = STORAGE_KEY + '-speech-speed';
 let state = loadState();
 let currentEssay = null;
+let quizType = 'words'; // 'words' or 'duo'
 let quizMode = 'review';
 let quizQueue = [];
 let quizIndex = 0;
@@ -1012,11 +1017,11 @@ const WORD_VISUAL_MAP = {
   vegetation:{e:'🌳🌿🌾',h:'大地を覆う植物たち',c:'#22c55e'},
 
   // Economy & Finance
-  inflation:{e:'💵📈🛒',h:'物の値段がどんどん上がる',c:'#ef4444'},
+  inflation:{e:'💵📈😰',h:'物の値段がどんどん上がる',c:'#ef4444'},
   recession:{e:'📉🏢😰',h:'経済が縮小していく',c:'#ef4444'},
   deficit:{e:'💰📉🔴',h:'出ていくお金が多すぎる',c:'#ef4444'},
   surplus:{e:'💰📈🟢',h:'入ってくるお金が余る',c:'#22c55e'},
-  tariff:{e:'🚢🚧💰',h:'輸入品にかかる税金',c:'#f97316'},
+  tariff:{e:'🚢🚫💰',h:'輸入品にかかる税金',c:'#f97316'},
   subsidy:{e:'🏛️➡️💰',h:'政府からの資金援助',c:'#3b82f6'},
   austerity:{e:'✂️💰😣',h:'支出を厳しく切り詰める',c:'#6b7280'},
   stimulus:{e:'💉💰📈',h:'経済を元気にする注入',c:'#22c55e'},
@@ -1024,7 +1029,7 @@ const WORD_VISUAL_MAP = {
   equity:{e:'🏢📊💹',h:'会社の所有権＝株',c:'#3b82f6'},
   portfolio:{e:'📁📊🎯',h:'投資の組み合わせ',c:'#a78bfa'},
   bond:{e:'📜🏛️💵',h:'お金を貸す約束の証書',c:'#3b82f6'},
-  leverage:{e:'⚖️💰📈',h:'借金で投資を大きくする',c:'#f97316'},
+  leverage:{e:'⚖️💰⚠️',h:'借金で投資を大きくする',c:'#f97316'},
   liquidity:{e:'💧💰🔄',h:'すぐに現金に変えられる',c:'#06b6d4'},
   depreciation:{e:'💴⬇️📉',h:'価値がだんだん下がる',c:'#ef4444'},
   appreciation:{e:'💴⬆️📈',h:'価値がだんだん上がる',c:'#22c55e'},
@@ -1039,7 +1044,6 @@ const WORD_VISUAL_MAP = {
   // Technology
   algorithm:{e:'🧮⚙️💻',h:'問題を解く手順書',c:'#a78bfa'},
   automation:{e:'🤖⚙️🔄',h:'機械が自動で動く',c:'#a78bfa'},
-  proliferation:{e:'1️⃣➡️🔢',h:'急速に数が増える',c:'#f97316'},
   obsolescence:{e:'📟➡️🗑️',h:'時代遅れになって捨てられる',c:'#6b7280'},
   surveillance:{e:'📹👁️🔍',h:'監視カメラで見張る',c:'#ef4444'},
   infrastructure:{e:'🏗️🛣️🌉',h:'社会を支える土台',c:'#3b82f6'},
@@ -1085,7 +1089,7 @@ const WORD_VISUAL_MAP = {
   immunity:{e:'🛡️🦠💪',h:'体を病気から守るバリア',c:'#22c55e'},
   diagnosis:{e:'🔬🩺📋',h:'病気の原因を突き止める',c:'#3b82f6'},
   therapy:{e:'💊🩺😊',h:'治療して元気にする',c:'#22c55e'},
-  epidemic:{e:'🦠📈😷',h:'病気が急速に広がる',c:'#ef4444'},
+  epidemic:{e:'🦠😱📈',h:'病気が急速に広がる',c:'#ef4444'},
   mutation:{e:'🧬🔀❓',h:'遺伝子が変異する',c:'#a78bfa'},
   symptom:{e:'🤒🩺❗',h:'病気のサイン・兆候',c:'#f97316'},
   prognosis:{e:'🔮🩺📊',h:'病気の将来の見通し',c:'#a78bfa'},
@@ -1120,8 +1124,9 @@ const WORD_VISUAL_MAP = {
   prudent:{e:'🧐📋✅',h:'慎重に考えてから行動する',c:'#3b82f6'},
   tacit:{e:'🤫💭🤝',h:'言葉にしなくても伝わる',c:'#a78bfa'},
   unforeseen:{e:'😲❓💥',h:'まったく予想していなかった',c:'#f97316'},
-  exacerbate:{e:'🔥💨📈',h:'悪い状況をさらに悪化させる',c:'#ef4444'},
+  exacerbate:{e:'🔥💔📉',h:'悪い状況をさらに悪化させる',c:'#ef4444'},
   deterioration:{e:'🏚️📉💔',h:'だんだんボロボロになる',c:'#ef4444'},
+  proliferation:{e:'🔢⚠️📈',h:'危険なものが急速に広がる',c:'#f97316'},
 
   // Emotions & Attitude
   enthusiasm:{e:'🙌🔥😄',h:'ワクワクが止まらない',c:'#eab308'},
@@ -1210,7 +1215,10 @@ function getDynamicVisualFromMeaning(japanese, pos) {
   if (/作|造|建|構築|組み立/.test(ja)) return {e:'🔨🏗️✨',h:ja,c:'#eab308'};
   if (/壊|破|崩|滅/.test(ja)) return {e:'💥🔨😱',h:ja,c:'#ef4444'};
   if (/送|届|運|配|輸/.test(ja)) return {e:'📦🚚➡️',h:ja,c:'#06b6d4'};
-  if (/集|募|蓄|貯|積/.test(ja)) return {e:'📥📦📈',h:ja,c:'#22c55e'};
+  if (/集|募|蓄|貯|積/.test(ja)) {
+    if (/負債|問題|緊張|リスク|債務|ストレス/.test(ja)) return {e:'⚠️📈💔',h:ja,c:'#ef4444'};
+    return {e:'📥📦📈',h:ja,c:'#22c55e'};
+  }
   if (/分|割|離|別|区/.test(ja)) return {e:'✂️↔️📊',h:ja,c:'#a78bfa'};
   if (/結|繋|接|連|合|統/.test(ja)) return {e:'🔗🤝🧩',h:ja,c:'#3b82f6'};
   if (/守|防|保護|安全/.test(ja)) return {e:'🛡️🔒💪',h:ja,c:'#22c55e'};
@@ -1290,8 +1298,20 @@ function getWordVisual(word, pos, japanese) {
   // Multi-word compound match (e.g. "no brainer" → "nobrainer")
   const compound = w.replace(/[\s-]/g, '');
   if (WORD_VISUAL_MAP[compound]) return WORD_VISUAL_MAP[compound];
-  // Category by Japanese keywords
+  // Dynamic visual from Japanese meaning keywords (more granular than category)
   if (japanese) {
+    const dynamicVisual = getDynamicVisualFromMeaning(japanese, pos);
+    if (dynamicVisual) return dynamicVisual;
+  }
+  // Category by Japanese keywords (after dynamic matching for finer granularity)
+  if (japanese) {
+    if (/危険|リスク|脅威|警告|被害/.test(japanese)) return CATEGORY_VISUALS.danger;
+    if (/減|低下|衰退|下落|縮小|悪化/.test(japanese)) return CATEGORY_VISUALS.decrease;
+    // Negative context + increase = danger, not growth
+    if (/増|成長|拡大|上昇|向上|加速/.test(japanese)) {
+      if (/コスト|負債|インフレ|債務|損失|問題|格差|不平等/.test(japanese)) return CATEGORY_VISUALS.danger;
+      return CATEGORY_VISUALS.increase;
+    }
     if (/経済|金融|投資|資産|通貨|利益|債券|株|ファンド|為替|利回り/.test(japanese)) return CATEGORY_VISUALS.finance;
     if (/環境|気候|自然|生態|森林|汚染|排出/.test(japanese)) return CATEGORY_VISUALS.environment;
     if (/技術|科学|研究|デジタル|ネット|AI|コンピュータ/.test(japanese)) return CATEGORY_VISUALS.technology;
@@ -1300,14 +1320,6 @@ function getWordVisual(word, pos, japanese) {
     if (/健康|医|病|治療|症状|免疫/.test(japanese)) return CATEGORY_VISUALS.health;
     if (/心理|感情|精神|脳|認知|記憶/.test(japanese)) return CATEGORY_VISUALS.psychology;
     if (/社会|文化|人|集団|差別/.test(japanese)) return CATEGORY_VISUALS.society;
-    if (/危険|リスク|脅威|警告|被害/.test(japanese)) return CATEGORY_VISUALS.danger;
-    if (/増|成長|拡大|上昇|向上|加速/.test(japanese)) return CATEGORY_VISUALS.increase;
-    if (/減|低下|衰退|下落|縮小|悪化/.test(japanese)) return CATEGORY_VISUALS.decrease;
-  }
-  // Dynamic visual from Japanese meaning keywords (more granular than category)
-  if (japanese) {
-    const dynamicVisual = getDynamicVisualFromMeaning(japanese, pos);
-    if (dynamicVisual) return dynamicVisual;
   }
   // Fallback by pos
   if (pos) {
@@ -1518,6 +1530,41 @@ function updateDashboard() {
     listHtml += `</div></div>`;
   }
   document.getElementById('essay-list').innerHTML = listHtml;
+
+  // Read essays section
+  const readEssays = essays.filter(e => (state.readCounts[e.id] || 0) > 0);
+  const readSection = document.getElementById('read-essays-section');
+  if (readEssays.length === 0) {
+    readSection.innerHTML = '';
+  } else {
+    const readGroupSize = 10;
+    const readGroupCount = Math.ceil(readEssays.length / readGroupSize);
+    let readHtml = `<div class="card-title" style="margin-bottom:8px;">Read Essays (${readEssays.length})</div>`;
+    for (let g = readGroupCount - 1; g >= 0; g--) {
+      const start = g * readGroupSize;
+      const end = Math.min(start + readGroupSize, readEssays.length);
+      const groupLabel = `${start + 1} – ${end} of ${readEssays.length}`;
+      const isFirst = g === readGroupCount - 1;
+      readHtml += `<div class="essay-group">
+        <button class="essay-group-toggle${isFirst ? ' open' : ''}" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+          ${groupLabel} <span class="arrow">▼</span>
+        </button>
+        <div class="essay-group-content${isFirst ? ' open' : ''}">`;
+      for (let i = end - 1; i >= start; i--) {
+        const e = readEssays[i];
+        const rc = state.readCounts[e.id] || 0;
+        const num = essays.indexOf(e) + 1;
+        readHtml += `<div class="essay-item" onclick="openEssay('${e.id}')">
+          <span class="essay-num">#${num}</span>
+          <span class="essay-topic">${e.topic}</span>
+          <div class="essay-title">${e.title}</div>
+          <div class="essay-meta">${e.date} · ${e.wordCount} words · ${e.difficulty} · <span class="read-badge read-done">Read: ${rc}</span></div>
+        </div>`;
+      }
+      readHtml += `</div></div>`;
+    }
+    readSection.innerHTML = readHtml;
+  }
 }
 
 // === ESSAY ===
@@ -2373,10 +2420,30 @@ function getDueWords() {
 }
 function getNewWords() { return Object.entries(state.vocabulary).filter(([k, v]) => v.level === 0); }
 
+function setQuizType(type) {
+  quizType = type;
+  document.getElementById('quiz-mode-words').classList.toggle('primary', type === 'words');
+  document.getElementById('quiz-mode-duo').classList.toggle('primary', type === 'duo');
+  quizMode = 'review';
+  document.querySelectorAll('#quiz-tabs .tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+  updateQuizCounts();
+  loadQuizQueue();
+}
+function updateQuizCounts() {
+  if (quizType === 'words') {
+    document.getElementById('quiz-due-count').textContent = getDueWords().length;
+    document.getElementById('quiz-new-count').textContent = getNewWords().length;
+  } else {
+    document.getElementById('quiz-due-count').textContent = getDueSentences().length;
+    const allCards = buildAllDuoSentenceCards();
+    const newCount = allCards.filter(c => !state.duoSrs || !state.duoSrs[c.id] || state.duoSrs[c.id].level === 0).length;
+    document.getElementById('quiz-new-count').textContent = newCount;
+  }
+}
 function updateQuizPage() {
-  document.getElementById('quiz-due-count').textContent = getDueWords().length;
-  document.getElementById('quiz-new-count').textContent = getNewWords().length;
-  document.getElementById('quiz-duo-count').textContent = getDueSentences().length;
+  document.getElementById('quiz-mode-words').classList.toggle('primary', quizType === 'words');
+  document.getElementById('quiz-mode-duo').classList.toggle('primary', quizType === 'duo');
+  updateQuizCounts();
   loadQuizQueue();
 }
 function setQuizMode(mode, btn) {
@@ -2389,10 +2456,10 @@ function loadQuizQueue() {
   quizIndex = 0;
   quizSessionStats = { again: 0, hard: 0, good: 0, easy: 0 };
   document.getElementById('quiz-complete').style.display = 'none';
+  document.getElementById('quiz-empty').style.display = 'none';
 
-  if (quizMode === 'duo-sentences') {
+  if (quizType === 'duo') {
     document.getElementById('quiz-area').style.display = 'none';
-    document.getElementById('duo-quiz-area').style.display = 'block';
     loadDuoSentenceQueue();
     return;
   }
@@ -2508,15 +2575,22 @@ function loadDuoSentenceQueue() {
   duoQuizIndex = 0;
   const allCards = buildAllDuoSentenceCards();
   const today = formatLocalDate();
-  // Due cards first, then new (unreviewed) cards
-  const due = allCards.filter(card => {
-    const srs = state.duoSrs && state.duoSrs[card.id];
-    return srs && srs.level > 0 && srs.level < 3 && srs.nextReview <= today;
-  });
-  const newCards = allCards.filter(card => {
-    return !state.duoSrs || !state.duoSrs[card.id] || state.duoSrs[card.id].level === 0;
-  }).slice(0, 10);
-  duoQuizQueue = [...due, ...newCards];
+
+  if (quizMode === 'review') {
+    duoQuizQueue = allCards.filter(card => {
+      const srs = state.duoSrs && state.duoSrs[card.id];
+      return srs && srs.level > 0 && srs.level < 3 && srs.nextReview <= today;
+    });
+  } else if (quizMode === 'new') {
+    duoQuizQueue = allCards.filter(card => {
+      return !state.duoSrs || !state.duoSrs[card.id] || state.duoSrs[card.id].level === 0;
+    }).slice(0, 20);
+  } else {
+    duoQuizQueue = allCards.filter(card => {
+      const srs = state.duoSrs && state.duoSrs[card.id];
+      return !srs || srs.level < 3;
+    });
+  }
   shuffleArray(duoQuizQueue);
   if (duoQuizQueue.length === 0) {
     document.getElementById('duo-quiz-area').style.display = 'none';
@@ -2603,9 +2677,10 @@ function updateReviewPage() {
   document.getElementById('study-history').innerHTML = recent.length === 0 ? '<div style="color:var(--text2); font-size:13px;">No study history yet.</div>'
     : recent.map(h => `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:13px;"><span>${h.date}</span><span>${h.reviewed} reviewed</span></div>`).join('');
 
-  // Draw progress charts
-  drawCharts();
-  drawLongtermCharts();
+  // Draw progress charts only if Review page is visible
+  if (document.getElementById('page-review').classList.contains('active')) {
+    requestAnimationFrame(() => { drawCharts(); drawLongtermCharts(); });
+  }
 }
 
 function getLast14Days() {
@@ -2672,7 +2747,8 @@ function drawBarChart(canvasId, labels, data, color) {
     const x = padLeft + i * gap + (gap - barW) / 2;
     const y = padTop + chartH - barH;
     ctx.fillStyle = color; ctx.globalAlpha = 0.8;
-    ctx.beginPath(); ctx.roundRect(x, y, barW, barH, 2); ctx.fill();
+    if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(x, y, barW, barH, 2); ctx.fill(); }
+    else { ctx.fillRect(x, y, barW, barH); }
     ctx.globalAlpha = 1;
     // Label
     ctx.fillStyle = '#94a3b8'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
