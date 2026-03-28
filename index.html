@@ -1183,6 +1183,25 @@ const WORD_VISUAL_MAP = {
   creditspread:{e:'📊↔️💰',h:'社債と国債の利回り差',c:'#a78bfa'},
   duration:{e:'📏⏳📉',h:'金利変動への感応度',c:'#3b82f6'},
   defaultrisk:{e:'💰❌😨',h:'お金が返ってこないリスク',c:'#ef4444'},
+  funiculars:{e:'🚡⛰️🏔️',h:'山を登るケーブルカー',c:'#06b6d4'},
+  uniteconomics:{e:'📊💰🔢',h:'1個あたりの収支',c:'#3b82f6'},
+  psychobiotics:{e:'🧠🦠💊',h:'腸と脳をつなぐ微生物',c:'#a78bfa'},
+  replicationcrisis:{e:'🔬❌😰',h:'実験を再現できない危機',c:'#ef4444'},
+  longduration:{e:'📏⏳📈',h:'長期間の金利感応度',c:'#3b82f6'},
+  actionitems:{e:'✅📋🏃',h:'やるべきタスクリスト',c:'#22c55e'},
+  idrecommend:{e:'💡👍📢',h:'おすすめを提案する',c:'#22c55e'},
+  inlightof:{e:'💡📋🤔',h:'〜を踏まえて考える',c:'#3b82f6'},
+  goingforward:{e:'➡️📅🎯',h:'これから先のこと',c:'#3b82f6'},
+  directionalbets:{e:'🎲📈↗️',h:'方向性に賭ける',c:'#f97316'},
+  mandates:{e:'📜🎯⚖️',h:'与えられた任務',c:'#3b82f6'},
+  dip:{e:'🚶💨🫥',h:'こっそり消える',c:'#6b7280'},
+  putout:{e:'📤📢🗞️',h:'世に出す・発表する',c:'#3b82f6'},
+  comeabout:{e:'🌀📅💡',h:'物事が起こる',c:'#a78bfa'},
+  callitaday:{e:'🌅✋🏠',h:'今日はここまで',c:'#6b7280'},
+  liesin:{e:'📍💡🔍',h:'〜の中にある',c:'#a78bfa'},
+  interestcoverageratio:{e:'📊💰🛡️',h:'利息を払える力の指標',c:'#3b82f6'},
+  privateequity:{e:'🏢🔒💰',h:'非公開企業への投資',c:'#3b82f6'},
+  limitedpartnership:{e:'🤝📜💼',h:'出資者と運営者の組合',c:'#3b82f6'},
 };
 
 // Category-based fallback visuals
@@ -1412,6 +1431,221 @@ function getDynamicVisualFromMeaning(japanese, pos) {
   if (/引き抜|ポーチ/.test(ja)) return {e:'🎣👤💼',h:ja,c:'#f97316'};
   if (/再評価|見直/.test(ja)) return {e:'🔄🔍📊',h:ja,c:'#3b82f6'};
   if (/コツ|要領/.test(ja)) return {e:'💡🎯✅',h:ja,c:'#22c55e'};
+  // Phrasal verbs & collocations
+  if (/我慢|耐え|put up/.test(ja)) return {e:'😤🤐💪',h:ja,c:'#6b7280'};
+  if (/けなす|罵倒|バカ/.test(ja)) return {e:'😠👎💬',h:ja,c:'#ef4444'};
+  if (/脇に置|棚上|確保/.test(ja)) return {e:'📦➡️📌',h:ja,c:'#6b7280'};
+  if (/偶然|出くわ|ばったり/.test(ja)) return {e:'😲🔀🤝',h:ja,c:'#f97316'};
+  if (/受け入|受容|和解/.test(ja)) return {e:'🤲✅💆',h:ja,c:'#22c55e'};
+  if (/直面|ぶつか|confronted/.test(ja)) return {e:'😤🧱❗',h:ja,c:'#f97316'};
+  if (/使い果|枯渇|尽き/.test(ja)) return {e:'📭💨😰',h:ja,c:'#ef4444'};
+  if (/雰囲気|和ませ|打ち解/.test(ja)) return {e:'🧊💬😊',h:ja,c:'#22c55e'};
+  if (/脱却|解放|自由/.test(ja)) return {e:'🔓🕊️✨',h:ja,c:'#22c55e'};
+  if (/責任|問う|accountable/.test(ja)) return {e:'⚖️👆📋',h:ja,c:'#3b82f6'};
+  if (/筋が通|論理的|成り立/.test(ja)) return {e:'🧩✅💡',h:ja,c:'#22c55e'};
+  if (/持ちこた|通用|有効/.test(ja)) return {e:'🛡️⏳✅',h:ja,c:'#22c55e'};
+  if (/当てはま|該当/.test(ja)) return {e:'🎯✅📌',h:ja,c:'#22c55e'};
+  if (/疑問|問いかけ/.test(ja)) return {e:'❓🤔💬',h:ja,c:'#a78bfa'};
+  if (/求め|要求|呼びかけ/.test(ja)) return {e:'📢✊💬',h:ja,c:'#3b82f6'};
+  if (/指名|呼ぶ/.test(ja)) return {e:'👆🎤📋',h:ja,c:'#3b82f6'};
+  if (/心に留|覚え|記憶/.test(ja)) return {e:'🧠📌💭',h:ja,c:'#a78bfa'};
+  if (/設立|設置|セットアップ/.test(ja)) return {e:'🏗️📋✅',h:ja,c:'#22c55e'};
+  if (/提供|持ち寄|テーブル/.test(ja)) return {e:'🤲💡🎯',h:ja,c:'#22c55e'};
+  if (/前面|浮き彫|表面化/.test(ja)) return {e:'📢🔦👁️',h:ja,c:'#f97316'};
+  if (/招く|導入|引き入/.test(ja)) return {e:'🚪🤝📥',h:ja,c:'#3b82f6'};
+  if (/収ま|まとま|落ち着い/.test(ja)) return {e:'🧩✨🎯',h:ja,c:'#22c55e'};
+  if (/達しない|及ばない|不足/.test(ja)) return {e:'📏❌😔',h:ja,c:'#ef4444'};
+  if (/パターン|はまる|型/.test(ja)) return {e:'🔄📐🔲',h:ja,c:'#6b7280'};
+  if (/形だけ|惰性|ルーティン/.test(ja)) return {e:'🤖😑🔄',h:ja,c:'#6b7280'};
+  if (/わざわざ|特別に/.test(ja)) return {e:'🏃💪✨',h:ja,c:'#22c55e'};
+  if (/気づかれ|目立たな|地味/.test(ja)) return {e:'👻😶🔇',h:ja,c:'#6b7280'};
+  if (/象徴|represent|stand for/.test(ja)) return {e:'🏛️⭐🎗️',h:ja,c:'#3b82f6'};
+  if (/支持|保証|後ろ盾/.test(ja)) return {e:'👍🛡️💪',h:ja,c:'#22c55e'};
+  if (/一線を画|際立|差別化/.test(ja)) return {e:'⭐🔸🏆',h:ja,c:'#eab308'};
+  if (/回避|迂回|ワークアラウンド/.test(ja)) return {e:'🔀🚧💡',h:ja,c:'#3b82f6'};
+  if (/徐々|段階的|gradual/.test(ja)) return {e:'📶⬆️🐢',h:ja,c:'#3b82f6'};
+  if (/勇気|奮い|brave/.test(ja)) return {e:'🦁💪❤️',h:ja,c:'#f97316'};
+  if (/取り組|努力|work at/.test(ja)) return {e:'💪📋🔧',h:ja,c:'#3b82f6'};
+  if (/注意を向け|フォーカス/.test(ja)) return {e:'👁️🎯📢',h:ja,c:'#3b82f6'};
+  if (/一線を引|限度|境目/.test(ja)) return {e:'✋📏🚫',h:ja,c:'#6b7280'};
+  if (/引き出|抽出|extract/.test(ja)) return {e:'🎣📤✨',h:ja,c:'#3b82f6'};
+  if (/引きつけ|魅了|attract/.test(ja)) return {e:'🧲✨👀',h:ja,c:'#eab308'};
+  if (/さらけ出|暴露|露出/.test(ja)) return {e:'🔦👁️💥',h:ja,c:'#f97316'};
+  if (/定める|規定|制定/.test(ja)) return {e:'📜✏️⚖️',h:ja,c:'#3b82f6'};
+  if (/成果を上げ|配当|dividend/.test(ja)) return {e:'🌱📈💰',h:ja,c:'#22c55e'};
+  if (/顧客|リテンション|維持率/.test(ja)) return {e:'🤝💼📊',h:ja,c:'#3b82f6'};
+  if (/組織再編|リストラクチャ/.test(ja)) return {e:'🏢🔄📋',h:ja,c:'#3b82f6'};
+  if (/流入|インフロー/.test(ja)) return {e:'📥💰📈',h:ja,c:'#22c55e'};
+  // More specific adjectives/states
+  if (/投機|speculative/.test(ja)) return {e:'🎲📈⚠️',h:ja,c:'#f97316'};
+  if (/一方的|単独|ユニラテラル/.test(ja)) return {e:'☝️🚶➡️',h:ja,c:'#6b7280'};
+  if (/素因|傾向|predisposition/.test(ja)) return {e:'🧬📐↗️',h:ja,c:'#a78bfa'};
+  if (/細心|綿密|丁寧|几帳面/.test(ja)) return {e:'🔬📏✨',h:ja,c:'#3b82f6'};
+  if (/擁護|支持し|advocate/.test(ja)) return {e:'📣👍⚖️',h:ja,c:'#22c55e'};
+  if (/固有|自国|土着/.test(ja)) return {e:'🏔️🌿🏷️',h:ja,c:'#22c55e'};
+  if (/収斂|収束|converge/.test(ja)) return {e:'↗️↙️🎯',h:ja,c:'#a78bfa'};
+  if (/指定|designated/.test(ja)) return {e:'📌🏷️✅',h:ja,c:'#3b82f6'};
+  if (/鼓舞|勢いづ|buoyed/.test(ja)) return {e:'🎈📈💪',h:ja,c:'#22c55e'};
+  if (/双方向|bidirectional/.test(ja)) return {e:'↔️🔄📡',h:ja,c:'#a78bfa'};
+  if (/残骸|残り|remnant/.test(ja)) return {e:'🏚️🧩💨',h:ja,c:'#6b7280'};
+  if (/しつこく|悩ませ|nag/.test(ja)) return {e:'😤💭🔁',h:ja,c:'#f97316'};
+  if (/焼却|燃やし|inciner/.test(ja)) return {e:'🔥🗑️💨',h:ja,c:'#ef4444'};
+  if (/満足|安らか|content/.test(ja)) return {e:'😊☺️✨',h:ja,c:'#22c55e'};
+  if (/鎮静|麻酔|sedate/.test(ja)) return {e:'💉😴💤',h:ja,c:'#6b7280'};
+  if (/レパートリー|持ちネタ/.test(ja)) return {e:'🎭📚🎪',h:ja,c:'#a78bfa'};
+  if (/処方|規範|指示/.test(ja)) return {e:'📋💊✍️',h:ja,c:'#3b82f6'};
+  if (/構成|要素|component/.test(ja)) return {e:'🧩🔧📊',h:ja,c:'#3b82f6'};
+  if (/取って代わ|supplant/.test(ja)) return {e:'🔄👤➡️',h:ja,c:'#f97316'};
+  if (/次第|かかって|hinge/.test(ja)) return {e:'⚖️🔑❓',h:ja,c:'#a78bfa'};
+  if (/循環|クローズドループ/.test(ja)) return {e:'♻️🔄🌿',h:ja,c:'#22c55e'};
+  // Slang & informal
+  if (/めちゃくちゃ良|slaps|最高に良/.test(ja)) return {e:'👏🔥💯',h:ja,c:'#eab308'};
+  if (/密かに|ちょっと|実は|lowkey/.test(ja)) return {e:'🤫🔉👀',h:ja,c:'#a78bfa'};
+  if (/突然|どこからともなく/.test(ja)) return {e:'💥😲⚡',h:ja,c:'#f97316'};
+  if (/スワイプ|swipe/.test(ja)) return {e:'👆📱💨',h:ja,c:'#06b6d4'};
+  if (/帰る|立ち去|bounce/.test(ja)) return {e:'🚶💨👋',h:ja,c:'#6b7280'};
+  if (/いじる|からかう|roast/.test(ja)) return {e:'😂🔥🎤',h:ja,c:'#f97316'};
+  if (/つもりだ|finna/.test(ja)) return {e:'🤔➡️💪',h:ja,c:'#3b82f6'};
+  if (/ウケた|笑わ|sent me/.test(ja)) return {e:'🤣😂💀',h:ja,c:'#eab308'};
+  if (/仕方ない|そういうもん/.test(ja)) return {e:'🤷😌💭',h:ja,c:'#6b7280'};
+  if (/行使|振りかざ|wield/.test(ja)) return {e:'👊💪⚔️',h:ja,c:'#f97316'};
+  if (/外に出ろ|現実|touch grass/.test(ja)) return {e:'🌱🚪☀️',h:ja,c:'#22c55e'};
+  if (/常軌を逸|おかしく|unhinged/.test(ja)) return {e:'🤪🌀😵',h:ja,c:'#ef4444'};
+  if (/率直|ぶっきらぼう|blunt/.test(ja)) return {e:'😐📢💬',h:ja,c:'#6b7280'};
+  if (/筋が通る|なるほど|tracks/.test(ja)) return {e:'🧩✅💡',h:ja,c:'#22c55e'};
+  if (/雰囲気がする|っぽい|giving/.test(ja)) return {e:'✨🎭💅',h:ja,c:'#a78bfa'};
+  // Finance additional
+  if (/震源地|出発点|ゼロ/.test(ja)) return {e:'📍💥🎯',h:ja,c:'#f97316'};
+  if (/独立|インディペンデンス/.test(ja)) return {e:'🏛️🔓🦅',h:ja,c:'#3b82f6'};
+  if (/使命|マンデート|mandate/.test(ja)) return {e:'📜🎯⚖️',h:ja,c:'#3b82f6'};
+  if (/民主主義|デモクラシー/.test(ja)) return {e:'🗳️👥🏛️',h:ja,c:'#3b82f6'};
+  if (/ギャップ|gap|乖離/.test(ja)) return {e:'📊↔️⚠️',h:ja,c:'#f97316'};
+  if (/巻き戻|解消|unwind/.test(ja)) return {e:'🔄⏪📉',h:ja,c:'#6b7280'};
+  if (/消える|蒸発|evaporate/.test(ja)) return {e:'💨🫥✨',h:ja,c:'#6b7280'};
+  if (/ひっくり返|覆し|upend/.test(ja)) return {e:'🔄😲💥',h:ja,c:'#f97316'};
+  if (/退蔵|ため込|hoard/.test(ja)) return {e:'🐿️📦💰',h:ja,c:'#f97316'};
+  if (/デフレ|スパイラル/.test(ja)) return {e:'📉🌀😰',h:ja,c:'#ef4444'};
+  if (/ガイダンス|指針|forward guidance/.test(ja)) return {e:'🗺️📢🏛️',h:ja,c:'#3b82f6'};
+  if (/実行可能|actionable/.test(ja)) return {e:'✅🏃🎯',h:ja,c:'#22c55e'};
+  if (/つかみ|引きつけ|hook/.test(ja)) return {e:'🎣👀✨',h:ja,c:'#eab308'};
+  if (/データに基づ|data-driven/.test(ja)) return {e:'📊💻🎯',h:ja,c:'#3b82f6'};
+  if (/有益|win-win|メリット/.test(ja)) return {e:'🤝✅📈',h:ja,c:'#22c55e'};
+  if (/無料|サービス|complimentary|freebie/.test(ja)) return {e:'🎁🆓🎉',h:ja,c:'#22c55e'};
+  if (/交渉|撤退|walk away/.test(ja)) return {e:'🚶💼❌',h:ja,c:'#6b7280'};
+  if (/受け入れがたい|維持できない|untenable/.test(ja)) return {e:'🚫😤💔',h:ja,c:'#ef4444'};
+  if (/トーン|tone|調子/.test(ja)) return {e:'🎵🎯💬',h:ja,c:'#3b82f6'};
+  if (/依頼|リクエスト|request/.test(ja)) return {e:'📩✋📋',h:ja,c:'#3b82f6'};
+  if (/埋もれ|bury/.test(ja)) return {e:'📧⬇️🫥',h:ja,c:'#6b7280'};
+  if (/通信|やり取り|correspondence/.test(ja)) return {e:'📧📬💬',h:ja,c:'#3b82f6'};
+  if (/共有|ループ|in the loop/.test(ja)) return {e:'🔄👥📢',h:ja,c:'#3b82f6'};
+  if (/過度|依存|over-reliance/.test(ja)) return {e:'⚠️🔗😰',h:ja,c:'#f97316'};
+  if (/往復|バック|back-and-forth/.test(ja)) return {e:'↔️💬🔄',h:ja,c:'#6b7280'};
+  if (/売上|トップライン/.test(ja)) return {e:'💰📊⬆️',h:ja,c:'#22c55e'};
+  if (/前年比|year-over-year/.test(ja)) return {e:'📅📊📈',h:ja,c:'#3b82f6'};
+  if (/可能性|ドア|残して/.test(ja)) return {e:'🚪🔑💡',h:ja,c:'#22c55e'};
+  if (/至る所|偏在|ubiquitous/.test(ja)) return {e:'🌐📍📍',h:ja,c:'#06b6d4'};
+  if (/おおよそ|概算|approximate/.test(ja)) return {e:'📏🤏📊',h:ja,c:'#6b7280'};
+  if (/由来|起源|origin/.test(ja)) return {e:'🏛️📜🔍',h:ja,c:'#a78bfa'};
+  if (/長引|なかなか消えない|lingering/.test(ja)) return {e:'⏳😔🔄',h:ja,c:'#6b7280'};
+  if (/ぴったり|満足させ|hit the spot/.test(ja)) return {e:'🎯😋✅',h:ja,c:'#22c55e'};
+  if (/サスペンス|はらはら/.test(ja)) return {e:'😱🎬❗',h:ja,c:'#a78bfa'};
+  if (/逆もまた|vice versa/.test(ja)) return {e:'🔄↔️🔀',h:ja,c:'#a78bfa'};
+  if (/同じ|identical/.test(ja)) return {e:'👯📐🟰',h:ja,c:'#3b82f6'};
+  if (/再び現れ|復活|resurface/.test(ja)) return {e:'🔄🌊👀',h:ja,c:'#f97316'};
+  if (/へま|責任を果たさ|drop the ball/.test(ja)) return {e:'🏈💨😱',h:ja,c:'#ef4444'};
+  if (/やり遂げ|最後まで|follow through/.test(ja)) return {e:'🏃🎯✅',h:ja,c:'#22c55e'};
+  if (/うなるほど|金持ち|rolling/.test(ja)) return {e:'🤑💰💎',h:ja,c:'#22c55e'};
+  if (/汚名|不名誉|stigma/.test(ja)) return {e:'🏷️😔❌',h:ja,c:'#ef4444'};
+  if (/譲渡益|キャピタルゲイン/.test(ja)) return {e:'📈💰✨',h:ja,c:'#22c55e'};
+  if (/システム全体|制度的|systemic/.test(ja)) return {e:'🔗🏛️🌐',h:ja,c:'#3b82f6'};
+  if (/仲介|排除|disintermediation/.test(ja)) return {e:'✂️🤝❌',h:ja,c:'#f97316'};
+  if (/額面|par value/.test(ja)) return {e:'📜💲📏',h:ja,c:'#3b82f6'};
+  if (/精査|デューデリ/.test(ja)) return {e:'🔍📋🔬',h:ja,c:'#3b82f6'};
+  if (/先渡|フォワード/.test(ja)) return {e:'📅➡️📊',h:ja,c:'#3b82f6'};
+  if (/前兆|予示|foreshadow/.test(ja)) return {e:'🔮⚡👀',h:ja,c:'#a78bfa'};
+  if (/失業|unemployment/.test(ja)) return {e:'📉👷😰',h:ja,c:'#ef4444'};
+  if (/拘束|引き出せ|locked/.test(ja)) return {e:'🔒⏳💰',h:ja,c:'#6b7280'};
+  if (/財政|黒字|赤字/.test(ja)) return {e:'🏛️💰📊',h:ja,c:'#3b82f6'};
+  if (/石油|petroleum|原油/.test(ja)) return {e:'🛢️⛽🌍',h:ja,c:'#6b7280'};
+  if (/倫理|ethical/.test(ja)) return {e:'⚖️❤️📜',h:ja,c:'#3b82f6'};
+  // More informal/daily
+  if (/定番|頼りになる|go-to/.test(ja)) return {e:'⭐🎯👍',h:ja,c:'#22c55e'};
+  if (/主流|メインストリーム/.test(ja)) return {e:'🌊👥📢',h:ja,c:'#3b82f6'};
+  if (/服装|コーディネート|outfit/.test(ja)) return {e:'👗👔✨',h:ja,c:'#ec4899'};
+  if (/好きになっ|catching feelings/.test(ja)) return {e:'💘😍🫣',h:ja,c:'#ec4899'};
+  if (/いちゃつ|口説|flirt/.test(ja)) return {e:'😏💕🫦',h:ja,c:'#ec4899'};
+  if (/コミットメント|献身/.test(ja)) return {e:'💍🤝❤️',h:ja,c:'#ec4899'};
+  if (/ラベル|呼び名|label/.test(ja)) return {e:'🏷️📝🔤',h:ja,c:'#6b7280'};
+  if (/ムキ|気にしすぎ|pressed/.test(ja)) return {e:'😤💢👀',h:ja,c:'#f97316'};
+  if (/恨み|辛辣|bitter/.test(ja)) return {e:'😒💢🍋',h:ja,c:'#ef4444'};
+  if (/嘲笑|からかう|mocking/.test(ja)) return {e:'🤭😏💬',h:ja,c:'#f97316'};
+  if (/それな|まさに|facts/.test(ja)) return {e:'💯👆🔥',h:ja,c:'#eab308'};
+  if (/マジで|誓って|on God/.test(ja)) return {e:'🙏💯😤',h:ja,c:'#eab308'};
+  if (/簡潔|brevity/.test(ja)) return {e:'✂️📝💨',h:ja,c:'#3b82f6'};
+  if (/納得|確信|convinced/.test(ja)) return {e:'🧠✅💡',h:ja,c:'#22c55e'};
+  if (/いや|ううん|nah/.test(ja)) return {e:'🙅😐❌',h:ja,c:'#6b7280'};
+  if (/ナンセンス|馬鹿げ|nonsense/.test(ja)) return {e:'🤡❌🙄',h:ja,c:'#ef4444'};
+  if (/お疲れ|いい勝負|GG/.test(ja)) return {e:'🎮🤝👏',h:ja,c:'#22c55e'};
+  if (/漏れ|浸透|leak/.test(ja)) return {e:'💧🔀📤',h:ja,c:'#6b7280'};
+  if (/節度|適度|moderation/.test(ja)) return {e:'⚖️📏✅',h:ja,c:'#22c55e'};
+  if (/ナイトライフ|夜遊び/.test(ja)) return {e:'🌙🎶🍸',h:ja,c:'#a78bfa'};
+  if (/持続|sustained/.test(ja)) return {e:'🔄⏳📈',h:ja,c:'#22c55e'};
+  if (/共通点|common thread/.test(ja)) return {e:'🧵🔗💡',h:ja,c:'#3b82f6'};
+  if (/予算|手頃|budget/.test(ja)) return {e:'💰📋😊',h:ja,c:'#22c55e'};
+  if (/比較|comparison/.test(ja)) return {e:'⚖️📊↔️',h:ja,c:'#3b82f6'};
+  if (/スクロール|scroll/.test(ja)) return {e:'📱👆📜',h:ja,c:'#06b6d4'};
+  if (/ブラブラ|何もせず|ゴロゴロ|無為/.test(ja)) return {e:'🛋️😴🍃',h:ja,c:'#6b7280'};
+  if (/最低限|bare minimum/.test(ja)) return {e:'📏⬇️😐',h:ja,c:'#6b7280'};
+  if (/あてもなく|aimless/.test(ja)) return {e:'🚶🌀❓',h:ja,c:'#6b7280'};
+  if (/自虐|self-deprecating/.test(ja)) return {e:'🙃😅💬',h:ja,c:'#6b7280'};
+  if (/溺れ|drowning|沈む/.test(ja)) return {e:'🌊😫📋',h:ja,c:'#ef4444'};
+  if (/手が回らない|リソース不足|spread thin/.test(ja)) return {e:'🤹😵💨',h:ja,c:'#f97316'};
+  if (/代償|犠牲|toll/.test(ja)) return {e:'💔⚖️😔',h:ja,c:'#ef4444'};
+  if (/疲れ|exhausting/.test(ja)) return {e:'😩💤⬇️',h:ja,c:'#6b7280'};
+  if (/量|ボリューム|volume/.test(ja)) return {e:'📊📦📐',h:ja,c:'#3b82f6'};
+  if (/きつい|過酷|brutal/.test(ja)) return {e:'💀😤🔥',h:ja,c:'#ef4444'};
+  if (/誠実|心から|sincere/.test(ja)) return {e:'❤️🤝✨',h:ja,c:'#22c55e'};
+  if (/心がけ|意識して/.test(ja)) return {e:'🎯📌💪',h:ja,c:'#22c55e'};
+  if (/勇気づけ|take heart/.test(ja)) return {e:'❤️💪😊',h:ja,c:'#22c55e'};
+  if (/額面通り|face value/.test(ja)) return {e:'📜👁️🤔',h:ja,c:'#6b7280'};
+  if (/罰を受けず|やり遂げ|get away/.test(ja)) return {e:'🏃💨😏',h:ja,c:'#f97316'};
+  if (/仲良く|get along/.test(ja)) return {e:'🤝😊👫',h:ja,c:'#22c55e'};
+  if (/行き詰|泥沼|bogged/.test(ja)) return {e:'🐌🔄😩',h:ja,c:'#ef4444'};
+  if (/無謀|reckless/.test(ja)) return {e:'🏎️💨⚠️',h:ja,c:'#ef4444'};
+  if (/弁護士|counsel/.test(ja)) return {e:'⚖️👔💼',h:ja,c:'#3b82f6'};
+  if (/異なる方向|引っ張/.test(ja)) return {e:'↙️😫↗️',h:ja,c:'#f97316'};
+  if (/オーバーウェイト|比率が高/.test(ja)) return {e:'⚖️📊⬆️',h:ja,c:'#f97316'};
+  // Finance compound terms
+  if (/ベンチャー|スタートアップ|seed/.test(ja)) return {e:'🚀💡💰',h:ja,c:'#eab308'};
+  if (/取締役|ボード|board/.test(ja)) return {e:'👥🏢📋',h:ja,c:'#3b82f6'};
+  if (/パイプライン|pipeline/.test(ja)) return {e:'🔧📈🔗',h:ja,c:'#3b82f6'};
+  if (/ブレークイーブン|breakeven/.test(ja)) return {e:'⚖️📊🎯',h:ja,c:'#3b82f6'};
+  if (/REIT|不動産投資信託/.test(ja)) return {e:'🏢💰📊',h:ja,c:'#3b82f6'};
+  if (/ポートフォリオ|マルチアセット/.test(ja)) return {e:'📁📊🎯',h:ja,c:'#a78bfa'};
+  if (/ファクター|バリュー・ファク|クオリティ/.test(ja)) return {e:'📐📊🔬',h:ja,c:'#a78bfa'};
+  if (/クラウディング|crowding/.test(ja)) return {e:'👥📊⚠️',h:ja,c:'#f97316'};
+  if (/収益性|profitability/.test(ja)) return {e:'💰📈✅',h:ja,c:'#22c55e'};
+  if (/口座を持たない|unbanked/.test(ja)) return {e:'🏦🚫😔',h:ja,c:'#6b7280'};
+  if (/バイアウト|LBO|買収/.test(ja)) return {e:'🏢💰🤝',h:ja,c:'#3b82f6'};
+  if (/キャリードインタレスト|成功報酬/.test(ja)) return {e:'🏆💰📊',h:ja,c:'#22c55e'};
+  if (/ハードルレート|最低収益/.test(ja)) return {e:'🏃🎯📏',h:ja,c:'#3b82f6'};
+  if (/スマートベータ|smart beta/.test(ja)) return {e:'🧠📊💡',h:ja,c:'#a78bfa'};
+  if (/エクスポージャー|exposure/.test(ja)) return {e:'📊🎯🔍',h:ja,c:'#3b82f6'};
+  if (/コロケーション|co-location/.test(ja)) return {e:'🖥️⚡🏢',h:ja,c:'#a78bfa'};
+  if (/フラッシュ・クラッシュ|flash crash/.test(ja)) return {e:'📉⚡💥',h:ja,c:'#ef4444'};
+  if (/サーキットブレーカー|circuit breaker/.test(ja)) return {e:'🛑⚡🔌',h:ja,c:'#f97316'};
+  if (/スプーフィング|spoofing/.test(ja)) return {e:'🎭📊🚫',h:ja,c:'#ef4444'};
+  if (/マネーロンダリング|資金洗浄/.test(ja)) return {e:'💰🧼🚔',h:ja,c:'#ef4444'};
+  if (/売掛|受取債権|receivable/.test(ja)) return {e:'📋💰📥',h:ja,c:'#22c55e'};
+  if (/買掛|支払債務|payable/.test(ja)) return {e:'📋💰📤',h:ja,c:'#ef4444'};
+  if (/逆イールド|inverted/.test(ja)) return {e:'📉🔄⚠️',h:ja,c:'#ef4444'};
+  if (/景気|先行指数|Leading/.test(ja)) return {e:'📊🔮📈',h:ja,c:'#3b82f6'};
+  if (/ジャンク|投機的格付/.test(ja)) return {e:'🗑️📉⚠️',h:ja,c:'#ef4444'};
+  if (/サンティアゴ|Santiago/.test(ja)) return {e:'📜🌍⚖️',h:ja,c:'#3b82f6'};
+  if (/じゃあね|バイバイ|peace out/.test(ja)) return {e:'✌️👋😎',h:ja,c:'#22c55e'};
+  if (/捉える|表現する|capture/.test(ja)) return {e:'📸🎯💡',h:ja,c:'#3b82f6'};
+  if (/曖昧な関係|situationship/.test(ja)) return {e:'💑❓🤷',h:ja,c:'#a78bfa'};
+  if (/曖昧|グレー|gray area/.test(ja)) return {e:'🌫️❓⚖️',h:ja,c:'#6b7280'};
   return null;
 }
 
