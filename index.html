@@ -292,6 +292,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   color: var(--text2); cursor: pointer; font-family: inherit;
 }
 .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+.filter-btn[data-filter="kinphra"].active { background: var(--orange); border-color: var(--orange); color: white; }
 .search-input {
   width: 100%; padding: 10px 14px; border-radius: 8px;
   border: 1px solid var(--border); background: var(--surface);
@@ -532,6 +533,118 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .shadow-pause-indicator.show { display: block; }
 
+/* KinPhra (金フレ) mode */
+.kinphra-level-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.kinphra-level-btn {
+  padding: 6px 14px; border-radius: 16px; font-size: 11px;
+  border: 1px solid var(--border); background: var(--surface);
+  color: var(--text2); cursor: pointer; font-family: inherit; font-weight: 600;
+}
+.kinphra-level-btn.active { background: var(--orange); border-color: var(--orange); color: white; }
+.kinphra-card {
+  display: flex; align-items: stretch; border-bottom: 1px solid var(--border);
+  min-height: 72px;
+}
+.kinphra-card:last-child { border-bottom: none; }
+.kinphra-num {
+  width: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--text2);
+  background: rgba(249,115,22,0.08); border-right: 1px solid var(--border);
+}
+.kinphra-body {
+  flex: 1; padding: 10px 12px; display: flex; flex-direction: column; justify-content: center;
+}
+.kinphra-ja {
+  font-size: 13px; color: var(--text); margin-bottom: 4px; line-height: 1.5;
+}
+.kinphra-ja .kinphra-keyword {
+  color: var(--orange); font-weight: 700;
+}
+.kinphra-en {
+  font-size: 14px; color: var(--text2); line-height: 1.5; font-style: italic;
+}
+.kinphra-en .kinphra-blank {
+  color: var(--orange); font-weight: 700; font-style: normal;
+  letter-spacing: 1px;
+}
+.kinphra-answer-col {
+  width: 130px; flex-shrink: 0; display: flex; flex-direction: column;
+  justify-content: center; padding: 8px 12px;
+  background: rgba(249,115,22,0.06); border-left: 1px solid var(--border);
+}
+.kinphra-answer-word {
+  font-size: 16px; font-weight: 700; color: var(--orange); line-height: 1.3;
+}
+.kinphra-answer-pos {
+  font-size: 10px; color: var(--text2); margin-top: 2px;
+}
+.kinphra-answer-meaning {
+  font-size: 11px; color: var(--text); margin-top: 2px; line-height: 1.4;
+}
+.kinphra-speak {
+  padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2); font-size: 11px;
+  cursor: pointer; font-family: inherit; margin-top: 4px; align-self: flex-start;
+}
+.kinphra-speak:hover { border-color: var(--orange); color: var(--orange); }
+
+/* KinPhra quiz flashcard */
+.kinphra-quiz-card {
+  background: var(--surface); border: 2px solid var(--border); border-radius: 16px;
+  padding: 28px 20px; text-align: center; min-height: 220px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  margin-bottom: 16px; cursor: pointer; transition: border-color 0.3s;
+}
+.kinphra-quiz-card:hover { border-color: var(--orange); }
+.kinphra-quiz-ja {
+  font-size: 18px; color: var(--text); margin-bottom: 16px; line-height: 1.6;
+}
+.kinphra-quiz-ja .kinphra-keyword { color: var(--orange); font-weight: 700; }
+.kinphra-quiz-en {
+  font-size: 20px; color: var(--text2); font-style: italic; line-height: 1.6;
+  max-width: 500px;
+}
+.kinphra-quiz-en .kinphra-blank {
+  color: var(--orange); font-weight: 700; font-style: normal;
+  letter-spacing: 2px; font-size: 22px;
+}
+.kinphra-quiz-input-row {
+  display: flex; gap: 8px; margin-top: 16px; width: 100%; max-width: 320px;
+}
+.kinphra-quiz-input {
+  flex: 1; padding: 10px 14px; border-radius: 8px;
+  border: 2px solid var(--border); background: var(--surface2);
+  color: var(--text); font-size: 16px; font-family: inherit; text-align: center;
+}
+.kinphra-quiz-input:focus { border-color: var(--orange); outline: none; }
+.kinphra-quiz-submit {
+  padding: 10px 18px; border-radius: 8px; border: none;
+  background: var(--orange); color: white; font-size: 14px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+}
+.kinphra-quiz-submit:hover { background: #ea580c; }
+.kinphra-quiz-reveal {
+  margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
+  width: 100%; text-align: center;
+}
+.kinphra-quiz-answer-big {
+  font-size: 32px; font-weight: 700; color: var(--orange); margin-bottom: 6px;
+}
+.kinphra-quiz-pos { font-size: 13px; color: var(--text2); }
+.kinphra-quiz-meaning { font-size: 16px; color: var(--text); margin-top: 4px; }
+.kinphra-quiz-result {
+  font-size: 14px; font-weight: 700; margin-bottom: 8px;
+}
+.kinphra-quiz-result.correct { color: var(--green); }
+.kinphra-quiz-result.incorrect { color: var(--red); }
+
+@media (max-width: 480px) {
+  .kinphra-answer-col { width: 100px; padding: 6px 8px; }
+  .kinphra-answer-word { font-size: 14px; }
+  .kinphra-quiz-en { font-size: 17px; }
+  .kinphra-quiz-en .kinphra-blank { font-size: 18px; }
+}
+
 @media (min-width: 600px) {
   .stats-grid { grid-template-columns: repeat(3, 1fr); }
   .essay-en { font-size: 17px; }
@@ -636,6 +749,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn" data-filter="duo" onclick="setVocabFilter('duo', this)">Duo</button>
       <button class="filter-btn" data-filter="duo-seq" onclick="setVocabFilter('duo-seq', this)">Duo Seq</button>
       <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
+      <button class="filter-btn" data-filter="kinphra" onclick="setVocabFilter('kinphra', this)" style="border-color:var(--orange); color:var(--orange);">&#128293; Gold Phrases</button>
     </div>
     <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
@@ -660,6 +774,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div style="display:flex; gap:8px; margin-bottom:12px;">
       <button class="btn" id="quiz-mode-words" onclick="setQuizType('words')" style="flex:1; padding:10px; font-weight:700;">Words</button>
       <button class="btn" id="quiz-mode-duo" onclick="setQuizType('duo')" style="flex:1; padding:10px; font-weight:700;">Duo Sentences</button>
+      <button class="btn" id="quiz-mode-kinphra" onclick="setQuizType('kinphra')" style="flex:1; padding:10px; font-weight:700; border-color:var(--orange);">Gold Phrases</button>
     </div>
     <div class="tabs" id="quiz-tabs">
       <button class="tab active" onclick="setQuizMode('review', this)">Due (<span id="quiz-due-count">0</span>)</button>
@@ -715,6 +830,32 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="rating-btn rating-hard" onclick="rateDuoCard(2)">Hard</button>
         <button class="rating-btn rating-good" onclick="rateDuoCard(3)">Good</button>
         <button class="rating-btn rating-easy" onclick="rateDuoCard(4)">Easy</button>
+      </div>
+    </div>
+    <!-- KinPhra (Gold Phrases) quiz area -->
+    <div id="kinphra-quiz-area" style="display:none;">
+      <div class="flashcard-progress" id="kinphra-quiz-progress"></div>
+      <div class="kinphra-quiz-card" id="kinphra-flashcard" onclick="kinphraRevealOrSubmit()">
+        <div class="kinphra-quiz-ja" id="kinphra-fc-ja"></div>
+        <div class="kinphra-quiz-en" id="kinphra-fc-en"></div>
+        <div class="kinphra-quiz-input-row" id="kinphra-input-row">
+          <input type="text" class="kinphra-quiz-input" id="kinphra-input" placeholder="Type the word..." autocomplete="off" autocapitalize="off" onclick="event.stopPropagation();" onkeydown="if(event.key==='Enter'){event.stopPropagation(); kinphraSubmitAnswer();}">
+          <button class="kinphra-quiz-submit" onclick="event.stopPropagation(); kinphraSubmitAnswer();">Check</button>
+        </div>
+        <div class="flashcard-hint" id="kinphra-fc-hint">Type the missing word or tap card to reveal</div>
+        <div class="kinphra-quiz-reveal" id="kinphra-fc-reveal" style="display:none;">
+          <div class="kinphra-quiz-result" id="kinphra-fc-result"></div>
+          <div class="kinphra-quiz-answer-big" id="kinphra-fc-answer"></div>
+          <div class="kinphra-quiz-pos" id="kinphra-fc-pos"></div>
+          <div class="kinphra-quiz-meaning" id="kinphra-fc-meaning"></div>
+          <button class="flashcard-speak-btn" id="kinphra-fc-speak" onclick="event.stopPropagation();" style="margin-top:12px;">&#128266; Pronounce</button>
+        </div>
+      </div>
+      <div class="rating-buttons" id="kinphra-rating-buttons" style="display:none;">
+        <button class="rating-btn rating-again" onclick="rateKinphraCard(1)">Again</button>
+        <button class="rating-btn rating-hard" onclick="rateKinphraCard(2)">Hard</button>
+        <button class="rating-btn rating-good" onclick="rateKinphraCard(3)">Good</button>
+        <button class="rating-btn rating-easy" onclick="rateKinphraCard(4)">Easy</button>
       </div>
     </div>
     <div class="empty-state" id="quiz-empty" style="display:none;">
@@ -2293,6 +2434,25 @@ function filterVocab() {
   duoPauseBtn.style.display = isDuo ? 'inline-flex' : 'none';
   duoStopBtn.style.display = isDuo ? 'inline-flex' : 'none';
 
+  if (vocabFilter === 'kinphra') {
+    shuffleCtrl.style.display = 'block';
+    document.getElementById('btn-shuffle-order').style.display = 'inline-flex';
+    duoPlayAllBtn.style.display = 'none';
+    duoPauseBtn.style.display = 'none';
+    duoStopBtn.style.display = 'none';
+    let words = Object.entries(state.vocabulary).filter(([key, v]) => {
+      const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
+      return matchSearch && v.level >= 0 && v.level < 3 && v.example;
+    });
+    if (vocabShuffled) {
+      shuffleArray(words);
+    } else {
+      words.sort((a, b) => a[0].localeCompare(b[0]));
+    }
+    renderKinphraList(words);
+    return;
+  }
+
   if (vocabFilter === 'duo') {
     let duoWords;
     if (vocabShuffled) {
@@ -2789,6 +2949,7 @@ function setQuizType(type) {
   quizType = type;
   document.getElementById('quiz-mode-words').classList.toggle('primary', type === 'words');
   document.getElementById('quiz-mode-duo').classList.toggle('primary', type === 'duo');
+  document.getElementById('quiz-mode-kinphra').classList.toggle('primary', type === 'kinphra');
   quizMode = 'review';
   document.querySelectorAll('#quiz-tabs .tab').forEach((t, i) => t.classList.toggle('active', i === 0));
   updateQuizCounts();
@@ -2798,6 +2959,11 @@ function updateQuizCounts() {
   if (quizType === 'words') {
     document.getElementById('quiz-due-count').textContent = getDueWords().length;
     document.getElementById('quiz-new-count').textContent = getNewWords().length;
+  } else if (quizType === 'kinphra') {
+    const eligible = getKinphraEligibleWords();
+    const today = formatLocalDate();
+    document.getElementById('quiz-due-count').textContent = eligible.filter(([k, v]) => v.level > 0 && v.level < 3 && v.nextReview <= today).length;
+    document.getElementById('quiz-new-count').textContent = eligible.filter(([k, v]) => v.level === 0).length;
   } else {
     document.getElementById('quiz-due-count').textContent = getDueSentences().length;
     const allCards = buildAllDuoSentenceCards();
@@ -2808,6 +2974,7 @@ function updateQuizCounts() {
 function updateQuizPage() {
   document.getElementById('quiz-mode-words').classList.toggle('primary', quizType === 'words');
   document.getElementById('quiz-mode-duo').classList.toggle('primary', quizType === 'duo');
+  document.getElementById('quiz-mode-kinphra').classList.toggle('primary', quizType === 'kinphra');
   updateQuizCounts();
   loadQuizQueue();
 }
@@ -2823,13 +2990,22 @@ function loadQuizQueue() {
   document.getElementById('quiz-complete').style.display = 'none';
   document.getElementById('quiz-empty').style.display = 'none';
 
+  if (quizType === 'kinphra') {
+    document.getElementById('quiz-area').style.display = 'none';
+    document.getElementById('duo-quiz-area').style.display = 'none';
+    loadKinphraQuizQueue();
+    return;
+  }
+
   if (quizType === 'duo') {
     document.getElementById('quiz-area').style.display = 'none';
+    document.getElementById('kinphra-quiz-area').style.display = 'none';
     loadDuoSentenceQueue();
     return;
   }
 
   document.getElementById('duo-quiz-area').style.display = 'none';
+  document.getElementById('kinphra-quiz-area').style.display = 'none';
   if (quizMode === 'review') quizQueue = getDueWords();
   else if (quizMode === 'new') quizQueue = getNewWords().slice(0, 20);
   else quizQueue = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
@@ -2888,6 +3064,7 @@ function rateCard(quality) {
 function showQuizComplete() {
   document.getElementById('quiz-area').style.display = 'none';
   document.getElementById('duo-quiz-area').style.display = 'none';
+  document.getElementById('kinphra-quiz-area').style.display = 'none';
   document.getElementById('quiz-complete').style.display = 'block';
   const t = quizSessionStats.again + quizSessionStats.hard + quizSessionStats.good + quizSessionStats.easy;
   document.getElementById('quiz-summary').innerHTML = `Reviewed: ${t} cards<br>Again: ${quizSessionStats.again} · Hard: ${quizSessionStats.hard} · Good: ${quizSessionStats.good} · Easy: ${quizSessionStats.easy}`;
@@ -3008,6 +3185,145 @@ function rateDuoCard(quality) {
   srs.reviewCount++; if (quality >= 2) srs.correctCount++;
   srs.lastReview = formatLocalDate();
   saveState(); duoQuizIndex++; showDuoFlashcard();
+}
+
+// === KINPHRA (GOLD PHRASES) MODE ===
+// Utility: create blank from word (first letter + dashes)
+function kinphraBlank(word) {
+  if (!word) return '--------';
+  return word[0] + '-'.repeat(Math.max(3, word.length - 1));
+}
+
+// Utility: replace word in example sentence with blank
+function kinphraMakeBlankSentence(example, word) {
+  if (!example || !word) return example || '';
+  const regex = new RegExp('\\b' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+  return example.replace(regex, `<span class="kinphra-blank">${kinphraBlank(word)}</span>`);
+}
+
+// Render KinPhra list in Vocab tab
+function renderKinphraList(words) {
+  const el = document.getElementById('vocab-list');
+  if (words.length === 0) {
+    el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words with example sentences</div>';
+    document.getElementById('vocab-count').textContent = '';
+    return;
+  }
+  el.innerHTML = words.map(([key, v], idx) => {
+    const blankSentence = kinphraMakeBlankSentence(v.example, v.word);
+    const posLabel = v.pos || '';
+    return `<div class="kinphra-card">
+      <div class="kinphra-num">${String(idx + 1).padStart(3, '0')}</div>
+      <div class="kinphra-body">
+        <div class="kinphra-ja"><span class="kinphra-keyword">${escapeHtml(v.japanese)}</span></div>
+        <div class="kinphra-en">${blankSentence}</div>
+      </div>
+      <div class="kinphra-answer-col">
+        <div class="kinphra-answer-word">${escapeHtml(v.word)}</div>
+        <div class="kinphra-answer-pos">${escapeHtml(posLabel)} ${escapeHtml(v.japanese)}</div>
+        <button class="kinphra-speak" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('vocab-count').textContent = `${words.length} words (Gold Phrases)`;
+}
+
+// === KINPHRA QUIZ ===
+let kinphraQuizQueue = [];
+let kinphraQuizIndex = 0;
+let kinphraQuizRevealed = false;
+
+function getKinphraEligibleWords() {
+  return Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3 && v.example);
+}
+
+function loadKinphraQuizQueue() {
+  kinphraQuizIndex = 0;
+  const today = formatLocalDate();
+  const eligible = getKinphraEligibleWords();
+
+  if (quizMode === 'review') {
+    kinphraQuizQueue = eligible.filter(([k, v]) => v.level > 0 && v.level < 3 && v.nextReview <= today);
+  } else if (quizMode === 'new') {
+    kinphraQuizQueue = eligible.filter(([k, v]) => v.level === 0).slice(0, 20);
+  } else {
+    kinphraQuizQueue = eligible;
+  }
+  shuffleArray(kinphraQuizQueue);
+  if (kinphraQuizQueue.length === 0) {
+    document.getElementById('kinphra-quiz-area').style.display = 'none';
+    document.getElementById('quiz-empty').style.display = 'block';
+  } else {
+    document.getElementById('kinphra-quiz-area').style.display = 'block';
+    document.getElementById('quiz-empty').style.display = 'none';
+    showKinphraFlashcard();
+  }
+}
+
+function showKinphraFlashcard() {
+  if (kinphraQuizIndex >= kinphraQuizQueue.length) { showQuizComplete(); return; }
+  const [key, v] = kinphraQuizQueue[kinphraQuizIndex];
+  kinphraQuizRevealed = false;
+  const blankSentence = kinphraMakeBlankSentence(v.example, v.word);
+  document.getElementById('kinphra-fc-ja').innerHTML = `<span class="kinphra-keyword">${escapeHtml(v.japanese)}</span>`;
+  document.getElementById('kinphra-fc-en').innerHTML = blankSentence;
+  document.getElementById('kinphra-fc-hint').style.display = 'block';
+  document.getElementById('kinphra-fc-reveal').style.display = 'none';
+  document.getElementById('kinphra-rating-buttons').style.display = 'none';
+  document.getElementById('kinphra-input-row').style.display = 'flex';
+  const input = document.getElementById('kinphra-input');
+  input.value = '';
+  input.focus();
+  document.getElementById('kinphra-fc-answer').textContent = v.word;
+  document.getElementById('kinphra-fc-pos').textContent = v.pos || '';
+  document.getElementById('kinphra-fc-meaning').textContent = v.japanese;
+  const speakBtn = document.getElementById('kinphra-fc-speak');
+  speakBtn.onclick = (e) => { e.stopPropagation(); speakWord(v.word); };
+  document.getElementById('kinphra-quiz-progress').textContent = `${kinphraQuizIndex + 1} / ${kinphraQuizQueue.length}`;
+}
+
+function kinphraSubmitAnswer() {
+  if (kinphraQuizRevealed) return;
+  const [key, v] = kinphraQuizQueue[kinphraQuizIndex];
+  const input = document.getElementById('kinphra-input');
+  const userAnswer = input.value.trim().toLowerCase();
+  const correct = v.word.toLowerCase();
+  kinphraQuizRevealed = true;
+
+  const resultEl = document.getElementById('kinphra-fc-result');
+  if (userAnswer === correct) {
+    resultEl.textContent = 'Correct!';
+    resultEl.className = 'kinphra-quiz-result correct';
+  } else if (userAnswer) {
+    resultEl.textContent = `Your answer: ${userAnswer}`;
+    resultEl.className = 'kinphra-quiz-result incorrect';
+  } else {
+    resultEl.textContent = '';
+    resultEl.className = 'kinphra-quiz-result';
+  }
+
+  document.getElementById('kinphra-fc-hint').style.display = 'none';
+  document.getElementById('kinphra-input-row').style.display = 'none';
+  document.getElementById('kinphra-fc-reveal').style.display = 'block';
+  document.getElementById('kinphra-rating-buttons').style.display = 'flex';
+}
+
+function kinphraRevealOrSubmit() {
+  if (kinphraQuizRevealed) return;
+  kinphraSubmitAnswer();
+}
+
+function rateKinphraCard(quality) {
+  const [key, v] = kinphraQuizQueue[kinphraQuizIndex];
+  const srs = state.vocabulary[key];
+  if (quality === 1) { srs.interval = 0; srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.2); srs.level = 1; quizSessionStats.again++; kinphraQuizQueue.push([key, v]); }
+  else if (quality === 2) { srs.interval = srs.interval === 0 ? 1 : Math.ceil(srs.interval * 1.2); srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.hard++; }
+  else if (quality === 3) { srs.interval = srs.interval === 0 ? 1 : srs.interval === 1 ? 3 : Math.ceil(srs.interval * srs.easeFactor); srs.level = getSrsLevel(srs.interval); quizSessionStats.good++; }
+  else if (quality === 4) { srs.interval = srs.interval === 0 ? 4 : Math.ceil(srs.interval * srs.easeFactor * 1.3); srs.easeFactor = Math.min(3.0, srs.easeFactor + 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.easy++; }
+  srs.nextReview = addDaysToLocalDate(srs.interval);
+  srs.reviewCount++; if (quality >= 2) srs.correctCount++;
+  srs.lastReview = formatLocalDate();
+  saveState(); kinphraQuizIndex++; showKinphraFlashcard();
 }
 
 // === REVIEW ===
