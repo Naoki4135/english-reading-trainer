@@ -5,9 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260328"></script>
-<script src="listening-data.js?v=20260328"></script>
+<script src="data.js?v=20260711"></script>
+<script src="listening-data.js?v=20260711"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -650,6 +653,15 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   .essay-en { font-size: 17px; }
   main { padding: 24px 24px 80px; }
 }
+
+/* ブラインドリスニング: 本文を隠して耳だけで聞く */
+.blind-blur {
+  filter: blur(7px);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: filter 0.3s;
+}
 </style>
 </head>
 <body>
@@ -680,6 +692,18 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="btn primary small" onclick="startReview()">Start</button>
       </div>
     </div>
+    <div id="backup-alert" class="card" style="display:none; border-color: var(--yellow);">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:700; color:var(--yellow);">&#128190; バックアップ推奨</div>
+          <div style="font-size:12px; color:var(--text2);" id="backup-alert-msg">学習データのバックアップが7日以上ありません</div>
+        </div>
+        <div style="display:flex; gap:6px;">
+          <button class="btn primary small" onclick="exportProgress()">今すぐ保存</button>
+          <button class="btn small" onclick="snoozeBackupAlert()">7日後に再通知</button>
+        </div>
+      </div>
+    </div>
     <div class="card-title" style="margin: 16px 0 8px;">Recently Opened</div>
     <div id="recent-opened-list" class="recent-opened-list"></div>
     <div class="card-title" style="margin: 16px 0 8px;">Essay Library</div>
@@ -701,11 +725,13 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="btn" id="btn-repeat" onclick="toggleRepeat()">&#128257; Repeat: OFF</button>
       <button class="btn" id="btn-translation" onclick="toggleTranslation()">&#127471;&#127477; Translation</button>
       <button class="btn" id="btn-highlight" onclick="toggleHighlight()">&#128161; Highlight</button>
+      <button class="btn" id="btn-blind" onclick="toggleBlind()">&#128584; Blind</button>
+      <button class="btn" id="btn-realmode" onclick="toggleRealMode()">&#127922; Real: OFF</button>
       <div class="speed-control">
         <button class="speed-btn" onclick="adjustSpeed(-0.1)">−</button>
         <span id="speed-label" style="min-width:40px; text-align:center; font-weight:600;">1.0x</span>
         <button class="speed-btn" onclick="adjustSpeed(0.1)">+</button>
-        <input type="range" min="0.8" max="1.5" step="0.1" value="1.0" id="speech-speed" oninput="updateSpeedLabel()">
+        <input type="range" min="0.8" max="2.0" step="0.1" value="1.0" id="speech-speed" oninput="updateSpeedLabel()">
       </div>
     </div>
 
@@ -771,10 +797,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <h1>Quiz</h1>
       <p>Flashcard practice with spaced repetition</p>
     </div>
-    <div style="display:flex; gap:8px; margin-bottom:12px;">
-      <button class="btn" id="quiz-mode-words" onclick="setQuizType('words')" style="flex:1; padding:10px; font-weight:700;">Words</button>
-      <button class="btn" id="quiz-mode-duo" onclick="setQuizType('duo')" style="flex:1; padding:10px; font-weight:700;">Duo Sentences</button>
-      <button class="btn" id="quiz-mode-kinphra" onclick="setQuizType('kinphra')" style="flex:1; padding:10px; font-weight:700; border-color:var(--orange);">Gold Phrases</button>
+    <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+      <button class="btn" id="quiz-mode-words" onclick="setQuizType('words')" style="flex:1; min-width:100px; padding:10px; font-weight:700;">Words</button>
+      <button class="btn" id="quiz-mode-duo" onclick="setQuizType('duo')" style="flex:1; min-width:100px; padding:10px; font-weight:700;">Duo Sentences</button>
+      <button class="btn" id="quiz-mode-interp" onclick="setQuizType('interp')" style="flex:1; min-width:100px; padding:10px; font-weight:700; border-color:var(--purple); color:var(--purple);">&#127897; 通訳</button>
     </div>
     <div class="tabs" id="quiz-tabs">
       <button class="tab active" onclick="setQuizMode('review', this)">Due (<span id="quiz-due-count">0</span>)</button>
@@ -832,30 +858,41 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="rating-btn rating-easy" onclick="rateDuoCard(4)">Easy</button>
       </div>
     </div>
-    <!-- KinPhra (Gold Phrases) quiz area -->
-    <div id="kinphra-quiz-area" style="display:none;">
-      <div class="flashcard-progress" id="kinphra-quiz-progress"></div>
-      <div class="kinphra-quiz-card" id="kinphra-flashcard" onclick="kinphraRevealOrSubmit()">
-        <div class="kinphra-quiz-ja" id="kinphra-fc-ja"></div>
-        <div class="kinphra-quiz-en" id="kinphra-fc-en"></div>
-        <div class="kinphra-quiz-input-row" id="kinphra-input-row">
-          <input type="text" class="kinphra-quiz-input" id="kinphra-input" placeholder="Type the word..." autocomplete="off" autocapitalize="off" onclick="event.stopPropagation();" onkeydown="if(event.key==='Enter'){event.stopPropagation(); kinphraSubmitAnswer();}">
-          <button class="kinphra-quiz-submit" onclick="event.stopPropagation(); kinphraSubmitAnswer();">Check</button>
+    <!-- Interpreter practice area -->
+    <div id="interp-quiz-area" style="display:none;">
+      <div style="display:flex; gap:8px; margin-bottom:12px;">
+        <button class="btn" id="interp-dir-ja2en" onclick="setInterpDirection('ja2en')" style="flex:1; padding:10px; font-weight:700;">日 &#8594; 英（音声判定）</button>
+        <button class="btn" id="interp-dir-en2ja" onclick="setInterpDirection('en2ja')" style="flex:1; padding:10px; font-weight:700;">英 &#8594; 日（自己チェック）</button>
+      </div>
+      <div class="flashcard-progress" id="interp-progress"></div>
+      <div class="flashcard" id="interp-card" style="cursor:default;">
+        <div style="font-size:11px; color:var(--text2); margin-bottom:8px;" id="interp-source"></div>
+        <div id="interp-prompt" style="font-size:17px; line-height:1.8; padding:8px 0;"></div>
+        <button class="flashcard-speak-btn" id="interp-play-btn" style="display:none; margin:8px 0;">&#128266; Play English</button>
+        <div id="interp-mic-row" style="margin:12px 0;">
+          <button class="btn primary" id="interp-mic-btn" onclick="toggleInterpMic()" style="width:100%; padding:14px;">&#127897; 英語で通訳する</button>
+          <div id="interp-transcript" style="font-size:14px; color:var(--accent2); margin-top:10px; min-height:20px;"></div>
         </div>
-        <div class="flashcard-hint" id="kinphra-fc-hint">Type the missing word or tap card to reveal</div>
-        <div class="kinphra-quiz-reveal" id="kinphra-fc-reveal" style="display:none;">
-          <div class="kinphra-quiz-result" id="kinphra-fc-result"></div>
-          <div class="kinphra-quiz-answer-big" id="kinphra-fc-answer"></div>
-          <div class="kinphra-quiz-pos" id="kinphra-fc-pos"></div>
-          <div class="kinphra-quiz-meaning" id="kinphra-fc-meaning"></div>
-          <button class="flashcard-speak-btn" id="kinphra-fc-speak" onclick="event.stopPropagation();" style="margin-top:12px;">&#128266; Pronounce</button>
+        <div id="interp-result" style="display:none; border-top:1px solid var(--border); padding-top:12px; margin-top:8px;">
+          <div id="interp-score" style="font-size:24px; font-weight:800; margin-bottom:8px;"></div>
+          <div style="font-size:11px; color:var(--text2); margin-bottom:4px;" id="interp-model-label">模範解答（言えた単語=緑 / 抜けた単語=赤）</div>
+          <div id="interp-model" style="font-size:16px; line-height:1.8;"></div>
+          <div id="interp-model-ja" style="font-size:13px; color:var(--text2); margin-top:8px;"></div>
+          <button class="flashcard-speak-btn" id="interp-result-speak" style="margin-top:10px;">&#128266; Pronounce</button>
         </div>
       </div>
-      <div class="rating-buttons" id="kinphra-rating-buttons" style="display:none;">
-        <button class="rating-btn rating-again" onclick="rateKinphraCard(1)">Again</button>
-        <button class="rating-btn rating-hard" onclick="rateKinphraCard(2)">Hard</button>
-        <button class="rating-btn rating-good" onclick="rateKinphraCard(3)">Good</button>
-        <button class="rating-btn rating-easy" onclick="rateKinphraCard(4)">Easy</button>
+      <div style="display:flex; gap:8px; margin-top:12px;">
+        <button class="btn" onclick="revealInterp()" id="interp-reveal-btn" style="flex:1; padding:12px;">答えを見る</button>
+        <button class="btn primary" onclick="nextInterp()" style="flex:1; padding:12px;">Next &#8594;</button>
+      </div>
+      <div id="interp-unsupported" style="display:none; font-size:12px; color:var(--text2); margin-top:10px; line-height:1.6;">
+        &#8251; このブラウザは音声認識に対応していないため、声に出して通訳したあと「答えを見る」で自己チェックしてください（iPhoneは設定で「Siriと音声入力」をONにすると音声判定が使えます）
+      </div>
+      <div id="interp-summary" class="card" style="display:none; text-align:center; padding:20px; margin-top:12px;">
+        <div style="font-size:40px; margin-bottom:12px;">&#127911;</div>
+        <div style="font-size:18px; font-weight:700; margin-bottom:8px;">通訳セッション完了！</div>
+        <div id="interp-summary-detail" style="font-size:13px; color:var(--text2);"></div>
+        <button class="btn primary" style="margin-top:16px;" onclick="loadInterpSession()">もう一度</button>
       </div>
     </div>
     <div class="empty-state" id="quiz-empty" style="display:none;">
@@ -901,7 +938,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="speed-btn" onclick="adjustListenSpeed(-0.1)">−</button>
         <span id="listen-speed-label" style="font-size:12px; min-width:40px; text-align:center; font-weight:600;">1.0x</span>
         <button class="speed-btn" onclick="adjustListenSpeed(0.1)">+</button>
-        <input type="range" min="0.8" max="1.5" step="0.1" value="1.0" id="listen-speed" oninput="updateListenSpeedLabel()" style="width:100px; accent-color:var(--accent);">
+        <input type="range" min="0.8" max="2.0" step="0.1" value="1.0" id="listen-speed" oninput="updateListenSpeedLabel()" style="width:100px; accent-color:var(--accent);">
       </div>
       <div class="listen-progress-bar">
         <div class="listen-progress-fill" id="listen-progress-fill"></div>
@@ -916,6 +953,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="btn" id="btn-listen-translation" onclick="toggleListenTranslation()">&#127471;&#127477; Translation</button>
       <button class="btn" id="btn-listen-highlight" onclick="toggleListenHighlight()">&#128161; Highlight</button>
       <button class="btn" id="btn-listen-shadow" onclick="toggleShadowMode()">&#127908; Shadow</button>
+      <button class="btn" id="btn-listen-blind" onclick="toggleListenBlind()">&#128584; Blind</button>
     </div>
 
     <div class="card" style="margin-bottom:12px; padding:12px;">
@@ -987,6 +1025,12 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 
     <div class="card-title" style="margin: 16px 0 8px;">Mastery Distribution</div>
     <div class="card" id="mastery-chart"></div>
+
+    <div class="card-title" style="margin: 16px 0 8px;">&#128163; Weak Words（苦手単語）</div>
+    <div class="card" id="weak-words" style="padding:12px;"></div>
+    <div class="card-title" style="margin: 16px 0 8px;">品詞別 正答率</div>
+    <div class="card" id="pos-accuracy" style="padding:12px;"></div>
+
     <div class="card-title" style="margin: 16px 0 8px;">Study History</div>
     <div class="card" id="study-history"></div>
 
@@ -1107,19 +1151,19 @@ function clamp(value, min, max) {
 
 function getStoredSpeechSpeed() {
   const saved = parseFloat(localStorage.getItem(SPEECH_SPEED_KEY));
-  return Number.isFinite(saved) ? clamp(saved, 0.8, 1.5) : 1.0;
+  return Number.isFinite(saved) ? clamp(saved, 0.8, 2.0) : 1.0;
 }
 
 function adjustSpeed(delta) {
   const input = document.getElementById('speech-speed');
-  const newVal = clamp(Math.round((parseFloat(input.value) + delta) * 10) / 10, 0.8, 1.5);
+  const newVal = clamp(Math.round((parseFloat(input.value) + delta) * 10) / 10, 0.8, 2.0);
   input.value = newVal.toFixed(1);
   updateSpeedLabel();
 }
 
 function adjustListenSpeed(delta) {
   const input = document.getElementById('listen-speed');
-  const newVal = clamp(Math.round((parseFloat(input.value) + delta) * 10) / 10, 0.8, 1.5);
+  const newVal = clamp(Math.round((parseFloat(input.value) + delta) * 10) / 10, 0.8, 2.0);
   input.value = newVal.toFixed(1);
   updateListenSpeedLabel();
 }
@@ -1896,6 +1940,12 @@ function init() {
   updateQuizPage();
   updateReviewPage();
   document.getElementById('home-date').textContent = new Date().toLocaleDateString('ja-JP', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
+  registerServiceWorker();
+}
+
+function registerServiceWorker() {
+  if (!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+  navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
 function buildVocabulary() {
@@ -1939,6 +1989,7 @@ function showPage(page) {
   const navPage = page === 'essay' ? 'home' : (page === 'listen-detail' ? 'listen' : page);
   if (page !== 'essay' && isSpeechSupported() && (isSpeaking || speechSynthesis.speaking || speechSynthesis.paused)) stopSpeech();
   if (page !== 'listen-detail' && currentListening) listenStop();
+  if (page !== 'quiz') stopInterpMic();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(targetPage).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -1954,6 +2005,7 @@ function showPage(page) {
 
 // === DASHBOARD ===
 function updateDashboard() {
+  updateBackupAlert();
   const totalVocab = Object.values(state.vocabulary).filter(v => v.level >= 0).length;
   const dueWords = getDueWords().length;
   const masteredWords = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
@@ -2257,10 +2309,18 @@ function playSpeechSegment(index, sessionId = speechSessionId) {
   speechSegmentIndex = index;
   const utterance = new SpeechSynthesisUtterance(speechSegments[index]);
   utterance.lang = 'en-US';
-  utterance.rate = getSpeed() * 0.95; // slightly slower for natural pacing
-  utterance.pitch = 1.05; // subtle pitch lift for warmth
-  const voice = getBestVoice();
-  if (voice) utterance.voice = voice;
+  if (realMode) {
+    // 実戦モード: 文ごとに速度±20%・話者ランダムで、聞き取り負荷を実会話に近づける
+    utterance.rate = getSpeed() * 0.95 * (0.8 + Math.random() * 0.5);
+    utterance.pitch = 0.95 + Math.random() * 0.2;
+    const rv = getRandomEnVoice() || getBestVoice();
+    if (rv) utterance.voice = rv;
+  } else {
+    utterance.rate = getSpeed() * 0.95; // slightly slower for natural pacing
+    utterance.pitch = 1.05; // subtle pitch lift for warmth
+    const voice = getBestVoice();
+    if (voice) utterance.voice = voice;
+  }
   utterance.onstart = () => {
     if (sessionId !== speechSessionId) return;
     isSpeaking = true;
@@ -2333,6 +2393,40 @@ function toggleRepeat() {
   repeatMode = !repeatMode;
   document.getElementById('btn-repeat').textContent = repeatMode ? '🔁 Repeat: ON' : '🔁 Repeat: OFF';
   document.getElementById('btn-repeat').classList.toggle('active-toggle', repeatMode);
+}
+
+// === リスニング負荷強化モード ===
+let blindMode = false;
+let realMode = false;
+let listenBlindMode = false;
+
+function toggleBlind() {
+  blindMode = !blindMode;
+  document.getElementById('btn-blind').classList.toggle('active-toggle', blindMode);
+  document.getElementById('essay-text-container').classList.toggle('blind-blur', blindMode);
+  if (blindMode) showToast('本文を隠しました。耳だけで聞いてみましょう');
+}
+
+function toggleRealMode() {
+  realMode = !realMode;
+  const btn = document.getElementById('btn-realmode');
+  btn.textContent = realMode ? '🎲 Real: ON' : '🎲 Real: OFF';
+  btn.classList.toggle('active-toggle', realMode);
+  if (realMode) showToast('実戦モード: 文ごとに話者と速度がランダムに変わります');
+}
+
+function getRandomEnVoice() {
+  if (!isSpeechSupported()) return null;
+  const en = speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
+  if (!en.length) return null;
+  return en[Math.floor(Math.random() * en.length)];
+}
+
+function toggleListenBlind() {
+  listenBlindMode = !listenBlindMode;
+  document.getElementById('btn-listen-blind').classList.toggle('active-toggle', listenBlindMode);
+  document.getElementById('listen-transcript').classList.toggle('blind-blur', listenBlindMode);
+  if (listenBlindMode) showToast('Transcriptを隠しました');
 }
 function speakWord(word) {
   if (!isSpeechSupported()) {
@@ -2949,21 +3043,18 @@ function setQuizType(type) {
   quizType = type;
   document.getElementById('quiz-mode-words').classList.toggle('primary', type === 'words');
   document.getElementById('quiz-mode-duo').classList.toggle('primary', type === 'duo');
-  document.getElementById('quiz-mode-kinphra').classList.toggle('primary', type === 'kinphra');
+  document.getElementById('quiz-mode-interp').classList.toggle('primary', type === 'interp');
+  document.getElementById('quiz-tabs').style.display = type === 'interp' ? 'none' : '';
   quizMode = 'review';
   document.querySelectorAll('#quiz-tabs .tab').forEach((t, i) => t.classList.toggle('active', i === 0));
   updateQuizCounts();
   loadQuizQueue();
 }
 function updateQuizCounts() {
+  if (quizType === 'interp') return;
   if (quizType === 'words') {
     document.getElementById('quiz-due-count').textContent = getDueWords().length;
     document.getElementById('quiz-new-count').textContent = getNewWords().length;
-  } else if (quizType === 'kinphra') {
-    const eligible = getKinphraEligibleWords();
-    const today = formatLocalDate();
-    document.getElementById('quiz-due-count').textContent = eligible.filter(([k, v]) => v.level > 0 && v.level < 3 && v.nextReview <= today).length;
-    document.getElementById('quiz-new-count').textContent = eligible.filter(([k, v]) => v.level === 0).length;
   } else {
     document.getElementById('quiz-due-count').textContent = getDueSentences().length;
     const allCards = buildAllDuoSentenceCards();
@@ -2974,7 +3065,8 @@ function updateQuizCounts() {
 function updateQuizPage() {
   document.getElementById('quiz-mode-words').classList.toggle('primary', quizType === 'words');
   document.getElementById('quiz-mode-duo').classList.toggle('primary', quizType === 'duo');
-  document.getElementById('quiz-mode-kinphra').classList.toggle('primary', quizType === 'kinphra');
+  document.getElementById('quiz-mode-interp').classList.toggle('primary', quizType === 'interp');
+  document.getElementById('quiz-tabs').style.display = quizType === 'interp' ? 'none' : '';
   updateQuizCounts();
   loadQuizQueue();
 }
@@ -2989,23 +3081,24 @@ function loadQuizQueue() {
   quizSessionStats = { again: 0, hard: 0, good: 0, easy: 0 };
   document.getElementById('quiz-complete').style.display = 'none';
   document.getElementById('quiz-empty').style.display = 'none';
+  stopInterpMic();
 
-  if (quizType === 'kinphra') {
+  if (quizType === 'interp') {
     document.getElementById('quiz-area').style.display = 'none';
     document.getElementById('duo-quiz-area').style.display = 'none';
-    loadKinphraQuizQueue();
+    document.getElementById('interp-quiz-area').style.display = 'block';
+    loadInterpSession();
     return;
   }
+  document.getElementById('interp-quiz-area').style.display = 'none';
 
   if (quizType === 'duo') {
     document.getElementById('quiz-area').style.display = 'none';
-    document.getElementById('kinphra-quiz-area').style.display = 'none';
     loadDuoSentenceQueue();
     return;
   }
 
   document.getElementById('duo-quiz-area').style.display = 'none';
-  document.getElementById('kinphra-quiz-area').style.display = 'none';
   if (quizMode === 'review') quizQueue = getDueWords();
   else if (quizMode === 'new') quizQueue = getNewWords().slice(0, 20);
   else quizQueue = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
@@ -3052,7 +3145,7 @@ function revealFlashcard() {
 function rateCard(quality) {
   const [key, v] = quizQueue[quizIndex];
   const srs = state.vocabulary[key];
-  if (quality === 1) { srs.interval = 0; srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.2); srs.level = 1; quizSessionStats.again++; quizQueue.push([key, v]); }
+  if (quality === 1) { srs.interval = 0; srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.2); srs.level = 1; srs.againCount = (srs.againCount || 0) + 1; quizSessionStats.again++; quizQueue.push([key, v]); }
   else if (quality === 2) { srs.interval = srs.interval === 0 ? 1 : Math.ceil(srs.interval * 1.2); srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.hard++; }
   else if (quality === 3) { srs.interval = srs.interval === 0 ? 1 : srs.interval === 1 ? 3 : Math.ceil(srs.interval * srs.easeFactor); srs.level = getSrsLevel(srs.interval); quizSessionStats.good++; }
   else if (quality === 4) { srs.interval = srs.interval === 0 ? 4 : Math.ceil(srs.interval * srs.easeFactor * 1.3); srs.easeFactor = Math.min(3.0, srs.easeFactor + 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.easy++; }
@@ -3064,7 +3157,7 @@ function rateCard(quality) {
 function showQuizComplete() {
   document.getElementById('quiz-area').style.display = 'none';
   document.getElementById('duo-quiz-area').style.display = 'none';
-  document.getElementById('kinphra-quiz-area').style.display = 'none';
+  document.getElementById('interp-quiz-area').style.display = 'none';
   document.getElementById('quiz-complete').style.display = 'block';
   const t = quizSessionStats.again + quizSessionStats.hard + quizSessionStats.good + quizSessionStats.easy;
   document.getElementById('quiz-summary').innerHTML = `Reviewed: ${t} cards<br>Again: ${quizSessionStats.again} · Hard: ${quizSessionStats.hard} · Good: ${quizSessionStats.good} · Easy: ${quizSessionStats.easy}`;
@@ -3228,106 +3321,310 @@ function renderKinphraList(words) {
   document.getElementById('vocab-count').textContent = `${words.length} words (Gold Phrases)`;
 }
 
-// === KINPHRA QUIZ ===
-let kinphraQuizQueue = [];
-let kinphraQuizIndex = 0;
-let kinphraQuizRevealed = false;
+// === INTERPRETER PRACTICE（通訳練習） ===
+// Glossaryの例文ペア（英文＋日本語訳）を使った通訳トレーニング。
+// 日→英: 日本語を見て英語で発話 → SpeechRecognitionで文字起こしして単語一致率を採点
+// 英→日: 英文音声を聞いて日本語で通訳 → 答えを見て自己チェック（日本語認識は精度が低いため）
+const INTERP_SESSION_SIZE = 10;
+let interpQueue = [];
+let interpIndex = 0;
+let interpDirection = 'ja2en';
+let interpScores = [];
+let interpRevealed = false;
+let interpRecog = null;
+let interpRecognizing = false;
+let interpFinalTranscript = '';
 
-function getKinphraEligibleWords() {
-  return Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3 && v.example);
+function getSpeechRecognitionCtor() {
+  return window.SpeechRecognition || window.webkitSpeechRecognition || null;
 }
 
-function loadKinphraQuizQueue() {
-  kinphraQuizIndex = 0;
+function buildInterpQueue() {
+  const all = Object.values(state.vocabulary)
+    .filter(v => v.level >= 0 && v.example && v.exampleJa);
   const today = formatLocalDate();
-  const eligible = getKinphraEligibleWords();
+  const due = all.filter(v => v.level > 0 && v.level < 3 && v.nextReview <= today);
+  const rest = all.filter(v => !due.includes(v));
+  shuffleArray(due);
+  shuffleArray(rest);
+  return due.concat(rest).slice(0, INTERP_SESSION_SIZE);
+}
 
-  if (quizMode === 'review') {
-    kinphraQuizQueue = eligible.filter(([k, v]) => v.level > 0 && v.level < 3 && v.nextReview <= today);
-  } else if (quizMode === 'new') {
-    kinphraQuizQueue = eligible.filter(([k, v]) => v.level === 0).slice(0, 20);
-  } else {
-    kinphraQuizQueue = eligible;
+function loadInterpSession() {
+  stopInterpMic();
+  interpQueue = buildInterpQueue();
+  interpIndex = 0;
+  interpScores = [];
+  document.getElementById('interp-summary').style.display = 'none';
+  document.getElementById('interp-dir-ja2en').classList.toggle('primary', interpDirection === 'ja2en');
+  document.getElementById('interp-dir-en2ja').classList.toggle('primary', interpDirection === 'en2ja');
+  if (!interpQueue.length) {
+    document.getElementById('interp-card').style.display = 'none';
+    document.getElementById('interp-progress').textContent = '';
+    document.getElementById('interp-prompt').textContent = '';
+    showToast('例文データのある単語がまだありません');
+    return;
   }
-  shuffleArray(kinphraQuizQueue);
-  if (kinphraQuizQueue.length === 0) {
-    document.getElementById('kinphra-quiz-area').style.display = 'none';
-    document.getElementById('quiz-empty').style.display = 'block';
+  document.getElementById('interp-card').style.display = 'block';
+  document.getElementById('interp-unsupported').style.display =
+    (interpDirection === 'ja2en' && !getSpeechRecognitionCtor()) ? 'block' : 'none';
+  showInterpCard();
+}
+
+function setInterpDirection(dir) {
+  interpDirection = dir;
+  loadInterpSession();
+}
+
+function showInterpCard() {
+  stopInterpMic();
+  if (interpIndex >= interpQueue.length) { showInterpSummary(); return; }
+  const v = interpQueue[interpIndex];
+  interpRevealed = false;
+  interpFinalTranscript = '';
+  document.getElementById('interp-progress').textContent = `${interpIndex + 1} / ${interpQueue.length}`;
+  document.getElementById('interp-source').textContent = `Key word: ${v.word}（${v.japanese || ''}）`;
+  document.getElementById('interp-transcript').textContent = '';
+  document.getElementById('interp-result').style.display = 'none';
+  document.getElementById('interp-reveal-btn').style.display = 'inline-flex';
+
+  const playBtn = document.getElementById('interp-play-btn');
+  const micRow = document.getElementById('interp-mic-row');
+  if (interpDirection === 'ja2en') {
+    document.getElementById('interp-prompt').textContent = v.exampleJa;
+    playBtn.style.display = 'none';
+    micRow.style.display = getSpeechRecognitionCtor() ? 'block' : 'none';
+    resetInterpMicButton();
   } else {
-    document.getElementById('kinphra-quiz-area').style.display = 'block';
-    document.getElementById('quiz-empty').style.display = 'none';
-    showKinphraFlashcard();
+    document.getElementById('interp-prompt').innerHTML =
+      '<span style="color:var(--text2); font-size:14px;">&#128071; 音声を聞いて、日本語で通訳してください</span>';
+    playBtn.style.display = 'inline-flex';
+    playBtn.onclick = () => speakTextSequence([v.example], 0.95);
+    micRow.style.display = 'none';
   }
 }
 
-function showKinphraFlashcard() {
-  if (kinphraQuizIndex >= kinphraQuizQueue.length) { showQuizComplete(); return; }
-  const [key, v] = kinphraQuizQueue[kinphraQuizIndex];
-  kinphraQuizRevealed = false;
-  const blankSentence = kinphraMakeBlankSentence(v.example, v.word);
-  document.getElementById('kinphra-fc-ja').innerHTML = `<span class="kinphra-keyword">${escapeHtml(v.japanese)}</span>`;
-  document.getElementById('kinphra-fc-en').innerHTML = blankSentence;
-  document.getElementById('kinphra-fc-hint').style.display = 'block';
-  document.getElementById('kinphra-fc-reveal').style.display = 'none';
-  document.getElementById('kinphra-rating-buttons').style.display = 'none';
-  document.getElementById('kinphra-input-row').style.display = 'flex';
-  const input = document.getElementById('kinphra-input');
-  input.value = '';
-  input.focus();
-  document.getElementById('kinphra-fc-answer').textContent = v.word;
-  document.getElementById('kinphra-fc-pos').textContent = v.pos || '';
-  document.getElementById('kinphra-fc-meaning').textContent = v.japanese;
-  const speakBtn = document.getElementById('kinphra-fc-speak');
-  speakBtn.onclick = (e) => { e.stopPropagation(); speakWord(v.word); };
-  document.getElementById('kinphra-quiz-progress').textContent = `${kinphraQuizIndex + 1} / ${kinphraQuizQueue.length}`;
+function resetInterpMicButton() {
+  const btn = document.getElementById('interp-mic-btn');
+  btn.textContent = '🎙 英語で通訳する';
+  btn.style.background = '';
 }
 
-function kinphraSubmitAnswer() {
-  if (kinphraQuizRevealed) return;
-  const [key, v] = kinphraQuizQueue[kinphraQuizIndex];
-  const input = document.getElementById('kinphra-input');
-  const userAnswer = input.value.trim().toLowerCase();
-  const correct = v.word.toLowerCase();
-  kinphraQuizRevealed = true;
-
-  const resultEl = document.getElementById('kinphra-fc-result');
-  if (userAnswer === correct) {
-    resultEl.textContent = 'Correct!';
-    resultEl.className = 'kinphra-quiz-result correct';
-  } else if (userAnswer) {
-    resultEl.textContent = `Your answer: ${userAnswer}`;
-    resultEl.className = 'kinphra-quiz-result incorrect';
-  } else {
-    resultEl.textContent = '';
-    resultEl.className = 'kinphra-quiz-result';
+function toggleInterpMic() {
+  if (interpRecognizing) { stopInterpMic(); return; }
+  const Ctor = getSpeechRecognitionCtor();
+  if (!Ctor) { showToast('このブラウザは音声認識に対応していません'); return; }
+  if (isSpeechSupported()) speechSynthesis.cancel();
+  interpRecog = new Ctor();
+  interpRecog.lang = 'en-US';
+  interpRecog.interimResults = true;
+  interpRecog.continuous = true;
+  interpFinalTranscript = '';
+  const transcriptEl = document.getElementById('interp-transcript');
+  const btn = document.getElementById('interp-mic-btn');
+  interpRecog.onresult = (event) => {
+    let interim = '';
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+      const res = event.results[i];
+      if (res.isFinal) interpFinalTranscript += res[0].transcript + ' ';
+      else interim += res[0].transcript;
+    }
+    transcriptEl.textContent = (interpFinalTranscript + interim).trim();
+  };
+  interpRecog.onerror = (event) => {
+    interpRecognizing = false;
+    resetInterpMicButton();
+    if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+      showToast('マイクの使用が許可されていません');
+    } else if (event.error !== 'aborted' && event.error !== 'no-speech') {
+      showToast('音声認識エラー: ' + event.error);
+    }
+  };
+  interpRecog.onend = () => {
+    interpRecognizing = false;
+    resetInterpMicButton();
+    const spoken = (interpFinalTranscript || document.getElementById('interp-transcript').textContent || '').trim();
+    if (spoken && !interpRevealed) revealInterp(spoken);
+  };
+  interpRecognizing = true;
+  btn.textContent = '⏹ 停止して採点';
+  btn.style.background = 'var(--red)';
+  transcriptEl.textContent = '🎧 認識中...';
+  try { interpRecog.start(); } catch (e) {
+    interpRecognizing = false;
+    resetInterpMicButton();
+    showToast('音声認識を開始できませんでした');
   }
-
-  document.getElementById('kinphra-fc-hint').style.display = 'none';
-  document.getElementById('kinphra-input-row').style.display = 'none';
-  document.getElementById('kinphra-fc-reveal').style.display = 'block';
-  document.getElementById('kinphra-rating-buttons').style.display = 'flex';
 }
 
-function kinphraRevealOrSubmit() {
-  if (kinphraQuizRevealed) return;
-  kinphraSubmitAnswer();
+function stopInterpMic() {
+  if (interpRecog) {
+    try { interpRecog.stop(); } catch (e) { /* already stopped */ }
+  }
+  interpRecognizing = false;
 }
 
-function rateKinphraCard(quality) {
-  const [key, v] = kinphraQuizQueue[kinphraQuizIndex];
-  const srs = state.vocabulary[key];
-  if (quality === 1) { srs.interval = 0; srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.2); srs.level = 1; quizSessionStats.again++; kinphraQuizQueue.push([key, v]); }
-  else if (quality === 2) { srs.interval = srs.interval === 0 ? 1 : Math.ceil(srs.interval * 1.2); srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.hard++; }
-  else if (quality === 3) { srs.interval = srs.interval === 0 ? 1 : srs.interval === 1 ? 3 : Math.ceil(srs.interval * srs.easeFactor); srs.level = getSrsLevel(srs.interval); quizSessionStats.good++; }
-  else if (quality === 4) { srs.interval = srs.interval === 0 ? 4 : Math.ceil(srs.interval * srs.easeFactor * 1.3); srs.easeFactor = Math.min(3.0, srs.easeFactor + 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.easy++; }
-  srs.nextReview = addDaysToLocalDate(srs.interval);
-  srs.reviewCount++; if (quality >= 2) srs.correctCount++;
-  srs.lastReview = formatLocalDate();
-  saveState(); kinphraQuizIndex++; showKinphraFlashcard();
+function normalizeInterpWord(word) {
+  return String(word).toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9']/g, '');
+}
+
+// 模範英文の各単語が発話に含まれるかを判定し、一致率とハイライトHTMLを返す
+function scoreInterpretation(model, spoken) {
+  const spokenCounts = new Map();
+  String(spoken).split(/\s+/).map(normalizeInterpWord).filter(Boolean).forEach(t => {
+    spokenCounts.set(t, (spokenCounts.get(t) || 0) + 1);
+  });
+  const parts = String(model).split(/\s+/).filter(Boolean);
+  let matched = 0, scorable = 0;
+  const html = parts.map(part => {
+    const norm = normalizeInterpWord(part);
+    if (!norm) return escapeHtml(part);
+    scorable++;
+    const c = spokenCounts.get(norm) || 0;
+    if (c > 0) {
+      spokenCounts.set(norm, c - 1);
+      matched++;
+      return `<span style="color:var(--green); font-weight:600;">${escapeHtml(part)}</span>`;
+    }
+    return `<span style="color:var(--red);">${escapeHtml(part)}</span>`;
+  }).join(' ');
+  return { pct: scorable ? Math.round(matched / scorable * 100) : 0, html };
+}
+
+function revealInterp(spokenText) {
+  if (interpIndex >= interpQueue.length) return;
+  stopInterpMic();
+  interpRevealed = true;
+  const v = interpQueue[interpIndex];
+  const resultEl = document.getElementById('interp-result');
+  const scoreEl = document.getElementById('interp-score');
+  const modelEl = document.getElementById('interp-model');
+  const modelJaEl = document.getElementById('interp-model-ja');
+  const labelEl = document.getElementById('interp-model-label');
+
+  if (interpDirection === 'ja2en') {
+    const spoken = typeof spokenText === 'string' ? spokenText
+      : (interpFinalTranscript || document.getElementById('interp-transcript').textContent || '').trim();
+    if (spoken && spoken !== '🎧 認識中...') {
+      const { pct, html } = scoreInterpretation(v.example, spoken);
+      interpScores.push(pct);
+      const color = pct >= 80 ? 'var(--green)' : pct >= 60 ? 'var(--yellow)' : 'var(--red)';
+      scoreEl.innerHTML = `<span style="color:${color};">一致率 ${pct}%</span>`;
+      labelEl.textContent = '模範解答（言えた単語=緑 / 抜けた単語=赤）';
+      modelEl.innerHTML = html;
+    } else {
+      scoreEl.textContent = '';
+      labelEl.textContent = '模範解答';
+      modelEl.textContent = v.example;
+    }
+    modelJaEl.textContent = v.exampleJa;
+  } else {
+    scoreEl.textContent = '';
+    labelEl.textContent = '模範解答（日本語訳と英文）';
+    modelEl.textContent = v.example;
+    modelJaEl.textContent = v.exampleJa;
+  }
+  document.getElementById('interp-result-speak').onclick = () => speakTextSequence([v.example], 0.95);
+  resultEl.style.display = 'block';
+  document.getElementById('interp-reveal-btn').style.display = 'none';
+}
+
+function nextInterp() {
+  if (!interpRevealed && interpIndex < interpQueue.length) { revealInterp(); return; }
+  interpIndex++;
+  showInterpCard();
+}
+
+function showInterpSummary() {
+  stopInterpMic();
+  document.getElementById('interp-card').style.display = 'none';
+  document.getElementById('interp-progress').textContent = '';
+  const el = document.getElementById('interp-summary');
+  const detail = document.getElementById('interp-summary-detail');
+  const done = interpQueue.length;
+  if (interpScores.length) {
+    const avg = Math.round(interpScores.reduce((a, b) => a + b, 0) / interpScores.length);
+    detail.innerHTML = `${done}文を練習 · 音声判定 ${interpScores.length}回<br>平均一致率: <b style="font-size:16px;">${avg}%</b>`;
+  } else {
+    detail.textContent = `${done}文を練習しました`;
+  }
+  const today = formatLocalDate();
+  if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
+  state.dailyStats[today].interp = (state.dailyStats[today].interp || 0) + done;
+  saveState();
+  el.style.display = 'block';
 }
 
 // === REVIEW ===
+// 苦手単語ランキング: Again回数・不正解数・低easeFactorから弱点スコアを算出
+function renderWeakWords() {
+  const el = document.getElementById('weak-words');
+  if (!el) return;
+  const entries = Object.values(state.vocabulary)
+    .filter(v => v.level >= 0 && (v.reviewCount || 0) >= 2)
+    .map(v => {
+      const wrong = (v.reviewCount || 0) - (v.correctCount || 0);
+      const again = v.againCount || 0;
+      const score = again * 2 + wrong + (2.5 - (v.easeFactor || 2.5)) * 2;
+      const accuracy = v.reviewCount ? Math.round((v.correctCount || 0) / v.reviewCount * 100) : 0;
+      return { v, score, accuracy, again };
+    })
+    .filter(e => e.score > 0.01)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 15);
+  if (!entries.length) {
+    el.innerHTML = '<div style="font-size:12px; color:var(--text2);">クイズの回答が増えると、間違えやすい単語がここに表示されます（レビュー2回以上の単語が対象）</div>';
+    return;
+  }
+  el.innerHTML = entries.map((e, i) => `
+    <div style="display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid var(--border);">
+      <span style="color:var(--text2); font-size:12px; min-width:20px;">${i + 1}</span>
+      <div style="flex:1; min-width:0;">
+        <span style="font-weight:700; color:var(--accent2);">${escapeHtml(e.v.word)}</span>
+        <span style="font-size:12px; color:var(--text2); font-style:italic;">${escapeHtml(e.v.pos || '')}</span>
+        <div style="font-size:12px; color:var(--text);">${escapeHtml(e.v.japanese || '')}</div>
+      </div>
+      <div style="text-align:right; font-size:11px; color:var(--text2); white-space:nowrap;">
+        <div style="color:${e.accuracy < 50 ? 'var(--red)' : e.accuracy < 75 ? 'var(--yellow)' : 'var(--text2)'}; font-weight:700; font-size:13px;">${e.accuracy}%</div>
+        <div>Again ${e.again}回</div>
+      </div>
+      <button class="btn small" onclick="speakWord('${e.v.word.replace(/'/g, "\\'")}')">&#128266;</button>
+    </div>`).join('');
+}
+
+function renderPosAccuracy() {
+  const el = document.getElementById('pos-accuracy');
+  if (!el) return;
+  const groups = {};
+  Object.values(state.vocabulary).forEach(v => {
+    if (v.level < 0 || !(v.reviewCount > 0)) return;
+    const pos = String(v.pos || 'other').split('/')[0].trim().toLowerCase() || 'other';
+    if (!groups[pos]) groups[pos] = { review: 0, correct: 0, count: 0 };
+    groups[pos].review += v.reviewCount || 0;
+    groups[pos].correct += v.correctCount || 0;
+    groups[pos].count++;
+  });
+  const rows = Object.entries(groups)
+    .filter(([, g]) => g.review >= 3)
+    .map(([pos, g]) => ({ pos, acc: Math.round(g.correct / g.review * 100), count: g.count }))
+    .sort((a, b) => a.acc - b.acc);
+  if (!rows.length) {
+    el.innerHTML = '<div style="font-size:12px; color:var(--text2);">データが増えると品詞ごとの正答率が表示されます</div>';
+    return;
+  }
+  el.innerHTML = rows.map(r => `
+    <div style="display:flex; align-items:center; gap:8px; padding:4px 0;">
+      <span style="font-size:12px; min-width:90px; color:var(--text);">${escapeHtml(r.pos)} <span style="color:var(--text2);">(${r.count})</span></span>
+      <div style="flex:1; height:10px; background:var(--surface2); border-radius:5px; overflow:hidden;">
+        <div style="width:${r.acc}%; height:100%; background:${r.acc < 50 ? 'var(--red)' : r.acc < 75 ? 'var(--yellow)' : 'var(--green)'};"></div>
+      </div>
+      <span style="font-size:12px; min-width:38px; text-align:right; font-weight:600;">${r.acc}%</span>
+    </div>`).join('');
+}
+
 function updateReviewPage() {
+  renderWeakWords();
+  renderPosAccuracy();
   const newW = Object.values(state.vocabulary).filter(v => v.level === 0).length;
   const due = getDueWords().length;
   const mastered = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
@@ -3397,6 +3694,21 @@ function drawCharts() {
   drawBarChart('chart-reviews', shortLabels, reviewData, '#a78bfa');
 }
 
+// Y軸の目盛りを整数のキリの良い値（1/2/5×10^n）に揃える
+function niceChartScale(maxValue) {
+  const rawStep = Math.max(1, maxValue) / 4;
+  const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+  const norm = rawStep / mag;
+  const niceNorm = norm <= 1 ? 1 : norm <= 2 ? 2 : norm <= 5 ? 5 : 10;
+  const step = niceNorm * mag;
+  return { step, max: step * 4 };
+}
+// X軸ラベルが重ならないよう、幅に応じて間引く間隔を返す
+function chartLabelInterval(count, chartW) {
+  const maxLabels = Math.max(2, Math.floor(chartW / 40));
+  return Math.max(1, Math.ceil(count / maxLabels));
+}
+
 function drawBarChart(canvasId, labels, data, color) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
@@ -3407,11 +3719,13 @@ function drawBarChart(canvasId, labels, data, color) {
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
   const w = rect.width, h = rect.height;
-  const padTop = 10, padBot = 25, padLeft = 35, padRight = 10;
+  const padTop = 10, padBot = 28, padLeft = 42, padRight = 10;
   const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
-  const max = Math.max(...data, 1);
+  const scale = niceChartScale(Math.max(...data, 1));
+  const max = scale.max;
   const barW = chartW / labels.length * 0.6;
   const gap = chartW / labels.length;
+  const labelInterval = chartLabelInterval(labels.length, chartW);
 
   ctx.clearRect(0, 0, w, h);
   // Grid lines
@@ -3419,8 +3733,8 @@ function drawBarChart(canvasId, labels, data, color) {
   for (let i = 0; i <= 4; i++) {
     const y = padTop + chartH - (chartH * i / 4);
     ctx.beginPath(); ctx.moveTo(padLeft, y); ctx.lineTo(w - padRight, y); ctx.stroke();
-    ctx.fillStyle = '#94a3b8'; ctx.font = '9px sans-serif'; ctx.textAlign = 'right';
-    ctx.fillText(Math.round(max * i / 4), padLeft - 4, y + 3);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(scale.step * i, padLeft - 6, y + 4);
   }
   // Bars
   labels.forEach((l, i) => {
@@ -3431,9 +3745,11 @@ function drawBarChart(canvasId, labels, data, color) {
     if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(x, y, barW, barH, 2); ctx.fill(); }
     else { ctx.fillRect(x, y, barW, barH); }
     ctx.globalAlpha = 1;
-    // Label
-    ctx.fillStyle = '#94a3b8'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText(l, padLeft + i * gap + gap / 2, h - 4);
+    // Label（間引いて重なりを防ぐ）
+    if (i % labelInterval === 0) {
+      ctx.fillStyle = '#cbd5e1'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(l, padLeft + i * gap + gap / 2, h - 6);
+    }
   });
 }
 
@@ -3447,10 +3763,12 @@ function drawLineChart(canvasId, labels, data, color) {
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
   const w = rect.width, h = rect.height;
-  const padTop = 10, padBot = 25, padLeft = 35, padRight = 10;
+  const padTop = 10, padBot = 28, padLeft = 42, padRight = 10;
   const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
-  const max = Math.max(...data, 1);
+  const scale = niceChartScale(Math.max(...data, 1));
+  const max = scale.max;
   const gap = chartW / (labels.length - 1 || 1);
+  const labelInterval = chartLabelInterval(labels.length, chartW);
 
   ctx.clearRect(0, 0, w, h);
   // Grid
@@ -3458,8 +3776,8 @@ function drawLineChart(canvasId, labels, data, color) {
   for (let i = 0; i <= 4; i++) {
     const y = padTop + chartH - (chartH * i / 4);
     ctx.beginPath(); ctx.moveTo(padLeft, y); ctx.lineTo(w - padRight, y); ctx.stroke();
-    ctx.fillStyle = '#94a3b8'; ctx.font = '9px sans-serif'; ctx.textAlign = 'right';
-    ctx.fillText(Math.round(max * i / 4), padLeft - 4, y + 3);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(scale.step * i, padLeft - 6, y + 4);
   }
   // Fill area
   ctx.beginPath();
@@ -3480,18 +3798,20 @@ function drawLineChart(canvasId, labels, data, color) {
     if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
   });
   ctx.stroke();
-  // Dots
+  // Dots（点が多いときは省略して線を見やすく）
+  if (labels.length <= 31) {
+    labels.forEach((l, i) => {
+      const x = padLeft + i * gap;
+      const y = padTop + chartH - (data[i] / max) * chartH;
+      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = color; ctx.fill();
+    });
+  }
+  // Labels（間引いて重なりを防ぐ）
   labels.forEach((l, i) => {
-    const x = padLeft + i * gap;
-    const y = padTop + chartH - (data[i] / max) * chartH;
-    ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2);
-    ctx.fillStyle = color; ctx.fill();
-  });
-  // Labels
-  labels.forEach((l, i) => {
-    if (i % 2 === 0 || labels.length <= 7) {
-      ctx.fillStyle = '#94a3b8'; ctx.font = '8px sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(l, padLeft + i * gap, h - 4);
+    if (i % labelInterval === 0) {
+      ctx.fillStyle = '#cbd5e1'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText(l, padLeft + i * gap, h - 6);
     }
   });
 }
@@ -3563,7 +3883,37 @@ function exportProgress() {
   const a = document.createElement('a');
   a.href = url; a.download = 'english-trainer-backup-' + formatLocalDate() + '.json';
   a.click(); URL.revokeObjectURL(url);
+  state.lastBackupAt = formatLocalDate();
+  saveState();
+  updateBackupAlert();
   showToast('Backup exported');
+}
+
+// === BACKUP ALERT ===
+// iOS SafariはlocalStorageを7日間未使用で削除することがあるため、定期バックアップを促す
+function hasMeaningfulProgress() {
+  if ((state.essaysRead || []).length > 0) return true;
+  if ((state.studyHistory || []).length > 0) return true;
+  return Object.values(state.vocabulary).some(v => (v.reviewCount || 0) > 0);
+}
+function updateBackupAlert() {
+  const el = document.getElementById('backup-alert');
+  if (!el) return;
+  const today = formatLocalDate();
+  if (!hasMeaningfulProgress()) { el.style.display = 'none'; return; }
+  if (state.backupSnoozedUntil && state.backupSnoozedUntil > today) { el.style.display = 'none'; return; }
+  const last = state.lastBackupAt || null;
+  const threshold = addDaysToLocalDate(-7);
+  if (last && last > threshold) { el.style.display = 'none'; return; }
+  document.getElementById('backup-alert-msg').textContent = last
+    ? `前回のバックアップから7日以上経過しています（前回: ${last}）`
+    : '学習データのバックアップがまだありません。スマホのブラウザは長期間未使用だとデータを消すことがあります';
+  el.style.display = 'block';
+}
+function snoozeBackupAlert() {
+  state.backupSnoozedUntil = addDaysToLocalDate(7);
+  saveState();
+  updateBackupAlert();
 }
 function importProgress(event) {
   const file = event.target.files[0];
@@ -3926,6 +4276,9 @@ function openListening(index) {
   document.getElementById('btn-listen-shadow').classList.remove('active-toggle');
   listenHighlightMode = false;
   document.getElementById('btn-listen-highlight').classList.remove('active-toggle');
+  listenBlindMode = false;
+  document.getElementById('btn-listen-blind').classList.remove('active-toggle');
+  document.getElementById('listen-transcript').classList.remove('blind-blur');
 
   renderListenTranscript();
 

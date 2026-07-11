@@ -59,15 +59,25 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 
 ## UI/UX仕様
 - Premium/Enhanced Apple Neural TTS音声を優先選択
-- 再生レート0.95x、ピッチ1.05
+- 再生レート0.95x、ピッチ1.05（速度スライダーは0.8〜2.0x）
 - 通し番号付き、10個ずつ折りたたみ表示
 - 読了回数の常時表示（緑ハイライト）
 - タブ移動時の音声自動停止
 - Glossaryハイライトはツールチップ表示（改行なし）
 - Read Completeボタンは画面下部に固定表示
 
+## 主要機能（2026-07-11追加分含む）
+- **注意**: Quizの金フレ（Gold Phrases）モードは2026-07-11に削除済み。VocabタブのGold Phrases表示フィルターは残っている
+- **通訳練習モード**（Quizタブ内）: Glossary例文ペアを使用。日→英はSpeechRecognitionで発話を文字起こしし単語一致率を採点、英→日は音声を聞いて自己チェック
+- **実戦モード**（エッセイ再生）: 文ごとに話者・速度・ピッチをランダム化してリスニング負荷を上げる
+- **ブラインドモード**: エッセイ本文/Transcriptをblurで隠して耳だけで聞く（.blind-blurクラス）
+- **弱点分析**（SRSタブ）: againCount・正答率・easeFactorから苦手単語Top15と品詞別正答率を表示
+- **バックアップ促進バナー**（ホーム）: 最終バックアップから7日超で表示（state.lastBackupAt / backupSnoozedUntil）
+- **PWA対応**: manifest.json + sw.js（stale-while-revalidateキャッシュ）+ アイコン3種。ホーム画面追加・オフライン動作可
+
 ## 技術スタック
 - HTML/CSS/JavaScript（単体ファイル）
-- Web Speech API（音声再生）
+- Web Speech API（音声再生・音声認識）
 - localStorage（SRS進捗管理）
 - SM-2アルゴリズム（忘却曲線ベースの間隔反復）
+- Service Worker（PWA/オフラインキャッシュ。キャッシュ名 ert-cache-vN はアセット更新時にバンプ）
