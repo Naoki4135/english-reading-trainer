@@ -9,8 +9,8 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260711"></script>
-<script src="listening-data.js?v=20260711"></script>
+<script src="data.js?v=20260719"></script>
+<script src="listening-data.js?v=20260719"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -157,67 +157,6 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   border-radius: 8px; background: var(--surface); border: 1px solid var(--border); font-size: 13px;
 }
 .speed-control input[type="range"] { width: 80px; accent-color: var(--accent); }
-/* Duo mode */
-.duo-card {
-  padding: 16px; border-bottom: 1px solid var(--border);
-}
-.duo-card:last-child { border-bottom: none; }
-.duo-card-head {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; margin-bottom: 12px;
-}
-.duo-card-meta {
-  font-size: 11px; color: var(--text2);
-}
-.duo-card-play {
-  padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border);
-  background: var(--surface2); color: var(--text); font-size: 12px;
-  cursor: pointer; font-family: inherit; flex-shrink: 0;
-}
-.duo-card-play:hover { border-color: var(--accent); color: var(--accent); }
-.duo-sentence-list {
-  display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;
-}
-.duo-sentence-block {
-  padding: 12px; border-radius: 12px; border: 1px solid var(--border);
-  background: var(--surface2);
-}
-.duo-sentence-row {
-  display: flex; align-items: flex-start; gap: 10px;
-}
-.duo-sentence {
-  flex: 1; font-size: 15px; line-height: 1.8; margin: 0;
-  color: var(--text); font-style: italic;
-}
-.duo-sentence .duo-target {
-  color: var(--accent2); font-weight: 700; font-style: normal;
-  border-bottom: 2px solid var(--accent); padding-bottom: 1px;
-}
-.duo-sentence-ja {
-  margin-top: 8px; font-size: 13px; line-height: 1.7; color: var(--text2);
-}
-.duo-words {
-  display: flex; flex-direction: column; gap: 6px;
-}
-.duo-word-row {
-  display: flex; align-items: baseline; gap: 8px; font-size: 13px;
-}
-.duo-word-en { font-weight: 700; color: var(--accent2); min-width: 120px; }
-.duo-word-pos { font-size: 10px; color: var(--text2); font-style: italic; min-width: 50px; }
-.duo-word-ja { color: var(--text); }
-.duo-speak-btn {
-  padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border);
-  background: var(--surface2); color: var(--text2); font-size: 11px;
-  cursor: pointer; font-family: inherit; margin-left: auto; flex-shrink: 0;
-}
-.duo-speak-btn:hover { border-color: var(--accent); }
-.duo-sentence-speak {
-  padding: 4px 8px; border-radius: 999px; border: 1px solid var(--border);
-  background: var(--surface); color: var(--text2); cursor: pointer;
-  font-size: 12px; font-family: inherit; flex-shrink: 0;
-}
-.duo-sentence-speak:hover { border-color: var(--accent); color: var(--accent); }
-
 .speed-btn {
   width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
   background: var(--surface2); color: var(--text); font-size: 16px; font-weight: 700;
@@ -295,7 +234,6 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   color: var(--text2); cursor: pointer; font-family: inherit;
 }
 .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
-.filter-btn[data-filter="kinphra"].active { background: var(--orange); border-color: var(--orange); color: white; }
 .search-input {
   width: 100%; padding: 10px 14px; border-radius: 8px;
   border: 1px solid var(--border); background: var(--surface);
@@ -536,117 +474,19 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .shadow-pause-indicator.show { display: block; }
 
-/* KinPhra (金フレ) mode */
-.kinphra-level-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-.kinphra-level-btn {
-  padding: 6px 14px; border-radius: 16px; font-size: 11px;
-  border: 1px solid var(--border); background: var(--surface);
-  color: var(--text2); cursor: pointer; font-family: inherit; font-weight: 600;
+/* YouTube listening */
+#yt-player-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; margin: 12px 0; }
+#yt-player-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.yt-seg { display: block; padding: 6px 8px; border-radius: 6px; cursor: pointer; line-height: 1.7; }
+.yt-seg:hover { background: rgba(59,130,246,0.1); }
+.yt-seg.active { background: rgba(59,130,246,0.18); border-left: 3px solid var(--accent); padding-left: 5px; }
+.yt-seg-time { color: var(--text2); font-size: 11px; margin-right: 8px; font-variant-numeric: tabular-nums; }
+.yt-form-textarea {
+  width: 100%; min-height: 130px; padding: 10px 12px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface2); color: var(--text);
+  font-size: 13px; font-family: inherit; line-height: 1.6; resize: vertical; box-sizing: border-box;
 }
-.kinphra-level-btn.active { background: var(--orange); border-color: var(--orange); color: white; }
-.kinphra-card {
-  display: flex; align-items: stretch; border-bottom: 1px solid var(--border);
-  min-height: 72px;
-}
-.kinphra-card:last-child { border-bottom: none; }
-.kinphra-num {
-  width: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: var(--text2);
-  background: rgba(249,115,22,0.08); border-right: 1px solid var(--border);
-}
-.kinphra-body {
-  flex: 1; padding: 10px 12px; display: flex; flex-direction: column; justify-content: center;
-}
-.kinphra-ja {
-  font-size: 13px; color: var(--text); margin-bottom: 4px; line-height: 1.5;
-}
-.kinphra-ja .kinphra-keyword {
-  color: var(--orange); font-weight: 700;
-}
-.kinphra-en {
-  font-size: 14px; color: var(--text2); line-height: 1.5; font-style: italic;
-}
-.kinphra-en .kinphra-blank {
-  color: var(--orange); font-weight: 700; font-style: normal;
-  letter-spacing: 1px;
-}
-.kinphra-answer-col {
-  width: 130px; flex-shrink: 0; display: flex; flex-direction: column;
-  justify-content: center; padding: 8px 12px;
-  background: rgba(249,115,22,0.06); border-left: 1px solid var(--border);
-}
-.kinphra-answer-word {
-  font-size: 16px; font-weight: 700; color: var(--orange); line-height: 1.3;
-}
-.kinphra-answer-pos {
-  font-size: 10px; color: var(--text2); margin-top: 2px;
-}
-.kinphra-answer-meaning {
-  font-size: 11px; color: var(--text); margin-top: 2px; line-height: 1.4;
-}
-.kinphra-speak {
-  padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border);
-  background: var(--surface2); color: var(--text2); font-size: 11px;
-  cursor: pointer; font-family: inherit; margin-top: 4px; align-self: flex-start;
-}
-.kinphra-speak:hover { border-color: var(--orange); color: var(--orange); }
-
-/* KinPhra quiz flashcard */
-.kinphra-quiz-card {
-  background: var(--surface); border: 2px solid var(--border); border-radius: 16px;
-  padding: 28px 20px; text-align: center; min-height: 220px;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  margin-bottom: 16px; cursor: pointer; transition: border-color 0.3s;
-}
-.kinphra-quiz-card:hover { border-color: var(--orange); }
-.kinphra-quiz-ja {
-  font-size: 18px; color: var(--text); margin-bottom: 16px; line-height: 1.6;
-}
-.kinphra-quiz-ja .kinphra-keyword { color: var(--orange); font-weight: 700; }
-.kinphra-quiz-en {
-  font-size: 20px; color: var(--text2); font-style: italic; line-height: 1.6;
-  max-width: 500px;
-}
-.kinphra-quiz-en .kinphra-blank {
-  color: var(--accent2); font-weight: 700; font-style: normal;
-  letter-spacing: 2px; font-size: 22px;
-}
-.kinphra-quiz-input-row {
-  display: flex; gap: 8px; margin-top: 16px; width: 100%; max-width: 320px;
-}
-.kinphra-quiz-input {
-  flex: 1; padding: 10px 14px; border-radius: 8px;
-  border: 2px solid var(--border); background: var(--surface2);
-  color: var(--text); font-size: 16px; font-family: inherit; text-align: center;
-}
-.kinphra-quiz-input:focus { border-color: var(--orange); outline: none; }
-.kinphra-quiz-submit {
-  padding: 10px 18px; border-radius: 8px; border: none;
-  background: var(--orange); color: white; font-size: 14px; font-weight: 700;
-  cursor: pointer; font-family: inherit;
-}
-.kinphra-quiz-submit:hover { background: #ea580c; }
-.kinphra-quiz-reveal {
-  margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);
-  width: 100%; text-align: center;
-}
-.kinphra-quiz-answer-big {
-  font-size: 32px; font-weight: 700; color: var(--accent2); margin-bottom: 6px;
-}
-.kinphra-quiz-pos { font-size: 13px; color: var(--text2); }
-.kinphra-quiz-meaning { font-size: 16px; color: var(--text); margin-top: 4px; }
-.kinphra-quiz-result {
-  font-size: 14px; font-weight: 700; margin-bottom: 8px;
-}
-.kinphra-quiz-result.correct { color: var(--green); }
-.kinphra-quiz-result.incorrect { color: var(--red); }
-
-@media (max-width: 480px) {
-  .kinphra-answer-col { width: 100px; padding: 6px 8px; }
-  .kinphra-answer-word { font-size: 14px; }
-  .kinphra-quiz-en { font-size: 17px; }
-  .kinphra-quiz-en .kinphra-blank { font-size: 18px; }
-}
+.yt-form-textarea:focus { border-color: var(--accent); outline: none; }
 
 @media (min-width: 600px) {
   .stats-grid { grid-template-columns: repeat(3, 1fr); }
@@ -770,19 +610,19 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <button class="filter-btn active" data-filter="all" onclick="setVocabFilter('all', this)">All</button>
       <button class="filter-btn" data-filter="new" onclick="setVocabFilter('new', this)">New</button>
       <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
-      <button class="filter-btn" data-filter="shuffle" onclick="setVocabFilter('shuffle', this)">Shuffle</button>
+      </button>
       <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
-      <button class="filter-btn" data-filter="duo" onclick="setVocabFilter('duo', this)">Duo</button>
-      <button class="filter-btn" data-filter="duo-seq" onclick="setVocabFilter('duo-seq', this)">Duo Seq</button>
+      </button>
+      </button>
       <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
-      <button class="filter-btn" data-filter="kinphra" onclick="setVocabFilter('kinphra', this)" style="border-color:var(--orange); color:var(--orange);">&#128293; Gold Phrases</button>
+      </button>
     </div>
     <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <button class="btn" id="btn-shuffle-order" onclick="reshuffleVocab()" style="flex:1; min-width:150px; padding:10px;">&#128256; Shuffle Order</button>
-        <button class="btn" id="btn-duo-play-all" onclick="speakAllDuoSentences()" style="display:none; flex:1; min-width:120px; padding:10px;">&#9654; Play All</button>
-        <button class="btn" id="btn-duo-pause" onclick="toggleDuoPause()" style="display:none; flex:1; min-width:120px; padding:10px;">&#10074;&#10074; Pause</button>
-        <button class="btn" id="btn-duo-stop" onclick="stopSpeech()" style="display:none; flex:1; min-width:120px; padding:10px;">&#9632; Stop</button>
+        </button>
+        </button>
+        </button>
       </div>
     </div>
     <div class="card" style="padding:0;">
@@ -799,7 +639,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     </div>
     <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
       <button class="btn" id="quiz-mode-words" onclick="setQuizType('words')" style="flex:1; min-width:100px; padding:10px; font-weight:700;">Words</button>
-      <button class="btn" id="quiz-mode-duo" onclick="setQuizType('duo')" style="flex:1; min-width:100px; padding:10px; font-weight:700;">Duo Sentences</button>
+      </button>
       <button class="btn" id="quiz-mode-interp" onclick="setQuizType('interp')" style="flex:1; min-width:100px; padding:10px; font-weight:700; border-color:var(--purple); color:var(--purple);">&#127897; 通訳</button>
     </div>
     <div class="tabs" id="quiz-tabs">
@@ -836,26 +676,6 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="rating-btn rating-hard" onclick="rateCard(2)">Hard</button>
         <button class="rating-btn rating-good" onclick="rateCard(3)">Good</button>
         <button class="rating-btn rating-easy" onclick="rateCard(4)">Easy</button>
-      </div>
-    </div>
-    <!-- Duo sentence flashcard area -->
-    <div id="duo-quiz-area" style="display:none;">
-      <div class="flashcard-progress" id="duo-quiz-progress"></div>
-      <div class="flashcard" id="duo-flashcard" onclick="revealDuoFlashcard()">
-        <div style="font-size:11px; color:var(--text2); margin-bottom:8px;" id="duo-fc-source"></div>
-        <div class="duo-sentence" style="font-size:17px; line-height:1.7; color:var(--text); padding:8px 0;" id="duo-fc-sentence"></div>
-        <button class="flashcard-speak-btn" id="duo-fc-speak" onclick="event.stopPropagation();" style="margin:8px 0;">&#128266; Listen</button>
-        <div class="flashcard-hint" id="duo-fc-hint">Tap card to reveal Japanese translation</div>
-        <div id="duo-fc-answer" style="display:none;">
-          <div style="font-size:15px; color:var(--accent); line-height:1.6; padding:12px 0; border-top:1px solid var(--border);" id="duo-fc-translation"></div>
-          <div id="duo-fc-words" style="margin-top:8px;"></div>
-        </div>
-      </div>
-      <div class="rating-buttons" id="duo-rating-buttons" style="display:none;">
-        <button class="rating-btn rating-again" onclick="rateDuoCard(1)">Again</button>
-        <button class="rating-btn rating-hard" onclick="rateDuoCard(2)">Hard</button>
-        <button class="rating-btn rating-good" onclick="rateDuoCard(3)">Good</button>
-        <button class="rating-btn rating-easy" onclick="rateDuoCard(4)">Easy</button>
       </div>
     </div>
     <!-- Interpreter practice area -->
@@ -915,7 +735,43 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <h1>Listening Practice</h1>
       <p>Native English audio with transcripts</p>
     </div>
+    <button class="btn" style="width:100%; padding:12px; margin-bottom:12px;" onclick="toggleYtForm()" id="yt-add-toggle">&#10133; YouTube動画を追加</button>
+    <div class="card" id="yt-add-form" style="display:none; margin-bottom:12px;">
+      <div style="font-size:13px; font-weight:700; margin-bottom:8px;">YouTube動画を追加</div>
+      <input type="text" class="search-input" id="yt-url-input" placeholder="YouTubeのURLを貼り付け" style="margin-bottom:8px;">
+      <input type="text" class="search-input" id="yt-title-input" placeholder="タイトル（省略可）" style="margin-bottom:8px;">
+      <textarea class="yt-form-textarea" id="yt-transcript-input" placeholder="スクリプトを貼り付け（省略可）&#10;&#10;動画ページの説明欄下の「文字起こしを表示」を開き、全文をコピーして貼り付けてください。タイムスタンプ付きのまま貼ると、再生位置に合わせてスクリプトがハイライトされます。"></textarea>
+      <div style="font-size:11px; color:var(--text2); margin:8px 0 10px; line-height:1.6;">&#128161; スマホは動画の説明欄を開くと「文字起こしを表示」があります。タップして表示された文字起こしを長押しでコピーできます。</div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn primary" style="flex:1; padding:10px;" onclick="saveYtItem()">追加</button>
+        <button class="btn" style="flex:1; padding:10px;" onclick="toggleYtForm()">キャンセル</button>
+      </div>
+    </div>
     <div id="listen-list"></div>
+  </div>
+
+  <!-- YOUTUBE DETAIL -->
+  <div class="page" id="page-yt-detail" style="padding-bottom:60px;">
+    <button class="back-btn" onclick="showPage('listen')">← Back</button>
+    <div class="essay-topic">YouTube</div>
+    <h2 id="yt-title-view" style="font-size:18px; margin: 8px 0 4px;"></h2>
+    <div id="yt-meta" class="essay-meta" style="margin-bottom:4px;"></div>
+    <div id="yt-player-wrap"><div id="yt-player"></div></div>
+    <div class="card listen-controls-card">
+      <div class="listen-speed-row">
+        <span style="font-size:12px; color:var(--text2);">Speed</span>
+        <button class="speed-btn" onclick="adjustYtSpeed(-0.25)">−</button>
+        <span id="yt-speed-label" style="font-size:12px; min-width:44px; text-align:center; font-weight:600;">1.0x</span>
+        <button class="speed-btn" onclick="adjustYtSpeed(0.25)">＋</button>
+        <button class="btn small" id="yt-blind-btn" onclick="toggleYtBlind()" style="margin-left:auto;">&#128374; ブラインド</button>
+      </div>
+    </div>
+    <div class="card" id="yt-script" style="font-size:15px;"></div>
+    <div id="yt-translation-wrap" style="display:none;">
+      <button class="btn" style="width:100%; padding:10px; margin-top:8px;" onclick="toggleYtTranslation()" id="yt-translation-toggle">日本語訳を表示</button>
+      <div class="card" id="yt-translation" style="display:none; font-size:14px; line-height:1.9; white-space:pre-wrap; margin-top:8px;"></div>
+    </div>
+    <button class="btn" id="yt-delete-btn" style="width:100%; padding:10px; margin-top:16px; color:var(--red); border-color:var(--red); display:none;" onclick="deleteYtItem()">&#128465; この動画をリストから削除</button>
   </div>
 
   <!-- LISTENING DETAIL -->
@@ -1026,11 +882,6 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div class="card-title" style="margin: 16px 0 8px;">Mastery Distribution</div>
     <div class="card" id="mastery-chart"></div>
 
-    <div class="card-title" style="margin: 16px 0 8px;">&#128163; Weak Words（苦手単語）</div>
-    <div class="card" id="weak-words" style="padding:12px;"></div>
-    <div class="card-title" style="margin: 16px 0 8px;">品詞別 正答率</div>
-    <div class="card" id="pos-accuracy" style="padding:12px;"></div>
-
     <div class="card-title" style="margin: 16px 0 8px;">Study History</div>
     <div class="card" id="study-history"></div>
 
@@ -1092,7 +943,7 @@ const STORAGE_KEY = 'english-reading-trainer';
 const SPEECH_SPEED_KEY = STORAGE_KEY + '-speech-speed';
 let state = loadState();
 let currentEssay = null;
-let quizType = 'words'; // 'words' or 'duo'
+let quizType = 'words'; // 'words' or 'interp'
 let quizMode = 'review';
 let quizQueue = [];
 let quizIndex = 0;
@@ -1120,11 +971,11 @@ function loadState() {
       if (!p.readCounts) p.readCounts = {};
       if (!p.dailyStats) p.dailyStats = {};
       if (!p.recentEssayIds) p.recentEssayIds = [];
-      if (!p.duoSrs) p.duoSrs = {};
+      if (!p.youtubeItems) p.youtubeItems = [];
       return p;
     }
   } catch (e) { localStorage.removeItem(STORAGE_KEY); }
-  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], duoSrs: {}, lastStudyDate: null };
+  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], youtubeItems: [], lastStudyDate: null };
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
@@ -1986,9 +1837,10 @@ function buildVocabulary() {
 // === NAV ===
 function showPage(page) {
   const targetPage = page === 'listen-detail' ? 'page-listen-detail' : 'page-' + page;
-  const navPage = page === 'essay' ? 'home' : (page === 'listen-detail' ? 'listen' : page);
+  const navPage = page === 'essay' ? 'home' : (page === 'listen-detail' || page === 'yt-detail' ? 'listen' : page);
   if (page !== 'essay' && isSpeechSupported() && (isSpeaking || speechSynthesis.speaking || speechSynthesis.paused)) stopSpeech();
   if (page !== 'listen-detail' && currentListening) listenStop();
+  if (page !== 'yt-detail') pauseYtPlayer();
   if (page !== 'quiz') stopInterpMic();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(targetPage).classList.add('active');
@@ -2004,6 +1856,11 @@ function showPage(page) {
 }
 
 // === DASHBOARD ===
+let recentOpenedExpanded = false;
+function toggleRecentOpened() {
+  recentOpenedExpanded = !recentOpenedExpanded;
+  updateDashboard();
+}
 function updateDashboard() {
   updateBackupAlert();
   const totalVocab = Object.values(state.vocabulary).filter(v => v.level >= 0).length;
@@ -2034,13 +1891,13 @@ function updateDashboard() {
   if (dueWords > 0) { badge.style.display = 'block'; badge.textContent = dueWords; }
   else badge.style.display = 'none';
 
-  const recentOpened = (state.recentEssayIds || [])
+  const recentOpenedAll = (state.recentEssayIds || [])
     .map(id => ESSAYS.find(e => e.id === id))
-    .filter(Boolean)
-    .slice(0, 3);
+    .filter(Boolean);
+  const recentOpened = recentOpenedExpanded ? recentOpenedAll : recentOpenedAll.slice(0, 5);
   const recentOpenedList = document.getElementById('recent-opened-list');
   if (recentOpened.length === 0) {
-    recentOpenedList.innerHTML = `<div class="card recent-opened-empty">Open an essay and the last three you viewed will appear here.</div>`;
+    recentOpenedList.innerHTML = `<div class="card recent-opened-empty">Open an essay and your recent history will appear here.</div>`;
   } else {
     recentOpenedList.innerHTML = recentOpened.map((essay, index) => {
       const rc = state.readCounts[essay.id] || 0;
@@ -2056,6 +1913,9 @@ function updateDashboard() {
         </div>
       </div>`;
     }).join('');
+    if (recentOpenedAll.length > 5) {
+      recentOpenedList.innerHTML += `<button class="btn" style="width:100%; padding:10px; margin-top:4px;" onclick="toggleRecentOpened()">${recentOpenedExpanded ? '▲ 閉じる' : `▼ もっと見る（全${recentOpenedAll.length}件）`}</button>`;
+    }
   }
 
   // エッセイを通し番号付き・10個ずつ折りたたみで表示
@@ -2068,12 +1928,11 @@ function updateDashboard() {
     const start = g * groupSize;
     const end = Math.min(start + groupSize, totalEssays);
     const groupLabel = `#${start + 1} – #${end}`;
-    const isLatest = g === groupCount - 1;
     listHtml += `<div class="essay-group">
-      <button class="essay-group-toggle${isLatest ? ' open' : ''}" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+      <button class="essay-group-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
         ${groupLabel} <span class="arrow">▼</span>
       </button>
-      <div class="essay-group-content${isLatest ? ' open' : ''}">`;
+      <div class="essay-group-content">`;
     for (let i = end - 1; i >= start; i--) {
       const e = essays[i];
       const rc = state.readCounts[e.id] || 0;
@@ -2130,7 +1989,7 @@ function openEssay(id) {
   currentEssay = ESSAYS.find(e => e.id === id);
   if (!currentEssay) return;
   if (!state.recentEssayIds) state.recentEssayIds = [];
-  state.recentEssayIds = [id, ...state.recentEssayIds.filter(existingId => existingId !== id)].slice(0, 10);
+  state.recentEssayIds = [id, ...state.recentEssayIds.filter(existingId => existingId !== id)].slice(0, 50);
   document.getElementById('essay-topic-badge').textContent = currentEssay.topic;
   document.getElementById('essay-view-title').textContent = currentEssay.title;
   document.getElementById('essay-view-meta').textContent = `${currentEssay.date} · ${currentEssay.wordCount} words · ${currentEssay.difficulty}`;
@@ -2513,73 +2372,10 @@ function setVocabFilter(filter, btn) {
   btn.classList.add('active');
   filterVocab();
 }
-let shuffledVocabCache = [];
 let vocabShuffled = false;
 function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
-  const shuffleCtrl = document.getElementById('shuffle-controls');
-  const duoPlayAllBtn = document.getElementById('btn-duo-play-all');
-  const duoStopBtn = document.getElementById('btn-duo-stop');
-  const duoPauseBtn = document.getElementById('btn-duo-pause');
-  const isDuo = vocabFilter === 'duo' || vocabFilter === 'duo-seq';
-  shuffleCtrl.style.display = (vocabFilter === 'shuffle' || vocabFilter === 'learning' || vocabFilter === 'duo' || vocabFilter === 'duo-seq') ? 'block' : 'none';
-  document.getElementById('btn-shuffle-order').style.display = (vocabFilter === 'duo-seq') ? 'none' : 'inline-flex';
-  duoPlayAllBtn.style.display = isDuo ? 'inline-flex' : 'none';
-  duoPauseBtn.style.display = isDuo ? 'inline-flex' : 'none';
-  duoStopBtn.style.display = isDuo ? 'inline-flex' : 'none';
-
-  if (vocabFilter === 'kinphra') {
-    shuffleCtrl.style.display = 'block';
-    document.getElementById('btn-shuffle-order').style.display = 'inline-flex';
-    duoPlayAllBtn.style.display = 'none';
-    duoPauseBtn.style.display = 'none';
-    duoStopBtn.style.display = 'none';
-    let words = Object.entries(state.vocabulary).filter(([key, v]) => {
-      const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
-      return matchSearch && v.level >= 0 && v.level < 3 && v.example;
-    });
-    if (vocabShuffled) {
-      shuffleArray(words);
-    } else {
-      words.sort((a, b) => a[0].localeCompare(b[0]));
-    }
-    renderKinphraList(words);
-    return;
-  }
-
-  if (vocabFilter === 'duo') {
-    let duoWords;
-    if (vocabShuffled) {
-      if (shuffledVocabCache.length === 0) reshuffleVocabInternal();
-      duoWords = shuffledVocabCache.filter(([key, v]) => !search || key.includes(search) || v.japanese.includes(search));
-    } else {
-      duoWords = Object.entries(state.vocabulary).filter(([key, v]) => {
-        const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
-        return matchSearch && v.level >= 0 && v.level < 3;
-      }).sort((a, b) => a[0].localeCompare(b[0]));
-    }
-    renderDuoList(duoWords);
-    return;
-  }
-
-  if (vocabFilter === 'duo-seq') {
-    const duoWords = Object.entries(state.vocabulary).filter(([key, v]) => {
-      const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
-      return matchSearch && v.level >= 0 && v.level < 3;
-    }).sort((a, b) => a[0].localeCompare(b[0]));
-    renderDuoSeqList(duoWords);
-    return;
-  }
-
-  if (vocabFilter === 'shuffle') {
-    // Use cached shuffle order, filter by search
-    if (shuffledVocabCache.length === 0) reshuffleVocabInternal();
-    const words = shuffledVocabCache.filter(([key, v]) => {
-      return !search || key.includes(search) || v.japanese.includes(search);
-    });
-    renderVocabList(words);
-    return;
-  }
+  document.getElementById('shuffle-controls').style.display = (vocabFilter === 'learning') ? 'block' : 'none';
   let words = Object.entries(state.vocabulary).filter(([key, v]) => {
     const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
     if (vocabFilter === 'all') return matchSearch && v.level >= 0 && v.level < 3;
@@ -2587,7 +2383,6 @@ function filterVocab() {
     if (vocabFilter === 'learning') return matchSearch && (v.level === 1 || v.level === 2);
     if (vocabFilter === 'mature') return matchSearch && v.level >= 3;
     if (vocabFilter === 'excluded') return matchSearch && v.level === -1;
-    if (vocabFilter === 'duo') return matchSearch && v.level >= 0 && v.level < 3;
     return matchSearch;
   });
   if (vocabFilter === 'learning' && vocabShuffled) {
@@ -2597,19 +2392,8 @@ function filterVocab() {
   }
   renderVocabList(words);
 }
-function reshuffleVocabInternal() {
-  shuffledVocabCache = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
-  shuffleArray(shuffledVocabCache);
-}
 function reshuffleVocab() {
-  if (vocabFilter === 'learning') {
-    vocabShuffled = true;
-  } else if (vocabFilter === 'duo') {
-    vocabShuffled = true;
-    reshuffleVocabInternal();
-  } else {
-    reshuffleVocabInternal();
-  }
+  vocabShuffled = true;
   filterVocab();
   showToast('Shuffled!');
 }
@@ -2651,369 +2435,10 @@ function renderVocabList(words) {
   document.getElementById('vocab-count').textContent = `${words.length} words`;
 }
 
-// Duo mode: show natural example sentences grouped by source/topic
-function renderDuoList(words) {
-  const el = document.getElementById('vocab-list');
-  if (words.length === 0) {
-    window._duoSentenceCards = [];
-    el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words for Duo mode</div>';
-    document.getElementById('vocab-count').textContent = '';
-    return;
-  }
-  const cards = buildDuoCards(words);
-
-  el.innerHTML = cards.map((card, gi) => {
-    const sentHtml = highlightDuoTargets(card.sentence, card.entries.map(entry => entry.word));
-    const translationHtml = card.translation ? `<div class="duo-sentence-ja">${escapeHtml(card.translation)}</div>` : '';
-    const wordsHtml = card.entries.map((entry) => {
-      const v = entry;
-      return `<div class="duo-word-row">
-        <span class="duo-word-en">${v.word}</span>
-        <span class="duo-word-pos">${v.pos || ''}</span>
-        <span class="duo-word-ja">${v.japanese}</span>
-        <button class="duo-speak-btn" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
-      </div>`;
-    }).join('');
-
-    const excludeKeys = card.entries.map(e => e.key).join(',');
-    return `<div class="duo-card" id="duo-card-${gi}">
-      <div class="duo-card-head">
-        <div class="duo-card-meta">${card.entries.length} target word${card.entries.length > 1 ? 's' : ''}${card.sourceLabel ? ' · ' + escapeHtml(card.sourceLabel) : ''}</div>
-        <div style="display:flex; gap:6px; align-items:center;">
-          <button class="duo-card-play" onclick="speakDuoSentence(${gi})">&#128266; Play</button>
-          <button class="btn-exclude" onclick="excludeDuoCard('${excludeKeys}', ${gi})" style="padding:4px 8px; font-size:10px;">Exclude</button>
-        </div>
-      </div>
-      <div class="duo-sentence-block">
-        <div class="duo-sentence">${sentHtml}</div>
-        ${translationHtml}
-      </div>
-      <div class="duo-words">${wordsHtml}</div>
-    </div>`;
-  }).join('');
-
-  window._duoSentenceCards = cards;
-
-  document.getElementById('vocab-count').textContent = `${cards.length} sentences · ${words.length} words`;
-}
-
-// Duo Seq mode: sequential numbered list with collapsible groups of 10
-function renderDuoSeqList(words) {
-  const el = document.getElementById('vocab-list');
-  if (words.length === 0) {
-    window._duoSentenceCards = [];
-    el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words for Duo Seq mode</div>';
-    document.getElementById('vocab-count').textContent = '';
-    return;
-  }
-  const cards = buildDuoCards(words);
-  window._duoSentenceCards = cards;
-
-  const groupSize = 10;
-  const totalCards = cards.length;
-  const groupCount = Math.ceil(totalCards / groupSize);
-  let html = '';
-
-  for (let g = 0; g < groupCount; g++) {
-    const start = g * groupSize;
-    const end = Math.min(start + groupSize, totalCards);
-    const groupLabel = `#${start + 1} – #${end}`;
-    const isFirst = g === 0;
-    html += `<div class="essay-group">
-      <button class="essay-group-toggle${isFirst ? ' open' : ''}" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
-        ${groupLabel} <span class="arrow">▼</span>
-      </button>
-      <div class="essay-group-content${isFirst ? ' open' : ''}">`;
-
-    for (let i = start; i < end; i++) {
-      const card = cards[i];
-      const gi = i;
-      const seqNum = i + 1;
-      const sentHtml = highlightDuoTargets(card.sentence, card.entries.map(entry => entry.word));
-      const translationHtml = card.translation ? `<div class="duo-sentence-ja">${escapeHtml(card.translation)}</div>` : '';
-      const wordsHtml = card.entries.map((v) => {
-        return `<div class="duo-word-row">
-          <span class="duo-word-en">${v.word}</span>
-          <span class="duo-word-pos">${v.pos || ''}</span>
-          <span class="duo-word-ja">${v.japanese}</span>
-          <button class="duo-speak-btn" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
-        </div>`;
-      }).join('');
-      const excludeKeys = card.entries.map(e => e.key).join(',');
-      html += `<div class="duo-card" id="duo-card-${gi}">
-        <div class="duo-card-head">
-          <div class="duo-card-meta"><span style="font-weight:700; color:var(--accent2); margin-right:6px;">#${seqNum}</span>${card.entries.length} target word${card.entries.length > 1 ? 's' : ''}${card.sourceLabel ? ' · ' + escapeHtml(card.sourceLabel) : ''}</div>
-          <div style="display:flex; gap:6px; align-items:center;">
-            <button class="duo-card-play" onclick="speakDuoSentence(${gi})">&#128266; Play</button>
-            <button class="btn-exclude" onclick="excludeDuoCard('${excludeKeys}', ${gi})" style="padding:4px 8px; font-size:10px;">Exclude</button>
-          </div>
-        </div>
-        <div class="duo-sentence-block">
-          <div class="duo-sentence">${sentHtml}</div>
-          ${translationHtml}
-        </div>
-        <div class="duo-words">${wordsHtml}</div>
-      </div>`;
-    }
-    html += `</div></div>`;
-  }
-
-  el.innerHTML = html;
-  document.getElementById('vocab-count').textContent = `${cards.length} sentences · ${words.length} words`;
-}
-
-function buildDuoCards(words) {
-  const groupedBySource = new Map();
-  words.forEach(([key, value]) => {
-    const sourceId = value.essayId || `fallback-${key}`;
-    if (!groupedBySource.has(sourceId)) groupedBySource.set(sourceId, []);
-    groupedBySource.get(sourceId).push({ key, ...value });
-  });
-
-  const sourceBuckets = Array.from(groupedBySource.entries());
-  if (vocabShuffled) {
-    shuffleArray(sourceBuckets);
-    sourceBuckets.forEach(([, bucket]) => shuffleArray(bucket));
-  }
-
-  const cards = [];
-  sourceBuckets.forEach(([sourceId, bucket]) => {
-    const sourceInfo = getDuoSourceInfo(sourceId);
-    const candidates = buildDuoSentenceCandidates(sourceId, bucket, sourceInfo);
-    const selectedCards = selectDuoSentenceCandidates(candidates, bucket, sourceInfo);
-    cards.push(...selectedCards);
-  });
-
-  if (vocabShuffled) shuffleArray(cards);
-  return cards;
-}
-
-function buildDuoFallbackExample(word) {
-  if (word.definition) {
-    const def = String(word.definition).trim().replace(/\.$/, '');
-    return `${word.word} refers to ${def.toLowerCase()}.`;
-  }
-  return `Please review how "${word.word}" is used in context.`;
-}
-
-function buildDuoFallbackTranslation(word) {
-  if (word.japanese) return `${word.word} は「${word.japanese}」という意味です。`;
-  return '';
-}
-
-function getDuoSourceInfo(sourceId) {
-  const essay = ESSAYS.find(item => item.id === sourceId);
-  if (essay) {
-    return {
-      label: essay.topic || essay.title || '',
-      text: essay.text || '',
-      translation: essay.translation || ''
-    };
-  }
-  const listening = getListeningItems().find(item => item.id === sourceId);
-  if (listening) {
-    return {
-      label: listening.topic || listening.title || '',
-      text: listening.transcript || listening.text || '',
-      translation: listening.translation || ''
-    };
-  }
-  return { label: '', text: '', translation: '' };
-}
-
-function splitEnglishParagraph(text) {
-  return (String(text || '').match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [])
-    .map(sentence => sentence.trim())
-    .filter(Boolean);
-}
-
-function splitJapaneseParagraph(text) {
-  return (String(text || '').match(/[^。！？\n]+[。！？]?/g) || [])
-    .map(sentence => sentence.trim())
-    .filter(Boolean);
-}
-
-function pickAlignedSentence(sentences, index, totalEnglishSentences) {
-  if (!sentences.length) return '';
-  if (sentences.length === totalEnglishSentences) return sentences[index] || '';
-  if (totalEnglishSentences <= 1) return sentences[0] || '';
-  const mappedIndex = Math.round((index / (totalEnglishSentences - 1)) * Math.max(0, sentences.length - 1));
-  return sentences[mappedIndex] || sentences[index] || '';
-}
-
-function getAlignedDuoSentences(englishText, japaneseText) {
-  const englishParagraphs = String(englishText || '').split(/\n+/).map(text => text.trim()).filter(Boolean);
-  const japaneseParagraphs = String(japaneseText || '').split(/\n+/).map(text => text.trim()).filter(Boolean);
-  const paragraphCount = Math.max(englishParagraphs.length, japaneseParagraphs.length);
-  const pairs = [];
-  for (let index = 0; index < paragraphCount; index++) {
-    const englishSentences = splitEnglishParagraph(englishParagraphs[index] || '');
-    const japaneseSentences = splitJapaneseParagraph(japaneseParagraphs[index] || '');
-    englishSentences.forEach((sentence, sentenceIdx) => {
-      pairs.push({
-        sentence,
-        translation: pickAlignedSentence(japaneseSentences, sentenceIdx, englishSentences.length)
-      });
-    });
-  }
-  return pairs;
-}
-
-function duoSentenceContainsWord(sentence, word) {
-  if (!sentence || !word) return false;
-  const parts = String(word).trim().split(/\s+/).filter(Boolean).map(escapeRegExp);
-  if (!parts.length) return false;
-  const pattern = new RegExp(`\\b${parts.join('[\\s-]+')}\\b`, 'i');
-  return pattern.test(sentence);
-}
-
-function buildDuoSentenceCandidates(sourceId, entries, sourceInfo) {
-  if (!sourceInfo.text) return [];
-  return getAlignedDuoSentences(sourceInfo.text, sourceInfo.translation)
-    .map((pair, index) => {
-      // Skip sentences over 20 words for DUO mode
-      if (pair.sentence.split(/\s+/).filter(Boolean).length > 20) return null;
-      const matchedEntries = entries.filter(entry => duoSentenceContainsWord(pair.sentence, entry.word));
-      if (!matchedEntries.length) return null;
-      return {
-        id: `${sourceId}-${index}`,
-        sourceId,
-        sourceLabel: sourceInfo.label || '',
-        sentence: pair.sentence,
-        translation: pair.translation || '',
-        entries: matchedEntries
-      };
-    })
-    .filter(Boolean);
-}
-
-function buildDuoFallbackCard(entry, sourceInfo) {
-  return {
-    id: `fallback-${entry.key}`,
-    sourceId: entry.essayId || '',
-    sourceLabel: sourceInfo.label ? `${sourceInfo.label} · fallback` : 'Fallback example',
-    sentence: (entry.example || '').trim() || buildDuoFallbackExample(entry),
-    translation: (entry.exampleJa || '').trim() || buildDuoFallbackTranslation(entry),
-    entries: [entry]
-  };
-}
-
-function selectDuoSentenceCandidates(candidates, entries, sourceInfo) {
-  const uncovered = new Set(entries.map(entry => entry.key));
-  const usedCandidateIds = new Set();
-  const cards = [];
-  const sortedCandidates = candidates.slice().sort((a, b) => {
-    const countDiff = b.entries.length - a.entries.length;
-    if (countDiff) return countDiff;
-    return a.sentence.length - b.sentence.length;
-  });
-
-  while (uncovered.size) {
-    let bestCandidate = null;
-    let bestCoverage = 0;
-    sortedCandidates.forEach((candidate) => {
-      if (usedCandidateIds.has(candidate.id)) return;
-      const coverage = candidate.entries.filter(entry => uncovered.has(entry.key)).length;
-      if (coverage <= 0) return;
-      if (!bestCandidate || coverage > bestCoverage || (coverage === bestCoverage && candidate.entries.length > bestCandidate.entries.length) || (coverage === bestCoverage && candidate.entries.length === bestCandidate.entries.length && candidate.sentence.length < bestCandidate.sentence.length)) {
-        bestCandidate = candidate;
-        bestCoverage = coverage;
-      }
-    });
-    if (!bestCandidate) break;
-    if (bestCandidate.entries.length < 2 && cards.some(card => card.entries.length >= 2)) break;
-    cards.push(bestCandidate);
-    usedCandidateIds.add(bestCandidate.id);
-    bestCandidate.entries.forEach(entry => uncovered.delete(entry.key));
-  }
-
-  entries.forEach((entry) => {
-    if (!uncovered.has(entry.key)) return;
-    const singleCandidate = sortedCandidates.find(candidate => !usedCandidateIds.has(candidate.id) && candidate.entries.some(candidateEntry => candidateEntry.key === entry.key));
-    if (singleCandidate) {
-      cards.push(singleCandidate);
-      usedCandidateIds.add(singleCandidate.id);
-      singleCandidate.entries.forEach(candidateEntry => uncovered.delete(candidateEntry.key));
-      return;
-    }
-    cards.push(buildDuoFallbackCard(entry, sourceInfo));
-    uncovered.delete(entry.key);
-  });
-
-  return cards;
-}
-
-function highlightDuoTargets(sentence, targetWords) {
-  let html = escapeHtml(sentence);
-  (targetWords || [])
-    .map(word => String(word || '').trim())
-    .filter(Boolean)
-    .sort((a, b) => b.length - a.length)
-    .forEach((word) => {
-      const parts = word.split(/\s+/).map(escapeRegExp);
-      const pattern = new RegExp(`\\b(${parts.join('[\\s-]+')})\\b`, 'gi');
-      html = html.replace(pattern, '<span class="duo-target">$1</span>');
-    });
-  return html;
-}
-
-function speakAllDuoSentences() {
-  if (!window._duoSentenceCards || window._duoSentenceCards.length === 0) return;
-  speakTextSequence(window._duoSentenceCards.map(card => card.sentence), 0.95, 1000);
-  updateDuoPauseBtn();
-}
-
-function toggleDuoPause() {
-  if (!isSpeechSupported()) return;
-  if (speechSynthesis.paused) {
-    speechSynthesis.resume();
-  } else if (speechSynthesis.speaking) {
-    speechSynthesis.pause();
-  }
-  updateDuoPauseBtn();
-}
-
-function updateDuoPauseBtn() {
-  const btn = document.getElementById('btn-duo-pause');
-  if (!btn) return;
-  if (speechSynthesis.paused) {
-    btn.innerHTML = '&#9654; Resume';
-    btn.classList.add('active-toggle');
-  } else {
-    btn.innerHTML = '&#10074;&#10074; Pause';
-    btn.classList.remove('active-toggle');
-  }
-}
-
-function speakDuoSentence(groupIdx) {
-  if (!window._duoSentenceCards || !window._duoSentenceCards[groupIdx]) return;
-  const sentence = window._duoSentenceCards[groupIdx].sentence;
-  if (!sentence) return;
-  speakTextSequence([sentence], 0.95);
-}
-
-function excludeDuoCard(keysStr, cardIdx) {
-  const keys = keysStr.split(',').filter(Boolean);
-  const words = [];
-  keys.forEach(key => {
-    if (state.vocabulary[key] && state.vocabulary[key].level !== -1) {
-      state.vocabulary[key].level = -1;
-      state.vocabulary[key].interval = 0;
-      shuffledVocabCache = shuffledVocabCache.filter(([k]) => k !== key);
-      words.push(state.vocabulary[key].word);
-    }
-  });
-  saveState();
-  const el = document.getElementById('duo-card-' + cardIdx);
-  if (el) { el.style.opacity = '0.3'; el.style.pointerEvents = 'none'; }
-  if (words.length > 0) showToast('Excluded: ' + words.join(', '));
-}
-
 function markExcluded(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = -1;
   state.vocabulary[key].interval = 0;
-  shuffledVocabCache = shuffledVocabCache.filter(([k]) => k !== key);
   saveState(); filterVocab(); showToast('Excluded: ' + state.vocabulary[key].word);
 }
 function restoreWord(key) {
@@ -3028,7 +2453,6 @@ function markMastered(key) {
   state.vocabulary[key].level = 3;
   state.vocabulary[key].interval = 365;
   state.vocabulary[key].nextReview = addDaysToLocalDate(365);
-  shuffledVocabCache = shuffledVocabCache.filter(([k]) => k !== key);
   saveState(); filterVocab(); showToast('Marked as Mastered');
 }
 
@@ -3042,7 +2466,6 @@ function getNewWords() { return Object.entries(state.vocabulary).filter(([k, v])
 function setQuizType(type) {
   quizType = type;
   document.getElementById('quiz-mode-words').classList.toggle('primary', type === 'words');
-  document.getElementById('quiz-mode-duo').classList.toggle('primary', type === 'duo');
   document.getElementById('quiz-mode-interp').classList.toggle('primary', type === 'interp');
   document.getElementById('quiz-tabs').style.display = type === 'interp' ? 'none' : '';
   quizMode = 'review';
@@ -3052,19 +2475,11 @@ function setQuizType(type) {
 }
 function updateQuizCounts() {
   if (quizType === 'interp') return;
-  if (quizType === 'words') {
-    document.getElementById('quiz-due-count').textContent = getDueWords().length;
-    document.getElementById('quiz-new-count').textContent = getNewWords().length;
-  } else {
-    document.getElementById('quiz-due-count').textContent = getDueSentences().length;
-    const allCards = buildAllDuoSentenceCards();
-    const newCount = allCards.filter(c => !state.duoSrs || !state.duoSrs[c.id] || state.duoSrs[c.id].level === 0).length;
-    document.getElementById('quiz-new-count').textContent = newCount;
-  }
+  document.getElementById('quiz-due-count').textContent = getDueWords().length;
+  document.getElementById('quiz-new-count').textContent = getNewWords().length;
 }
 function updateQuizPage() {
   document.getElementById('quiz-mode-words').classList.toggle('primary', quizType === 'words');
-  document.getElementById('quiz-mode-duo').classList.toggle('primary', quizType === 'duo');
   document.getElementById('quiz-mode-interp').classList.toggle('primary', quizType === 'interp');
   document.getElementById('quiz-tabs').style.display = quizType === 'interp' ? 'none' : '';
   updateQuizCounts();
@@ -3085,20 +2500,11 @@ function loadQuizQueue() {
 
   if (quizType === 'interp') {
     document.getElementById('quiz-area').style.display = 'none';
-    document.getElementById('duo-quiz-area').style.display = 'none';
     document.getElementById('interp-quiz-area').style.display = 'block';
     loadInterpSession();
     return;
   }
   document.getElementById('interp-quiz-area').style.display = 'none';
-
-  if (quizType === 'duo') {
-    document.getElementById('quiz-area').style.display = 'none';
-    loadDuoSentenceQueue();
-    return;
-  }
-
-  document.getElementById('duo-quiz-area').style.display = 'none';
   if (quizMode === 'review') quizQueue = getDueWords();
   else if (quizMode === 'new') quizQueue = getNewWords().slice(0, 20);
   else quizQueue = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3);
@@ -3156,7 +2562,6 @@ function rateCard(quality) {
 }
 function showQuizComplete() {
   document.getElementById('quiz-area').style.display = 'none';
-  document.getElementById('duo-quiz-area').style.display = 'none';
   document.getElementById('interp-quiz-area').style.display = 'none';
   document.getElementById('quiz-complete').style.display = 'block';
   const t = quizSessionStats.again + quizSessionStats.hard + quizSessionStats.good + quizSessionStats.easy;
@@ -3173,153 +2578,6 @@ function showQuizComplete() {
 }
 function resetQuiz() { document.getElementById('quiz-complete').style.display = 'none'; updateQuizPage(); }
 function startReview() { showPage('quiz'); setQuizMode('review', document.querySelector('#quiz-tabs .tab')); }
-
-// === DUO SENTENCE QUIZ ===
-let duoQuizQueue = [];
-let duoQuizIndex = 0;
-let duoQuizRevealed = false;
-
-function buildAllDuoSentenceCards() {
-  const words = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0);
-  if (!words.length) return [];
-  return buildDuoCards(words);
-}
-
-function ensureDuoSrs(cardId) {
-  if (!state.duoSrs) state.duoSrs = {};
-  if (!state.duoSrs[cardId]) {
-    state.duoSrs[cardId] = {
-      interval: 0, easeFactor: 2.5, level: 0,
-      nextReview: formatLocalDate(), reviewCount: 0, correctCount: 0, lastReview: null
-    };
-  }
-  return state.duoSrs[cardId];
-}
-
-function getDueSentences() {
-  const today = formatLocalDate();
-  const allCards = buildAllDuoSentenceCards();
-  return allCards.filter(card => {
-    const srs = state.duoSrs && state.duoSrs[card.id];
-    if (!srs) return false;
-    return srs.level > 0 && srs.level < 3 && srs.nextReview <= today;
-  });
-}
-
-function loadDuoSentenceQueue() {
-  duoQuizIndex = 0;
-  const allCards = buildAllDuoSentenceCards();
-  const today = formatLocalDate();
-
-  if (quizMode === 'review') {
-    duoQuizQueue = allCards.filter(card => {
-      const srs = state.duoSrs && state.duoSrs[card.id];
-      return srs && srs.level > 0 && srs.level < 3 && srs.nextReview <= today;
-    });
-  } else if (quizMode === 'new') {
-    duoQuizQueue = allCards.filter(card => {
-      return !state.duoSrs || !state.duoSrs[card.id] || state.duoSrs[card.id].level === 0;
-    }).slice(0, 20);
-  } else {
-    duoQuizQueue = allCards.filter(card => {
-      const srs = state.duoSrs && state.duoSrs[card.id];
-      return !srs || srs.level < 3;
-    });
-  }
-  shuffleArray(duoQuizQueue);
-  if (duoQuizQueue.length === 0) {
-    document.getElementById('duo-quiz-area').style.display = 'none';
-    document.getElementById('quiz-empty').style.display = 'block';
-  } else {
-    document.getElementById('duo-quiz-area').style.display = 'block';
-    document.getElementById('quiz-empty').style.display = 'none';
-    showDuoFlashcard();
-  }
-}
-
-function showDuoFlashcard() {
-  if (duoQuizIndex >= duoQuizQueue.length) { showQuizComplete(); return; }
-  const card = duoQuizQueue[duoQuizIndex];
-  duoQuizRevealed = false;
-  document.getElementById('duo-fc-source').textContent = card.sourceLabel || '';
-  document.getElementById('duo-fc-sentence').innerHTML = highlightDuoTargets(card.sentence, card.entries.map(e => e.word));
-  document.getElementById('duo-fc-hint').style.display = 'block';
-  document.getElementById('duo-fc-answer').style.display = 'none';
-  document.getElementById('duo-rating-buttons').style.display = 'none';
-  document.getElementById('duo-fc-translation').textContent = card.translation || '';
-  document.getElementById('duo-fc-words').innerHTML = card.entries.map(e =>
-    `<div style="display:flex; align-items:center; gap:8px; padding:4px 0; font-size:13px;">
-      <span style="font-weight:700; color:var(--accent2);">${e.word}</span>
-      <span style="color:var(--text2); font-style:italic; font-size:11px;">${e.pos || ''}</span>
-      <span style="color:var(--text);">${e.japanese}</span>
-    </div>`
-  ).join('');
-  const speakBtn = document.getElementById('duo-fc-speak');
-  speakBtn.onclick = (e) => { e.stopPropagation(); speakTextSequence([card.sentence], 0.95); };
-  document.getElementById('duo-quiz-progress').textContent = `${duoQuizIndex + 1} / ${duoQuizQueue.length}`;
-}
-
-function revealDuoFlashcard() {
-  if (duoQuizRevealed) return;
-  duoQuizRevealed = true;
-  document.getElementById('duo-fc-hint').style.display = 'none';
-  document.getElementById('duo-fc-answer').style.display = 'block';
-  document.getElementById('duo-rating-buttons').style.display = 'flex';
-}
-
-function rateDuoCard(quality) {
-  const card = duoQuizQueue[duoQuizIndex];
-  const srs = ensureDuoSrs(card.id);
-  if (quality === 1) { srs.interval = 0; srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.2); srs.level = 1; quizSessionStats.again++; duoQuizQueue.push(card); }
-  else if (quality === 2) { srs.interval = srs.interval === 0 ? 1 : Math.ceil(srs.interval * 1.2); srs.easeFactor = Math.max(1.3, srs.easeFactor - 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.hard++; }
-  else if (quality === 3) { srs.interval = srs.interval === 0 ? 1 : srs.interval === 1 ? 3 : Math.ceil(srs.interval * srs.easeFactor); srs.level = getSrsLevel(srs.interval); quizSessionStats.good++; }
-  else if (quality === 4) { srs.interval = srs.interval === 0 ? 4 : Math.ceil(srs.interval * srs.easeFactor * 1.3); srs.easeFactor = Math.min(3.0, srs.easeFactor + 0.15); srs.level = getSrsLevel(srs.interval); quizSessionStats.easy++; }
-  srs.nextReview = addDaysToLocalDate(srs.interval);
-  srs.reviewCount++; if (quality >= 2) srs.correctCount++;
-  srs.lastReview = formatLocalDate();
-  saveState(); duoQuizIndex++; showDuoFlashcard();
-}
-
-// === KINPHRA (GOLD PHRASES) MODE ===
-// Utility: create blank from word (first letter + dashes)
-function kinphraBlank(word) {
-  if (!word) return '--------';
-  return word[0] + '-'.repeat(Math.max(3, word.length - 1));
-}
-
-// Utility: replace word in example sentence with blank
-function kinphraMakeBlankSentence(example, word) {
-  if (!example || !word) return example || '';
-  const regex = new RegExp('\\b' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
-  return example.replace(regex, `<span class="kinphra-blank">${kinphraBlank(word)}</span>`);
-}
-
-// Render KinPhra list in Vocab tab
-function renderKinphraList(words) {
-  const el = document.getElementById('vocab-list');
-  if (words.length === 0) {
-    el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words with example sentences</div>';
-    document.getElementById('vocab-count').textContent = '';
-    return;
-  }
-  el.innerHTML = words.map(([key, v], idx) => {
-    const blankSentence = kinphraMakeBlankSentence(v.example, v.word);
-    const posLabel = v.pos || '';
-    return `<div class="kinphra-card">
-      <div class="kinphra-num">${String(idx + 1).padStart(3, '0')}</div>
-      <div class="kinphra-body">
-        <div class="kinphra-ja"><span class="kinphra-keyword">${escapeHtml(v.japanese)}</span></div>
-        <div class="kinphra-en">${blankSentence}</div>
-      </div>
-      <div class="kinphra-answer-col">
-        <div class="kinphra-answer-word">${escapeHtml(v.word)}</div>
-        <div class="kinphra-answer-pos">${escapeHtml(posLabel)} ${escapeHtml(v.japanese)}</div>
-        <button class="kinphra-speak" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
-      </div>
-    </div>`;
-  }).join('');
-  document.getElementById('vocab-count').textContent = `${words.length} words (Gold Phrases)`;
-}
 
 // === INTERPRETER PRACTICE（通訳練習） ===
 // Glossaryの例文ペア（英文＋日本語訳）を使った通訳トレーニング。
@@ -3556,75 +2814,7 @@ function showInterpSummary() {
 }
 
 // === REVIEW ===
-// 苦手単語ランキング: Again回数・不正解数・低easeFactorから弱点スコアを算出
-function renderWeakWords() {
-  const el = document.getElementById('weak-words');
-  if (!el) return;
-  const entries = Object.values(state.vocabulary)
-    .filter(v => v.level >= 0 && (v.reviewCount || 0) >= 2)
-    .map(v => {
-      const wrong = (v.reviewCount || 0) - (v.correctCount || 0);
-      const again = v.againCount || 0;
-      const score = again * 2 + wrong + (2.5 - (v.easeFactor || 2.5)) * 2;
-      const accuracy = v.reviewCount ? Math.round((v.correctCount || 0) / v.reviewCount * 100) : 0;
-      return { v, score, accuracy, again };
-    })
-    .filter(e => e.score > 0.01)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 15);
-  if (!entries.length) {
-    el.innerHTML = '<div style="font-size:12px; color:var(--text2);">クイズの回答が増えると、間違えやすい単語がここに表示されます（レビュー2回以上の単語が対象）</div>';
-    return;
-  }
-  el.innerHTML = entries.map((e, i) => `
-    <div style="display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid var(--border);">
-      <span style="color:var(--text2); font-size:12px; min-width:20px;">${i + 1}</span>
-      <div style="flex:1; min-width:0;">
-        <span style="font-weight:700; color:var(--accent2);">${escapeHtml(e.v.word)}</span>
-        <span style="font-size:12px; color:var(--text2); font-style:italic;">${escapeHtml(e.v.pos || '')}</span>
-        <div style="font-size:12px; color:var(--text);">${escapeHtml(e.v.japanese || '')}</div>
-      </div>
-      <div style="text-align:right; font-size:11px; color:var(--text2); white-space:nowrap;">
-        <div style="color:${e.accuracy < 50 ? 'var(--red)' : e.accuracy < 75 ? 'var(--yellow)' : 'var(--text2)'}; font-weight:700; font-size:13px;">${e.accuracy}%</div>
-        <div>Again ${e.again}回</div>
-      </div>
-      <button class="btn small" onclick="speakWord('${e.v.word.replace(/'/g, "\\'")}')">&#128266;</button>
-    </div>`).join('');
-}
-
-function renderPosAccuracy() {
-  const el = document.getElementById('pos-accuracy');
-  if (!el) return;
-  const groups = {};
-  Object.values(state.vocabulary).forEach(v => {
-    if (v.level < 0 || !(v.reviewCount > 0)) return;
-    const pos = String(v.pos || 'other').split('/')[0].trim().toLowerCase() || 'other';
-    if (!groups[pos]) groups[pos] = { review: 0, correct: 0, count: 0 };
-    groups[pos].review += v.reviewCount || 0;
-    groups[pos].correct += v.correctCount || 0;
-    groups[pos].count++;
-  });
-  const rows = Object.entries(groups)
-    .filter(([, g]) => g.review >= 3)
-    .map(([pos, g]) => ({ pos, acc: Math.round(g.correct / g.review * 100), count: g.count }))
-    .sort((a, b) => a.acc - b.acc);
-  if (!rows.length) {
-    el.innerHTML = '<div style="font-size:12px; color:var(--text2);">データが増えると品詞ごとの正答率が表示されます</div>';
-    return;
-  }
-  el.innerHTML = rows.map(r => `
-    <div style="display:flex; align-items:center; gap:8px; padding:4px 0;">
-      <span style="font-size:12px; min-width:90px; color:var(--text);">${escapeHtml(r.pos)} <span style="color:var(--text2);">(${r.count})</span></span>
-      <div style="flex:1; height:10px; background:var(--surface2); border-radius:5px; overflow:hidden;">
-        <div style="width:${r.acc}%; height:100%; background:${r.acc < 50 ? 'var(--red)' : r.acc < 75 ? 'var(--yellow)' : 'var(--green)'};"></div>
-      </div>
-      <span style="font-size:12px; min-width:38px; text-align:right; font-weight:600;">${r.acc}%</span>
-    </div>`).join('');
-}
-
 function updateReviewPage() {
-  renderWeakWords();
-  renderPosAccuracy();
   const newW = Object.values(state.vocabulary).filter(v => v.level === 0).length;
   const due = getDueWords().length;
   const mastered = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
@@ -3708,6 +2898,21 @@ function chartLabelInterval(count, chartW) {
   const maxLabels = Math.max(2, Math.floor(chartW / 40));
   return Math.max(1, Math.ceil(count / maxLabels));
 }
+// Y軸ラベル: 大きい数値は 12k / 1.5k のように略記して見切れを防ぐ
+function formatAxisValue(v) {
+  if (v >= 10000) return Math.round(v / 1000) + 'k';
+  if (v >= 1000) return (Math.round(v / 100) / 10) + 'k';
+  return String(v);
+}
+// Y軸ラベルの最大幅に応じた左余白を返す
+function chartPadLeft(ctx, scale) {
+  ctx.font = '12px sans-serif';
+  let maxW = 0;
+  for (let i = 0; i <= 4; i++) {
+    maxW = Math.max(maxW, ctx.measureText(formatAxisValue(scale.step * i)).width);
+  }
+  return Math.ceil(maxW) + 12;
+}
 
 function drawBarChart(canvasId, labels, data, color) {
   const canvas = document.getElementById(canvasId);
@@ -3719,9 +2924,9 @@ function drawBarChart(canvasId, labels, data, color) {
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
   const w = rect.width, h = rect.height;
-  const padTop = 10, padBot = 28, padLeft = 42, padRight = 10;
-  const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
   const scale = niceChartScale(Math.max(...data, 1));
+  const padTop = 10, padBot = 28, padLeft = chartPadLeft(ctx, scale), padRight = 10;
+  const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
   const max = scale.max;
   const barW = chartW / labels.length * 0.6;
   const gap = chartW / labels.length;
@@ -3733,8 +2938,8 @@ function drawBarChart(canvasId, labels, data, color) {
   for (let i = 0; i <= 4; i++) {
     const y = padTop + chartH - (chartH * i / 4);
     ctx.beginPath(); ctx.moveTo(padLeft, y); ctx.lineTo(w - padRight, y); ctx.stroke();
-    ctx.fillStyle = '#cbd5e1'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
-    ctx.fillText(scale.step * i, padLeft - 6, y + 4);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = '12px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(formatAxisValue(scale.step * i), padLeft - 6, y + 4);
   }
   // Bars
   labels.forEach((l, i) => {
@@ -3763,9 +2968,9 @@ function drawLineChart(canvasId, labels, data, color) {
   canvas.height = rect.height * dpr;
   ctx.scale(dpr, dpr);
   const w = rect.width, h = rect.height;
-  const padTop = 10, padBot = 28, padLeft = 42, padRight = 10;
-  const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
   const scale = niceChartScale(Math.max(...data, 1));
+  const padTop = 10, padBot = 28, padLeft = chartPadLeft(ctx, scale), padRight = 10;
+  const chartW = w - padLeft - padRight, chartH = h - padTop - padBot;
   const max = scale.max;
   const gap = chartW / (labels.length - 1 || 1);
   const labelInterval = chartLabelInterval(labels.length, chartW);
@@ -3776,8 +2981,8 @@ function drawLineChart(canvasId, labels, data, color) {
   for (let i = 0; i <= 4; i++) {
     const y = padTop + chartH - (chartH * i / 4);
     ctx.beginPath(); ctx.moveTo(padLeft, y); ctx.lineTo(w - padRight, y); ctx.stroke();
-    ctx.fillStyle = '#cbd5e1'; ctx.font = '11px sans-serif'; ctx.textAlign = 'right';
-    ctx.fillText(scale.step * i, padLeft - 6, y + 4);
+    ctx.fillStyle = '#cbd5e1'; ctx.font = '12px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(formatAxisValue(scale.step * i), padLeft - 6, y + 4);
   }
   // Fill area
   ctx.beginPath();
@@ -3942,6 +3147,7 @@ function importProgress(event) {
       if (imported.dailyStats) state.dailyStats = imported.dailyStats;
       if (imported.recentEssayIds) state.recentEssayIds = imported.recentEssayIds;
       if (imported.duoSrs) state.duoSrs = imported.duoSrs;
+      if (imported.youtubeItems) state.youtubeItems = imported.youtubeItems;
       saveState();
       updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
       showToast('Backup imported successfully');
@@ -3964,6 +3170,7 @@ function generateSyncCode() {
     studyHistory: state.studyHistory,
     lastStudyDate: state.lastStudyDate,
     duoSrs: state.duoSrs || {},
+    youtubeItems: state.youtubeItems || [],
     vocabulary: {}
   };
   // Only export SRS progress (not word definitions - those come from data.js)
@@ -4054,6 +3261,13 @@ function applySyncCode() {
         }
       });
     }
+    // Merge youtubeItems（IDベースで重複を避けて統合）
+    if (Array.isArray(syncData.youtubeItems)) {
+      if (!state.youtubeItems) state.youtubeItems = [];
+      syncData.youtubeItems.forEach(item => {
+        if (!state.youtubeItems.some(x => x.id === item.id)) state.youtubeItems.push(item);
+      });
+    }
     saveState();
     updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
     document.getElementById('sync-import-area').style.display = 'none';
@@ -4080,21 +3294,239 @@ let listenAwaitingAdvance = false;
 
 function updateListenPage() {
   const items = getListeningItems();
-  if (items.length === 0) {
-    document.getElementById('listen-list').innerHTML = '<div class="empty-state"><p>No listening exercises yet.</p></div>';
-    return;
-  }
+  const ytItems = state.youtubeItems || [];
   const wc = (t) => t ? t.split(/\s+/).filter(Boolean).length : 0;
-  const html = items.map((item, i) => {
+  const ytHtml = ytItems.map((item, i) => {
     const words = wc(item.transcript);
-    return `<div class="listen-card" onclick="openListening(${i})">
+    return `<div class="listen-card" onclick="openYoutube('user', ${i})">
+      <span class="essay-topic">YouTube</span>
+      <span class="listen-duration">&#9654; YouTube</span>
+      <div class="essay-title" style="margin-top:6px;">${escapeHtml(item.title)}</div>
+      <div class="listen-source">${words > 0 ? words + ' words' : 'スクリプトなし'}</div>
+    </div>`;
+  }).join('');
+  const builtinHtml = items.map((item, i) => {
+    const words = wc(item.transcript);
+    const open = item.youtubeId ? `openYoutube('data', ${i})` : `openListening(${i})`;
+    return `<div class="listen-card" onclick="${open}">
       <span class="essay-topic">${item.topic || 'Listening'}</span>
-      <span class="listen-duration">${item.duration || '~1 min'}</span>
+      <span class="listen-duration">${item.youtubeId ? '&#9654; YouTube' : (item.duration || '~1 min')}</span>
       <div class="essay-title" style="margin-top:6px;">${item.title}</div>
       <div class="listen-source">${item.source || ''} · ${item.difficulty || 'TOEFL iBT'} · ${words} words</div>
     </div>`;
   }).join('');
-  document.getElementById('listen-list').innerHTML = html;
+  const html = ytHtml + builtinHtml;
+  document.getElementById('listen-list').innerHTML = html || '<div class="empty-state"><p>No listening exercises yet.</p></div>';
+}
+
+// === YOUTUBE LISTENING ===
+let ytPlayer = null, ytPollTimer = null, ytSegments = [], ytCurrent = null;
+let ytCurrentVideoId = null, ytSpeed = 1.0, ytLastActive = -1, ytBlind = false;
+let ytApiLoading = false, ytApiCallbacks = [];
+
+function parseYoutubeId(url) {
+  const m = String(url || '').match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+function parseYtTimestamp(line) {
+  const m = line.match(/^(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+  if (!m) return null;
+  if (m[3] !== undefined) return (+m[1]) * 3600 + (+m[2]) * 60 + (+m[3]);
+  return (+m[1]) * 60 + (+m[2]);
+}
+
+// YouTubeの「文字起こし」コピー形式（タイムスタンプ行+テキスト行の繰り返し）をパースする
+function parseYtTranscript(raw) {
+  const lines = String(raw || '').split('\n').map(l => l.trim());
+  const segs = [];
+  let cur = null;
+  let sawTs = false;
+  lines.forEach(line => {
+    if (!line) return;
+    const t = parseYtTimestamp(line);
+    if (t !== null) {
+      sawTs = true;
+      if (cur && cur.text) segs.push(cur);
+      cur = { t, text: '' };
+    } else if (cur) {
+      cur.text = cur.text ? cur.text + ' ' + line : line;
+    } else {
+      cur = { t: null, text: line };
+    }
+  });
+  if (cur && cur.text) segs.push(cur);
+  if (!sawTs) {
+    const text = segs.map(s => s.text).join(' ');
+    if (!text.trim()) return [];
+    const sents = text.match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [text];
+    return sents.map(s => ({ t: null, text: s.trim() })).filter(s => s.text);
+  }
+  return segs;
+}
+
+function formatYtTime(sec) {
+  const m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+function toggleYtForm() {
+  const form = document.getElementById('yt-add-form');
+  form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+function saveYtItem() {
+  const url = document.getElementById('yt-url-input').value.trim();
+  const videoId = parseYoutubeId(url);
+  if (!videoId) { showToast('YouTubeのURLが認識できません'); return; }
+  const title = document.getElementById('yt-title-input').value.trim() || ('YouTube動画 (' + videoId + ')');
+  const transcript = document.getElementById('yt-transcript-input').value.trim();
+  if (!state.youtubeItems) state.youtubeItems = [];
+  state.youtubeItems.unshift({ id: 'yt-' + Date.now(), youtubeId: videoId, title, transcript, addedAt: formatLocalDate() });
+  saveState();
+  document.getElementById('yt-url-input').value = '';
+  document.getElementById('yt-title-input').value = '';
+  document.getElementById('yt-transcript-input').value = '';
+  toggleYtForm();
+  updateListenPage();
+  showToast('追加しました');
+}
+
+function deleteYtItem() {
+  if (!ytCurrent || ytCurrent.kind !== 'user') return;
+  if (!confirm('この動画をリストから削除しますか？')) return;
+  state.youtubeItems.splice(ytCurrent.idx, 1);
+  saveState();
+  showPage('listen');
+  showToast('削除しました');
+}
+
+function withYtApi(cb) {
+  if (window.YT && window.YT.Player) { cb(); return; }
+  ytApiCallbacks.push(cb);
+  if (ytApiLoading) return;
+  ytApiLoading = true;
+  window.onYouTubeIframeAPIReady = () => { ytApiCallbacks.forEach(f => f()); ytApiCallbacks = []; };
+  const s = document.createElement('script');
+  s.src = 'https://www.youtube.com/iframe_api';
+  s.onerror = () => { ytApiLoading = false; showToast('YouTubeプレイヤーの読み込みに失敗しました（通信環境を確認してください）'); };
+  document.head.appendChild(s);
+}
+
+function openYoutube(kind, idx) {
+  const item = kind === 'user' ? (state.youtubeItems || [])[idx] : getListeningItems()[idx];
+  if (!item || !item.youtubeId) return;
+  ytCurrent = { kind, idx, videoId: item.youtubeId };
+  ytSegments = parseYtTranscript(item.transcript);
+  ytLastActive = -1;
+  document.getElementById('yt-title-view').textContent = item.title;
+  const words = item.transcript ? item.transcript.split(/\s+/).filter(Boolean).length : 0;
+  const metaParts = [];
+  if (item.source) metaParts.push(item.source);
+  if (item.difficulty) metaParts.push(item.difficulty);
+  if (words > 0) metaParts.push(words + ' words');
+  if (item.addedAt) metaParts.push('追加: ' + item.addedAt);
+  document.getElementById('yt-meta').textContent = metaParts.join(' · ');
+  renderYtScript();
+  const trWrap = document.getElementById('yt-translation-wrap');
+  if (item.translation) {
+    trWrap.style.display = 'block';
+    document.getElementById('yt-translation').textContent = item.translation;
+    document.getElementById('yt-translation').style.display = 'none';
+    document.getElementById('yt-translation-toggle').textContent = '日本語訳を表示';
+  } else {
+    trWrap.style.display = 'none';
+  }
+  document.getElementById('yt-delete-btn').style.display = kind === 'user' ? 'block' : 'none';
+  ytBlind = false;
+  updateYtBlind();
+  showPage('yt-detail');
+  withYtApi(() => {
+    if (ytPlayer && ytPlayer.cueVideoById) {
+      if (ytCurrentVideoId !== ytCurrent.videoId) ytPlayer.cueVideoById(ytCurrent.videoId);
+    } else {
+      ytPlayer = new YT.Player('yt-player', {
+        videoId: ytCurrent.videoId,
+        playerVars: { rel: 0, playsinline: 1 },
+        events: { onStateChange: onYtStateChange }
+      });
+    }
+    ytCurrentVideoId = ytCurrent.videoId;
+  });
+}
+
+function renderYtScript() {
+  const el = document.getElementById('yt-script');
+  if (!ytSegments.length) {
+    el.innerHTML = '<div style="color:var(--text2); font-size:13px; line-height:1.8;">スクリプトが登録されていません。<br>動画ページの「文字起こしを表示」からコピーして、動画を追加し直すとスクリプト表示・同期ができます。</div>';
+    return;
+  }
+  el.innerHTML = ytSegments.map((s, i) =>
+    `<span class="yt-seg" id="yt-seg-${i}" onclick="ytSeek(${i})">${s.t !== null ? `<span class="yt-seg-time">${formatYtTime(s.t)}</span>` : ''}${escapeHtml(s.text)}</span>`
+  ).join('');
+}
+
+function ytSeek(i) {
+  const s = ytSegments[i];
+  if (!ytPlayer || !ytPlayer.seekTo || s.t === null) return;
+  ytPlayer.seekTo(s.t, true);
+  if (ytPlayer.playVideo) ytPlayer.playVideo();
+}
+
+function onYtStateChange(e) {
+  if (e.data === YT.PlayerState.PLAYING) startYtPoll();
+  else stopYtPoll();
+}
+
+function startYtPoll() {
+  stopYtPoll();
+  ytPollTimer = setInterval(() => {
+    if (!ytPlayer || !ytPlayer.getCurrentTime) return;
+    const t = ytPlayer.getCurrentTime();
+    let active = -1;
+    for (let i = 0; i < ytSegments.length; i++) {
+      if (ytSegments[i].t !== null && ytSegments[i].t <= t + 0.3) active = i;
+    }
+    if (active === ytLastActive) return;
+    if (ytLastActive >= 0) { const prev = document.getElementById('yt-seg-' + ytLastActive); if (prev) prev.classList.remove('active'); }
+    ytLastActive = active;
+    const el = document.getElementById('yt-seg-' + active);
+    if (el) {
+      el.classList.add('active');
+      el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }, 400);
+}
+
+function stopYtPoll() {
+  if (ytPollTimer) { clearInterval(ytPollTimer); ytPollTimer = null; }
+}
+
+function adjustYtSpeed(delta) {
+  ytSpeed = clamp(Math.round((ytSpeed + delta) * 100) / 100, 0.5, 2.0);
+  document.getElementById('yt-speed-label').textContent = ytSpeed.toFixed(2).replace(/0$/, '') + 'x';
+  if (ytPlayer && ytPlayer.setPlaybackRate) ytPlayer.setPlaybackRate(ytSpeed);
+}
+
+function toggleYtBlind() {
+  ytBlind = !ytBlind;
+  updateYtBlind();
+}
+function updateYtBlind() {
+  document.getElementById('yt-script').classList.toggle('blind-blur', ytBlind);
+  document.getElementById('yt-blind-btn').classList.toggle('primary', ytBlind);
+}
+
+function toggleYtTranslation() {
+  const el = document.getElementById('yt-translation');
+  const show = el.style.display === 'none';
+  el.style.display = show ? 'block' : 'none';
+  document.getElementById('yt-translation-toggle').textContent = show ? '日本語訳を隠す' : '日本語訳を表示';
+}
+
+function pauseYtPlayer() {
+  stopYtPoll();
+  if (ytPlayer && ytPlayer.pauseVideo) { try { ytPlayer.pauseVideo(); } catch (e) {} }
 }
 
 function cleanTranscriptText(text) {

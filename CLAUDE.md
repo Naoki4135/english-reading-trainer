@@ -55,7 +55,7 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents/iCloud/`
 
 ## エッセイ規模
-- エッセイは30本（アカデミック20本 + スラング10本）
+- エッセイは126本（2026-07-19時点。data.jsのESSAYS配列）
 
 ## UI/UX仕様
 - Premium/Enhanced Apple Neural TTS音声を優先選択
@@ -66,14 +66,15 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - Glossaryハイライトはツールチップ表示（改行なし）
 - Read Completeボタンは画面下部に固定表示
 
-## 主要機能（2026-07-11追加分含む）
-- **注意**: Quizの金フレ（Gold Phrases）モードは2026-07-11に削除済み。VocabタブのGold Phrases表示フィルターは残っている
+## 主要機能（2026-07-19更新）
+- **削除済み機能（復活させないこと）**: Gold Phrases（金フレ）全機能、VocabのShuffle/Duo/Duo Seqフィルター、QuizのDuo Sentencesモード、SRSタブの弱点分析（苦手単語・品詞別正答率）は2026-07-19に削除済み
 - **通訳練習モード**（Quizタブ内）: Glossary例文ペアを使用。日→英はSpeechRecognitionで発話を文字起こしし単語一致率を採点、英→日は音声を聞いて自己チェック
 - **実戦モード**（エッセイ再生）: 文ごとに話者・速度・ピッチをランダム化してリスニング負荷を上げる
-- **ブラインドモード**: エッセイ本文/Transcriptをblurで隠して耳だけで聞く（.blind-blurクラス）
-- **弱点分析**（SRSタブ）: againCount・正答率・easeFactorから苦手単語Top15と品詞別正答率を表示
+- **ブラインドモード**: エッセイ本文/Transcript/YouTubeスクリプトをblurで隠して耳だけで聞く（.blind-blurクラス）
+- **YouTubeリスニング**（Listenタブ）: URL+スクリプト貼り付けで動画教材を追加（state.youtubeItemsにlocalStorage保存）。YouTube IFrame APIで埋め込み再生し、タイムスタンプ付きスクリプトは再生位置に同期ハイライト・タップでシーク。速度0.5〜2.0x。listening-data.jsに`youtubeId`を持つアイテムを置けばtranslation/glossary付きの完全教材にもできる（Claude経由追加用）
 - **バックアップ促進バナー**（ホーム）: 最終バックアップから7日超で表示（state.lastBackupAt / backupSnoozedUntil）
 - **PWA対応**: manifest.json + sw.js（stale-while-revalidateキャッシュ）+ アイコン3種。ホーム画面追加・オフライン動作可
+- **ホーム**: エッセイライブラリはデフォルト全折りたたみ。Recently Openedは5件表示+「もっと見る」で最大50件
 
 ## 技術スタック
 - HTML/CSS/JavaScript（単体ファイル）
