@@ -6,6 +6,8 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 ## ファイル構成
 - `index.html` - メインアプリケーション（レスポンシブHTML）
 - `data.js` - エッセイ・単語データ（Claude Codeが更新）
+- `vocab-enrichment.js` - 語彙拡充データ（第2例文・語源/覚え方・コロケーション）。キーはglossaryの`word.toLowerCase()`。**新しいエッセイを追加したら、新出単語分のエントリを必ずここにも追加する**
+- `listening-data.js` - リスニング教材（audioUrl形式 or youtubeId形式）
 
 ## エッセイ生成ルール
 1. **長さ**: 約150語
@@ -74,7 +76,9 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **YouTubeリスニング**（Listenタブ）: URL+スクリプト貼り付けで動画教材を追加（state.youtubeItemsにlocalStorage保存）。YouTube IFrame APIで埋め込み再生し、タイムスタンプ付きスクリプトは再生位置に同期ハイライト・タップでシーク。速度0.5〜2.0x。listening-data.jsに`youtubeId`を持つアイテムを置けばtranslation/glossary付きの完全教材にもできる（Claude経由追加用）
 - **バックアップ促進バナー**（ホーム）: 最終バックアップから7日超で表示（state.lastBackupAt / backupSnoozedUntil）
 - **PWA対応**: manifest.json + sw.js（stale-while-revalidateキャッシュ）+ アイコン3種。ホーム画面追加・オフライン動作可
-- **ホーム**: エッセイライブラリはデフォルト全折りたたみ。Recently Openedは5件表示+「もっと見る」で最大50件
+- **ホーム**: エッセイライブラリは6ジャンル（Finance & Economics / Business English / Native Collocations / Slang & Casual / Science & Technology / Society & Culture、`essayGenre()`でtopicから判定）別のデフォルト全折りたたみ表示。Read Essaysも全折りたたみ。Recently Openedは5件表示+「もっと見る」で最大50件。連続学習2日以上でストリークバナー表示
+- **語彙エンリッチメント**: 全単語に第2例文・語源/覚え方・コロケーションを表示（単語カード・フラッシュカード）。例文読み上げボタン付き。Vocab検索は例文・コロケーション・語源にもヒット
+- **SRSタブ構成（2026-07-19整理後）**: Due alert / 14日グラフ（Words Read・Quiz Reviews）/ 長期グラフ2種 / Mastery Distribution / Device Sync / バックアップのみ。Upcoming Reviews・Study History・Vocabulary Growthグラフは削除済み（復活させない）
 
 ## 技術スタック
 - HTML/CSS/JavaScript（単体ファイル）

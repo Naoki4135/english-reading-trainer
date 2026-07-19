@@ -1,11 +1,12 @@
 // English Reading Trainer - Service Worker
 // キャッシュ戦略: stale-while-revalidate（キャッシュを即返しつつ裏で最新を取得）
-const CACHE_NAME = 'ert-cache-v2';
+const CACHE_NAME = 'ert-cache-v3';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './data.js',
   './listening-data.js',
+  './vocab-enrichment.js',
   './manifest.json',
   './icon-192.png',
   './icon-512.png',

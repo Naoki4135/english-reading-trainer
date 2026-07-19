@@ -11,6 +11,7 @@
 <title>English Reading Trainer</title>
 <script src="data.js?v=20260719"></script>
 <script src="listening-data.js?v=20260719"></script>
+<script src="vocab-enrichment.js?v=20260719"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -474,6 +475,17 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .shadow-pause-indicator.show { display: block; }
 
+/* Vocab enrichment */
+.vocab-example-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
+.ex-speak-btn {
+  flex-shrink: 0; padding: 2px 7px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2); font-size: 11px; cursor: pointer;
+  font-family: inherit; margin-top: 2px;
+}
+.ex-speak-btn:hover { border-color: var(--accent); color: var(--accent); }
+.vocab-origin { font-size: 12px; color: var(--yellow); line-height: 1.6; margin: 6px 0 2px; }
+.vocab-colloc { font-size: 12px; color: var(--accent2); line-height: 1.6; }
+
 /* YouTube listening */
 #yt-player-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; margin: 12px 0; }
 #yt-player-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -515,6 +527,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <h1>English Reading Trainer</h1>
       <p id="home-date"></p>
     </div>
+    <div id="streak-banner" class="card" style="display:none; text-align:center; padding:10px; margin-bottom:12px; font-weight:700;"></div>
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-num" id="stat-read-essays">0</div><div class="stat-label">Essays Read</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-read-words">0</div><div class="stat-label">Words Read</div></div>
@@ -668,7 +681,15 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
           <div class="flashcard-def" id="fc-def"></div>
           <div class="flashcard-example" id="fc-example"></div>
           <div class="flashcard-example-ja" id="fc-example-ja"></div>
-          <button class="flashcard-speak-btn" id="fc-speak-btn" onclick="event.stopPropagation();">&#128266; Pronounce</button>
+          <div class="flashcard-example" id="fc-example2" style="display:none;"></div>
+          <div class="flashcard-example-ja" id="fc-example2-ja" style="display:none;"></div>
+          <div class="vocab-origin" id="fc-origin" style="display:none; text-align:left;"></div>
+          <div class="vocab-colloc" id="fc-colloc" style="display:none; text-align:left; margin-bottom:8px;"></div>
+          <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+            <button class="flashcard-speak-btn" id="fc-speak-btn" onclick="event.stopPropagation();">&#128266; Pronounce</button>
+            <button class="flashcard-speak-btn" id="fc-ex1-btn" onclick="event.stopPropagation();" style="display:none;">&#128266; 例文1</button>
+            <button class="flashcard-speak-btn" id="fc-ex2-btn" onclick="event.stopPropagation();" style="display:none;">&#128266; 例文2</button>
+          </div>
         </div>
       </div>
       <div class="rating-buttons" id="rating-buttons" style="display:none;">
@@ -853,16 +874,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="btn primary small" onclick="startReview()">Review</button>
       </div>
     </div>
-    <div class="card-title" style="margin: 16px 0 8px;">Upcoming Reviews</div>
-    <div id="upcoming-reviews"></div>
     <div class="card-title" style="margin: 16px 0 8px;">Progress (Last 14 Days)</div>
     <div class="card" style="padding:12px;">
       <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Words Read per Day</div>
       <canvas id="chart-words-read" height="150" style="width:100%;"></canvas>
-    </div>
-    <div class="card" style="padding:12px; margin-top:8px;">
-      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Vocabulary Growth (Cumulative)</div>
-      <canvas id="chart-vocab-growth" height="150" style="width:100%;"></canvas>
     </div>
     <div class="card" style="padding:12px; margin-top:8px;">
       <div style="font-size:12px; color:var(--text2); margin-bottom:8px;">Quiz Reviews per Day</div>
@@ -881,9 +896,6 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 
     <div class="card-title" style="margin: 16px 0 8px;">Mastery Distribution</div>
     <div class="card" id="mastery-chart"></div>
-
-    <div class="card-title" style="margin: 16px 0 8px;">Study History</div>
-    <div class="card" id="study-history"></div>
 
     <div class="card-title" style="margin: 16px 0 8px;">Device Sync</div>
     <div class="card">
@@ -1856,13 +1868,46 @@ function showPage(page) {
 }
 
 // === DASHBOARD ===
+// エッセイのtopicを6ジャンルに分類する
+const GENRE_ORDER = ['Finance & Economics', 'Business English', 'Native Collocations', 'Slang & Casual', 'Science & Technology', 'Society & Culture'];
+const GENRE_ICONS = {
+  'Finance & Economics': '&#128176;', 'Business English': '&#128188;', 'Native Collocations': '&#128279;',
+  'Slang & Casual': '&#128172;', 'Science & Technology': '&#128300;', 'Society & Culture': '&#127757;'
+};
+function essayGenre(topic) {
+  const t = String(topic || '').toLowerCase();
+  if (t.includes('collocation')) return 'Native Collocations';
+  if (t.includes('slang') || t.includes('travel') || t.includes('conversation')) return 'Slang & Casual';
+  if (t.includes('business') || t.includes('startup')) return 'Business English';
+  if (t.includes('tech') || t.includes('science') || t.includes('environment') || t.includes('space') || t.includes('biology') || t.includes('medical') || t.includes('health') || t.includes('psychology & tech')) return 'Science & Technology';
+  if (t.includes('finance') || t.includes('econom') || t.includes('investment')) return 'Finance & Economics';
+  return 'Society & Culture';
+}
+
 let recentOpenedExpanded = false;
 function toggleRecentOpened() {
   recentOpenedExpanded = !recentOpenedExpanded;
   updateDashboard();
 }
+function calcStreak() {
+  const ds = state.dailyStats || {};
+  const hasActivity = d => { const s = ds[d]; return !!s && ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0); };
+  let streak = 0;
+  const d = new Date();
+  if (!hasActivity(formatLocalDate(d))) d.setDate(d.getDate() - 1); // 今日未学習でも昨日までの連続を維持表示
+  while (hasActivity(formatLocalDate(d))) { streak++; d.setDate(d.getDate() - 1); }
+  return streak;
+}
 function updateDashboard() {
   updateBackupAlert();
+  const streak = calcStreak();
+  const sb = document.getElementById('streak-banner');
+  if (streak >= 2) {
+    sb.style.display = 'block';
+    sb.innerHTML = `&#128293; 連続学習 <span style="color:var(--orange); font-size:18px;">${streak}</span> 日目`;
+  } else {
+    sb.style.display = 'none';
+  }
   const totalVocab = Object.values(state.vocabulary).filter(v => v.level >= 0).length;
   const dueWords = getDueWords().length;
   const masteredWords = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
@@ -1918,25 +1963,26 @@ function updateDashboard() {
     }
   }
 
-  // エッセイを通し番号付き・10個ずつ折りたたみで表示
+  // エッセイをジャンル別グループで表示（通し番号は全体の連番を維持）
   const essays = ESSAYS.slice(); // 古い順（通し番号用）
-  const totalEssays = essays.length;
-  const groupSize = 10;
+  const genreMap = {};
+  essays.forEach((e, i) => {
+    const genre = essayGenre(e.topic);
+    if (!genreMap[genre]) genreMap[genre] = [];
+    genreMap[genre].push({ e, num: i + 1 });
+  });
   let listHtml = '';
-  const groupCount = Math.ceil(totalEssays / groupSize);
-  for (let g = groupCount - 1; g >= 0; g--) {
-    const start = g * groupSize;
-    const end = Math.min(start + groupSize, totalEssays);
-    const groupLabel = `#${start + 1} – #${end}`;
+  GENRE_ORDER.forEach(genre => {
+    const items = genreMap[genre];
+    if (!items || !items.length) return;
     listHtml += `<div class="essay-group">
       <button class="essay-group-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
-        ${groupLabel} <span class="arrow">▼</span>
+        <span>${GENRE_ICONS[genre] || ''} ${genre} <span style="color:var(--text2); font-weight:400;">(${items.length})</span></span> <span class="arrow">▼</span>
       </button>
       <div class="essay-group-content">`;
-    for (let i = end - 1; i >= start; i--) {
-      const e = essays[i];
+    for (let i = items.length - 1; i >= 0; i--) {
+      const { e, num } = items[i];
       const rc = state.readCounts[e.id] || 0;
-      const num = i + 1;
       listHtml += `<div class="essay-item" onclick="openEssay('${e.id}')">
         <span class="essay-num">#${num}</span>
         <span class="essay-topic">${e.topic}</span>
@@ -1945,7 +1991,7 @@ function updateDashboard() {
       </div>`;
     }
     listHtml += `</div></div>`;
-  }
+  });
   document.getElementById('essay-list').innerHTML = listHtml;
 
   // Read essays section
@@ -1961,12 +2007,11 @@ function updateDashboard() {
       const start = g * readGroupSize;
       const end = Math.min(start + readGroupSize, readEssays.length);
       const groupLabel = `${start + 1} – ${end} of ${readEssays.length}`;
-      const isFirst = g === readGroupCount - 1;
       readHtml += `<div class="essay-group">
-        <button class="essay-group-toggle${isFirst ? ' open' : ''}" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+        <button class="essay-group-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
           ${groupLabel} <span class="arrow">▼</span>
         </button>
-        <div class="essay-group-content${isFirst ? ' open' : ''}">`;
+        <div class="essay-group-content">`;
       for (let i = end - 1; i >= start; i--) {
         const e = readEssays[i];
         const rc = state.readCounts[e.id] || 0;
@@ -2363,6 +2408,17 @@ if (isSpeechSupported()) speechSynthesis.onvoiceschanged = () => speechSynthesis
 
 function toggleSection(btn) { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); }
 
+// === VOCAB ENRICHMENT（第2例文・語源・コロケーション。vocab-enrichment.jsから供給） ===
+function getEnrichment(key) {
+  return (typeof VOCAB_ENRICHMENT !== 'undefined' && VOCAB_ENRICHMENT[key]) || null;
+}
+function speakVocabExample(key, which) {
+  const v = state.vocabulary[key];
+  const en = getEnrichment(key);
+  const text = which === 2 ? (en && en.example2) : (v && v.example);
+  if (text) speakTextSequence([text], 0.95);
+}
+
 // === VOCAB ===
 let vocabFilter = 'all';
 function setVocabFilter(filter, btn) {
@@ -2377,7 +2433,12 @@ function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
   document.getElementById('shuffle-controls').style.display = (vocabFilter === 'learning') ? 'block' : 'none';
   let words = Object.entries(state.vocabulary).filter(([key, v]) => {
-    const matchSearch = !search || key.includes(search) || v.japanese.includes(search);
+    const en = search ? getEnrichment(key) : null;
+    const matchSearch = !search || key.includes(search) || v.japanese.includes(search)
+      || (v.example || '').toLowerCase().includes(search)
+      || (en && ((en.example2 || '').toLowerCase().includes(search)
+        || (en.collocations || []).some(c => c.toLowerCase().includes(search))
+        || (en.origin || '').includes(search)));
     if (vocabFilter === 'all') return matchSearch && v.level >= 0 && v.level < 3;
     if (vocabFilter === 'new') return matchSearch && v.level === 0;
     if (vocabFilter === 'learning') return matchSearch && (v.level === 1 || v.level === 2);
@@ -2427,8 +2488,13 @@ function renderVocabList(words) {
         </div>
       </div>
       <div class="vocab-example-body">
-        <div class="vocab-example-en">${v.example || ''}</div>
-        <div class="vocab-example-ja">${v.exampleJa || ''}</div>
+        ${v.example ? `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="speakVocabExample('${key}', 1)">&#128266;</button><div><div class="vocab-example-en">${v.example}</div><div class="vocab-example-ja">${v.exampleJa || ''}</div></div></div>` : ''}
+        ${(() => { const en = getEnrichment(key); if (!en) return '';
+          let h = '';
+          if (en.example2) h += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="speakVocabExample('${key}', 2)">&#128266;</button><div><div class="vocab-example-en">${en.example2}</div><div class="vocab-example-ja">${en.exampleJa2 || ''}</div></div></div>`;
+          if (en.origin) h += `<div class="vocab-origin">&#128161; ${en.origin}</div>`;
+          if (en.collocations && en.collocations.length) h += `<div class="vocab-colloc">&#128279; ${en.collocations.join(' · ')}</div>`;
+          return h; })()}
       </div>
     </div>`;
   }).join('');
@@ -2538,6 +2604,26 @@ function showFlashcard() {
   document.getElementById('fc-visual').style.border = `1px solid ${visual.c}30`;
   const speakBtn = document.getElementById('fc-speak-btn');
   speakBtn.onclick = (e) => { e.stopPropagation(); speakWord(v.word); };
+  // 第2例文・語源・コロケーション（vocab-enrichment.js）
+  const en = getEnrichment(key);
+  const ex2 = document.getElementById('fc-example2');
+  const ex2ja = document.getElementById('fc-example2-ja');
+  const originEl = document.getElementById('fc-origin');
+  const collocEl = document.getElementById('fc-colloc');
+  ex2.style.display = en && en.example2 ? 'block' : 'none';
+  ex2ja.style.display = en && en.exampleJa2 ? 'block' : 'none';
+  ex2.textContent = en && en.example2 ? en.example2 : '';
+  ex2ja.textContent = en && en.exampleJa2 ? en.exampleJa2 : '';
+  originEl.style.display = en && en.origin ? 'block' : 'none';
+  originEl.innerHTML = en && en.origin ? '&#128161; ' + escapeHtml(en.origin) : '';
+  collocEl.style.display = en && en.collocations && en.collocations.length ? 'block' : 'none';
+  collocEl.innerHTML = en && en.collocations && en.collocations.length ? '&#128279; ' + escapeHtml(en.collocations.join(' · ')) : '';
+  const ex1Btn = document.getElementById('fc-ex1-btn');
+  const ex2Btn = document.getElementById('fc-ex2-btn');
+  ex1Btn.style.display = v.example ? 'inline-flex' : 'none';
+  ex1Btn.onclick = (e) => { e.stopPropagation(); speakTextSequence([v.example], 0.95); };
+  ex2Btn.style.display = en && en.example2 ? 'inline-flex' : 'none';
+  ex2Btn.onclick = (e) => { e.stopPropagation(); speakTextSequence([en.example2], 0.95); };
   document.getElementById('quiz-progress').textContent = `${quizIndex + 1} / ${quizQueue.length}`;
 }
 function revealFlashcard() {
@@ -2824,13 +2910,6 @@ function updateReviewPage() {
   const alert = document.getElementById('review-due-alert');
   if (due > 0) alert.style.display = 'block'; else alert.style.display = 'none';
 
-  const upcoming = {};
-  Object.values(state.vocabulary).forEach(v => { if (v.level > 0 && v.level < 3 && v.nextReview) { upcoming[v.nextReview] = (upcoming[v.nextReview] || 0) + 1; } });
-  const dates = Object.keys(upcoming).sort().slice(0, 7);
-  const upEl = document.getElementById('upcoming-reviews');
-  upEl.innerHTML = dates.length === 0 ? '<div class="card"><div style="color:var(--text2); font-size:13px;">No upcoming reviews</div></div>'
-    : dates.map(d => { const isT = d <= formatLocalDate(); return `<div class="card" style="display:flex; justify-content:space-between; ${isT ? 'border-color:var(--orange);' : ''}"><span style="font-size:13px;">${d}${isT ? ' (Today!)' : ''}</span><span style="font-weight:700; color:${isT ? 'var(--orange)' : 'var(--accent2)'};">${upcoming[d]} words</span></div>`; }).join('');
-
   const levels = [0, 0, 0, 0]; // new, learning, mastered, excluded
   Object.values(state.vocabulary).forEach(v => { if (v.level === -1) levels[3]++; else if (v.level === 0) levels[0]++; else if (v.level < 3) levels[1]++; else levels[2]++; });
   const total = Object.keys(state.vocabulary).length || 1;
@@ -2840,10 +2919,6 @@ function updateReviewPage() {
     const pct = Math.round(levels[i] / total * 100);
     return `<div style="margin-bottom:10px;"><div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:3px;"><span>${l}</span><span>${levels[i]} (${pct}%)</span></div><div style="height:8px; background:var(--surface2); border-radius:4px; overflow:hidden;"><div style="height:100%; width:${pct}%; background:${colors[i]}; border-radius:4px;"></div></div></div>`;
   }).join('');
-
-  const recent = state.studyHistory.slice(-7).reverse();
-  document.getElementById('study-history').innerHTML = recent.length === 0 ? '<div style="color:var(--text2); font-size:13px;">No study history yet.</div>'
-    : recent.map(h => `<div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--border); font-size:13px;"><span>${h.date}</span><span>${h.reviewed} reviewed</span></div>`).join('');
 
   // Draw progress charts only if Review page is visible
   if (document.getElementById('page-review').classList.contains('active')) {
@@ -2868,16 +2943,6 @@ function drawCharts() {
   // Words read per day
   const wordsData = days.map(d => (state.dailyStats[d] || {}).wordsRead || 0);
   drawBarChart('chart-words-read', shortLabels, wordsData, '#3b82f6');
-
-  // Vocab growth (cumulative) - use latest known value for each day
-  let lastVocab = 0;
-  const vocabData = days.map(d => {
-    if (state.dailyStats[d] && state.dailyStats[d].vocabCount) lastVocab = state.dailyStats[d].vocabCount;
-    return lastVocab;
-  });
-  // If no data yet, show current total for today
-  if (lastVocab === 0) vocabData[vocabData.length - 1] = Object.keys(state.vocabulary).length;
-  drawLineChart('chart-vocab-growth', shortLabels, vocabData, '#22c55e');
 
   // Reviews per day
   const reviewData = days.map(d => (state.dailyStats[d] || {}).reviewed || 0);
