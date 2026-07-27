@@ -11,7 +11,8 @@
 <title>English Reading Trainer</title>
 <script src="data.js?v=20260719"></script>
 <script src="listening-data.js?v=20260719"></script>
-<script src="vocab-enrichment.js?v=20260719"></script>
+<script src="vocab-enrichment.js?v=20260726"></script>
+<script src="articles-data.js?v=20260725"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -475,6 +476,14 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 }
 .shadow-pause-indicator.show { display: block; }
 
+/* Vocab collapse & today session */
+.vocab-top { cursor: pointer; }
+.vocab-card.collapsed .vocab-detail { display: none; }
+.vocab-expand-arrow { color: var(--text2); font-size: 10px; margin-left: 6px; transition: transform 0.2s; flex-shrink: 0; }
+.vocab-card:not(.collapsed) .vocab-expand-arrow { transform: rotate(180deg); }
+.vocab-card.done .vocab-word-cell::after { content: ' \2713'; color: var(--green); font-weight: 800; }
+.vocab-detail-actions { display: flex; gap: 6px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+
 /* Vocab enrichment */
 .vocab-example-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
 .ex-speak-btn {
@@ -559,6 +568,20 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     </div>
     <div class="card-title" style="margin: 16px 0 8px;">Recently Opened</div>
     <div id="recent-opened-list" class="recent-opened-list"></div>
+    <div class="card-title" style="margin: 16px 0 8px;">&#128240; News Articles</div>
+    <button class="btn" style="width:100%; padding:10px; margin-bottom:8px;" onclick="toggleArticleForm()">&#10133; 記事を追加</button>
+    <div class="card" id="article-add-form" style="display:none; margin-bottom:8px;">
+      <div style="font-size:13px; font-weight:700; margin-bottom:8px;">記事を追加</div>
+      <input type="text" class="search-input" id="article-title-input" placeholder="タイトル" style="margin-bottom:8px;">
+      <input type="text" class="search-input" id="article-url-input" placeholder="元記事URL（任意・メモ用）" style="margin-bottom:8px;">
+      <textarea class="yt-form-textarea" id="article-text-input" placeholder="記事本文を貼り付け&#10;&#10;英文をそのまま貼り付けてください。音声再生・ブラインドモードで学習できます。&#10;Glossary・日本語訳付きの完全教材にしたい場合は、記事URLをClaudeに送ってください。"></textarea>
+      <div style="display:flex; gap:8px; margin-top:10px;">
+        <button class="btn primary" style="flex:1; padding:10px;" onclick="saveArticle()">追加</button>
+        <button class="btn" style="flex:1; padding:10px;" onclick="toggleArticleForm()">キャンセル</button>
+      </div>
+    </div>
+    <div id="article-list"></div>
+
     <div class="card-title" style="margin: 16px 0 8px;">Essay Library</div>
     <div id="essay-list"></div>
     <div id="read-essays-section" style="margin-top:16px;"></div>
@@ -599,7 +622,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       </button>
     </div>
 
-    <button class="section-toggle" onclick="toggleSection(this)">
+    <button class="section-toggle" id="glossary-section-toggle" onclick="toggleSection(this)">
       Glossary <span class="arrow">▼</span>
     </button>
     <div class="section-content">
@@ -618,30 +641,57 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <h1>Vocabulary</h1>
       <p>Cumulative word list from all essays</p>
     </div>
-    <input type="text" class="search-input" placeholder="Search words..." id="vocab-search" oninput="filterVocab()">
-    <div class="vocab-filters" id="vocab-filters">
-      <button class="filter-btn active" data-filter="all" onclick="setVocabFilter('all', this)">All</button>
-      <button class="filter-btn" data-filter="new" onclick="setVocabFilter('new', this)">New</button>
-      <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
-      </button>
-      <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
-      </button>
-      </button>
-      <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
-      </button>
+    <div class="tabs" id="vocab-view-tabs" style="margin-bottom:12px;">
+      <button class="tab active" data-view="today" onclick="setVocabView('today', this)">&#127919; 今日の10語</button>
+      <button class="tab" data-view="source" onclick="setVocabView('source', this)">&#128218; エッセイ別</button>
+      <button class="tab" data-view="all" onclick="setVocabView('all', this)">All</button>
     </div>
-    <div id="shuffle-controls" style="display:none; margin-bottom:12px;">
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="btn" id="btn-shuffle-order" onclick="reshuffleVocab()" style="flex:1; min-width:150px; padding:10px;">&#128256; Shuffle Order</button>
-        </button>
-        </button>
-        </button>
+
+    <!-- 今日の10語 -->
+    <div id="vocab-today-view">
+      <div class="card" id="today-progress-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-weight:700;">&#127919; 今日の10語 <span id="today-round" style="color:var(--text2); font-weight:400; font-size:12px;"></span></div>
+          <div id="today-count" style="font-weight:800; color:var(--accent2);">0/10</div>
+        </div>
+        <div style="height:8px; background:var(--surface2); border-radius:4px; overflow:hidden; margin-top:8px;">
+          <div id="today-progress-fill" style="height:100%; width:0%; background:var(--accent); border-radius:4px; transition:width 0.3s;"></div>
+        </div>
+        <div style="font-size:11px; color:var(--text2); margin-top:6px;">英語を見て意味を思い出してからタップ。開くとチェックが付きます</div>
       </div>
+      <div id="today-complete" class="card" style="display:none; text-align:center; padding:24px;">
+        <div style="font-size:40px; margin-bottom:10px;">&#127881;</div>
+        <div style="font-size:17px; font-weight:700; margin-bottom:6px;">今日の10語、完了！</div>
+        <div id="today-complete-detail" style="font-size:12px; color:var(--text2); margin-bottom:14px;"></div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn" style="flex:1; padding:12px;" onclick="drawNextTen()">&#127922; もう10語</button>
+          <button class="btn primary" style="flex:1; padding:12px;" onclick="showPage('quiz')">Quizで復習</button>
+        </div>
+      </div>
+      <div class="card" style="padding:0;"><div id="today-list"></div></div>
     </div>
-    <div class="card" style="padding:0;">
-      <div id="vocab-list"></div>
+
+    <!-- エッセイ別 -->
+    <div id="vocab-source-view" style="display:none;">
+      <div style="font-size:11px; color:var(--text2); margin-bottom:10px;">読んだエッセイ・記事ごとの単語。新しい順</div>
+      <div id="vocab-source-list"></div>
     </div>
-    <div id="vocab-count" style="text-align:center; font-size:12px; color:var(--text2); margin-top:8px;"></div>
+
+    <!-- All -->
+    <div id="vocab-all-view" style="display:none;">
+      <input type="text" class="search-input" placeholder="Search words..." id="vocab-search" oninput="filterVocab()">
+      <div class="vocab-filters" id="vocab-filters">
+        <button class="filter-btn active" data-filter="all" onclick="setVocabFilter('all', this)">All</button>
+        <button class="filter-btn" data-filter="new" onclick="setVocabFilter('new', this)">New</button>
+        <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
+        <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
+        <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
+      </div>
+      <div class="card" style="padding:0;">
+        <div id="vocab-list"></div>
+      </div>
+      <div id="vocab-count" style="text-align:center; font-size:12px; color:var(--text2); margin-top:8px;"></div>
+    </div>
   </div>
 
   <!-- QUIZ -->
@@ -984,10 +1034,11 @@ function loadState() {
       if (!p.dailyStats) p.dailyStats = {};
       if (!p.recentEssayIds) p.recentEssayIds = [];
       if (!p.youtubeItems) p.youtubeItems = [];
+      if (!p.articles) p.articles = [];
       return p;
     }
   } catch (e) { localStorage.removeItem(STORAGE_KEY); }
-  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], youtubeItems: [], lastStudyDate: null };
+  return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], youtubeItems: [], articles: [], lastStudyDate: null };
 }
 function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
@@ -1697,7 +1748,17 @@ function getDynamicVisualFromMeaning(japanese, pos) {
   return null;
 }
 
+// 点検で修正した単語は VISUAL_OVERRIDES（vocab-enrichment.js）を最優先で使う
 function getWordVisual(word, pos, japanese) {
+  const raw = String(word || '').toLowerCase();
+  if (typeof VISUAL_OVERRIDES !== 'undefined' && VISUAL_OVERRIDES[raw]) {
+    const o = VISUAL_OVERRIDES[raw];
+    return { e: o.e, h: o.h, c: o.c || getBaseVisual(word, pos, japanese).c };
+  }
+  return getBaseVisual(word, pos, japanese);
+}
+
+function getBaseVisual(word, pos, japanese) {
   const w = word.toLowerCase().replace(/[^a-z]/g, '');
   // Direct match
   if (WORD_VISUAL_MAP[w]) return WORD_VISUAL_MAP[w];
@@ -1774,11 +1835,15 @@ function getHintContextLabel(japanese = '', pos = '') {
 
 function buildFlashcardHint(v, visual) {
   const example = maskTargetWord(v.example || '', v.word);
-  const lines = [
-    `<div class="flashcard-hint-title">Hint</div>`,
-    `<div class="flashcard-hint-line"><strong>Image:</strong> ${escapeHtml(visual.h || 'Think about the core idea behind the word.')}</div>`,
-    `<div class="flashcard-hint-line"><strong>Context:</strong> ${escapeHtml(getHintContextLabel(v.japanese, v.pos))}</div>`
-  ];
+  const lines = [`<div class="flashcard-hint-title">Hint</div>`];
+  // 自動生成の visual.h は日本語訳そのまま＝答えになるため、その場合はImage行を出さない
+  const imageHint = (visual.h && visual.h !== v.japanese) ? visual.h : '';
+  if (imageHint) lines.push(`<div class="flashcard-hint-line"><strong>Image:</strong> ${escapeHtml(imageHint)}</div>`);
+  lines.push(`<div class="flashcard-hint-line"><strong>Context:</strong> ${escapeHtml(getHintContextLabel(v.japanese, v.pos))}</div>`);
+  const en = getEnrichment(v.word.toLowerCase());
+  if (en && en.collocations && en.collocations.length) {
+    lines.push(`<div class="flashcard-hint-line"><strong>Collocation:</strong> ${escapeHtml(en.collocations.slice(0, 2).join(' · '))}</div>`);
+  }
   if (example) lines.push(`<div class="flashcard-hint-line"><strong>Example:</strong> ${escapeHtml(example)}</div>`);
   return lines.join('');
 }
@@ -1811,10 +1876,60 @@ function registerServiceWorker() {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
+// === ARTICLES（ニュース記事教材） ===
+function getDataArticles() {
+  return (typeof ARTICLES !== 'undefined' && Array.isArray(ARTICLES)) ? ARTICLES : [];
+}
+function getUserArticles() {
+  return state.articles || [];
+}
+// エッセイ・記事（配信/ユーザー追加）を横断してIDで探す
+function findReadingById(id) {
+  return ESSAYS.find(e => e.id === id) || getDataArticles().find(a => a.id === id) || getUserArticles().find(a => a.id === id) || null;
+}
+function toggleArticleForm() {
+  const f = document.getElementById('article-add-form');
+  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+}
+function saveArticle() {
+  const title = document.getElementById('article-title-input').value.trim();
+  const text = document.getElementById('article-text-input').value.trim();
+  const url = document.getElementById('article-url-input').value.trim();
+  if (!title || !text) { showToast('タイトルと本文を入力してください'); return; }
+  if (!state.articles) state.articles = [];
+  state.articles.unshift({
+    id: 'article-' + Date.now(),
+    date: formatLocalDate(),
+    topic: 'News Article',
+    title,
+    sourceUrl: url,
+    difficulty: 'News',
+    wordCount: text.split(/\s+/).filter(Boolean).length,
+    text,
+    glossary: [],
+    translation: '',
+    userAdded: true
+  });
+  saveState();
+  document.getElementById('article-title-input').value = '';
+  document.getElementById('article-url-input').value = '';
+  document.getElementById('article-text-input').value = '';
+  toggleArticleForm();
+  updateDashboard();
+  showToast('記事を追加しました');
+}
+function deleteArticle(id) {
+  if (!confirm('この記事をリストから削除しますか？')) return;
+  state.articles = (state.articles || []).filter(a => a.id !== id);
+  saveState();
+  updateDashboard();
+  showToast('削除しました');
+}
+
 function buildVocabulary() {
   const allWords = {};
-  ESSAYS.forEach(essay => {
-    essay.glossary.forEach(g => {
+  ESSAYS.concat(getDataArticles()).forEach(essay => {
+    (essay.glossary || []).forEach(g => {
       const key = g.word.toLowerCase();
       if (!allWords[key]) allWords[key] = { ...g, essayId: essay.id, firstSeen: essay.date };
     });
@@ -1917,7 +2032,7 @@ function updateDashboard() {
   let wordsRead = 0;
   let totalReads = 0;
   Object.entries(state.readCounts).forEach(([id, count]) => {
-    const essay = ESSAYS.find(e => e.id === id);
+    const essay = findReadingById(id);
     if (essay) wordsRead += essay.wordCount * count;
     totalReads += count;
   });
@@ -1937,7 +2052,7 @@ function updateDashboard() {
   else badge.style.display = 'none';
 
   const recentOpenedAll = (state.recentEssayIds || [])
-    .map(id => ESSAYS.find(e => e.id === id))
+    .map(id => findReadingById(id))
     .filter(Boolean);
   const recentOpened = recentOpenedExpanded ? recentOpenedAll : recentOpenedAll.slice(0, 5);
   const recentOpenedList = document.getElementById('recent-opened-list');
@@ -1961,6 +2076,34 @@ function updateDashboard() {
     if (recentOpenedAll.length > 5) {
       recentOpenedList.innerHTML += `<button class="btn" style="width:100%; padding:10px; margin-top:4px;" onclick="toggleRecentOpened()">${recentOpenedExpanded ? '▲ 閉じる' : `▼ もっと見る（全${recentOpenedAll.length}件）`}</button>`;
     }
+  }
+
+  // ニュース記事リスト（配信 + ユーザー追加、デフォルト折りたたみ）
+  const dataArticles = getDataArticles();
+  const userArticles = getUserArticles();
+  const allArticles = [...userArticles, ...dataArticles];
+  const articleListEl = document.getElementById('article-list');
+  if (allArticles.length === 0) {
+    articleListEl.innerHTML = '<div class="card" style="font-size:12px; color:var(--text2); line-height:1.7;">記事はまだありません。「＋記事を追加」で本文を貼り付けるか、記事URLをClaudeに送るとGlossary・訳付きの教材になります。</div>';
+  } else {
+    let itemsHtml = '';
+    allArticles.forEach(a => {
+      const rc = state.readCounts[a.id] || 0;
+      const delBtn = a.userAdded ? `<button class="btn small" style="float:right; color:var(--red);" onclick="event.stopPropagation(); deleteArticle('${a.id}')">&#10005;</button>` : '';
+      const badge = a.userAdded ? '貼り付け' : 'Glossary・訳付き';
+      itemsHtml += `<div class="essay-item" onclick="openEssay('${a.id}')">
+        ${delBtn}
+        <span class="essay-topic">${escapeHtml(a.topic || 'News Article')}</span>
+        <div class="essay-title">${escapeHtml(a.title)}</div>
+        <div class="essay-meta">${a.date} · ${a.wordCount} words · ${badge} · <span class="read-badge${rc > 0 ? ' read-done' : ''}">Read: ${rc}</span></div>
+      </div>`;
+    });
+    articleListEl.innerHTML = `<div class="essay-group">
+      <button class="essay-group-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+        <span>&#128240; Articles <span style="color:var(--text2); font-weight:400;">(${allArticles.length})</span></span> <span class="arrow">▼</span>
+      </button>
+      <div class="essay-group-content">${itemsHtml}</div>
+    </div>`;
   }
 
   // エッセイをジャンル別グループで表示（通し番号は全体の連番を維持）
@@ -2031,7 +2174,7 @@ function updateDashboard() {
 
 // === ESSAY ===
 function openEssay(id) {
-  currentEssay = ESSAYS.find(e => e.id === id);
+  currentEssay = findReadingById(id);
   if (!currentEssay) return;
   if (!state.recentEssayIds) state.recentEssayIds = [];
   state.recentEssayIds = [id, ...state.recentEssayIds.filter(existingId => existingId !== id)].slice(0, 50);
@@ -2039,14 +2182,19 @@ function openEssay(id) {
   document.getElementById('essay-view-title').textContent = currentEssay.title;
   document.getElementById('essay-view-meta').textContent = `${currentEssay.date} · ${currentEssay.wordCount} words · ${currentEssay.difficulty}`;
   document.getElementById('essay-text-container').textContent = currentEssay.text;
-  document.getElementById('essay-ja-panel').textContent = currentEssay.translation;
+  document.getElementById('essay-ja-panel').textContent = currentEssay.translation || '';
   document.getElementById('essay-ja-panel').classList.remove('open');
   document.getElementById('btn-translation').classList.remove('active-toggle');
+  document.getElementById('btn-translation').style.display = currentEssay.translation ? '' : 'none';
   highlightMode = false;
   document.getElementById('btn-highlight').classList.remove('active-toggle');
 
+  const hasGlossary = (currentEssay.glossary || []).length > 0;
+  document.getElementById('glossary-section-toggle').style.display = hasGlossary ? '' : 'none';
+  document.getElementById('glossary-section-toggle').nextElementSibling.style.display = hasGlossary ? '' : 'none';
+  document.getElementById('btn-highlight').style.display = hasGlossary ? '' : 'none';
   const tbody = document.getElementById('glossary-body');
-  tbody.innerHTML = currentEssay.glossary.map(g => {
+  tbody.innerHTML = (currentEssay.glossary || []).map(g => {
     const key = g.word.toLowerCase();
     const srs = state.vocabulary[key];
     const badge = srs ? getMasteryBadge(srs.level) : '';
@@ -2423,15 +2571,29 @@ function speakVocabExample(key, which) {
 let vocabFilter = 'all';
 function setVocabFilter(filter, btn) {
   vocabFilter = filter;
-  vocabShuffled = false;
   document.querySelectorAll('#vocab-filters .filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   filterVocab();
 }
-let vocabShuffled = false;
+// === 3ビュー切替（今日の10語 / エッセイ別 / All） ===
+let vocabViewMode = 'today';
+function setVocabView(mode, btn) {
+  vocabViewMode = mode;
+  document.querySelectorAll('#vocab-view-tabs .tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('vocab-today-view').style.display = mode === 'today' ? 'block' : 'none';
+  document.getElementById('vocab-source-view').style.display = mode === 'source' ? 'block' : 'none';
+  document.getElementById('vocab-all-view').style.display = mode === 'all' ? 'block' : 'none';
+  updateVocabPage();
+}
+function updateVocabPage() {
+  if (vocabViewMode === 'today') renderTodaySession();
+  else if (vocabViewMode === 'source') renderVocabBySource();
+  else filterVocab();
+}
+
 function filterVocab() {
   const search = document.getElementById('vocab-search').value.toLowerCase();
-  document.getElementById('shuffle-controls').style.display = (vocabFilter === 'learning') ? 'block' : 'none';
   let words = Object.entries(state.vocabulary).filter(([key, v]) => {
     const en = search ? getEnrichment(key) : null;
     const matchSearch = !search || key.includes(search) || v.japanese.includes(search)
@@ -2446,80 +2608,181 @@ function filterVocab() {
     if (vocabFilter === 'excluded') return matchSearch && v.level === -1;
     return matchSearch;
   });
-  if (vocabFilter === 'learning' && vocabShuffled) {
-    shuffleArray(words);
-  } else {
-    words.sort((a, b) => a[0].localeCompare(b[0]));
-  }
-  renderVocabList(words);
-}
-function reshuffleVocab() {
-  vocabShuffled = true;
-  filterVocab();
-  showToast('Shuffled!');
-}
-function updateVocabPage() { filterVocab(); }
-
-function renderVocabList(words) {
+  words.sort((a, b) => a[0].localeCompare(b[0]));
   const el = document.getElementById('vocab-list');
   if (words.length === 0) {
     el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words found</div>';
     document.getElementById('vocab-count').textContent = '';
     return;
   }
-  el.innerHTML = words.map(([key, v], idx) => {
-    const isExcluded = v.level === -1;
-    const isMastered = v.level >= 3;
-    let buttons = '';
-    if (isExcluded || isMastered) {
-      buttons = `${getMasteryBadge(v.level)} <button class="btn-restore" onclick="restoreWord('${key}')">Restore</button>`;
-    } else {
-      buttons = `<button class="btn-master" onclick="markMastered('${key}')">Mastered</button><button class="btn-exclude" onclick="markExcluded('${key}')">Exclude</button>`;
-    }
-    return `<div class="vocab-card">
-      <div class="vocab-top">
-        <div class="vocab-left">
-          <div class="vocab-word-cell">${v.word} <span class="vocab-pos">${v.pos || ''}</span></div>
-          <div class="vocab-ja-inline">${v.japanese}</div>
-        </div>
-        <div class="vocab-right">
-          ${buttons}
-          <button class="btn small" onclick="speakWord('${v.word.replace(/'/g, "\\'")}')">&#128266;</button>
-        </div>
-      </div>
-      <div class="vocab-example-body">
-        ${v.example ? `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="speakVocabExample('${key}', 1)">&#128266;</button><div><div class="vocab-example-en">${v.example}</div><div class="vocab-example-ja">${v.exampleJa || ''}</div></div></div>` : ''}
-        ${(() => { const en = getEnrichment(key); if (!en) return '';
-          let h = '';
-          if (en.example2) h += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="speakVocabExample('${key}', 2)">&#128266;</button><div><div class="vocab-example-en">${en.example2}</div><div class="vocab-example-ja">${en.exampleJa2 || ''}</div></div></div>`;
-          if (en.origin) h += `<div class="vocab-origin">&#128161; ${en.origin}</div>`;
-          if (en.collocations && en.collocations.length) h += `<div class="vocab-colloc">&#128279; ${en.collocations.join(' · ')}</div>`;
-          return h; })()}
-      </div>
-    </div>`;
-  }).join('');
+  // 検索中は目的の意味をすぐ見たいので展開表示
+  const expanded = !!search;
+  el.innerHTML = words.map(([key, v]) => vocabCardHtml(key, v, { expanded })).join('');
+  bindVocabCards(el, false);
   document.getElementById('vocab-count').textContent = `${words.length} words`;
+}
+
+// 共通カード（デフォルト折りたたみ: 英語だけ見せて意味当てクイズにする）
+function vocabCardHtml(key, v, opts = {}) {
+  const isExcluded = v.level === -1;
+  const isMastered = v.level >= 3;
+  const kjs = key.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  const wjs = v.word.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  let buttons = '';
+  if (isExcluded || isMastered) {
+    buttons = `${getMasteryBadge(v.level)} <button class="btn-restore" onclick="event.stopPropagation(); restoreWord('${kjs}')">Restore</button>`;
+  } else {
+    buttons = `<button class="btn-master" onclick="event.stopPropagation(); markMastered('${kjs}')">Mastered</button><button class="btn-exclude" onclick="event.stopPropagation(); markExcluded('${kjs}')">Exclude</button>`;
+  }
+  const en = getEnrichment(key);
+  let detail = `<div class="vocab-ja-inline" style="margin-bottom:8px;">${v.japanese}</div>`;
+  if (v.example) detail += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="event.stopPropagation(); speakVocabExample('${kjs}', 1)">&#128266;</button><div><div class="vocab-example-en">${v.example}</div><div class="vocab-example-ja">${v.exampleJa || ''}</div></div></div>`;
+  if (en) {
+    if (en.example2) detail += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="event.stopPropagation(); speakVocabExample('${kjs}', 2)">&#128266;</button><div><div class="vocab-example-en">${en.example2}</div><div class="vocab-example-ja">${en.exampleJa2 || ''}</div></div></div>`;
+    if (en.origin) detail += `<div class="vocab-origin">&#128161; ${en.origin}</div>`;
+    if (en.collocations && en.collocations.length) detail += `<div class="vocab-colloc">&#128279; ${en.collocations.join(' · ')}</div>`;
+  }
+  detail += `<div class="vocab-detail-actions">${buttons}</div>`;
+  return `<div class="vocab-card${opts.expanded ? '' : ' collapsed'}${opts.done ? ' done' : ''}" data-key="${escapeHtml(key)}">
+    <div class="vocab-top">
+      <div class="vocab-left">
+        <div class="vocab-word-cell">${v.word} <span class="vocab-pos">${v.pos || ''}</span></div>
+      </div>
+      <div class="vocab-right">
+        ${!isExcluded && !isMastered && v.level > 0 ? getMasteryBadge(v.level) : ''}
+        <button class="btn small" onclick="event.stopPropagation(); speakWord('${wjs}')">&#128266;</button>
+        <span class="vocab-expand-arrow">&#9660;</span>
+      </div>
+    </div>
+    <div class="vocab-example-body vocab-detail">${detail}</div>
+  </div>`;
+}
+function bindVocabCards(container, isToday) {
+  container.querySelectorAll('.vocab-card').forEach(card => {
+    const head = card.querySelector('.vocab-top');
+    if (head) head.onclick = () => {
+      card.classList.toggle('collapsed');
+      if (isToday && !card.classList.contains('collapsed')) markTodayDone(card.dataset.key, card);
+    };
+  });
+}
+
+// === 今日の10語セッション ===
+function ensureDailyVocab() {
+  const today = formatLocalDate();
+  if (!state.dailyVocab || state.dailyVocab.date !== today || !Array.isArray(state.dailyVocab.keys)) {
+    state.dailyVocab = { date: today, round: 1, keys: pickDailyWords(10, []), done: [], usedKeys: [], totalDone: 0 };
+    saveState();
+  }
+}
+// 選定: 復習期限が来た語(最大4) + 最近読んだエッセイの新語(最大3) + その他の新語で10語
+function pickDailyWords(n, excludeKeys) {
+  const ex = new Set(excludeKeys);
+  const pool = Object.entries(state.vocabulary).filter(([k, v]) => v.level >= 0 && v.level < 3 && !ex.has(k));
+  const today = formatLocalDate();
+  const due = pool.filter(([k, v]) => v.level > 0 && v.nextReview && v.nextReview <= today);
+  const recentIds = new Set(state.recentEssayIds || []);
+  const recentNew = pool.filter(([k, v]) => v.level === 0 && recentIds.has(v.essayId));
+  const otherNew = pool.filter(([k, v]) => v.level === 0 && !recentIds.has(v.essayId));
+  shuffleArray(due); shuffleArray(recentNew); shuffleArray(otherNew);
+  const picked = [];
+  const take = (arr, m) => { for (const x of arr) { if (picked.length >= n || m <= 0) break; if (!picked.includes(x[0])) { picked.push(x[0]); m--; } } };
+  take(due, 4); take(recentNew, 3); take(otherNew, n); take(due, n); take(recentNew, n);
+  return picked;
+}
+function renderTodaySession() {
+  ensureDailyVocab();
+  const dv = state.dailyVocab;
+  const listEl = document.getElementById('today-list');
+  listEl.innerHTML = dv.keys.map(k => {
+    const v = state.vocabulary[k];
+    return v ? vocabCardHtml(k, v, { done: dv.done.includes(k) }) : '';
+  }).join('') || '<div style="text-align:center; padding:30px; color:var(--text2);">対象の単語がありません</div>';
+  bindVocabCards(listEl, true);
+  renderTodayProgress();
+}
+function markTodayDone(key, card) {
+  const dv = state.dailyVocab;
+  if (!dv || !dv.keys.includes(key) || dv.done.includes(key)) return;
+  dv.done.push(key);
+  saveState();
+  if (card) card.classList.add('done');
+  renderTodayProgress();
+}
+function renderTodayProgress() {
+  const dv = state.dailyVocab;
+  const total = dv.keys.length;
+  const done = dv.done.filter(k => dv.keys.includes(k)).length;
+  document.getElementById('today-count').textContent = `${done}/${total}`;
+  document.getElementById('today-progress-fill').style.width = total ? (done / total * 100) + '%' : '0%';
+  document.getElementById('today-round').textContent = dv.round > 1 ? `Round ${dv.round}` : '';
+  const comp = document.getElementById('today-complete');
+  if (total > 0 && done >= total) {
+    comp.style.display = 'block';
+    document.getElementById('today-complete-detail').textContent = `今日は合計 ${(dv.totalDone || 0) + done} 語を確認しました`;
+  } else {
+    comp.style.display = 'none';
+  }
+}
+function drawNextTen() {
+  const dv = state.dailyVocab;
+  dv.totalDone = (dv.totalDone || 0) + dv.done.length;
+  dv.usedKeys = [...new Set((dv.usedKeys || []).concat(dv.keys))];
+  dv.keys = pickDailyWords(10, dv.usedKeys);
+  dv.done = [];
+  dv.round = (dv.round || 1) + 1;
+  saveState();
+  renderTodaySession();
+  window.scrollTo(0, 0);
+}
+
+// === エッセイ別ビュー ===
+function renderVocabBySource() {
+  const groups = new Map();
+  Object.entries(state.vocabulary).forEach(([k, v]) => {
+    if (v.level < 0) return;
+    const id = v.essayId || 'unknown';
+    if (!groups.has(id)) groups.set(id, []);
+    groups.get(id).push([k, v]);
+  });
+  const readings = ESSAYS.concat(getDataArticles()).slice().sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+  let html = '';
+  readings.forEach(r => {
+    const entries = groups.get(r.id);
+    if (!entries || !entries.length) return;
+    const mastered = entries.filter(([, v]) => v.level >= 3).length;
+    entries.sort((a, b) => a[0].localeCompare(b[0]));
+    html += `<div class="essay-group">
+      <button class="essay-group-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+        <span style="text-align:left;">${escapeHtml(r.title)} <span style="color:var(--text2); font-weight:400;">(${entries.length}語${mastered ? ' · 習得' + mastered : ''})</span></span> <span class="arrow">&#9660;</span>
+      </button>
+      <div class="essay-group-content"><div class="card" style="padding:0;">${entries.map(([k, v]) => vocabCardHtml(k, v, {})).join('')}</div></div>
+    </div>`;
+  });
+  const container = document.getElementById('vocab-source-list');
+  container.innerHTML = html || '<div style="text-align:center; padding:30px; color:var(--text2);">No words yet</div>';
+  bindVocabCards(container, false);
 }
 
 function markExcluded(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = -1;
   state.vocabulary[key].interval = 0;
-  saveState(); filterVocab(); showToast('Excluded: ' + state.vocabulary[key].word);
+  saveState(); updateVocabPage(); showToast('Excluded: ' + state.vocabulary[key].word);
 }
 function restoreWord(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = 0;
   state.vocabulary[key].interval = 0;
   state.vocabulary[key].nextReview = formatLocalDate();
-  saveState(); filterVocab(); showToast('Restored: ' + state.vocabulary[key].word);
+  saveState(); updateVocabPage(); showToast('Restored: ' + state.vocabulary[key].word);
 }
 function markMastered(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = 3;
   state.vocabulary[key].interval = 365;
   state.vocabulary[key].nextReview = addDaysToLocalDate(365);
-  saveState(); filterVocab(); showToast('Marked as Mastered');
+  saveState(); updateVocabPage(); showToast('Marked as Mastered');
 }
 
 // === QUIZ ===
@@ -3213,6 +3476,7 @@ function importProgress(event) {
       if (imported.recentEssayIds) state.recentEssayIds = imported.recentEssayIds;
       if (imported.duoSrs) state.duoSrs = imported.duoSrs;
       if (imported.youtubeItems) state.youtubeItems = imported.youtubeItems;
+      if (imported.articles) state.articles = imported.articles;
       saveState();
       updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
       showToast('Backup imported successfully');
@@ -3236,6 +3500,7 @@ function generateSyncCode() {
     lastStudyDate: state.lastStudyDate,
     duoSrs: state.duoSrs || {},
     youtubeItems: state.youtubeItems || [],
+    articles: state.articles || [],
     vocabulary: {}
   };
   // Only export SRS progress (not word definitions - those come from data.js)
@@ -3331,6 +3596,13 @@ function applySyncCode() {
       if (!state.youtubeItems) state.youtubeItems = [];
       syncData.youtubeItems.forEach(item => {
         if (!state.youtubeItems.some(x => x.id === item.id)) state.youtubeItems.push(item);
+      });
+    }
+    // Merge articles（IDベースで重複を避けて統合）
+    if (Array.isArray(syncData.articles)) {
+      if (!state.articles) state.articles = [];
+      syncData.articles.forEach(item => {
+        if (!state.articles.some(x => x.id === item.id)) state.articles.push(item);
       });
     }
     saveState();

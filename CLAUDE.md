@@ -6,8 +6,9 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 ## ファイル構成
 - `index.html` - メインアプリケーション（レスポンシブHTML）
 - `data.js` - エッセイ・単語データ（Claude Codeが更新）
-- `vocab-enrichment.js` - 語彙拡充データ（第2例文・語源/覚え方・コロケーション）。キーはglossaryの`word.toLowerCase()`。**新しいエッセイを追加したら、新出単語分のエントリを必ずここにも追加する**
+- `vocab-enrichment.js` - 語彙拡充データ。2つのconstを持つ: ①`VOCAB_ENRICHMENT`（第2例文・語源/覚え方・コロケーション）②`VISUAL_OVERRIDES`（フラッシュカードのイラスト修正版。`{e:絵文字, h:情景ヒント}`）。キーはどちらもglossaryの`word.toLowerCase()`。**新しいエッセイを追加したら、新出単語分を両方に追加する**
 - `listening-data.js` - リスニング教材（audioUrl形式 or youtubeId形式）
+- `articles-data.js` - ニュース記事教材（`ARTICLES`配列。ESSAYSと同じスキーマ+source/sourceUrl）。**著作権配慮のため原文の転載は禁止。報道を基にClaudeが書き起こしたオリジナル要約記事のみ**。glossaryの新出単語はvocab-enrichment.jsにも追記する
 
 ## エッセイ生成ルール
 1. **長さ**: 約150語
@@ -78,6 +79,10 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **PWA対応**: manifest.json + sw.js（stale-while-revalidateキャッシュ）+ アイコン3種。ホーム画面追加・オフライン動作可
 - **ホーム**: エッセイライブラリは6ジャンル（Finance & Economics / Business English / Native Collocations / Slang & Casual / Science & Technology / Society & Culture、`essayGenre()`でtopicから判定）別のデフォルト全折りたたみ表示。Read Essaysも全折りたたみ。Recently Openedは5件表示+「もっと見る」で最大50件。連続学習2日以上でストリークバナー表示
 - **語彙エンリッチメント**: 全単語に第2例文・語源/覚え方・コロケーションを表示（単語カード・フラッシュカード）。例文読み上げボタン付き。Vocab検索は例文・コロケーション・語源にもヒット
+- **Vocabタブは3ビュー構成（2026-07-27刷新）**: ①「今日の10語」デイリーセッション（`state.dailyVocab`。復習期限語(最大4)+最近読んだエッセイの新語(最大3)+新語で10語選定。カードを開くとチェック、10/10で完了画面+「もう10語」）②「エッセイ別」（出典ごとにグループ表示、新しい順）③「All」（検索+フィルター）。**単語カードはデフォルト折りたたみ**（英語だけ表示→タップで意味・例文を展開。畳んだ状態が小テストになる設計）。検索時のみ自動展開。旧来の全件展開一覧（55万px）に戻さないこと
+- **フラッシュカードのイラスト**: `getWordVisual()` が `VISUAL_OVERRIDES` → `WORD_VISUAL_MAP`（手作り183件）→ 日本語訳のキーワード自動マッチ、の順で解決する。自動マッチは誤爆しやすいため、2026-07-26に全1403語を点検し880語を修正済み。**汎用フォールバック（「名詞」「形容詞」等）に落ちる語はゼロを維持すること**
+- **ヒントのネタバレ防止（重要）**: `buildFlashcardHint()` は `visual.h` が日本語訳と一致する場合にImage行を出さない。自動生成のhは訳そのままで答えになるため。`VISUAL_OVERRIDES` の h には**訳語を書かず情景を書く**こと（例: hollow out →「外側は立派な大木。でも中身は空っぽ」）
+- **記事リーダー**（ホームのNews Articlesセクション）: ①アプリ内「＋記事を追加」で本文貼り付け→state.articlesにlocalStorage保存（Glossary/訳なし、音声再生・ブラインド可）②記事URLをClaudeに送る→articles-data.jsにGlossary・訳付きオリジナル要約記事として追加。記事はエッセイ詳細ページを流用表示（訳・Glossaryがない場合はボタン非表示）。記事のglossaryも単語帳・SRSに自動統合
 - **SRSタブ構成（2026-07-19整理後）**: Due alert / 14日グラフ（Words Read・Quiz Reviews）/ 長期グラフ2種 / Mastery Distribution / Device Sync / バックアップのみ。Upcoming Reviews・Study History・Vocabulary Growthグラフは削除済み（復活させない）
 
 ## 技術スタック
