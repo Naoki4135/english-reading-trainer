@@ -58,7 +58,8 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents/iCloud/`
 
 ## エッセイ規模
-- エッセイは126本（2026-07-19時点。data.jsのESSAYS配列）
+- エッセイは146本（2026-07-31時点。data.jsのESSAYS配列）
+- 長さは標準150語だが、2026-07-31追加分（コロケーション10+スラング10）は約100語のショート版
 
 ## UI/UX仕様
 - Premium/Enhanced Apple Neural TTS音声を優先選択

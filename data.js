@@ -4729,3 +4729,1390 @@ The countries navigating the transition most successfully combine gradualism wit
 この移行を最もうまく乗り切っている国々は、漸進主義と自動安定化装置を組み合わせている。退職年齢を平均寿命に連動させ、給付を計算式で調整することで、痛みを伴う決定を選挙サイクルから遮断しているのだ。`
 }
 );
+
+ESSAYS.push(
+{
+  "id": "2026-07-31-001",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Kicking the Habit for Good",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 102,
+  "text": "Last winter, I seemed to catch a cold every few weeks. My doctor was blunt: late-night snacking and endless coffee were wearing me down, and it was time to kick the habit for good. I had picked up these routines during a stressful project, and quitting felt daunting.\n\nRather than going cold turkey, I made gradual changes. I cut down on caffeine, took up jogging, and protected my sleep. Within two months, I rarely fell ill and had far more energy.\n\nYou cannot break a habit overnight, but steady effort pays off. Now I make a point of guarding my health first.",
+  "glossary": [
+    {
+      "word": "catch a cold",
+      "pos": "phrase",
+      "japanese": "風邪をひく",
+      "definition": "to become ill with a cold",
+      "example": "Wear a warm coat or you might catch a cold.",
+      "exampleJa": "暖かいコートを着ないと風邪をひくかもしれないよ。"
+    },
+    {
+      "word": "wear someone down",
+      "pos": "phrasal verb",
+      "japanese": "（人を）疲弊させる、消耗させる",
+      "definition": "to gradually make someone weaker or more tired",
+      "example": "Months of overtime slowly wore the whole team down.",
+      "exampleJa": "何か月もの残業がチーム全体を徐々に疲弊させた。"
+    },
+    {
+      "word": "kick the habit",
+      "pos": "phrase",
+      "japanese": "（悪い）習慣を断つ",
+      "definition": "to stop doing something harmful that you do regularly",
+      "example": "He finally kicked the habit of smoking after twenty years.",
+      "exampleJa": "彼は20年を経てついに喫煙の習慣を断った。"
+    },
+    {
+      "word": "pick up a habit",
+      "pos": "phrase",
+      "japanese": "習慣が身につく",
+      "definition": "to start doing something regularly, often without intending to",
+      "example": "She picked up the habit of skipping breakfast at college.",
+      "exampleJa": "彼女は大学時代に朝食を抜く習慣が身についた。"
+    },
+    {
+      "word": "go cold turkey",
+      "pos": "phrase",
+      "japanese": "（悪習を）きっぱりやめる",
+      "definition": "to quit something suddenly and completely rather than gradually",
+      "example": "Instead of cutting back slowly, he went cold turkey.",
+      "exampleJa": "少しずつ減らす代わりに、彼はきっぱりやめた。"
+    },
+    {
+      "word": "cut down on",
+      "pos": "phrasal verb",
+      "japanese": "～を減らす、控える",
+      "definition": "to reduce the amount of something you consume or do",
+      "example": "My doctor advised me to cut down on sugar.",
+      "exampleJa": "医者は私に砂糖を控えるよう勧めた。"
+    },
+    {
+      "word": "fall ill",
+      "pos": "phrase",
+      "japanese": "病気になる",
+      "definition": "to become sick",
+      "example": "Several employees fell ill during the busy winter season.",
+      "exampleJa": "忙しい冬の時期に数人の社員が体調を崩した。"
+    },
+    {
+      "word": "pay off",
+      "pos": "phrasal verb",
+      "japanese": "報われる、成果が出る",
+      "definition": "to bring a good result after effort or investment",
+      "example": "All those early morning runs finally paid off.",
+      "exampleJa": "あの早朝ランニングの積み重ねがついに報われた。"
+    }
+  ],
+  "translation": "昨年の冬、私は数週間おきに風邪をひいているようでした。医師は率直でした。夜遅くの間食と際限のないコーヒーが私を消耗させており、その習慣をきっぱり断つべき時だというのです。これらの習慣はストレスの多いプロジェクトの間に身についたもので、やめるのは大変に思えました。\n\n一気にやめるのではなく、私は少しずつ変えていきました。カフェインを減らし、ジョギングを始め、睡眠を大切にしました。2か月もすると、病気になることはほとんどなくなり、はるかに元気になりました。\n\n習慣は一晩では断てませんが、地道な努力は報われます。今では、まず自分の健康を守ることを心がけています。"
+},
+{
+  "id": "2026-07-31-002",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Striking a Deal Against the Odds",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 102,
+  "text": "When two rival software firms began merger talks, everyone expected the negotiations to collapse. The smaller company's founder was famous for driving a hard bargain, while the larger firm refused to budge on price. With hundreds of jobs at stake, both sides knew they had to find common ground.\n\nOver three tense weeks, the negotiators gradually agreed to meet each other halfway. The buyer sweetened the deal with generous retention bonuses, and the founder dropped his threat to back out. When they finally struck a deal, the room burst into applause.\n\nSealing the deal took patience, but compromise turned rivals into partners.",
+  "glossary": [
+    {
+      "word": "drive a hard bargain",
+      "pos": "phrase",
+      "japanese": "厳しい条件で交渉する",
+      "definition": "to negotiate firmly and demand very favorable terms",
+      "example": "Suppliers complain that she always drives a hard bargain.",
+      "exampleJa": "彼女はいつも厳しい条件で交渉すると仕入先はこぼしている。"
+    },
+    {
+      "word": "refuse to budge",
+      "pos": "phrase",
+      "japanese": "一歩も譲らない",
+      "definition": "to be unwilling to change one's position or opinion",
+      "example": "Despite hours of talks, the union refused to budge.",
+      "exampleJa": "何時間もの協議にもかかわらず、組合は一歩も譲らなかった。"
+    },
+    {
+      "word": "at stake",
+      "pos": "phrase",
+      "japanese": "危機にさらされて、懸かって",
+      "definition": "at risk of being lost depending on the outcome",
+      "example": "With the contract at stake, everyone prepared carefully.",
+      "exampleJa": "契約が懸かっていたので、全員が入念に準備した。"
+    },
+    {
+      "word": "find common ground",
+      "pos": "phrase",
+      "japanese": "共通点を見いだす、歩み寄る",
+      "definition": "to discover shared interests or opinions that enable agreement",
+      "example": "The two parties struggled to find common ground on taxes.",
+      "exampleJa": "両党は税をめぐって共通点を見いだすのに苦労した。"
+    },
+    {
+      "word": "meet someone halfway",
+      "pos": "phrase",
+      "japanese": "歩み寄る、妥協する",
+      "definition": "to compromise by giving up part of what you want",
+      "example": "If you lower the price, I will meet you halfway.",
+      "exampleJa": "値段を下げてくれるなら、こちらも歩み寄りますよ。"
+    },
+    {
+      "word": "sweeten the deal",
+      "pos": "phrase",
+      "japanese": "取引の条件を良くする",
+      "definition": "to add something attractive to make an offer more appealing",
+      "example": "They sweetened the deal by offering free maintenance for a year.",
+      "exampleJa": "彼らは1年間の無料保守を付けて条件を良くした。"
+    },
+    {
+      "word": "back out",
+      "pos": "phrasal verb",
+      "japanese": "（約束・取引から）手を引く",
+      "definition": "to withdraw from an agreement or commitment",
+      "example": "The investor backed out at the last possible minute.",
+      "exampleJa": "その投資家は土壇場になって手を引いた。"
+    },
+    {
+      "word": "strike a deal",
+      "pos": "phrase",
+      "japanese": "取引をまとめる、合意に達する",
+      "definition": "to reach an agreement, especially after negotiation",
+      "example": "The two airlines struck a deal to share routes.",
+      "exampleJa": "2つの航空会社は路線を共有する取引をまとめた。"
+    }
+  ],
+  "translation": "ライバル関係にある2つのソフトウェア企業が合併交渉を始めたとき、誰もが交渉は決裂すると予想していました。小さいほうの会社の創業者は厳しい条件で交渉することで有名で、大きいほうの会社は価格について一歩も譲ろうとしませんでした。何百もの雇用が懸かっているため、双方とも歩み寄る必要があると分かっていました。\n\n緊張が続いた3週間の間に、交渉担当者たちは少しずつ互いに妥協することに合意しました。買い手側は手厚い残留ボーナスで条件を良くし、創業者は取引から手を引くという脅しを取り下げました。ついに取引がまとまったとき、部屋は拍手に包まれました。\n\n契約の締結には忍耐が必要でしたが、妥協がライバルをパートナーに変えたのです。"
+},
+{
+  "id": "2026-07-31-003",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Beating the Deadline Without Cutting Corners",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 99,
+  "text": "My team once had to deliver a client report in five days—half the usual time. We were racing against the clock from the start, and I knew that putting off the hard parts would sink us. To buy time, I asked the client to review sections as we finished them, rather than waiting for the whole document.\n\nSome colleagues wanted to cut corners, but sloppy work would only backfire. Instead, we divided tasks clearly and pulled an all-nighter near the end.\n\nWe beat the deadline by six hours. Careful planning, not panic, is what keeps a project on track.",
+  "glossary": [
+    {
+      "word": "race against the clock",
+      "pos": "phrase",
+      "japanese": "時間と競争する、時間に追われる",
+      "definition": "to hurry to finish something before a time limit",
+      "example": "Engineers raced against the clock to restore the system.",
+      "exampleJa": "技術者たちはシステム復旧のため時間と競争した。"
+    },
+    {
+      "word": "put off",
+      "pos": "phrasal verb",
+      "japanese": "先延ばしにする",
+      "definition": "to delay doing something until a later time",
+      "example": "Do not put off the difficult tasks until Friday.",
+      "exampleJa": "難しい仕事を金曜日まで先延ばしにしてはいけない。"
+    },
+    {
+      "word": "buy time",
+      "pos": "phrase",
+      "japanese": "時間を稼ぐ",
+      "definition": "to do something to gain extra time before acting",
+      "example": "She asked extra questions to buy time before answering.",
+      "exampleJa": "彼女は答える前に時間を稼ごうと追加の質問をした。"
+    },
+    {
+      "word": "cut corners",
+      "pos": "phrase",
+      "japanese": "手を抜く、近道をする",
+      "definition": "to do something in the easiest or cheapest way, sacrificing quality",
+      "example": "The builder cut corners, and the roof leaked within months.",
+      "exampleJa": "その建築業者は手を抜き、数か月で屋根から雨漏りした。"
+    },
+    {
+      "word": "backfire",
+      "pos": "verb",
+      "japanese": "裏目に出る",
+      "definition": "to produce the opposite result of what was intended",
+      "example": "His plan to save money backfired and cost him more.",
+      "exampleJa": "彼の節約計画は裏目に出て、かえって出費が増えた。"
+    },
+    {
+      "word": "pull an all-nighter",
+      "pos": "phrase",
+      "japanese": "徹夜する",
+      "definition": "to stay up all night working or studying",
+      "example": "We pulled an all-nighter to finish the presentation slides.",
+      "exampleJa": "私たちはプレゼン資料を仕上げるために徹夜した。"
+    },
+    {
+      "word": "beat the deadline",
+      "pos": "phrase",
+      "japanese": "締め切りより早く終える",
+      "definition": "to finish something before the time limit expires",
+      "example": "She beat the deadline by submitting the essay early.",
+      "exampleJa": "彼女はエッセイを早めに提出し、締め切りより早く終えた。"
+    },
+    {
+      "word": "on track",
+      "pos": "phrase",
+      "japanese": "順調で、予定どおりで",
+      "definition": "making progress as planned toward a goal",
+      "example": "Weekly check-ins keep the whole project on track.",
+      "exampleJa": "週次の確認ミーティングがプロジェクト全体を順調に保つ。"
+    }
+  ],
+  "translation": "私のチームはかつて、通常の半分の5日間で顧客向けレポートを納品しなければなりませんでした。最初から時間との競争で、難しい部分を先延ばしにすれば失敗すると分かっていました。時間を稼ぐために、文書全体の完成を待つのではなく、仕上がったセクションから順に顧客にレビューしてもらうよう頼みました。\n\n手を抜きたがる同僚もいましたが、雑な仕事は裏目に出るだけです。その代わり、私たちは作業を明確に分担し、終盤に一晩徹夜しました。\n\n結果、締め切りより6時間早く終えられました。プロジェクトを順調に保つのは、パニックではなく入念な計画なのです。"
+},
+{
+  "id": "2026-07-31-004",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Mending Fences with a Colleague",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 103,
+  "text": "After a heated argument over a shared project, my colleague Dana and I stopped speaking for weeks. Neither of us wanted to hold a grudge, yet neither made the first move. The silence made meetings awkward for the whole team.\n\nEventually, our manager urged us to clear the air. I reached out and suggested coffee, and to my relief Dana accepted. We admitted we did not always see eye to eye, but we agreed the friendship mattered more than being right.\n\nIt took effort to mend fences, but we finally buried the hatchet. Today, that old dispute is simply water under the bridge.",
+  "glossary": [
+    {
+      "word": "hold a grudge",
+      "pos": "phrase",
+      "japanese": "恨みを抱き続ける",
+      "definition": "to keep feeling angry at someone about a past wrong",
+      "example": "He never holds a grudge, even after unfair criticism.",
+      "exampleJa": "彼は不当な批判を受けても決して恨みを抱き続けない。"
+    },
+    {
+      "word": "make the first move",
+      "pos": "phrase",
+      "japanese": "先に行動を起こす",
+      "definition": "to be the first person to act in a situation",
+      "example": "Someone had to make the first move toward reconciliation.",
+      "exampleJa": "誰かが和解に向けて先に動く必要があった。"
+    },
+    {
+      "word": "clear the air",
+      "pos": "phrase",
+      "japanese": "わだかまりを解消する",
+      "definition": "to discuss a problem openly in order to remove bad feelings",
+      "example": "A frank conversation helped the two friends clear the air.",
+      "exampleJa": "率直な会話のおかげで2人の友人はわだかまりを解消した。"
+    },
+    {
+      "word": "reach out",
+      "pos": "phrasal verb",
+      "japanese": "連絡を取る、歩み寄る",
+      "definition": "to make contact with someone, often to offer or seek help",
+      "example": "She reached out to her old mentor for advice.",
+      "exampleJa": "彼女は助言を求めてかつての恩師に連絡を取った。"
+    },
+    {
+      "word": "see eye to eye",
+      "pos": "phrase",
+      "japanese": "意見が一致する",
+      "definition": "to agree with someone or share the same view",
+      "example": "The partners rarely see eye to eye on hiring decisions.",
+      "exampleJa": "その共同経営者たちは採用の決定でめったに意見が合わない。"
+    },
+    {
+      "word": "mend fences",
+      "pos": "phrase",
+      "japanese": "関係を修復する",
+      "definition": "to repair a damaged relationship after a disagreement",
+      "example": "He visited his brother to mend fences after the quarrel.",
+      "exampleJa": "彼は口論の後、関係を修復するために兄を訪ねた。"
+    },
+    {
+      "word": "bury the hatchet",
+      "pos": "phrase",
+      "japanese": "和解する、争いをやめる",
+      "definition": "to end a conflict and become friendly again",
+      "example": "The rivals buried the hatchet and joined forces.",
+      "exampleJa": "ライバル同士は和解して力を合わせた。"
+    },
+    {
+      "word": "water under the bridge",
+      "pos": "phrase",
+      "japanese": "過ぎ去ったこと、済んだこと",
+      "definition": "past events that are no longer worth worrying about",
+      "example": "Our disagreement last year is water under the bridge now.",
+      "exampleJa": "去年の意見の対立は、今ではもう過ぎたことだ。"
+    }
+  ],
+  "translation": "共同プロジェクトをめぐる激しい口論の後、同僚のダナと私は数週間、口をきかなくなりました。どちらも恨みを抱き続けたくはなかったのに、どちらも先に動こうとしませんでした。その沈黙のせいで、チーム全体の会議が気まずくなっていました。\n\nやがて上司が、わだかまりを解消するよう私たちを促しました。私から連絡を取ってコーヒーに誘うと、ありがたいことにダナは応じてくれました。いつも意見が一致するわけではないと認め合いましたが、正しさよりも友情のほうが大切だという点では一致しました。\n\n関係の修復には努力が必要でしたが、私たちはついに和解しました。今では、あの昔のいさかいはただの過ぎ去ったことです。"
+},
+{
+  "id": "2026-07-31-005",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Taking the Plunge at Last",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 100,
+  "text": "For years, Maya dreamed of leaving her stable bank job to open a bakery. She spent months weighing her options, listing risks and rewards in a worn notebook. Friends told her to follow her gut, but she kept sitting on the fence, afraid of failure.\n\nOne evening, her mentor offered simple advice: sleep on it, then decide once and for all. If doubts remained, she could always start small. That night, Maya finally made up her mind.\n\nShe took the plunge the following spring. She still has second thoughts sometimes, yet she has never regretted taking that leap of faith.",
+  "glossary": [
+    {
+      "word": "weigh one's options",
+      "pos": "phrase",
+      "japanese": "選択肢を比較検討する",
+      "definition": "to carefully consider different choices before deciding",
+      "example": "Before accepting the offer, weigh your options carefully.",
+      "exampleJa": "オファーを受ける前に、選択肢を慎重に比較検討しなさい。"
+    },
+    {
+      "word": "follow one's gut",
+      "pos": "phrase",
+      "japanese": "直感に従う",
+      "definition": "to act according to instinct rather than logic",
+      "example": "When data is unclear, experienced managers follow their gut.",
+      "exampleJa": "データがはっきりしないとき、経験豊富な管理職は直感に従う。"
+    },
+    {
+      "word": "sit on the fence",
+      "pos": "phrase",
+      "japanese": "決めかねる、態度を保留する",
+      "definition": "to avoid deciding or choosing between two sides",
+      "example": "You cannot sit on the fence about this forever.",
+      "exampleJa": "この件についていつまでも決めかねているわけにはいかない。"
+    },
+    {
+      "word": "sleep on it",
+      "pos": "phrase",
+      "japanese": "一晩考える",
+      "definition": "to wait until the next day before making a decision",
+      "example": "Do not sign today—sleep on it and call me tomorrow.",
+      "exampleJa": "今日は署名しないで。一晩考えて明日電話をください。"
+    },
+    {
+      "word": "make up one's mind",
+      "pos": "phrase",
+      "japanese": "決心する",
+      "definition": "to make a final decision about something",
+      "example": "She made up her mind to study abroad next year.",
+      "exampleJa": "彼女は来年留学することを決心した。"
+    },
+    {
+      "word": "take the plunge",
+      "pos": "phrase",
+      "japanese": "思い切ってやる",
+      "definition": "to finally do something important or risky after hesitating",
+      "example": "After years of renting, they took the plunge and bought a house.",
+      "exampleJa": "何年も賃貸で暮らした後、彼らは思い切って家を買った。"
+    },
+    {
+      "word": "have second thoughts",
+      "pos": "phrase",
+      "japanese": "考え直す、迷いが生じる",
+      "definition": "to begin doubting a decision you have already made",
+      "example": "He had second thoughts about selling the family business.",
+      "exampleJa": "彼は家業を売ることについて迷いが生じた。"
+    },
+    {
+      "word": "leap of faith",
+      "pos": "phrase",
+      "japanese": "思い切った決断、賭け",
+      "definition": "a decision to do something without being sure it will succeed",
+      "example": "Moving overseas without a job was a real leap of faith.",
+      "exampleJa": "仕事のあてもなく海外に移住するのは、まさに思い切った賭けだった。"
+    }
+  ],
+  "translation": "長年、マヤは安定した銀行の仕事を辞めてベーカリーを開くことを夢見ていました。彼女は何か月もかけて選択肢を比較検討し、使い込んだノートにリスクとリターンを書き出しました。友人たちは直感に従えと言いましたが、失敗を恐れて、彼女は決めかねたままでした。\n\nある晩、メンターがシンプルな助言をくれました。一晩考えて、そのうえできっぱり決めなさい、と。迷いが残るなら、小さく始めればいいのです。その夜、マヤはついに決心しました。\n\n翌年の春、彼女は思い切って踏み出しました。今でも時々迷いが生じることはありますが、あの思い切った決断を後悔したことは一度もありません。"
+},
+{
+  "id": "2026-07-31-006",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Footing the Bill on My Own",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 107,
+  "text": "When my roommate moved out last spring, I suddenly had to foot the bill for our apartment alone. My salary had not changed, so I needed to cut costs fast.\n\nI began to keep track of every purchase, and the results surprised me. Coffee runs and delivery fees looked harmless, yet together they made a dent in my budget each month. Canceling two subscriptions did not break the bank, and cooking at home saved even more.\n\nNow I set aside ten percent of every paycheck for a rainy day. Learning to live within my means felt limiting at first, but it quietly bought me peace of mind.",
+  "glossary": [
+    {
+      "word": "foot the bill",
+      "pos": "phrase",
+      "japanese": "費用を負担する、勘定を持つ",
+      "definition": "to pay for something, especially something expensive",
+      "example": "The company footed the bill for our team dinner last night.",
+      "exampleJa": "会社が昨夜のチーム夕食会の費用を負担してくれた。"
+    },
+    {
+      "word": "cut costs",
+      "pos": "phrase",
+      "japanese": "経費を削減する",
+      "definition": "to reduce the amount of money being spent",
+      "example": "The airline cut costs by removing free meals from short flights.",
+      "exampleJa": "その航空会社は短距離便の無料機内食を廃止して経費を削減した。"
+    },
+    {
+      "word": "keep track of",
+      "pos": "phrase",
+      "japanese": "～を記録する、把握しておく",
+      "definition": "to monitor or record something continuously",
+      "example": "Use a simple app to keep track of your daily spending.",
+      "exampleJa": "シンプルなアプリを使って毎日の支出を記録しましょう。"
+    },
+    {
+      "word": "make a dent in",
+      "pos": "phrase",
+      "japanese": "～を目に見えて減らす、～に食い込む",
+      "definition": "to reduce something noticeably, especially money or work",
+      "example": "Unexpected medical bills can make a dent in your savings quickly.",
+      "exampleJa": "思わぬ医療費はあっという間に貯金を目減りさせることがある。"
+    },
+    {
+      "word": "break the bank",
+      "pos": "phrase",
+      "japanese": "大金がかかる、家計を圧迫する",
+      "definition": "to cost more money than one can afford",
+      "example": "A picnic in the park will not break the bank.",
+      "exampleJa": "公園でのピクニックなら大した出費にはならない。"
+    },
+    {
+      "word": "set aside",
+      "pos": "phrasal verb",
+      "japanese": "（お金などを）取っておく、蓄える",
+      "definition": "to save money regularly for a particular purpose",
+      "example": "She sets aside a little money every month for travel.",
+      "exampleJa": "彼女は旅行のために毎月少しずつお金を取り分けている。"
+    },
+    {
+      "word": "for a rainy day",
+      "pos": "phrase",
+      "japanese": "万一に備えて、いざという時のために",
+      "definition": "for a future time when money may suddenly be needed",
+      "example": "My grandfather always saved part of his salary for a rainy day.",
+      "exampleJa": "祖父はいざという時に備えて給料の一部を必ず貯金していた。"
+    },
+    {
+      "word": "live within one's means",
+      "pos": "phrase",
+      "japanese": "収入の範囲内で生活する",
+      "definition": "to spend no more money than you earn",
+      "example": "Learning to live within your means brings real financial freedom.",
+      "exampleJa": "収入の範囲内で暮らすことを学べば、本当の経済的自由が手に入る。"
+    }
+  ],
+  "translation": "昨春ルームメイトが出て行き、私は突然アパートの費用を一人で負担しなければならなくなった。給料は変わっていないので、急いで経費を削る必要があった。\n\nすべての買い物を記録し始めると、結果は意外なものだった。コーヒーや配達料は無害に見えるのに、合わせると毎月家計に確実に食い込んでいた。サブスクを2つ解約しても大した痛手にはならず、自炊はさらに大きな節約になった。\n\n今では、いざという時のために毎月給料の1割を取り分けている。収入の範囲内で暮らすことは最初は窮屈に感じたが、それは静かに心の平和を買ってくれた。"
+},
+{
+  "id": "2026-07-31-007",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Handing In My Notice",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 108,
+  "text": "For eight years I tried to climb the corporate ladder at a trading firm, believing promotion was the only measure of success. But the higher I rose, the more the work felt like a dead-end job dressed in a better title.\n\nLast autumn I finally took the plunge. I handed in my notice, careful not to burn any bridges, and spent three months studying data analysis. Friends warned that leaving a stable position was a reckless career move.\n\nThey were wrong. In February I landed a job at a small climate startup. The pay is lower, but stepping out of my comfort zone gave my work meaning again.",
+  "glossary": [
+    {
+      "word": "climb the corporate ladder",
+      "pos": "phrase",
+      "japanese": "出世の階段を上る",
+      "definition": "to advance to higher and higher positions in a company",
+      "example": "He spent twenty years climbing the corporate ladder in Tokyo.",
+      "exampleJa": "彼は東京で20年かけて出世の階段を上った。"
+    },
+    {
+      "word": "dead-end job",
+      "pos": "noun phrase",
+      "japanese": "先の見えない仕事、行き詰まりの仕事",
+      "definition": "a job that offers no chance of promotion or progress",
+      "example": "She quit her dead-end job to open her own café.",
+      "exampleJa": "彼女は先の見えない仕事を辞めて自分のカフェを開いた。"
+    },
+    {
+      "word": "take the plunge",
+      "pos": "phrase",
+      "japanese": "思い切って踏み出す、決断する",
+      "definition": "to finally do something important or risky after hesitating",
+      "example": "After years of doubt, they took the plunge and moved abroad.",
+      "exampleJa": "何年も迷った末、彼らは思い切って海外に移住した。"
+    },
+    {
+      "word": "hand in one's notice",
+      "pos": "phrase",
+      "japanese": "退職届を出す",
+      "definition": "to formally tell your employer you are leaving your job",
+      "example": "She handed in her notice after receiving a better offer.",
+      "exampleJa": "より良いオファーを受けて、彼女は退職届を出した。"
+    },
+    {
+      "word": "burn bridges",
+      "pos": "phrase",
+      "japanese": "関係を断ち切る、退路を断つ",
+      "definition": "to damage relationships so badly that you cannot return",
+      "example": "Leave politely so you never burn bridges with former colleagues.",
+      "exampleJa": "元同僚との関係を壊さないよう、礼儀正しく去りましょう。"
+    },
+    {
+      "word": "career move",
+      "pos": "noun phrase",
+      "japanese": "キャリア上の一手、転身",
+      "definition": "an action or decision taken to progress in one's career",
+      "example": "Joining that startup turned out to be a smart career move.",
+      "exampleJa": "あのスタートアップへの入社は、結果的に賢明なキャリアの一手だった。"
+    },
+    {
+      "word": "land a job",
+      "pos": "phrase",
+      "japanese": "職を得る、仕事を勝ち取る",
+      "definition": "to succeed in getting a job",
+      "example": "He landed a job at the firm after three interviews.",
+      "exampleJa": "彼は3回の面接を経てその会社の職を得た。"
+    },
+    {
+      "word": "step out of one's comfort zone",
+      "pos": "phrase",
+      "japanese": "慣れた領域から踏み出す、あえて挑戦する",
+      "definition": "to try something new and unfamiliar despite feeling uneasy",
+      "example": "Public speaking forced me to step out of my comfort zone.",
+      "exampleJa": "人前で話すことで、私は慣れた領域から踏み出さざるを得なかった。"
+    }
+  ],
+  "translation": "8年間、私はトレーディング会社で出世の階段を上ろうとし、昇進こそが成功の唯一の尺度だと信じていた。しかし上に行くほど、その仕事は立派な肩書をまとった先の見えない仕事のように感じられた。\n\n昨年の秋、私はついに思い切って踏み出した。関係を壊さないよう気をつけながら退職届を出し、3か月かけてデータ分析を学んだ。安定した職を離れるのは無謀なキャリアの一手だと友人たちは警告した。\n\n彼らは間違っていた。2月、私は小さな気候関連スタートアップで職を得た。給料は下がったが、慣れた領域から踏み出したことで、仕事に再び意味が生まれた。"
+},
+{
+  "id": "2026-07-31-008",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Picking Up New Skills at Any Age",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 105,
+  "text": "At forty-five, my mother decided to pick up a completely new skill: web design. She had not studied anything from scratch in two decades, and at first even the vocabulary confused her.\n\nShe started small, brushing up on the basic English she had learned in school, then joined an online course to learn the ropes of coding. Tutorials helped her get up to speed faster than she expected, though progress sometimes stalled for weeks.\n\nHer secret was simple: keep at it, even for twenty minutes a day. Two years later, the effort paid off—she now designs pages for local shops and mentors other late learners.",
+  "glossary": [
+    {
+      "word": "pick up a skill",
+      "pos": "phrase",
+      "japanese": "スキルを身につける",
+      "definition": "to learn a new ability, often gradually or informally",
+      "example": "Children pick up new skills faster than most adults do.",
+      "exampleJa": "子どもはたいていの大人よりも早く新しいスキルを身につける。"
+    },
+    {
+      "word": "from scratch",
+      "pos": "phrase",
+      "japanese": "ゼロから、一から",
+      "definition": "starting from the very beginning with nothing prepared",
+      "example": "He built the entire website from scratch in a month.",
+      "exampleJa": "彼は1か月でウェブサイト全体をゼロから作り上げた。"
+    },
+    {
+      "word": "brush up on",
+      "pos": "phrasal verb",
+      "japanese": "～を学び直す、磨き直す",
+      "definition": "to improve a skill or knowledge you have partly forgotten",
+      "example": "I need to brush up on my French before the trip.",
+      "exampleJa": "旅行の前にフランス語を学び直す必要がある。"
+    },
+    {
+      "word": "learn the ropes",
+      "pos": "phrase",
+      "japanese": "要領を覚える、基本を身につける",
+      "definition": "to learn the basics of how something is done",
+      "example": "It took her a month to learn the ropes at work.",
+      "exampleJa": "彼女は職場の要領を覚えるのに1か月かかった。"
+    },
+    {
+      "word": "get up to speed",
+      "pos": "phrase",
+      "japanese": "必要な水準に追いつく、習熟する",
+      "definition": "to reach the necessary level of knowledge or skill",
+      "example": "The training videos helped new staff get up to speed quickly.",
+      "exampleJa": "研修動画のおかげで新人はすぐに業務レベルに追いつけた。"
+    },
+    {
+      "word": "keep at it",
+      "pos": "phrase",
+      "japanese": "根気よく続ける",
+      "definition": "to continue working on something despite difficulty",
+      "example": "Learning piano is hard, but keep at it every day.",
+      "exampleJa": "ピアノの習得は大変だが、毎日根気よく続けよう。"
+    },
+    {
+      "word": "pay off",
+      "pos": "phrasal verb",
+      "japanese": "報われる、成果が出る",
+      "definition": "to bring a successful result after much effort",
+      "example": "All those early mornings finally paid off at the exam.",
+      "exampleJa": "早起きを重ねた努力が、ついに試験で報われた。"
+    }
+  ],
+  "translation": "45歳のとき、母はまったく新しいスキル、ウェブデザインを身につけることを決めた。20年間、何かをゼロから学んだことはなく、最初は用語すら彼女を混乱させた。\n\n母は小さく始めた。学校で習った基礎英語を学び直し、それからオンライン講座に参加してコーディングの要領を覚えた。チュートリアルのおかげで思ったより早く追いつけたが、進歩が数週間止まることもあった。\n\n母の秘訣はシンプルだった。1日20分でもいいから、根気よく続けること。2年後、その努力は報われた。今では地元の店のページをデザインし、他の「学び直し組」の指導もしている。"
+},
+{
+  "id": "2026-07-31-009",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Playing It Safe or Taking a Gamble",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 103,
+  "text": "My two uncles run businesses, but their attitudes toward risk could not be more different. Kenji always plays it safe: he weighs the pros and cons of every decision and errs on the side of caution when the numbers look uncertain.\n\nHiroshi, by contrast, is willing to take a gamble on unproven ideas. Yet even he hedges his bets, keeping a savings fund as a safety net in case a venture collapses.\n\nWatching them taught me a balanced lesson. If you avoid all risk, you run the risk of standing still; if you ignore caution completely, one failure can erase years of work.",
+  "glossary": [
+    {
+      "word": "play it safe",
+      "pos": "phrase",
+      "japanese": "安全策を取る、無難にいく",
+      "definition": "to avoid risks and choose the careful option",
+      "example": "Investors often play it safe when markets become unstable.",
+      "exampleJa": "市場が不安定になると、投資家はしばしば安全策を取る。"
+    },
+    {
+      "word": "weigh the pros and cons",
+      "pos": "phrase",
+      "japanese": "長所と短所を比較検討する",
+      "definition": "to consider the advantages and disadvantages carefully before deciding",
+      "example": "We weighed the pros and cons before buying the house.",
+      "exampleJa": "私たちは家を買う前に長所と短所を比較検討した。"
+    },
+    {
+      "word": "err on the side of caution",
+      "pos": "phrase",
+      "japanese": "用心深いほうを選ぶ、慎重を期す",
+      "definition": "to choose the safest option when you are uncertain",
+      "example": "When storms are forecast, schools err on the side of caution.",
+      "exampleJa": "嵐の予報が出ると、学校は慎重を期した対応を取る。"
+    },
+    {
+      "word": "take a gamble",
+      "pos": "phrase",
+      "japanese": "賭けに出る、一か八かやってみる",
+      "definition": "to take a risk hoping for a good result",
+      "example": "The director took a gamble by casting an unknown actor.",
+      "exampleJa": "監督は無名の俳優を起用するという賭けに出た。"
+    },
+    {
+      "word": "hedge one's bets",
+      "pos": "phrase",
+      "japanese": "保険をかける、リスクを分散する",
+      "definition": "to protect yourself by supporting more than one possibility",
+      "example": "She applied to six universities to hedge her bets.",
+      "exampleJa": "彼女はリスクを分散するため、6つの大学に出願した。"
+    },
+    {
+      "word": "safety net",
+      "pos": "noun phrase",
+      "japanese": "安全網、いざという時の備え",
+      "definition": "something that protects you if things go wrong",
+      "example": "His savings acted as a safety net when he lost work.",
+      "exampleJa": "失業したとき、彼の貯金がいざという時の備えとなった。"
+    },
+    {
+      "word": "run the risk of",
+      "pos": "phrase",
+      "japanese": "～する危険を冒す",
+      "definition": "to be in a situation where something bad may happen",
+      "example": "If you skip backups, you run the risk of losing everything.",
+      "exampleJa": "バックアップを怠ると、すべてを失う危険を冒すことになる。"
+    }
+  ],
+  "translation": "私の2人の伯父は事業を営んでいるが、リスクに対する姿勢はまるで違う。ケンジは常に安全策を取る。すべての決断で長所と短所を比較検討し、数字が不確かなときは用心深いほうを選ぶのだ。\n\n対照的にヒロシは、実績のないアイデアに賭けることをいとわない。しかしそんな彼でも保険はかけていて、事業が破綻した場合に備え、貯蓄をいざという時の安全網として確保している。\n\n2人を見て、私はバランスの取れた教訓を学んだ。すべてのリスクを避ければ、足踏みしたままになる危険を冒すことになる。逆に用心をまったく無視すれば、一度の失敗が何年分もの努力を消し去りかねないのだ。"
+},
+{
+  "id": "2026-07-31-010",
+  "date": "2026-07-31",
+  "topic": "Native Collocations",
+  "title": "Getting Your Point Across",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 105,
+  "text": "My first big presentation was a disaster. I crammed forty slides with data, lost my train of thought twice, and failed to get my point across. Half the room was checking email before I finished.\n\nA senior colleague later shared her approach. To hold an audience's attention, she said, you must paint a picture with one clear story, not a pile of statistics. Numbers support a message; they rarely drive it home.\n\nAt my next talk, I used three slides and a customer's story that struck a chord with the room. When questions came, I even answered a few off the cuff—and people actually listened.",
+  "glossary": [
+    {
+      "word": "lose one's train of thought",
+      "pos": "phrase",
+      "japanese": "話の筋を見失う、考えの流れが途切れる",
+      "definition": "to forget what you were saying or thinking",
+      "example": "The sudden interruption made him lose his train of thought.",
+      "exampleJa": "突然邪魔が入って、彼は話の筋を見失ってしまった。"
+    },
+    {
+      "word": "get one's point across",
+      "pos": "phrase",
+      "japanese": "言いたいことを伝える",
+      "definition": "to make other people understand what you mean",
+      "example": "Simple examples help teachers get their points across to students.",
+      "exampleJa": "シンプルな例を使うと、教師は生徒に言いたいことを伝えやすくなる。"
+    },
+    {
+      "word": "hold someone's attention",
+      "pos": "phrase",
+      "japanese": "人の注意を引きつけておく",
+      "definition": "to keep someone interested and focused on you",
+      "example": "A good storyteller can hold an audience's attention for hours.",
+      "exampleJa": "優れた語り手は、何時間でも聴衆の注意を引きつけておける。"
+    },
+    {
+      "word": "paint a picture",
+      "pos": "phrase",
+      "japanese": "情景を描き出す、具体的にイメージさせる",
+      "definition": "to describe something vividly so people can imagine it",
+      "example": "Her report painted a clear picture of village life.",
+      "exampleJa": "彼女の報告は村の暮らしをありありと描き出した。"
+    },
+    {
+      "word": "drive home",
+      "pos": "phrasal verb",
+      "japanese": "（要点を）強く印象づける、しっかり理解させる",
+      "definition": "to make a point completely clear and memorable",
+      "example": "The coach used replays to drive home his main message.",
+      "exampleJa": "コーチはリプレー映像を使って、要点を強く印象づけた。"
+    },
+    {
+      "word": "strike a chord",
+      "pos": "phrase",
+      "japanese": "共感を呼ぶ、心の琴線に触れる",
+      "definition": "to cause people to feel sympathy or personal recognition",
+      "example": "The film struck a chord with viewers who grew up abroad.",
+      "exampleJa": "その映画は、海外で育った観客の共感を呼んだ。"
+    },
+    {
+      "word": "off the cuff",
+      "pos": "phrase",
+      "japanese": "即興で、準備なしに",
+      "definition": "without preparation; spontaneously",
+      "example": "He gave a funny speech completely off the cuff.",
+      "exampleJa": "彼はまったくの即興で面白いスピーチをした。"
+    }
+  ],
+  "translation": "私の初めての大きなプレゼンは大失敗だった。40枚のスライドにデータを詰め込み、2度も話の筋を見失い、言いたいことを伝えられなかった。話し終える前に、会場の半分はメールをチェックしていた。\n\n後日、先輩の同僚が自分のやり方を教えてくれた。聴衆の注意を引きつけておくには、統計の山ではなく、1つの明確なストーリーで情景を描き出さなければならない、と。数字はメッセージを支えはするが、それを強く印象づけることはめったにない。\n\n次の発表で、私はスライドを3枚にし、会場の共感を呼んだある顧客のストーリーを使った。質問が来たときには、いくつか即興で答えることさえできた。そして今度は、人々が本当に耳を傾けてくれた。"
+},
+{
+  "id": "2026-07-31-011",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "Circle Back Later: Slang of the Remote Office",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 109,
+  "text": "American offices moved online, and so did their slang. When a topic gets too complicated, someone says, 'Let's circle back to this later,' meaning they will return to it. If a manager wants to talk, they might 'ping' you first, then 'hop on a call.' Others prefer to 'touch base,' a quick, casual check-in borrowed from baseball. Colleagues who are 'in the weeds' are buried in tiny details and overwhelmed.\n\nBefore a meeting ends, you may hear, 'I have a hard stop at three,' which means the person must leave exactly on time. And if nobody has 'bandwidth,' the whole team is too busy to take on new work.",
+  "glossary": [
+    {
+      "word": "circle back",
+      "pos": "phrase",
+      "japanese": "後でその話題に戻る",
+      "definition": "To return to a topic or discussion at a later time.",
+      "example": "Let's circle back to the budget question next week.",
+      "exampleJa": "予算の件は来週あらためて話しましょう。"
+    },
+    {
+      "word": "ping",
+      "pos": "slang (verb)",
+      "japanese": "チャットで短く連絡する",
+      "definition": "To send someone a quick message, usually on a chat app.",
+      "example": "Just ping me when the report is ready to review.",
+      "exampleJa": "レポートの確認準備ができたら、チャットで一言ください。"
+    },
+    {
+      "word": "hop on a call",
+      "pos": "phrase",
+      "japanese": "（気軽に）通話に参加する",
+      "definition": "To join a phone or video call, often casually or quickly.",
+      "example": "Can you hop on a call in five minutes?",
+      "exampleJa": "5分後に通話に入れますか？"
+    },
+    {
+      "word": "touch base",
+      "pos": "phrase",
+      "japanese": "軽く連絡を取り合う・近況確認する",
+      "definition": "To make brief contact with someone to share updates.",
+      "example": "Let's touch base on Friday before the client meeting.",
+      "exampleJa": "クライアントとの会議の前に、金曜に軽くすり合わせしましょう。"
+    },
+    {
+      "word": "in the weeds",
+      "pos": "phrase",
+      "japanese": "細部にはまり込んで手一杯",
+      "definition": "Overwhelmed by too many small details or too much work.",
+      "example": "I'm totally in the weeds with these tax forms.",
+      "exampleJa": "この税務書類の細かい作業で完全に手一杯です。"
+    },
+    {
+      "word": "hard stop",
+      "pos": "slang (noun)",
+      "japanese": "絶対に延長できない終了時刻",
+      "definition": "A fixed time when someone must end a meeting.",
+      "example": "I have a hard stop at noon for another meeting.",
+      "exampleJa": "正午には別の会議があるので、絶対にそこで終わります。"
+    },
+    {
+      "word": "bandwidth",
+      "pos": "slang (noun)",
+      "japanese": "（仕事を引き受ける）余力・キャパ",
+      "definition": "The time and energy available to take on more work.",
+      "example": "Sorry, I don't have the bandwidth for another project.",
+      "exampleJa": "すみません、別のプロジェクトを引き受ける余力がありません。"
+    }
+  ],
+  "translation": "アメリカのオフィスはオンラインに移行し、スラングも一緒に移りました。話題が込み入ってくると、誰かが「Let's circle back to this later（後でこの話に戻りましょう）」と言います。上司が話したいときは、まずあなたに「ping（チャットで一言連絡）」してから「hop on a call（通話に入る）」かもしれません。「touch base」を好む人もいます。これは野球から借りた、短くカジュアルな近況確認のことです。「in the weeds」の同僚は、細かい作業に埋もれて手一杯になっています。\n\n会議の終わりが近づくと、「I have a hard stop at three（3時には絶対に抜けます）」という言葉を耳にするかもしれません。これは時間ぴったりに退出しなければならないという意味です。そして誰にも「bandwidth（余力）」がなければ、チーム全体が忙しすぎて新しい仕事を引き受けられないということです。"
+},
+{
+  "id": "2026-07-31-012",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "Ball on a Budget: Talking About Money Troubles",
+  "difficulty": "Casual English",
+  "wordCount": 98,
+  "text": "Money talk in casual American English is full of colorful phrases. If you are 'broke,' you simply have no money. 'Strapped for cash' is softer: money is tight this month, but the situation is temporary. College students often joke that they are 'living paycheck to paycheck,' spending everything they earn before the next payday.\n\nStill, being poor does not mean being boring. To 'ball on a budget' means to live stylishly while spending little, a phrase popular in hip-hop culture. Friends might 'chip in' to share a pizza, and a true 'penny pincher' refuses to 'splurge' on anything.",
+  "glossary": [
+    {
+      "word": "broke",
+      "pos": "slang (adjective)",
+      "japanese": "金欠の・一文無しの",
+      "definition": "Having no money, usually only for a short time.",
+      "example": "I can't go out tonight, I'm totally broke.",
+      "exampleJa": "今夜は出かけられないよ、完全に金欠なんだ。"
+    },
+    {
+      "word": "strapped for cash",
+      "pos": "phrase",
+      "japanese": "手持ちのお金が足りない",
+      "definition": "Short of money for a while, though not completely poor.",
+      "example": "We're a bit strapped for cash until payday arrives.",
+      "exampleJa": "給料日まで、ちょっと手元のお金が心もとないんだ。"
+    },
+    {
+      "word": "living paycheck to paycheck",
+      "pos": "phrase",
+      "japanese": "給料ぎりぎりの生活をする",
+      "definition": "To spend all your earnings before the next payday comes.",
+      "example": "Many young workers live paycheck to paycheck in big cities.",
+      "exampleJa": "大都市では多くの若い労働者が給料ぎりぎりの生活をしている。"
+    },
+    {
+      "word": "ball on a budget",
+      "pos": "phrase",
+      "japanese": "低予算でおしゃれに楽しむ",
+      "definition": "To live or look stylish while spending very little money.",
+      "example": "She balls on a budget with thrift store fashion finds.",
+      "exampleJa": "彼女は古着屋の掘り出し物で、低予算でもおしゃれを楽しんでいる。"
+    },
+    {
+      "word": "chip in",
+      "pos": "phrase",
+      "japanese": "お金を出し合う・割り勘にする",
+      "definition": "To each give some money toward a shared cost.",
+      "example": "Everyone chipped in five dollars for the birthday gift.",
+      "exampleJa": "誕生日プレゼントのために、みんなで5ドルずつ出し合った。"
+    },
+    {
+      "word": "penny pincher",
+      "pos": "slang (noun)",
+      "japanese": "極度の倹約家・ケチな人",
+      "definition": "A person who is extremely careful about spending money.",
+      "example": "My uncle is a penny pincher who reuses everything.",
+      "exampleJa": "僕のおじは何でも再利用する極度の倹約家だ。"
+    },
+    {
+      "word": "splurge",
+      "pos": "slang (verb)",
+      "japanese": "ぜいたくに散財する",
+      "definition": "To spend a lot of money on something special.",
+      "example": "After the bonus, she splurged on a fancy dinner.",
+      "exampleJa": "ボーナスの後、彼女は豪華なディナーに奮発した。"
+    }
+  ],
+  "translation": "くだけたアメリカ英語では、お金の話は色鮮やかな表現であふれています。「broke」なら、単純にお金がない状態です。「strapped for cash」はもう少しやわらかい表現で、今月は懐が厳しいけれど一時的な状況、という意味です。大学生はよく、稼いだお金を次の給料日前に使い切ってしまう「living paycheck to paycheck（給料ぎりぎりの生活）」だと冗談を言います。\n\nそれでも、貧乏だからといって退屈とは限りません。「ball on a budget」は、お金をかけずにおしゃれに暮らすことで、ヒップホップ文化で人気のフレーズです。友達同士でピザ代を「chip in（出し合い）」することもあれば、本物の「penny pincher（倹約家）」は何に対しても「splurge（散財）」しようとしません。"
+},
+{
+  "id": "2026-07-31-013",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "From GOAT to Goated: How Praise Keeps Leveling Up",
+  "difficulty": "Casual English",
+  "wordCount": 97,
+  "text": "Every generation invents new ways to say 'the best.' Today, the strongest compliment is 'GOAT,' short for Greatest Of All Time, first used for athletes like Muhammad Ali and now applied to anyone. When something wins your approval, you call it a 'W,' pronounced 'dub,' the opposite of an 'L.'\n\nOnline, praise keeps escalating. A perfect meal is 'elite,' a favorite album is 'peak,' and a talented gamer is 'goated.' Some fans even say a song 'clears' all others, meaning it easily beats them. When words feel too weak, Gen Z simply says the performance was 'different.'",
+  "glossary": [
+    {
+      "word": "GOAT",
+      "pos": "slang (noun)",
+      "japanese": "史上最高の人・もの",
+      "definition": "Greatest Of All Time; the best person in a field.",
+      "example": "Fans still argue about who is the GOAT of basketball.",
+      "exampleJa": "ファンは今でもバスケ史上最高の選手は誰かで議論している。"
+    },
+    {
+      "word": "W",
+      "pos": "slang (noun)",
+      "japanese": "勝利・良いこと（dubと読む）",
+      "definition": "A win or a good outcome; pronounced 'dub'.",
+      "example": "Getting free tickets to the show was a huge W.",
+      "exampleJa": "ショーの無料チケットが手に入ったのは大勝利だった。"
+    },
+    {
+      "word": "L",
+      "pos": "slang (noun)",
+      "japanese": "敗北・残念な出来事",
+      "definition": "A loss or a bad outcome; the opposite of W.",
+      "example": "Missing the last train home was a major L.",
+      "exampleJa": "家に帰る終電を逃したのは大きな敗北だった。"
+    },
+    {
+      "word": "elite",
+      "pos": "slang (adjective)",
+      "japanese": "最高級の・別格の",
+      "definition": "Extremely good; among the very best of its kind.",
+      "example": "The tacos at that little food truck are elite.",
+      "exampleJa": "あの小さなフードトラックのタコスは別格だ。"
+    },
+    {
+      "word": "peak",
+      "pos": "slang (adjective)",
+      "japanese": "頂点の・最高傑作の",
+      "definition": "The highest possible quality; the best example of something.",
+      "example": "That 2010 album is peak music, in my opinion.",
+      "exampleJa": "私に言わせれば、あの2010年のアルバムは音楽の頂点だ。"
+    },
+    {
+      "word": "goated",
+      "pos": "slang (adjective)",
+      "japanese": "GOAT級にすごい",
+      "definition": "So skilled or excellent that it deserves GOAT status.",
+      "example": "She is absolutely goated at solving math problems quickly.",
+      "exampleJa": "彼女は数学の問題を素早く解くのがまさにGOAT級だ。"
+    },
+    {
+      "word": "clears",
+      "pos": "slang (verb)",
+      "japanese": "（他を）圧倒的に上回る",
+      "definition": "To be clearly better than everything else compared to.",
+      "example": "Honestly, this remix clears the original song easily.",
+      "exampleJa": "正直、このリミックスは原曲を余裕で超えている。"
+    },
+    {
+      "word": "different",
+      "pos": "slang (adjective)",
+      "japanese": "次元が違う・別格だ",
+      "definition": "On another level; impressively unlike anything else.",
+      "example": "Her live performances are just different from everyone else's.",
+      "exampleJa": "彼女のライブは他の誰とも次元が違う。"
+    }
+  ],
+  "translation": "どの世代も「最高」を表す新しい言い方を発明します。今日、最も強い褒め言葉は「GOAT」。Greatest Of All Time（史上最高）の略で、最初はモハメド・アリのようなアスリートに使われ、今では誰にでも使われます。何かが気に入ったら、それは「W」（「ダブ」と発音）で、「L」の反対です。\n\nネット上では、褒め言葉はエスカレートし続けています。完璧な食事は「elite」、お気に入りのアルバムは「peak」、上手いゲーマーは「goated」。ある曲が他のすべてを「clears（余裕で超える）」と言うファンさえいます。言葉では足りないと感じたとき、Z世代はシンプルに、そのパフォーマンスは「different（次元が違う）」と言うのです。"
+},
+{
+  "id": "2026-07-31-014",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "Running on Fumes: The Language of Exhaustion",
+  "difficulty": "Casual English",
+  "wordCount": 99,
+  "text": "Americans have endless ways to describe exhaustion. After a long shift, you might be 'wiped' or 'beat,' too tired to move. If you kept working without rest, you are 'running on fumes,' like a car with an empty tank. Students who 'pull an all-nighter' before an exam often 'crash' the moment they get home, falling into sudden, deep sleep.\n\nThe deepest level is 'zonked,' completely knocked out. A parent might whisper, 'The baby is out like a light,' meaning she fell asleep instantly. These phrases appear everywhere, from friendly texts to sitcoms, so learning them helps you sound natural.",
+  "glossary": [
+    {
+      "word": "wiped",
+      "pos": "slang (adjective)",
+      "japanese": "くたくたに疲れた",
+      "definition": "Extremely tired; completely out of energy.",
+      "example": "I was wiped after moving boxes all day long.",
+      "exampleJa": "一日中箱を運んで、くたくたに疲れた。"
+    },
+    {
+      "word": "beat",
+      "pos": "slang (adjective)",
+      "japanese": "へとへとの",
+      "definition": "Very tired, usually after hard physical or mental work.",
+      "example": "Let's order in tonight, I'm totally beat.",
+      "exampleJa": "今夜は出前にしよう、もうへとへとなんだ。"
+    },
+    {
+      "word": "running on fumes",
+      "pos": "phrase",
+      "japanese": "気力の残りかすで動いている",
+      "definition": "Continuing to work with almost no energy left.",
+      "example": "After two late nights, I'm just running on fumes.",
+      "exampleJa": "2日連続の夜更かしで、気力の残りかすで動いている。"
+    },
+    {
+      "word": "pull an all-nighter",
+      "pos": "phrase",
+      "japanese": "徹夜する",
+      "definition": "To stay awake all night, usually to study or work.",
+      "example": "He pulled an all-nighter to finish his final essay.",
+      "exampleJa": "彼は期末レポートを仕上げるために徹夜した。"
+    },
+    {
+      "word": "crash",
+      "pos": "slang (verb)",
+      "japanese": "力尽きて眠り込む",
+      "definition": "To fall asleep suddenly because of extreme tiredness.",
+      "example": "She crashed on the sofa right after dinner ended.",
+      "exampleJa": "彼女は夕食が終わるとすぐソファで眠り込んだ。"
+    },
+    {
+      "word": "zonked",
+      "pos": "slang (adjective)",
+      "japanese": "疲れ果てて意識が飛びそうな",
+      "definition": "So exhausted that you can barely stay awake.",
+      "example": "The kids were zonked after the long theme park day.",
+      "exampleJa": "遊園地で長い一日を過ごして、子どもたちは疲れ果てていた。"
+    },
+    {
+      "word": "out like a light",
+      "pos": "phrase",
+      "japanese": "一瞬で寝落ちして",
+      "definition": "Asleep immediately and very deeply, like a switched-off light.",
+      "example": "He was out like a light before the movie started.",
+      "exampleJa": "映画が始まる前に、彼は一瞬で寝落ちしていた。"
+    }
+  ],
+  "translation": "アメリカ人には疲労を表す言い方が無数にあります。長いシフトの後は「wiped」や「beat」、つまり動けないほど疲れた状態かもしれません。休まず働き続けたなら、あなたは「running on fumes」。ガソリンが空になった車のように、気力の残りかすで動いている状態です。試験前に「pull an all-nighter（徹夜）」した学生は、家に着いた瞬間に「crash」して、突然深い眠りに落ちることがよくあります。\n\n最も深いレベルは「zonked」、完全にノックアウトされた状態です。親が「The baby is out like a light（赤ちゃんは一瞬で寝落ちした）」とささやくこともあります。これらのフレーズは友達とのメッセージからシットコムまであらゆる場所に登場するので、覚えておくと自然な英語に聞こえます。"
+},
+{
+  "id": "2026-07-31-015",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "It's a Scorcher: Weather Talk the American Way",
+  "difficulty": "Casual English",
+  "wordCount": 97,
+  "text": "Small talk about weather is an American tradition, and it comes with its own slang. On a brutally hot day, people complain, 'It's a scorcher out there.' Sticky summer air is 'muggy,' and the hottest stretch of late summer is called the 'dog days.'\n\nWinter has its phrases too. A slightly cold morning is 'nippy,' but in a real freeze you might joke, 'I'm freezing my toes off.' Mothers tell children to 'bundle up' before going outside. And when rain or snow falls heavily, Americans just look out the window and say, 'Wow, it's really coming down.'",
+  "glossary": [
+    {
+      "word": "scorcher",
+      "pos": "slang (noun)",
+      "japanese": "猛暑日・うだるように暑い日",
+      "definition": "An extremely hot day.",
+      "example": "Tomorrow will be a scorcher, so stay inside please.",
+      "exampleJa": "明日は猛暑日になるから、屋内にいてね。"
+    },
+    {
+      "word": "muggy",
+      "pos": "slang (adjective)",
+      "japanese": "蒸し暑い・じめじめした",
+      "definition": "Unpleasantly warm and humid, with heavy sticky air.",
+      "example": "August in Tokyo feels muggy almost every single day.",
+      "exampleJa": "東京の8月はほぼ毎日蒸し暑く感じる。"
+    },
+    {
+      "word": "dog days",
+      "pos": "phrase",
+      "japanese": "真夏の最も暑い時期",
+      "definition": "The hottest weeks of late summer.",
+      "example": "During the dog days, even the pool feels warm.",
+      "exampleJa": "真夏の盛りには、プールの水さえぬるく感じる。"
+    },
+    {
+      "word": "nippy",
+      "pos": "slang (adjective)",
+      "japanese": "肌寒い・ひんやりする",
+      "definition": "Slightly but noticeably cold, often in the morning.",
+      "example": "It's a bit nippy today, so grab a jacket.",
+      "exampleJa": "今日はちょっと肌寒いから、上着を持って行きなよ。"
+    },
+    {
+      "word": "freezing my toes off",
+      "pos": "phrase",
+      "japanese": "凍えるほど寒い（誇張表現）",
+      "definition": "A funny exaggeration meaning to feel extremely cold.",
+      "example": "I was freezing my toes off waiting for the bus.",
+      "exampleJa": "バスを待っている間、凍えるほど寒かった。"
+    },
+    {
+      "word": "bundle up",
+      "pos": "phrase",
+      "japanese": "厚着する・着込む",
+      "definition": "To put on warm clothes before going into the cold.",
+      "example": "Bundle up before you walk the dog this morning.",
+      "exampleJa": "今朝、犬の散歩に行く前にしっかり着込みなさい。"
+    },
+    {
+      "word": "coming down",
+      "pos": "phrase",
+      "japanese": "（雨や雪が）激しく降っている",
+      "definition": "Falling heavily, used for rain or snow.",
+      "example": "Take an umbrella, the rain is really coming down.",
+      "exampleJa": "傘を持って行って、雨がすごく激しく降っているから。"
+    }
+  ],
+  "translation": "天気の世間話はアメリカの伝統で、専用のスラングまであります。うだるように暑い日には、人々は「It's a scorcher out there（外は猛暑だ）」とぼやきます。べたつく夏の空気は「muggy（蒸し暑い）」、晩夏の最も暑い時期は「dog days」と呼ばれます。\n\n冬にも冬の表現があります。少し冷える朝は「nippy（肌寒い）」ですが、本格的な寒波では「I'm freezing my toes off（つま先が凍り落ちそう）」と冗談を言うかもしれません。母親は外に出る前の子どもに「bundle up（着込みなさい）」と言います。そして雨や雪が激しく降ると、アメリカ人は窓の外を見てただ一言、「Wow, it's really coming down（うわ、本降りだね）」と言うのです。"
+},
+{
+  "id": "2026-07-31-016",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "This Slaps: How Americans Rave About Food",
+  "difficulty": "Casual English",
+  "wordCount": 100,
+  "text": "Watch any American food vlogger and you will hear a special language of delicious. When a burger is amazing, it slaps. When hot soup arrives on a cold day, it hits the spot. And a dessert so good you would sacrifice everything? That's to die for.\n\nFoodies, people obsessed with eating and cooking, use these phrases constantly on TikTok and in Yelp reviews. A perfect dish earns a chef's kiss, a gesture borrowed from Italian chefs. But be careful. If you eat too much amazing food, you will slip into a food coma, that sleepy feeling after a huge meal.",
+  "glossary": [
+    {
+      "word": "slaps",
+      "pos": "slang (verb)",
+      "japanese": "最高にうまい、めちゃくちゃ良い",
+      "definition": "To be extremely good, especially food or music.",
+      "example": "This pizza slaps, you have to try a slice.",
+      "exampleJa": "このピザ最高にうまいよ、一切れ食べてみて。"
+    },
+    {
+      "word": "hits the spot",
+      "pos": "phrase",
+      "japanese": "（飲食物が）まさに欲しかったものだ、五臓六腑に染みる",
+      "definition": "To be exactly what you wanted or needed, usually food or drink.",
+      "example": "A cold soda really hits the spot after mowing the lawn.",
+      "exampleJa": "芝刈りのあとの冷たい炭酸は本当に染みるね。"
+    },
+    {
+      "word": "to die for",
+      "pos": "phrase",
+      "japanese": "死ぬほどおいしい、たまらなく魅力的",
+      "definition": "So delicious or attractive that you would do anything for it.",
+      "example": "The chocolate cake at that bakery is absolutely to die for.",
+      "exampleJa": "あのベーカリーのチョコレートケーキは死ぬほどおいしいよ。"
+    },
+    {
+      "word": "foodie",
+      "pos": "slang (noun)",
+      "japanese": "食通、グルメ好きな人",
+      "definition": "A person who loves food and knows a lot about it.",
+      "example": "My sister is a foodie who photographs every meal she eats.",
+      "exampleJa": "姉は食べる料理を全部写真に撮るグルメ好きだ。"
+    },
+    {
+      "word": "chef's kiss",
+      "pos": "slang (noun)",
+      "japanese": "完璧の証（シェフが指先にキスするジェスチャー）",
+      "definition": "A gesture or phrase meaning something is absolutely perfect.",
+      "example": "The ending of that movie was chef's kiss, simply perfect.",
+      "exampleJa": "あの映画のラストはまさに完璧、非の打ちどころがなかった。"
+    },
+    {
+      "word": "food coma",
+      "pos": "slang (noun)",
+      "japanese": "食後の強烈な眠気、満腹でぼーっとする状態",
+      "definition": "A sleepy, heavy feeling after eating a very large meal.",
+      "example": "After Thanksgiving dinner, the whole family fell into a food coma.",
+      "exampleJa": "感謝祭のディナーのあと、家族全員が食後の眠気に襲われた。"
+    }
+  ],
+  "translation": "アメリカのフードブロガーの動画を見れば、「おいしい」を表す特別な言葉が聞こえてくるでしょう。ハンバーガーが絶品なら、それは「slaps（最高にうまい）」。寒い日に熱々のスープが出てくれば、それは「hits the spot（まさに欲しかった味）」。そして、すべてを犠牲にしてもいいほどおいしいデザートは「to die for（死ぬほどおいしい）」です。\n\n食べることと料理に夢中な人々、いわゆる「foodie（食通）」は、TikTokやYelpのレビューでこうしたフレーズを絶えず使っています。完璧な一皿には、イタリアのシェフから借りたジェスチャーである「chef's kiss（完璧の証）」が贈られます。ただしご注意を。絶品料理を食べすぎると、大食のあとの眠気「food coma（フードコーマ）」に陥ってしまいますよ。"
+},
+{
+  "id": "2026-07-31-017",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "Ride or Die: The Language of True Friendship",
+  "difficulty": "Casual English",
+  "wordCount": 98,
+  "text": "In American English, friendship comes with its own vocabulary. Your squad is your close group of friends, the people you roll with everywhere. Within that group, your bestie is your closest friend of all.\n\nThe deepest titles are earned over time. A ride or die is someone loyal in any situation, a phrase that came from hip-hop culture in the 1990s. A day one is a friend who supported you from the very beginning, before any success. When Americans say these friends have your back, they mean total trust. Online, people proudly caption photos with 'my day ones.'",
+  "glossary": [
+    {
+      "word": "squad",
+      "pos": "slang (noun)",
+      "japanese": "仲良しグループ、いつものメンバー",
+      "definition": "A close group of friends who spend time together.",
+      "example": "The whole squad is coming over for movie night tonight.",
+      "exampleJa": "今夜は映画を観にいつものメンバー全員がうちに来る。"
+    },
+    {
+      "word": "roll with",
+      "pos": "slang (phrase)",
+      "japanese": "～とつるむ、一緒に行動する",
+      "definition": "To spend time or go places with a particular group.",
+      "example": "He usually rolls with his friends from the basketball team.",
+      "exampleJa": "彼はいつもバスケ部の友達とつるんでいる。"
+    },
+    {
+      "word": "bestie",
+      "pos": "slang (noun)",
+      "japanese": "親友、大親友",
+      "definition": "A very informal word for your best friend.",
+      "example": "I tell my bestie everything before anyone else knows.",
+      "exampleJa": "私は誰よりも先に親友に何でも話す。"
+    },
+    {
+      "word": "ride or die",
+      "pos": "slang (noun)",
+      "japanese": "どんな時も味方でいてくれる相棒",
+      "definition": "A completely loyal friend who supports you no matter what.",
+      "example": "She has been my ride or die since high school.",
+      "exampleJa": "彼女は高校以来、どんな時も味方でいてくれる相棒だ。"
+    },
+    {
+      "word": "day one",
+      "pos": "slang (noun)",
+      "japanese": "最初からの仲間、古くからの友人",
+      "definition": "A friend who has supported you since the very beginning.",
+      "example": "Marcus is a day one, we met back in kindergarten.",
+      "exampleJa": "マーカスは最初からの仲間で、幼稚園からの付き合いだ。"
+    },
+    {
+      "word": "have someone's back",
+      "pos": "phrase",
+      "japanese": "～を守る、味方につく",
+      "definition": "To be ready to support and defend someone.",
+      "example": "Do not worry about the meeting, I have your back.",
+      "exampleJa": "会議のことは心配しないで、私がついているから。"
+    }
+  ],
+  "translation": "アメリカ英語では、友情にも独自の語彙があります。「squad（スクワッド）」は仲の良い友達グループ、つまりどこへ行くにも一緒に「roll with（つるむ）」仲間のこと。そのグループの中でも一番親しい友達が「bestie（親友）」です。\n\n最も深い称号は、時間をかけて獲得されるものです。「ride or die」は、どんな状況でも忠実な人のことで、1990年代のヒップホップ文化から生まれた表現です。「day one」は、成功する前の一番最初から支えてくれた友達のこと。アメリカ人がこうした友達について「have your back（味方でいてくれる）」と言うとき、それは全面的な信頼を意味します。ネット上では、人々は誇らしげに写真に「my day ones（最初からの仲間たち）」というキャプションを付けるのです。"
+},
+{
+  "id": "2026-07-31-018",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "What a Steal: The Slang of Shopping and Sales",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 99,
+  "text": "American shopping culture has slang for every mood of spending. Found designer shoes at eighty percent off? That's a steal, a price so low it feels almost criminal. When you spend big on something special, you splurge, often while telling yourself to treat yourself.\n\nShopping even works as medicine. Retail therapy means buying things to feel better after a stressful week, a term coined in the 1980s. On YouTube, shoppers film a haul, showing off everything they bought. The only rule everyone repeats: enjoy the sales, but do not break the bank by spending more than you can afford.",
+  "glossary": [
+    {
+      "word": "steal",
+      "pos": "slang (noun)",
+      "japanese": "破格の掘り出し物、激安品",
+      "definition": "Something bought at a surprisingly low price.",
+      "example": "This leather jacket was only twenty dollars, what a steal!",
+      "exampleJa": "この革ジャン、たった20ドルだったの。すごい掘り出し物でしょ！"
+    },
+    {
+      "word": "splurge",
+      "pos": "slang (verb)",
+      "japanese": "奮発する、パーッとお金を使う",
+      "definition": "To spend a lot of money on something special.",
+      "example": "For her birthday, she splurged on a fancy hotel room.",
+      "exampleJa": "誕生日に、彼女は高級ホテルの部屋に奮発した。"
+    },
+    {
+      "word": "treat yourself",
+      "pos": "phrase",
+      "japanese": "自分へのご褒美を買う",
+      "definition": "To buy or do something nice for yourself as a reward.",
+      "example": "You finished the project, so go treat yourself to dessert.",
+      "exampleJa": "プロジェクトを終えたんだから、ご褒美にデザートを買いなよ。"
+    },
+    {
+      "word": "retail therapy",
+      "pos": "slang (noun)",
+      "japanese": "買い物によるストレス解消",
+      "definition": "Shopping done to improve your mood when feeling down.",
+      "example": "After the exam, I needed some serious retail therapy downtown.",
+      "exampleJa": "試験のあと、街で思いきり買い物してストレス解消する必要があった。"
+    },
+    {
+      "word": "haul",
+      "pos": "slang (noun)",
+      "japanese": "購入品（の披露）、戦利品",
+      "definition": "All the items bought on one shopping trip, often shown online.",
+      "example": "She posted a huge haul video after the summer sale.",
+      "exampleJa": "彼女は夏のセールのあと、大量の購入品紹介動画を投稿した。"
+    },
+    {
+      "word": "break the bank",
+      "pos": "phrase",
+      "japanese": "大金を使いすぎる、財布が空になる",
+      "definition": "To spend more money than you can really afford.",
+      "example": "You can decorate your room nicely without breaking the bank.",
+      "exampleJa": "大金を使わなくても部屋は素敵に飾れるよ。"
+    }
+  ],
+  "translation": "アメリカの買い物文化には、お金の使い方のあらゆる気分に応じたスラングがあります。デザイナーズシューズを80パーセントオフで見つけたら、それは「steal（掘り出し物）」。ほとんど犯罪的に感じるほど安い値段のことです。特別なものに大きくお金を使うときは「splurge（奮発する）」。多くの場合、「treat yourself（自分にご褒美を）」と自分に言い聞かせながら。\n\n買い物は薬にもなります。「retail therapy（リテールセラピー）」は、ストレスの多い一週間のあとに気分を上げるために買い物をすることで、1980年代に生まれた言葉です。YouTubeでは、買い物客が「haul（購入品紹介）」を撮影し、買ったものすべてを披露します。誰もが繰り返す唯一のルールは、セールを楽しみつつも、払える以上のお金を使って「break the bank（財布を空にする）」ことのないように、ということです。"
+},
+{
+  "id": "2026-07-31-019",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "Never Skip Leg Day: Slang From the Gym",
+  "difficulty": "Casual English",
+  "wordCount": 104,
+  "text": "Walk into any American gym and you will hear a language built on sweat. Regulars who practically live there are gym rats. Their goal is gains, the muscle growth that comes from months of lifting. Someone with huge arms is swole, a playful word from hip-hop and bodybuilding culture.\n\nThe community has its rituals too. Never skip leg day is a famous joke about lifters who train only their upper body. Hitting a PR, a personal record, deserves loud celebration. And when the weight looks heavy, you ask a friend to spot you, standing ready to help. Gym slang turns hard work into belonging.",
+  "glossary": [
+    {
+      "word": "gym rat",
+      "pos": "slang (noun)",
+      "japanese": "ジムの常連、ジム通いが生きがいの人",
+      "definition": "Someone who spends a lot of time working out at the gym.",
+      "example": "My roommate is a gym rat who trains twice a day.",
+      "exampleJa": "ルームメイトは1日2回トレーニングするジムの常連だ。"
+    },
+    {
+      "word": "gains",
+      "pos": "slang (noun)",
+      "japanese": "（筋トレの成果としての）筋肉の成長",
+      "definition": "Muscle growth achieved through consistent training.",
+      "example": "He drinks protein shakes every morning to protect his gains.",
+      "exampleJa": "彼は筋肉の成長を守るため、毎朝プロテインを飲んでいる。"
+    },
+    {
+      "word": "swole",
+      "pos": "slang (adjective)",
+      "japanese": "筋肉ムキムキの",
+      "definition": "Very muscular, with big, well-developed muscles.",
+      "example": "After two years of lifting, he got seriously swole.",
+      "exampleJa": "2年間のトレーニングで、彼は本当にムキムキになった。"
+    },
+    {
+      "word": "leg day",
+      "pos": "slang (noun)",
+      "japanese": "脚を鍛える日（サボられがちな脚トレの日）",
+      "definition": "A workout day focused on training the legs.",
+      "example": "I can barely walk upstairs because yesterday was leg day.",
+      "exampleJa": "昨日は脚トレの日だったから、階段もろくに上れない。"
+    },
+    {
+      "word": "PR",
+      "pos": "slang (noun)",
+      "japanese": "自己ベスト記録（personal record）",
+      "definition": "Short for personal record, your best performance ever.",
+      "example": "She hit a new PR on the bench press today.",
+      "exampleJa": "彼女は今日、ベンチプレスで自己ベストを更新した。"
+    },
+    {
+      "word": "spot",
+      "pos": "slang (verb)",
+      "japanese": "（トレーニング中の人を）補助する",
+      "definition": "To stand by and help someone lifting a heavy weight safely.",
+      "example": "Can you spot me while I try this heavier barbell?",
+      "exampleJa": "この重いバーベルに挑戦する間、補助してくれる？"
+    }
+  ],
+  "translation": "アメリカのジムに足を踏み入れれば、汗の上に築かれた言語が聞こえてきます。ほとんどジムに住んでいるような常連は「gym rat（ジムの主）」。彼らの目標は「gains」、つまり何か月ものウェイトトレーニングで得られる筋肉の成長です。腕が丸太のように太い人は「swole（ムキムキ）」。ヒップホップとボディビル文化から生まれた遊び心のある言葉です。\n\nこのコミュニティには儀式もあります。「Never skip leg day（脚の日をサボるな）」は、上半身ばかり鍛える人をからかう有名なジョークです。「PR（自己ベスト）」の達成は、大声で祝うに値します。そして、重量が重そうに見えるときは、友達に「spot（補助）」を頼み、そばで助ける準備をしてもらいます。ジムのスラングは、つらい努力を仲間意識へと変えてくれるのです。"
+},
+{
+  "id": "2026-07-31-020",
+  "date": "2026-07-31",
+  "topic": "Slang & Informal English",
+  "title": "Beat the Traffic: How American Commuters Talk",
+  "difficulty": "TOEFL iBT",
+  "wordCount": 102,
+  "text": "Commuting shapes daily life in American cities, and the experience has produced its own informal vocabulary. Morning trains are often jam-packed, so crowded that passengers can barely move. Drivers sit bumper to bumper on the highway, and when nothing moves at all, the situation is called gridlock, a term born in 1980s New York.\n\nTiming dominates commuter talk. Workers leave early to beat the traffic, hoping to make good time on empty roads. Arriving one minute before a meeting means you are cutting it close. These phrases appear everywhere, from radio traffic reports to office small talk, because everyone shares the struggle.",
+  "glossary": [
+    {
+      "word": "jam-packed",
+      "pos": "slang (adjective)",
+      "japanese": "すし詰めの、超満員の",
+      "definition": "Extremely crowded, completely full of people or things.",
+      "example": "The subway was jam-packed with commuters this morning.",
+      "exampleJa": "今朝の地下鉄は通勤客ですし詰めだった。"
+    },
+    {
+      "word": "bumper to bumper",
+      "pos": "phrase",
+      "japanese": "（車が）数珠つなぎの、大渋滞の",
+      "definition": "Cars lined up so closely that traffic barely moves.",
+      "example": "Traffic was bumper to bumper all the way downtown.",
+      "exampleJa": "中心街までずっと車が数珠つなぎの大渋滞だった。"
+    },
+    {
+      "word": "gridlock",
+      "pos": "slang (noun)",
+      "japanese": "交差点まで埋まる完全な交通麻痺",
+      "definition": "A total traffic jam where no vehicles can move at all.",
+      "example": "The accident caused complete gridlock across the city center.",
+      "exampleJa": "その事故で市の中心部全体が完全な交通麻痺に陥った。"
+    },
+    {
+      "word": "beat the traffic",
+      "pos": "phrase",
+      "japanese": "渋滞を避ける（ために早めに出る）",
+      "definition": "To leave early enough to avoid heavy traffic.",
+      "example": "We left at six to beat the traffic to the airport.",
+      "exampleJa": "空港までの渋滞を避けるため、6時に出発した。"
+    },
+    {
+      "word": "make good time",
+      "pos": "phrase",
+      "japanese": "順調に進む、予定より速く移動する",
+      "definition": "To travel faster than expected without delays.",
+      "example": "The roads were empty, so we made good time.",
+      "exampleJa": "道路が空いていたので、順調に進めた。"
+    },
+    {
+      "word": "cutting it close",
+      "pos": "phrase",
+      "japanese": "ぎりぎりのタイミングで行動する",
+      "definition": "Leaving almost no extra time before a deadline.",
+      "example": "You are cutting it close, the train leaves in two minutes.",
+      "exampleJa": "ぎりぎりだよ、電車はあと2分で出発する。"
+    }
+  ],
+  "translation": "通勤はアメリカの都市の日常生活を形づくっており、その経験は独自のくだけた語彙を生み出してきました。朝の電車はしばしば「jam-packed（すし詰め）」、乗客がほとんど動けないほどの混雑です。ドライバーは高速道路で「bumper to bumper（数珠つなぎ）」の状態で座り、まったく動かなくなると、その状況は「gridlock（グリッドロック）」と呼ばれます。1980年代のニューヨークで生まれた言葉です。\n\n通勤者の会話を支配するのはタイミングです。労働者たちは「beat the traffic（渋滞を避ける）」ために早く家を出て、空いた道路で「make good time（順調に進む）」ことを願います。会議の1分前に到着するのは「cutting it close（ぎりぎり）」。こうしたフレーズは、ラジオの交通情報からオフィスの雑談まで、あらゆる場所に登場します。誰もが同じ苦労を分かち合っているからです。"
+}
+);
