@@ -9,10 +9,11 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260731"></script>
-<script src="listening-data.js?v=20260731"></script>
-<script src="vocab-enrichment.js?v=20260731"></script>
-<script src="articles-data.js?v=20260731"></script>
+<script src="data.js?v=20260801"></script>
+<script src="listening-data.js?v=20260801"></script>
+<script src="vocab-enrichment.js?v=20260801"></script>
+<script src="articles-data.js?v=20260801"></script>
+<script src="drill-data.js?v=20260801"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -800,6 +801,51 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     </div>
   </div>
 
+  <!-- DRILL（瞬間英作文） -->
+  <div class="page" id="page-drill">
+    <div class="page-header">
+      <h1>&#9889; 瞬間英作文</h1>
+      <p>日本語を見て、声に出して即英作 → タップで答え合わせ</p>
+    </div>
+    <div class="card" id="drill-progress-card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:700;">今日の10問 <span id="drill-level-label" style="color:var(--accent2); font-size:12px; margin-left:6px;">Lv1</span> <span id="drill-round-label" style="color:var(--text2); font-weight:400; font-size:12px;"></span></div>
+        <div id="drill-count" style="font-weight:800; color:var(--accent2);">0/10</div>
+      </div>
+      <div style="height:8px; background:var(--surface2); border-radius:4px; overflow:hidden; margin-top:8px;">
+        <div id="drill-progress-fill" style="height:100%; width:0%; background:var(--orange); border-radius:4px; transition:width 0.3s;"></div>
+      </div>
+    </div>
+    <div id="drill-area">
+      <div class="flashcard" id="drill-card" style="cursor:pointer;" onclick="revealDrill()">
+        <div style="font-size:11px; color:var(--text2); margin-bottom:10px;" id="drill-source-label"></div>
+        <div id="drill-ja" style="font-size:19px; line-height:1.8; padding:10px 0; font-weight:600;"></div>
+        <div class="flashcard-hint" id="drill-tap-hint">声に出して英作してから、タップで答えを表示</div>
+        <div id="drill-answer" style="display:none;">
+          <div id="drill-en" style="font-size:18px; line-height:1.7; color:var(--accent2); padding:14px 0 6px; border-top:1px solid var(--border); font-weight:600;"></div>
+          <div id="drill-key" style="font-size:12px; color:var(--yellow); margin:6px 0;"></div>
+          <button class="flashcard-speak-btn" id="drill-speak-btn" onclick="event.stopPropagation();">&#128266; Listen</button>
+        </div>
+      </div>
+      <div id="drill-rating" style="display:none; gap:8px;" class="rating-buttons">
+        <button class="rating-btn rating-again" onclick="rateDrill(0)">言えなかった</button>
+        <button class="rating-btn rating-hard" onclick="rateDrill(1)">惜しい</button>
+        <button class="rating-btn rating-easy" onclick="rateDrill(2)">言えた！</button>
+      </div>
+      <div style="font-size:11px; color:var(--text2); margin-top:10px; line-height:1.6;">&#128161; 「言えなかった」「惜しい」の文は今日の後半と後日に自動で再出題されます</div>
+    </div>
+    <div id="drill-complete" class="card" style="display:none; text-align:center; padding:24px;">
+      <div style="font-size:40px; margin-bottom:10px;">&#127942;</div>
+      <div style="font-size:17px; font-weight:700; margin-bottom:6px;">今日の10問、完了！</div>
+      <div id="drill-complete-detail" style="font-size:13px; color:var(--text2); margin-bottom:6px;"></div>
+      <div id="drill-level-msg" style="font-size:13px; font-weight:700; color:var(--accent2); margin-bottom:14px;"></div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn" style="flex:1; padding:12px;" onclick="drillNextTen()">&#127922; もう10問</button>
+        <button class="btn primary" style="flex:1; padding:12px;" onclick="showPage('home')">ホームへ</button>
+      </div>
+    </div>
+  </div>
+
   <!-- LISTENING -->
   <div class="page" id="page-listen">
     <div class="page-header">
@@ -1010,6 +1056,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
     Quiz
     <span class="nav-badge" id="nav-due-badge" style="display:none;">0</span>
+  </button>
+  <button class="nav-item" onclick="showPage('drill')" data-page="drill">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    Drill
   </button>
   <button class="nav-item" onclick="showPage('listen')" data-page="listen">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
@@ -2005,18 +2055,21 @@ function showPage(page) {
   if (page === 'quiz') updateQuizPage();
   if (page === 'review') updateReviewPage();
   if (page === 'listen') updateListenPage();
+  if (page === 'drill') updateDrillPage();
   window.scrollTo(0, 0);
 }
 
 // === DASHBOARD ===
 // エッセイのtopicを6ジャンルに分類する
-const GENRE_ORDER = ['Finance & Economics', 'Business English', 'Native Collocations', 'Slang & Casual', 'Science & Technology', 'Society & Culture'];
+const GENRE_ORDER = ['Conversations', 'Finance & Economics', 'Business English', 'Native Collocations', 'Slang & Casual', 'Science & Technology', 'Society & Culture'];
 const GENRE_ICONS = {
+  'Conversations': '&#128483;&#65039;',
   'Finance & Economics': '&#128176;', 'Business English': '&#128188;', 'Native Collocations': '&#128279;',
   'Slang & Casual': '&#128172;', 'Science & Technology': '&#128300;', 'Society & Culture': '&#127757;'
 };
 function essayGenre(topic) {
   const t = String(topic || '').toLowerCase();
+  if (t.includes('real conversation')) return 'Conversations';
   if (t.includes('collocation')) return 'Native Collocations';
   if (t.includes('slang') || t.includes('travel') || t.includes('conversation')) return 'Slang & Casual';
   if (t.includes('business') || t.includes('startup')) return 'Business English';
@@ -2032,7 +2085,7 @@ function toggleRecentOpened() {
 }
 function calcStreak() {
   const ds = state.dailyStats || {};
-  const hasActivity = d => { const s = ds[d]; return !!s && ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0); };
+  const hasActivity = d => { const s = ds[d]; return !!s && ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0 || (s.drilled || 0) > 0); };
   let streak = 0;
   const d = new Date();
   if (!hasActivity(formatLocalDate(d))) d.setDate(d.getDate() - 1); // 今日未学習でも昨日までの連続を維持表示
@@ -3565,6 +3618,7 @@ function buildSyncPayload() {
     duoSrs: state.duoSrs || {},
     youtubeItems: state.youtubeItems || [],
     articles: state.articles || [],
+    drill: state.drill || null,
     vocabulary: {}
   };
   Object.entries(state.vocabulary).forEach(([key, v]) => {
@@ -3618,6 +3672,7 @@ function mergeSyncData(syncData) {
       s.vocabCount = Math.max(s.vocabCount, imported.vocabCount || 0);
       s.mastered = Math.max(s.mastered, imported.mastered || 0);
       s.reviewed = Math.max(s.reviewed, imported.reviewed || 0);
+      if (imported.drilled) s.drilled = Math.max(s.drilled || 0, imported.drilled);
     });
   }
   if (syncData.duoSrs) {
@@ -3640,6 +3695,22 @@ function mergeSyncData(syncData) {
     syncData.articles.forEach(item => {
       if (!state.articles.some(x => x.id === item.id)) state.articles.push(item);
     });
+  }
+  // drill: 進捗が多い方を採用、ミスプールは統合
+  if (syncData.drill) {
+    const local = state.drill;
+    if (!local) state.drill = syncData.drill;
+    else {
+      const remote = syncData.drill;
+      if ((remote.date || '') > (local.date || '') || ((remote.date || '') === (local.date || '') && (remote.totalToday || 0) > (local.totalToday || 0))) {
+        const mergedMissed = { ...remote.missedPool };
+        Object.entries(local.missedPool || {}).forEach(([id, m]) => { if (!mergedMissed[id]) mergedMissed[id] = m; });
+        state.drill = { ...remote, missedPool: mergedMissed };
+      } else {
+        Object.entries(remote.missedPool || {}).forEach(([id, m]) => { if (!local.missedPool[id]) local.missedPool[id] = m; });
+        local.level = Math.max(local.level || 1, remote.level || 1);
+      }
+    }
   }
 }
 
@@ -3674,6 +3745,161 @@ function applySyncCode() {
     document.getElementById('sync-import-area').style.display = 'none';
     showToast('Sync complete!');
   } catch (err) { showToast('Invalid Sync Code: ' + err.message); }
+}
+
+// === DRILL（瞬間英作文） ===
+// 1日10問。Lv1〜3を直近の成績で自動昇降し「適度な難易度」を維持する。
+// 出題 = 専用ドリル文(DRILLS) + 単語帳の例文ペア。ミスは当日末尾+後日に再出題。
+function getDrillBank() {
+  return (typeof DRILLS !== 'undefined' && Array.isArray(DRILLS)) ? DRILLS : [];
+}
+function ensureDrillState() {
+  if (!state.drill) {
+    state.drill = { level: 1, date: null, setIds: [], idx: 0, results: {}, missedPool: {}, seen: {}, recent: [], round: 1, totalToday: 0 };
+  }
+  return state.drill;
+}
+function drillItemById(id) {
+  if (id.startsWith('vocab:')) {
+    const key = id.slice(6);
+    const v = state.vocabulary[key];
+    if (!v || !v.example || !v.exampleJa) return null;
+    return { id, level: 2, ja: v.exampleJa, en: v.example, key: v.word, keyJa: v.japanese, source: '単語帳の例文' };
+  }
+  const d = getDrillBank().find(x => x.id === id);
+  return d ? { ...d, source: 'ドリル Lv' + d.level } : null;
+}
+// 今日のセットを構築: ミス再出題(最大3) + 現レベルのドリル文 + 単語帳例文(最大2)
+function buildDrillSet() {
+  const dr = ensureDrillState();
+  const bank = getDrillBank();
+  const picked = [];
+  const used = new Set();
+  const add = id => { if (id && !used.has(id) && drillItemById(id)) { picked.push(id); used.add(id); } };
+  // 1) ミスの再出題（古い順に最大3問）
+  Object.entries(dr.missedPool).sort((a, b) => (a[1].last || '').localeCompare(b[1].last || ''))
+    .slice(0, 3).forEach(([id]) => add(id));
+  // 2) 現レベルの未出題ドリル文（出題回数が少ない順→ランダム）
+  const lvPool = bank.filter(d => d.level === dr.level && !used.has(d.id));
+  shuffleArray(lvPool);
+  lvPool.sort((a, b) => (dr.seen[a.id] || 0) - (dr.seen[b.id] || 0));
+  for (const d of lvPool) { if (picked.length >= 8) break; add(d.id); }
+  // 3) 単語帳の例文（学習中の単語を優先、8〜14語のもの）
+  const vocabPool = Object.entries(state.vocabulary)
+    .filter(([k, v]) => v.level >= 0 && v.level < 3 && v.example && v.exampleJa)
+    .filter(([k, v]) => { const n = v.example.split(/\s+/).length; return n >= 6 && n <= 14; });
+  shuffleArray(vocabPool);
+  vocabPool.sort((a, b) => (b[1].level > 0 ? 1 : 0) - (a[1].level > 0 ? 1 : 0));
+  for (const [k] of vocabPool) { if (picked.length >= 10) break; add('vocab:' + k); }
+  // 4) まだ足りなければ他レベルのドリル文で充足
+  const anyPool = bank.filter(d => !used.has(d.id));
+  shuffleArray(anyPool);
+  for (const d of anyPool) { if (picked.length >= 10) break; add(d.id); }
+  return picked;
+}
+function ensureDrillSet() {
+  const dr = ensureDrillState();
+  const today = formatLocalDate();
+  if (dr.date !== today || !Array.isArray(dr.setIds) || dr.setIds.length === 0) {
+    dr.date = today;
+    dr.setIds = buildDrillSet();
+    dr.idx = 0;
+    dr.results = {};
+    dr.round = 1;
+    dr.totalToday = 0;
+    saveState();
+  }
+}
+function updateDrillPage() {
+  ensureDrillSet();
+  showDrillCard();
+}
+function showDrillCard() {
+  const dr = ensureDrillState();
+  const total = dr.setIds.length;
+  const done = Math.min(dr.idx, total);
+  document.getElementById('drill-count').textContent = `${done}/${total}`;
+  document.getElementById('drill-progress-fill').style.width = total ? (done / total * 100) + '%' : '0%';
+  document.getElementById('drill-level-label').textContent = 'Lv' + dr.level;
+  document.getElementById('drill-round-label').textContent = dr.round > 1 ? `Round ${dr.round}` : '';
+  if (dr.idx >= total) { showDrillComplete(); return; }
+  document.getElementById('drill-complete').style.display = 'none';
+  document.getElementById('drill-area').style.display = 'block';
+  const item = drillItemById(dr.setIds[dr.idx]);
+  if (!item) { dr.idx++; saveState(); showDrillCard(); return; }
+  document.getElementById('drill-source-label').textContent = item.source + (dr.missedPool[item.id] ? ' ・ 再出題' : '');
+  document.getElementById('drill-ja').textContent = item.ja;
+  document.getElementById('drill-answer').style.display = 'none';
+  document.getElementById('drill-tap-hint').style.display = 'block';
+  document.getElementById('drill-rating').style.display = 'none';
+}
+function revealDrill() {
+  const dr = ensureDrillState();
+  const item = drillItemById(dr.setIds[dr.idx]);
+  if (!item || document.getElementById('drill-answer').style.display === 'block') return;
+  document.getElementById('drill-en').textContent = item.en;
+  document.getElementById('drill-key').innerHTML = item.key ? '&#128273; ' + escapeHtml(item.key) + (item.keyJa ? '（' + escapeHtml(item.keyJa) + '）' : '') : '';
+  document.getElementById('drill-answer').style.display = 'block';
+  document.getElementById('drill-tap-hint').style.display = 'none';
+  document.getElementById('drill-rating').style.display = 'flex';
+  const btn = document.getElementById('drill-speak-btn');
+  btn.onclick = (e) => { e.stopPropagation(); speakTextSequence([item.en], 0.95); };
+}
+// 0=言えなかった 1=惜しい 2=言えた
+function rateDrill(score) {
+  const dr = ensureDrillState();
+  const id = dr.setIds[dr.idx];
+  dr.results[id] = score;
+  dr.seen[id] = (dr.seen[id] || 0) + 1;
+  dr.totalToday++;
+  // ミスプール管理: 言えた2回で卒業、ミスは登録/継続
+  if (score === 2) {
+    if (dr.missedPool[id]) {
+      dr.missedPool[id].ok = (dr.missedPool[id].ok || 0) + 1;
+      if (dr.missedPool[id].ok >= 2) delete dr.missedPool[id];
+    }
+  } else {
+    dr.missedPool[id] = { last: formatLocalDate(), ok: 0 };
+    // 今日のセット末尾に再挿入（1回だけ）
+    if (!dr.setIds.slice(dr.idx + 1).includes(id) && dr.setIds.filter(x => x === id).length < 2) dr.setIds.push(id);
+  }
+  // レベル自動調整: 直近20問の「言えた」率
+  dr.recent.push(score === 2 ? 1 : 0);
+  if (dr.recent.length > 20) dr.recent.shift();
+  if (dr.recent.length >= 10) {
+    const rate = dr.recent.reduce((s, x) => s + x, 0) / dr.recent.length;
+    if (rate >= 0.8 && dr.level < 3) { dr.level++; dr.recent = []; showToast('🎉 Lv' + dr.level + ' に昇格！'); }
+    else if (rate <= 0.4 && dr.level > 1) { dr.level--; dr.recent = []; showToast('Lv' + dr.level + ' に調整しました'); }
+  }
+  dr.idx++;
+  // ストリーク連動: dailyStatsに記録
+  const today = formatLocalDate();
+  if (!state.dailyStats) state.dailyStats = {};
+  if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
+  state.dailyStats[today].drilled = (state.dailyStats[today].drilled || 0) + 1;
+  saveState();
+  showDrillCard();
+}
+function showDrillComplete() {
+  const dr = ensureDrillState();
+  document.getElementById('drill-area').style.display = 'none';
+  const comp = document.getElementById('drill-complete');
+  comp.style.display = 'block';
+  const ok = Object.values(dr.results).filter(s => s === 2).length;
+  const total = Object.keys(dr.results).length;
+  document.getElementById('drill-complete-detail').textContent = `言えた ${ok} / ${total}（今日の合計 ${dr.totalToday} 問）`;
+  const missed = Object.keys(dr.missedPool).length;
+  document.getElementById('drill-level-msg').textContent = missed > 0 ? `苦手プール ${missed} 文は後日再出題します` : '苦手プールはゼロです！&#128079;';
+}
+function drillNextTen() {
+  const dr = ensureDrillState();
+  dr.setIds = buildDrillSet();
+  dr.idx = 0;
+  dr.results = {};
+  dr.round++;
+  saveState();
+  showDrillCard();
+  window.scrollTo(0, 0);
 }
 
 // === CLOUD SYNC (GitHub Gist) ===

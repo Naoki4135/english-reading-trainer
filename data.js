@@ -6116,3 +6116,758 @@ ESSAYS.push(
   "translation": "通勤はアメリカの都市の日常生活を形づくっており、その経験は独自のくだけた語彙を生み出してきました。朝の電車はしばしば「jam-packed（すし詰め）」、乗客がほとんど動けないほどの混雑です。ドライバーは高速道路で「bumper to bumper（数珠つなぎ）」の状態で座り、まったく動かなくなると、その状況は「gridlock（グリッドロック）」と呼ばれます。1980年代のニューヨークで生まれた言葉です。\n\n通勤者の会話を支配するのはタイミングです。労働者たちは「beat the traffic（渋滞を避ける）」ために早く家を出て、空いた道路で「make good time（順調に進む）」ことを願います。会議の1分前に到着するのは「cutting it close（ぎりぎり）」。こうしたフレーズは、ラジオの交通情報からオフィスの雑談まで、あらゆる場所に登場します。誰もが同じ苦労を分かち合っているからです。"
 }
 );
+
+ESSAYS.push(
+{
+  "id": "2026-08-01-001",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Catching Up Over Coffee",
+  "difficulty": "Casual English",
+  "wordCount": 102,
+  "text": "Mia: Jake! Long time no see. How've you been?\n\nJake: Oh man, I've been swamped at work. Barely keeping my head above water.\n\nMia: Tell me about it. My new gig is nonstop too.\n\nJake: Wait, you switched jobs? Spill the tea!\n\nMia: Yeah, I'm at a startup now. It's hectic, but I'm loving it so far.\n\nJake: Good for you! We should hang out more, you know?\n\nMia: Totally. Wanna grab dinner next week? My treat.\n\nJake: Sounds like a plan. I'll text you.\n\nMia: Perfect. Oh, and say hi to your sister for me.\n\nJake: Will do. Catch you later!",
+  "glossary": [
+    {
+      "word": "long time no see",
+      "pos": "phrase",
+      "japanese": "久しぶり",
+      "definition": "A casual greeting used when you have not seen someone for a long time.",
+      "example": "Long time no see! You haven't changed a bit.",
+      "exampleJa": "久しぶり！全然変わってないね。"
+    },
+    {
+      "word": "swamped",
+      "pos": "slang",
+      "japanese": "忙殺されている",
+      "definition": "Extremely busy; overwhelmed with too much work.",
+      "example": "I'm totally swamped with emails this week, sorry.",
+      "exampleJa": "今週はメールに完全に忙殺されていて、ごめん。"
+    },
+    {
+      "word": "keep one's head above water",
+      "pos": "idiom",
+      "japanese": "なんとかやりくりする",
+      "definition": "To barely manage to survive a busy or difficult situation.",
+      "example": "With three jobs, she barely keeps her head above water.",
+      "exampleJa": "3つの仕事を抱えて、彼女はなんとかやりくりしている。"
+    },
+    {
+      "word": "tell me about it",
+      "pos": "phrase",
+      "japanese": "ほんとそれ、わかるよ",
+      "definition": "Used to say you strongly agree, often about something annoying.",
+      "example": "\"The traffic was awful today.\" \"Tell me about it!\"",
+      "exampleJa": "「今日は渋滞がひどかった」「ほんとそれ！」"
+    },
+    {
+      "word": "gig",
+      "pos": "slang",
+      "japanese": "仕事",
+      "definition": "An informal word for a job, especially a new or temporary one.",
+      "example": "She landed a new gig at a design studio.",
+      "exampleJa": "彼女はデザイン事務所で新しい仕事を手に入れた。"
+    },
+    {
+      "word": "spill the tea",
+      "pos": "slang",
+      "japanese": "詳しく教えて、ぶっちゃけて",
+      "definition": "To share gossip or interesting personal details.",
+      "example": "Come on, spill the tea about your date last night.",
+      "exampleJa": "ねえ、昨夜のデートのこと詳しく教えてよ。"
+    },
+    {
+      "word": "my treat",
+      "pos": "phrase",
+      "japanese": "私のおごり",
+      "definition": "Said when you offer to pay for someone else.",
+      "example": "Let's get ice cream after class, my treat.",
+      "exampleJa": "授業の後アイスを食べに行こう、私のおごりで。"
+    },
+    {
+      "word": "sounds like a plan",
+      "pos": "phrase",
+      "japanese": "いいね、そうしよう",
+      "definition": "A casual way to agree to a suggestion or arrangement.",
+      "example": "\"Movie at eight tonight?\" \"Sounds like a plan!\"",
+      "exampleJa": "「今夜8時に映画は？」「いいね、そうしよう！」"
+    }
+  ],
+  "translation": "ミア: ジェイク！久しぶり。元気だった？\n\nジェイク: いやあ、仕事に忙殺されててさ。なんとかやりくりしてる感じだよ。\n\nミア: ほんとわかるよ。私の新しい仕事もノンストップでさ。\n\nジェイク: え、転職したの？詳しく聞かせてよ！\n\nミア: うん、今はスタートアップにいるの。バタバタだけど、今のところすごく楽しい。\n\nジェイク: よかったじゃん！もっと会わないとね。\n\nミア: ほんとに。来週、夕飯でもどう？私のおごりで。\n\nジェイク: いいね、そうしよう。連絡するよ。\n\nミア: 完璧。あ、お姉さんによろしく伝えてね。\n\nジェイク: 了解。じゃあまたね！"
+},
+{
+  "id": "2026-08-01-002",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Making Weekend Plans",
+  "difficulty": "Casual English",
+  "wordCount": 106,
+  "text": "Ava: Hey Sam, got any plans this weekend?\n\nSam: Not really. I was just gonna veg out at home, honestly.\n\nAva: Come on, don't be a couch potato. Let's do something fun.\n\nSam: Like what? I'm kinda broke until payday, just so you know.\n\nAva: There's a free concert in the park on Saturday. Weather's supposed to be gorgeous.\n\nSam: Hmm, that could work. What time does it kick off?\n\nAva: Around two. We could grab a bite beforehand, maybe tacos?\n\nSam: Okay, you twisted my arm. Count me in.\n\nAva: Sweet! I'll swing by your place at noon.\n\nSam: Deal. Fingers crossed it doesn't rain.",
+  "glossary": [
+    {
+      "word": "veg out",
+      "pos": "slang",
+      "japanese": "だらだら過ごす",
+      "definition": "To relax and do nothing, often watching TV.",
+      "example": "After finals, I just want to veg out all day.",
+      "exampleJa": "期末試験の後は、一日中だらだら過ごしたい。"
+    },
+    {
+      "word": "couch potato",
+      "pos": "slang",
+      "japanese": "家でごろごろしている人",
+      "definition": "A lazy person who sits around watching TV all day.",
+      "example": "He became a total couch potato over the winter.",
+      "exampleJa": "彼は冬の間、すっかり家でごろごろする人になった。"
+    },
+    {
+      "word": "broke",
+      "pos": "slang",
+      "japanese": "金欠の",
+      "definition": "Having no money, usually temporarily.",
+      "example": "I can't eat out tonight, I'm completely broke.",
+      "exampleJa": "今夜は外食できないよ、完全に金欠なんだ。"
+    },
+    {
+      "word": "grab a bite",
+      "pos": "phrase",
+      "japanese": "軽く食事する",
+      "definition": "To get something quick and casual to eat.",
+      "example": "Let's grab a bite before the movie starts.",
+      "exampleJa": "映画が始まる前に軽く何か食べよう。"
+    },
+    {
+      "word": "twist someone's arm",
+      "pos": "idiom",
+      "japanese": "（人を）説き伏せる",
+      "definition": "To persuade someone to do something they were reluctant to do.",
+      "example": "Fine, you twisted my arm, I'll join the trip.",
+      "exampleJa": "わかったよ、君に説き伏せられた。旅行に参加するよ。"
+    },
+    {
+      "word": "count me in",
+      "pos": "phrase",
+      "japanese": "私も参加する",
+      "definition": "Used to say you want to join an activity.",
+      "example": "If you're ordering pizza tonight, count me in!",
+      "exampleJa": "今夜ピザを頼むなら、私も混ぜて！"
+    },
+    {
+      "word": "swing by",
+      "pos": "phrasal verb",
+      "japanese": "立ち寄る",
+      "definition": "To visit a place briefly, often on the way somewhere.",
+      "example": "I'll swing by the store and get some snacks.",
+      "exampleJa": "お店に立ち寄ってお菓子を買っていくね。"
+    },
+    {
+      "word": "fingers crossed",
+      "pos": "phrase",
+      "japanese": "うまくいくよう祈って",
+      "definition": "Said when hoping something will happen as wished.",
+      "example": "Fingers crossed I pass the driving test tomorrow.",
+      "exampleJa": "明日の運転試験に受かるよう祈っててね。"
+    }
+  ],
+  "translation": "エイヴァ: ねえサム、今週末なにか予定ある？\n\nサム: 特にないよ。正直、家でだらだらするつもりだった。\n\nエイヴァ: ちょっと、ごろごろしてないでさ。何か楽しいことしようよ。\n\nサム: 例えば？言っとくけど、給料日までちょっと金欠なんだよね。\n\nエイヴァ: 土曜日に公園で無料コンサートがあるの。天気も最高らしいよ。\n\nサム: ふーん、それならいけるかも。何時に始まるの？\n\nエイヴァ: 2時ごろ。その前に軽く食べない？タコスとか？\n\nサム: わかったよ、君に説き伏せられた。参加するよ。\n\nエイヴァ: やった！正午に家まで迎えに行くね。\n\nサム: 決まりだ。雨が降らないよう祈っててね。"
+},
+{
+  "id": "2026-08-01-003",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Ramen Night Out",
+  "difficulty": "Casual English",
+  "wordCount": 108,
+  "text": "Lily: Wow, this place is packed. Good sign, right?\n\nNoah: Totally. I've been dying to try their ramen for months.\n\nLily: What are you getting? I can't decide, everything looks amazing.\n\nNoah: The spicy miso, hands down. It's supposedly to die for.\n\nLily: Okay, I'll go for the dumplings. Wanna split some edamame too?\n\nNoah: Sure, let's go all out. We can always doggy-bag the leftovers.\n\nLily: Oh my gosh, this broth hits the spot.\n\nNoah: Right? Mine's got a real kick to it, though. My mouth is on fire.\n\nLily: Ha! Told you to order mild. Next round's on me.\n\nNoah: Deal. I'm definitely coming back here.",
+  "glossary": [
+    {
+      "word": "be dying to",
+      "pos": "phrase",
+      "japanese": "～したくてたまらない",
+      "definition": "To want to do something very much.",
+      "example": "I'm dying to see the new superhero movie.",
+      "exampleJa": "新しいヒーロー映画が観たくてたまらない。"
+    },
+    {
+      "word": "hands down",
+      "pos": "phrase",
+      "japanese": "文句なしに、断然",
+      "definition": "Without any doubt; easily the best choice.",
+      "example": "This is hands down the best pizza in town.",
+      "exampleJa": "これは文句なしに町で一番のピザだ。"
+    },
+    {
+      "word": "to die for",
+      "pos": "slang",
+      "japanese": "死ぬほど美味しい・最高の",
+      "definition": "Extremely good or delicious.",
+      "example": "Their chocolate cake is absolutely to die for.",
+      "exampleJa": "あそこのチョコレートケーキは本当に絶品だ。"
+    },
+    {
+      "word": "go all out",
+      "pos": "idiom",
+      "japanese": "全力でやる、奮発する",
+      "definition": "To do something with maximum effort or without holding back.",
+      "example": "They went all out for their daughter's birthday party.",
+      "exampleJa": "彼らは娘の誕生日パーティーのために大奮発した。"
+    },
+    {
+      "word": "doggy-bag",
+      "pos": "slang",
+      "japanese": "残り物を持ち帰る",
+      "definition": "To take leftover restaurant food home in a container.",
+      "example": "We couldn't finish, so we doggy-bagged the pasta.",
+      "exampleJa": "食べきれなかったので、パスタを持ち帰りにした。"
+    },
+    {
+      "word": "hit the spot",
+      "pos": "idiom",
+      "japanese": "まさに最高、五臓六腑に染みる",
+      "definition": "To be exactly what you needed, especially food or drink.",
+      "example": "A cold soda really hits the spot in summer.",
+      "exampleJa": "夏には冷たい炭酸がまさに最高なんだよね。"
+    },
+    {
+      "word": "have a kick to it",
+      "pos": "phrase",
+      "japanese": "ピリッと辛い、パンチがある",
+      "definition": "To have a strong, often spicy, flavor.",
+      "example": "Careful, that salsa has quite a kick to it.",
+      "exampleJa": "気をつけて、そのサルサはかなりピリッと辛いよ。"
+    },
+    {
+      "word": "on me",
+      "pos": "phrase",
+      "japanese": "私のおごりで",
+      "definition": "Said when you will pay for someone's food or drink.",
+      "example": "Don't worry about the bill, dinner's on me.",
+      "exampleJa": "会計は気にしないで、夕食は私のおごりだから。"
+    }
+  ],
+  "translation": "リリー: わあ、この店すごく混んでるね。いい兆候だよね？\n\nノア: 間違いない。ここのラーメン、何か月も食べたくてたまらなかったんだ。\n\nリリー: 何にする？全部美味しそうで決められないよ。\n\nノア: 断然、辛味噌だね。死ぬほど美味しいらしいよ。\n\nリリー: じゃあ私は餃子にする。枝豆もシェアしない？\n\nノア: いいね、とことんいこう。残ったら持ち帰ればいいし。\n\nリリー: うわあ、このスープ、五臓六腑に染みわたる。\n\nノア: でしょ？でも僕のはかなりパンチが効いてるな。口の中が火事だよ。\n\nリリー: あはは！マイルドにしなって言ったのに。次の一杯は私のおごりね。\n\nノア: 決まり。絶対またここに来るよ。"
+},
+{
+  "id": "2026-08-01-004",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Workout Buddies",
+  "difficulty": "Casual English",
+  "wordCount": 98,
+  "text": "Max: Hey Zoe, you're really crushing it on that treadmill.\n\nZoe: Thanks! I'm training for a 10K, so I gotta stay on track.\n\nMax: No way, that's awesome. I can barely run a mile without dying.\n\nZoe: You'd get the hang of it. It's all about pacing yourself.\n\nMax: Maybe. Honestly, leg day always wipes me out.\n\nZoe: Same, but you can't skip it. No pain, no gain, right?\n\nMax: Ugh, true. Wanna be workout buddies? I need someone to keep me accountable.\n\nZoe: Sure! Let's hit the gym Tuesdays and Thursdays.\n\nMax: Perfect. I'll pencil it in.",
+  "glossary": [
+    {
+      "word": "crush it",
+      "pos": "slang",
+      "japanese": "大活躍する、バリバリこなす",
+      "definition": "To do something extremely well.",
+      "example": "She's been crushing it at her new sales job.",
+      "exampleJa": "彼女は新しい営業の仕事でバリバリ活躍している。"
+    },
+    {
+      "word": "stay on track",
+      "pos": "idiom",
+      "japanese": "計画どおりに進める",
+      "definition": "To continue following your plan or schedule.",
+      "example": "A study schedule helps me stay on track before exams.",
+      "exampleJa": "勉強の計画表のおかげで試験前も予定どおり進められる。"
+    },
+    {
+      "word": "get the hang of it",
+      "pos": "idiom",
+      "japanese": "コツをつかむ",
+      "definition": "To learn how to do something through practice.",
+      "example": "Skateboarding is hard at first, but you'll get the hang of it.",
+      "exampleJa": "スケボーは最初は難しいけど、すぐコツをつかめるよ。"
+    },
+    {
+      "word": "pace yourself",
+      "pos": "phrase",
+      "japanese": "ペース配分する",
+      "definition": "To do something at a steady speed so you don't get too tired.",
+      "example": "Pace yourself, the marathon is long and hot today.",
+      "exampleJa": "ペース配分してね、今日のマラソンは長くて暑いから。"
+    },
+    {
+      "word": "wipe someone out",
+      "pos": "phrasal verb",
+      "japanese": "くたくたに疲れさせる",
+      "definition": "To make someone completely exhausted.",
+      "example": "That hike totally wiped me out for the weekend.",
+      "exampleJa": "あのハイキングで週末はくたくたになった。"
+    },
+    {
+      "word": "no pain, no gain",
+      "pos": "idiom",
+      "japanese": "苦労なくして得るものなし",
+      "definition": "You must work hard to achieve results.",
+      "example": "My coach always says no pain, no gain.",
+      "exampleJa": "コーチはいつも「苦労なくして得るものなし」と言う。"
+    },
+    {
+      "word": "hit the gym",
+      "pos": "phrase",
+      "japanese": "ジムに行く",
+      "definition": "To go to the gym to exercise.",
+      "example": "I try to hit the gym before work on Mondays.",
+      "exampleJa": "月曜は仕事の前にジムに行くようにしている。"
+    },
+    {
+      "word": "pencil in",
+      "pos": "phrasal verb",
+      "japanese": "仮に予定に入れる",
+      "definition": "To schedule something tentatively.",
+      "example": "Let's pencil in lunch for Friday and confirm later.",
+      "exampleJa": "金曜のランチを仮予定に入れて、後で確定しよう。"
+    }
+  ],
+  "translation": "マックス: やあゾーイ、トレッドミルですごい頑張ってるね。\n\nゾーイ: ありがとう！10キロマラソンに向けて練習中だから、計画どおり進めないと。\n\nマックス: マジで、すごいな。俺なんて1マイル走るだけで死にそうだよ。\n\nゾーイ: すぐコツをつかめるよ。要はペース配分なの。\n\nマックス: どうかな。正直、脚トレの日はいつもくたくたになるよ。\n\nゾーイ: 私も。でもサボっちゃだめ。苦労なくして得るものなし、でしょ？\n\nマックス: うぐ、そのとおりだ。トレーニング仲間にならない？サボらないよう見張ってくれる人が必要でさ。\n\nゾーイ: いいよ！火曜と木曜にジムに行こう。\n\nマックス: 完璧。仮で予定に入れとくよ。"
+},
+{
+  "id": "2026-08-01-005",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Postcards from Portugal",
+  "difficulty": "Casual English",
+  "wordCount": 100,
+  "text": "Ben: Ella, weren't you just in Portugal? How was it?\n\nElla: Unreal. Lisbon totally blew me away. The views, the food, everything.\n\nBen: Nice! Did you hit all the touristy spots?\n\nElla: Some, but we mostly went off the beaten path. Tiny fishing villages, hole-in-the-wall cafes.\n\nBen: That's the best way to travel, honestly.\n\nElla: Right? Though we did get ripped off by one cab driver.\n\nBen: Ugh, classic. Happens everywhere.\n\nElla: True. Still, the trip was worth every penny. I'm already itching to go back.\n\nBen: Take me next time! I'm dead serious.\n\nElla: Ha, start saving up, then!",
+  "glossary": [
+    {
+      "word": "unreal",
+      "pos": "slang",
+      "japanese": "信じられないほど素晴らしい",
+      "definition": "So amazing it is hard to believe.",
+      "example": "The sunset over the canyon was absolutely unreal.",
+      "exampleJa": "渓谷に沈む夕日は信じられないほど美しかった。"
+    },
+    {
+      "word": "blow someone away",
+      "pos": "phrasal verb",
+      "japanese": "（人を）感動させる、圧倒する",
+      "definition": "To impress someone very strongly.",
+      "example": "Her violin performance completely blew the judges away.",
+      "exampleJa": "彼女のバイオリン演奏は審査員を完全に圧倒した。"
+    },
+    {
+      "word": "off the beaten path",
+      "pos": "idiom",
+      "japanese": "人があまり行かない場所",
+      "definition": "Away from the usual tourist routes; not well known.",
+      "example": "We found a quiet beach off the beaten path.",
+      "exampleJa": "私たちは観光ルートから外れた静かなビーチを見つけた。"
+    },
+    {
+      "word": "hole-in-the-wall",
+      "pos": "slang",
+      "japanese": "小さくて目立たない（けど良い）店",
+      "definition": "A small, plain place, often a restaurant, that is surprisingly good.",
+      "example": "This hole-in-the-wall diner serves the best pancakes ever.",
+      "exampleJa": "この小さな目立たない食堂のパンケーキは最高なんだ。"
+    },
+    {
+      "word": "rip off",
+      "pos": "phrasal verb",
+      "japanese": "ぼったくる",
+      "definition": "To cheat someone by charging too much money.",
+      "example": "Tourists often get ripped off at that souvenir shop.",
+      "exampleJa": "あの土産物屋では観光客がよくぼったくられる。"
+    },
+    {
+      "word": "worth every penny",
+      "pos": "idiom",
+      "japanese": "払った価値が十分ある",
+      "definition": "Completely worth the money you paid.",
+      "example": "The concert tickets were expensive but worth every penny.",
+      "exampleJa": "コンサートのチケットは高かったが、払った価値は十分あった。"
+    },
+    {
+      "word": "be itching to",
+      "pos": "idiom",
+      "japanese": "～したくてうずうずしている",
+      "definition": "To want to do something very eagerly.",
+      "example": "The kids are itching to open their presents.",
+      "exampleJa": "子どもたちはプレゼントを開けたくてうずうずしている。"
+    },
+    {
+      "word": "save up",
+      "pos": "phrasal verb",
+      "japanese": "お金を貯める",
+      "definition": "To keep money over time for a specific purpose.",
+      "example": "He's saving up for a new mountain bike.",
+      "exampleJa": "彼は新しいマウンテンバイクのためにお金を貯めている。"
+    }
+  ],
+  "translation": "ベン: エラ、ポルトガルに行ってたんだよね？どうだった？\n\nエラ: 最高すぎた。リスボンには完全に圧倒されたよ。景色も、食べ物も、何もかも。\n\nベン: いいね！定番の観光スポットは全部回ったの？\n\nエラ: いくつかはね。でもほとんどは穴場めぐり。小さな漁村とか、目立たない小さなカフェとか。\n\nベン: 正直、それが一番いい旅の仕方だよね。\n\nエラ: でしょ？まあ、タクシーの運転手に一回ぼったくられたけど。\n\nベン: うわ、あるあるだ。どこでも起きるよね。\n\nエラ: ほんと。それでも、払った価値は十分ある旅だったよ。もう戻りたくてうずうずしてる。\n\nベン: 次は連れてってよ！本気で言ってるからね。\n\nエラ: あはは、じゃあ貯金始めなよ！"
+},
+{
+  "id": "2026-08-01-006",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "The New Apartment",
+  "difficulty": "Casual English",
+  "wordCount": 102,
+  "text": "Ruby: So, how's the new place, Leo? All settled in?\n\nLeo: Getting there. I'm still living out of boxes, to be honest.\n\nRuby: Ha, moving is such a pain. How's the neighborhood?\n\nLeo: Super quiet, and my commute got cut in half. Total game changer.\n\nRuby: Jealous! Rent must be steep though, right?\n\nLeo: Kinda, but it's roomier and it gets tons of natural light.\n\nRuby: Sounds dreamy. When's the housewarming party?\n\nLeo: Once I finally unpack, promise. Maybe next month?\n\nRuby: I'll hold you to that! Need any help meanwhile?\n\nLeo: Actually, yeah. Wanna help me put together a bookshelf Saturday?",
+  "glossary": [
+    {
+      "word": "settle in",
+      "pos": "phrasal verb",
+      "japanese": "新居・新環境に落ち着く",
+      "definition": "To become comfortable in a new home or situation.",
+      "example": "It took a month to settle in after moving.",
+      "exampleJa": "引っ越し後、落ち着くまで1か月かかった。"
+    },
+    {
+      "word": "getting there",
+      "pos": "phrase",
+      "japanese": "だんだん近づいている、もう少し",
+      "definition": "Making progress but not finished yet.",
+      "example": "\"Is the report done?\" \"Not yet, but getting there.\"",
+      "exampleJa": "「レポート終わった？」「まだだけど、もう少しだよ。」"
+    },
+    {
+      "word": "live out of boxes",
+      "pos": "idiom",
+      "japanese": "荷解きが終わらないまま暮らす",
+      "definition": "To live without unpacking after moving.",
+      "example": "We lived out of boxes for weeks after the move.",
+      "exampleJa": "引っ越し後、何週間も段ボール生活だった。"
+    },
+    {
+      "word": "such a pain",
+      "pos": "phrase",
+      "japanese": "本当に面倒くさい",
+      "definition": "Very annoying or troublesome.",
+      "example": "Renewing my passport was such a pain this year.",
+      "exampleJa": "今年のパスポート更新は本当に面倒だった。"
+    },
+    {
+      "word": "game changer",
+      "pos": "slang",
+      "japanese": "状況を一変させるもの",
+      "definition": "Something that completely changes a situation for the better.",
+      "example": "Noise-canceling headphones were a game changer for my commute.",
+      "exampleJa": "ノイズキャンセリングのヘッドホンは通勤を一変させた。"
+    },
+    {
+      "word": "steep",
+      "pos": "slang",
+      "japanese": "（値段が）高すぎる",
+      "definition": "Unreasonably expensive.",
+      "example": "Fifty dollars for parking? That's pretty steep.",
+      "exampleJa": "駐車場に50ドル？それはかなり高いね。"
+    },
+    {
+      "word": "hold someone to that",
+      "pos": "idiom",
+      "japanese": "約束を守らせる",
+      "definition": "To make sure someone keeps their promise.",
+      "example": "You promised me sushi, and I'll hold you to that.",
+      "exampleJa": "お寿司おごるって約束したよね、ちゃんと守ってもらうから。"
+    },
+    {
+      "word": "put together",
+      "pos": "phrasal verb",
+      "japanese": "組み立てる",
+      "definition": "To assemble something from parts.",
+      "example": "It took hours to put together the new desk.",
+      "exampleJa": "新しい机を組み立てるのに何時間もかかった。"
+    }
+  ],
+  "translation": "ルビー: それで、新居はどう、レオ？もう落ち着いた？\n\nレオ: だんだんね。正直、まだ段ボール生活だよ。\n\nルビー: あはは、引っ越しって本当に面倒だよね。近所の雰囲気はどう？\n\nレオ: すごく静かだし、通勤時間が半分になったんだ。まさに状況一変だよ。\n\nルビー: うらやましい！でも家賃は高いんじゃない？\n\nレオ: まあね。でも前より広いし、自然光がたっぷり入るんだ。\n\nルビー: 夢みたいだね。引っ越し祝いのパーティーはいつ？\n\nレオ: 荷解きが終わったら必ずやるよ。来月あたりかな？\n\nルビー: その約束、忘れないからね！それまでに何か手伝おうか？\n\nレオ: 実は、うん。土曜日に本棚の組み立てを手伝ってくれない？"
+},
+{
+  "id": "2026-08-01-007",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Venting Over Lunch",
+  "difficulty": "Casual English",
+  "wordCount": 106,
+  "text": "Nina: Ugh, can I vent for a sec? This project is driving me up the wall.\n\nChris: Let me guess. The deadline got moved up again?\n\nNina: Yep. And the client keeps moving the goalposts. New requests every single day.\n\nChris: That's rough. Is Dave still dropping the ball on his part?\n\nNina: Totally. I end up picking up the slack every time.\n\nChris: You should loop in the manager before you burn out.\n\nNina: Yeah, you're right. I just hate throwing anyone under the bus.\n\nChris: It's not that, it's just being honest. Anyway, lunch is on me today.\n\nNina: Aw, thanks. You're the best.",
+  "glossary": [
+    {
+      "word": "vent",
+      "pos": "slang",
+      "japanese": "愚痴を吐き出す",
+      "definition": "To express frustration by talking about it.",
+      "example": "Sometimes you just need to vent to a friend.",
+      "exampleJa": "時には友達に愚痴を吐き出すことも必要だ。"
+    },
+    {
+      "word": "drive someone up the wall",
+      "pos": "idiom",
+      "japanese": "（人を）イライラさせる",
+      "definition": "To annoy someone very much.",
+      "example": "My neighbor's loud music drives me up the wall.",
+      "exampleJa": "隣人の大音量の音楽には本当にイライラさせられる。"
+    },
+    {
+      "word": "move the goalposts",
+      "pos": "idiom",
+      "japanese": "途中でルールや条件を変える",
+      "definition": "To unfairly change the rules or requirements during a process.",
+      "example": "Every time we finish, the boss moves the goalposts.",
+      "exampleJa": "終わらせるたびに、上司が条件を変えてくるんだ。"
+    },
+    {
+      "word": "drop the ball",
+      "pos": "idiom",
+      "japanese": "へまをする、責任を果たさない",
+      "definition": "To fail to do something you are responsible for.",
+      "example": "I dropped the ball and forgot to book the room.",
+      "exampleJa": "私がへまをして、部屋の予約を忘れてしまった。"
+    },
+    {
+      "word": "pick up the slack",
+      "pos": "idiom",
+      "japanese": "人の分まで仕事を引き受ける",
+      "definition": "To do the work someone else has failed to do.",
+      "example": "When he quit, we all picked up the slack.",
+      "exampleJa": "彼が辞めたとき、みんなでその分の仕事を引き受けた。"
+    },
+    {
+      "word": "loop someone in",
+      "pos": "phrasal verb",
+      "japanese": "（人に）情報を共有する、巻き込む",
+      "definition": "To include someone in a discussion or share information with them.",
+      "example": "Please loop me in on any emails about the budget.",
+      "exampleJa": "予算に関するメールがあれば私にも共有してください。"
+    },
+    {
+      "word": "burn out",
+      "pos": "phrasal verb",
+      "japanese": "燃え尽きる、疲れ果てる",
+      "definition": "To become exhausted from too much work or stress.",
+      "example": "She burned out after two years without a vacation.",
+      "exampleJa": "彼女は2年間休暇なしで働いて燃え尽きてしまった。"
+    },
+    {
+      "word": "throw someone under the bus",
+      "pos": "idiom",
+      "japanese": "（人を）犠牲にする、責任を押し付ける",
+      "definition": "To blame or sacrifice someone to protect yourself.",
+      "example": "He threw his teammate under the bus in the meeting.",
+      "exampleJa": "彼は会議でチームメイトに責任を押し付けた。"
+    }
+  ],
+  "translation": "ニーナ: あー、ちょっと愚痴ってもいい？このプロジェクト、本当にイライラするの。\n\nクリス: 当ててみようか。締め切りがまた前倒しになった？\n\nニーナ: そう。しかもクライアントが次々と条件を変えてくるの。毎日毎日、新しい要望ばっかり。\n\nクリス: それはきついね。デイブはまだ自分の担当でへまし続けてるの？\n\nニーナ: そうなの。毎回、私がその分まで引き受けるはめになってる。\n\nクリス: 燃え尽きる前にマネージャーに共有したほうがいいよ。\n\nニーナ: うん、そうだよね。ただ、誰かに責任を押し付けるみたいで嫌なんだよね。\n\nクリス: そうじゃなくて、正直に伝えるだけだよ。まあとにかく、今日のランチは僕のおごりね。\n\nニーナ: わあ、ありがとう。ほんと最高だね。"
+},
+{
+  "id": "2026-08-01-008",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Market Talk Before the Meeting",
+  "difficulty": "Casual English",
+  "wordCount": 98,
+  "text": "Tom: Morning, Grace. Did you catch the markets overnight?\n\nGrace: Yeah, stocks took a nosedive after the Fed comments. Brutal.\n\nTom: No kidding. My portfolio's in the red big time.\n\nGrace: Same here. But honestly, I'm just riding it out. Long game, right?\n\nTom: Smart. Trying to time the market is a fool's errand.\n\nGrace: Exactly. My uncle panic-sold in 2020 and missed the whole rebound.\n\nTom: Ouch, that stings. Anyway, heads up, the boss wants numbers first thing.\n\nGrace: Yep, my slides are good to go. Let's grab seats.\n\nTom: After you. Hopefully it's a short one.",
+  "glossary": [
+    {
+      "word": "take a nosedive",
+      "pos": "idiom",
+      "japanese": "急落する",
+      "definition": "To fall or drop suddenly and sharply.",
+      "example": "Sales took a nosedive after the scandal broke.",
+      "exampleJa": "スキャンダルが発覚した後、売上は急落した。"
+    },
+    {
+      "word": "no kidding",
+      "pos": "phrase",
+      "japanese": "ほんとだよ、マジで",
+      "definition": "Used to agree strongly or show something is obviously true.",
+      "example": "\"This heat is unbearable.\" \"No kidding, it's brutal.\"",
+      "exampleJa": "「この暑さは耐えられない」「ほんとだよ、ひどいよね。」"
+    },
+    {
+      "word": "in the red",
+      "pos": "idiom",
+      "japanese": "赤字で、損失が出て",
+      "definition": "Losing money; showing a financial loss.",
+      "example": "The company has been in the red for two quarters.",
+      "exampleJa": "その会社は2四半期連続で赤字だ。"
+    },
+    {
+      "word": "ride it out",
+      "pos": "idiom",
+      "japanese": "嵐が過ぎるのを待つ、耐え抜く",
+      "definition": "To endure a difficult period until it ends.",
+      "example": "The storm was bad, but we rode it out at home.",
+      "exampleJa": "嵐はひどかったが、私たちは家で耐え抜いた。"
+    },
+    {
+      "word": "a fool's errand",
+      "pos": "idiom",
+      "japanese": "無駄な骨折り",
+      "definition": "A task that is pointless and has no chance of success.",
+      "example": "Arguing with him about politics is a fool's errand.",
+      "exampleJa": "彼と政治について議論するのは無駄な骨折りだ。"
+    },
+    {
+      "word": "heads up",
+      "pos": "phrase",
+      "japanese": "事前の注意、お知らせ",
+      "definition": "A warning or notice given in advance.",
+      "example": "Just a heads up, the elevator is broken today.",
+      "exampleJa": "一応お知らせだけど、今日はエレベーターが故障してるよ。"
+    },
+    {
+      "word": "good to go",
+      "pos": "phrase",
+      "japanese": "準備万端",
+      "definition": "Ready and prepared to start.",
+      "example": "Bags are packed, tickets printed, we're good to go.",
+      "exampleJa": "荷造りも済んでチケットも印刷した、準備万端だ。"
+    },
+    {
+      "word": "first thing",
+      "pos": "phrase",
+      "japanese": "朝一番に、真っ先に",
+      "definition": "At the very beginning of the day or before anything else.",
+      "example": "I'll email the client first thing tomorrow morning.",
+      "exampleJa": "明日の朝一番にクライアントへメールします。"
+    }
+  ],
+  "translation": "トム: おはよう、グレース。昨夜のマーケット見た？\n\nグレース: うん、FRBのコメントの後、株が急落したね。ひどいもんだよ。\n\nトム: ほんとだよ。僕のポートフォリオは大幅に赤字だ。\n\nグレース: こっちも同じ。でも正直、嵐が過ぎるのを待つだけ。長期戦でしょ？\n\nトム: 賢明だね。市場のタイミングを計ろうなんて無駄な骨折りだから。\n\nグレース: そのとおり。うちの叔父は2020年に狼狽売りして、その後の反発を全部逃したの。\n\nトム: うわ、それは痛い。それはそうと、一応知らせておくと、ボスが朝一番に数字を欲しがってるよ。\n\nグレース: うん、スライドは準備万端。席を取りに行こう。\n\nトム: お先にどうぞ。短い会議だといいね。"
+},
+{
+  "id": "2026-08-01-009",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Asking for Time Off",
+  "difficulty": "Casual English",
+  "wordCount": 109,
+  "text": "Dan: Hey Kate, got a minute? I wanted to run something by you.\n\nKate: Sure, Dan. What's up?\n\nDan: I was hoping to take some time off in September. Two weeks, if that works.\n\nKate: Let me check the calendar. Anything big happening?\n\nDan: My brother's getting married overseas, so it's kind of a big deal.\n\nKate: Oh, congrats to him! September's a bit hectic, but we'll make it work.\n\nDan: Thanks. I'll wrap up the audit beforehand and hand off my accounts.\n\nKate: Perfect. Just put in the request today so HR can sign off.\n\nDan: Will do. Really appreciate it, Kate.\n\nKate: Of course. Family comes first.",
+  "glossary": [
+    {
+      "word": "got a minute",
+      "pos": "phrase",
+      "japanese": "ちょっと時間ある？",
+      "definition": "A polite way to ask if someone has time to talk.",
+      "example": "Got a minute? I need your advice on something.",
+      "exampleJa": "ちょっと時間ある？相談したいことがあるんだ。"
+    },
+    {
+      "word": "run something by someone",
+      "pos": "idiom",
+      "japanese": "（人に）相談する、意見を聞く",
+      "definition": "To tell someone about an idea to get their opinion.",
+      "example": "Can I run my proposal by you before the meeting?",
+      "exampleJa": "会議の前に、私の提案について意見をもらえますか？"
+    },
+    {
+      "word": "take time off",
+      "pos": "phrase",
+      "japanese": "休暇を取る",
+      "definition": "To be away from work for a period of time.",
+      "example": "She took time off to care for her mother.",
+      "exampleJa": "彼女は母親の世話をするために休暇を取った。"
+    },
+    {
+      "word": "a big deal",
+      "pos": "phrase",
+      "japanese": "重要なこと、一大事",
+      "definition": "Something very important or significant.",
+      "example": "Graduating college is a big deal for our family.",
+      "exampleJa": "大学卒業はうちの家族にとって一大事なんだ。"
+    },
+    {
+      "word": "make it work",
+      "pos": "phrase",
+      "japanese": "なんとかうまくやる",
+      "definition": "To find a way to succeed despite difficulties.",
+      "example": "The budget is tight, but we'll make it work.",
+      "exampleJa": "予算は厳しいけど、なんとかうまくやるよ。"
+    },
+    {
+      "word": "wrap up",
+      "pos": "phrasal verb",
+      "japanese": "仕上げる、終わらせる",
+      "definition": "To finish or complete something.",
+      "example": "Let's wrap up this report before five o'clock.",
+      "exampleJa": "5時までにこのレポートを仕上げよう。"
+    },
+    {
+      "word": "hand off",
+      "pos": "phrasal verb",
+      "japanese": "引き継ぐ、任せる",
+      "definition": "To pass work or responsibility to someone else.",
+      "example": "I handed off my projects before the vacation started.",
+      "exampleJa": "休暇が始まる前に、担当プロジェクトを引き継いだ。"
+    },
+    {
+      "word": "sign off",
+      "pos": "phrasal verb",
+      "japanese": "承認する",
+      "definition": "To formally approve something.",
+      "example": "The director needs to sign off on the final design.",
+      "exampleJa": "最終デザインには部長の承認が必要だ。"
+    }
+  ],
+  "translation": "ダン: ケイトさん、ちょっとお時間ありますか？相談したいことがあって。\n\nケイト: もちろん、ダン。どうしたの？\n\nダン: 9月に休暇を取りたいと思っていまして。できれば2週間なんですが。\n\nケイト: カレンダーを確認させて。何か大きな用事があるの？\n\nダン: 兄が海外で結婚式を挙げるんです。それで、ちょっとした一大事でして。\n\nケイト: あら、おめでたいことね！9月は少し忙しいけど、なんとかしましょう。\n\nダン: ありがとうございます。事前に監査を仕上げて、担当の引き継ぎもしておきます。\n\nケイト: 完璧ね。人事が承認できるよう、今日中に申請を出しておいて。\n\nダン: そうします。本当にありがとうございます、ケイトさん。\n\nケイト: いいのよ。家族が最優先だからね。"
+},
+{
+  "id": "2026-08-01-010",
+  "date": "2026-08-01",
+  "topic": "Real Conversations",
+  "title": "Celebrating the Promotion",
+  "difficulty": "Casual English",
+  "wordCount": 106,
+  "text": "Ivy: Ryan! I just heard the news. Congrats on the promotion!\n\nRyan: Aw, thanks, Ivy. Honestly, it hasn't sunk in yet.\n\nIvy: You totally earned it. You've been killing it all year.\n\nRyan: I appreciate that. It was a team effort, though, seriously.\n\nIvy: Stop being so modest! So, does the new role kick in Monday?\n\nRyan: Yep. New title, new team, the whole nine yards.\n\nIvy: Fancy! We have to celebrate. Drinks after work? First round's on me.\n\nRyan: Ha, sure. I could use a drink.\n\nIvy: Yes! I'll spread the word. Everyone's gonna show up for you.\n\nRyan: You guys are the best, honestly.",
+  "glossary": [
+    {
+      "word": "sink in",
+      "pos": "phrasal verb",
+      "japanese": "実感がわく",
+      "definition": "To gradually become fully understood or felt.",
+      "example": "The good news still hasn't sunk in yet.",
+      "exampleJa": "その良い知らせはまだ実感がわいていない。"
+    },
+    {
+      "word": "kill it",
+      "pos": "slang",
+      "japanese": "大活躍する、最高の出来を見せる",
+      "definition": "To perform extremely well.",
+      "example": "You killed it in the presentation this morning!",
+      "exampleJa": "今朝のプレゼン、最高の出来だったよ！"
+    },
+    {
+      "word": "kick in",
+      "pos": "phrasal verb",
+      "japanese": "始まる、効き始める",
+      "definition": "To start to take effect.",
+      "example": "The new rules kick in at the start of April.",
+      "exampleJa": "新しいルールは4月の初めから始まる。"
+    },
+    {
+      "word": "the whole nine yards",
+      "pos": "idiom",
+      "japanese": "何もかも全部",
+      "definition": "Everything; the complete set of things.",
+      "example": "They planned a wedding with flowers, music, the whole nine yards.",
+      "exampleJa": "彼らは花に音楽にと、何もかも揃えた結婚式を計画した。"
+    },
+    {
+      "word": "could use",
+      "pos": "phrase",
+      "japanese": "～が欲しい、～があるとありがたい",
+      "definition": "To want or need something, said casually.",
+      "example": "After that long meeting, I could use some coffee.",
+      "exampleJa": "あの長い会議の後だから、コーヒーが飲みたいな。"
+    },
+    {
+      "word": "spread the word",
+      "pos": "idiom",
+      "japanese": "みんなに知らせる",
+      "definition": "To tell many people about something.",
+      "example": "Spread the word, the bake sale is this Friday.",
+      "exampleJa": "みんなに知らせて、バザーは今週の金曜日だよ。"
+    },
+    {
+      "word": "show up",
+      "pos": "phrasal verb",
+      "japanese": "顔を出す、駆けつける",
+      "definition": "To arrive or appear at a place or event.",
+      "example": "Almost fifty people showed up for the farewell party.",
+      "exampleJa": "送別会には50人近くが駆けつけた。"
+    }
+  ],
+  "translation": "アイビー: ライアン！さっき聞いたよ。昇進おめでとう！\n\nライアン: ああ、ありがとう、アイビー。正直、まだ実感がわかないんだ。\n\nアイビー: 完全に実力だよ。今年ずっと大活躍だったもん。\n\nライアン: ありがたいね。でも本当に、チームみんなの成果だよ。\n\nアイビー: そんなに謙遜しないの！で、新しい役職は月曜からスタート？\n\nライアン: うん。新しい肩書きに新しいチーム、何もかも全部ね。\n\nアイビー: すごいじゃん！お祝いしなきゃ。仕事の後に飲みに行かない？最初の一杯は私のおごり。\n\nライアン: はは、いいね。一杯やりたい気分だったんだ。\n\nアイビー: やった！みんなに知らせておくね。みんな駆けつけてくれるよ。\n\nライアン: ほんと、君たちは最高だよ。"
+}
+);
