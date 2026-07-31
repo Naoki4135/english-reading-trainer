@@ -84,6 +84,7 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **フラッシュカードのイラスト**: `getWordVisual()` が `VISUAL_OVERRIDES` → `WORD_VISUAL_MAP`（手作り183件）→ 日本語訳のキーワード自動マッチ、の順で解決する。自動マッチは誤爆しやすいため、2026-07-26に全1403語を点検し880語を修正済み。**汎用フォールバック（「名詞」「形容詞」等）に落ちる語はゼロを維持すること**
 - **ヒントのネタバレ防止（重要）**: `buildFlashcardHint()` は `visual.h` が日本語訳と一致する場合にImage行を出さない。自動生成のhは訳そのままで答えになるため。`VISUAL_OVERRIDES` の h には**訳語を書かず情景を書く**こと（例: hollow out →「外側は立派な大木。でも中身は空っぽ」）
 - **記事リーダー**（ホームのNews Articlesセクション）: ①アプリ内「＋記事を追加」で本文貼り付け→state.articlesにlocalStorage保存（Glossary/訳なし、音声再生・ブラインド可）②記事URLをClaudeに送る→articles-data.jsにGlossary・訳付きオリジナル要約記事として追加。記事はエッセイ詳細ページを流用表示（訳・Glossaryがない場合はボタン非表示）。記事のglossaryも単語帳・SRSに自動統合
+- **自動クラウド同期（2026-07-31追加）**: GitHub Gist（非公開・`ert-sync.json`）を使ってデバイス間で学習データを自動同期。トークンはlocalStorage（`ert-sync-token`）のみに保存し、**stateやバックアップ・Sync Codeには絶対に含めない**。挙動: 起動時とフォアグラウンド復帰時に`cloudPull()`（フィールド単位マージ）、`saveState()`の30秒後と離脱時に`cloudPush()`。ペイロードは`buildSyncPayload()`（SRS進捗のみ、約200KB）。401はトークン失効表示
 - **SRSタブ構成（2026-07-19整理後）**: Due alert / 14日グラフ（Words Read・Quiz Reviews）/ 長期グラフ2種 / Mastery Distribution / Device Sync / バックアップのみ。Upcoming Reviews・Study History・Vocabulary Growthグラフは削除済み（復活させない）
 
 ## 技術スタック

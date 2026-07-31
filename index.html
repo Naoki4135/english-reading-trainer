@@ -948,8 +948,29 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div class="card" id="mastery-chart"></div>
 
     <div class="card-title" style="margin: 16px 0 8px;">Device Sync</div>
+    <div class="card" style="margin-bottom:8px;">
+      <div style="font-size:13px; font-weight:700; margin-bottom:4px;">&#9729;&#65039; 自動クラウド同期</div>
+      <div id="cloud-sync-status" style="font-size:12px; color:var(--text2); margin-bottom:10px;">未設定</div>
+      <div id="cloud-sync-setup">
+        <div style="font-size:12px; color:var(--text2); line-height:1.7; margin-bottom:10px;">
+          GitHubのGist（非公開メモ）を使って、iPhone・iPad間で学習データを自動同期します。<br>
+          &#9312; GitHub → Settings → Developer settings → Personal access tokens → <b>Fine-grained tokens</b> で新規作成<br>
+          &#9313; Account permissions の <b>Gists</b> を <b>Read and write</b> に設定（他の権限は不要）<br>
+          &#9314; 生成されたトークンを下に貼り付け（両方の端末で同じトークンを使用）
+        </div>
+        <input type="password" class="search-input" id="cloud-token-input" placeholder="ghp_... / github_pat_... を貼り付け" autocomplete="off" style="margin-bottom:8px;">
+        <button class="btn primary" style="width:100%; padding:10px;" onclick="enableCloudSync()">&#9729;&#65039; 自動同期を有効にする</button>
+      </div>
+      <div id="cloud-sync-active" style="display:none;">
+        <div style="font-size:12px; color:var(--text2); line-height:1.6; margin-bottom:10px;">起動時・アプリ復帰時に取得し、学習の30秒後と離脱時に自動保存します</div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn" style="flex:1; padding:10px;" onclick="cloudPull().then(() => cloudPush())">&#128260; 今すぐ同期</button>
+          <button class="btn" style="flex:1; padding:10px; color:var(--red); border-color:var(--red);" onclick="disableCloudSync()">解除</button>
+        </div>
+      </div>
+    </div>
     <div class="card">
-      <div style="font-size:13px; margin-bottom:10px;">スマホ・タブレット間で学習データを同期</div>
+      <div style="font-size:13px; margin-bottom:10px;">手動同期（Sync Code）</div>
       <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
         <button class="btn" onclick="generateSyncCode()" style="flex:1;">&#128228; Sync Code 生成</button>
         <button class="btn" onclick="showSyncImport()" style="flex:1;">&#128229; Sync Code 入力</button>
@@ -1040,7 +1061,10 @@ function loadState() {
   } catch (e) { localStorage.removeItem(STORAGE_KEY); }
   return { vocabulary: {}, essaysRead: [], studyHistory: [], readCounts: {}, dailyStats: {}, recentEssayIds: [], youtubeItems: [], articles: [], lastStudyDate: null };
 }
-function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  if (typeof scheduleCloudPush === 'function') scheduleCloudPush();
+}
 
 function formatLocalDate(date = new Date()) {
   const year = date.getFullYear();
@@ -1869,6 +1893,8 @@ function init() {
   updateReviewPage();
   document.getElementById('home-date').textContent = new Date().toLocaleDateString('ja-JP', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
   registerServiceWorker();
+  updateCloudSyncUi();
+  if (cloudEnabled()) cloudPull();
 }
 
 function registerServiceWorker() {
@@ -3525,10 +3551,10 @@ function importProgress(event) {
 }
 
 // === DEVICE SYNC ===
-function generateSyncCode() {
-  document.getElementById('sync-import-area').style.display = 'none';
+// 同期ペイロード（SRS進捗のみ。単語の定義等はdata.js由来なので送らない）
+function buildSyncPayload() {
   const syncData = {
-    v: 1, // version
+    v: 1,
     ts: Date.now(),
     readCounts: state.readCounts,
     essaysRead: state.essaysRead,
@@ -3541,7 +3567,6 @@ function generateSyncCode() {
     articles: state.articles || [],
     vocabulary: {}
   };
-  // Only export SRS progress (not word definitions - those come from data.js)
   Object.entries(state.vocabulary).forEach(([key, v]) => {
     syncData.vocabulary[key] = {
       level: v.level, interval: v.interval, easeFactor: v.easeFactor,
@@ -3549,7 +3574,78 @@ function generateSyncCode() {
       correctCount: v.correctCount, lastReview: v.lastReview
     };
   });
-  const json = JSON.stringify(syncData);
+  return syncData;
+}
+
+// 同期データを現在のstateにマージ（フィールドごとに進んでいる方を採用）
+function mergeSyncData(syncData) {
+  if (!syncData || !syncData.v || !syncData.vocabulary) throw new Error('invalid sync data');
+  Object.entries(syncData.vocabulary).forEach(([key, imported]) => {
+    if (state.vocabulary[key]) {
+      const current = state.vocabulary[key];
+      const importedReviews = imported.reviewCount || 0;
+      const currentReviews = current.reviewCount || 0;
+      if (importedReviews > currentReviews || (importedReviews === currentReviews && (imported.lastReview || '') > (current.lastReview || ''))) {
+        current.level = imported.level;
+        current.interval = imported.interval;
+        current.easeFactor = imported.easeFactor;
+        current.nextReview = imported.nextReview;
+        current.reviewCount = imported.reviewCount;
+        current.correctCount = imported.correctCount;
+        current.lastReview = imported.lastReview;
+      }
+    }
+  });
+  if (syncData.readCounts) {
+    Object.entries(syncData.readCounts).forEach(([id, count]) => {
+      state.readCounts[id] = Math.max(state.readCounts[id] || 0, count);
+    });
+  }
+  if (syncData.essaysRead) {
+    syncData.essaysRead.forEach(id => { if (!state.essaysRead.includes(id)) state.essaysRead.push(id); });
+  }
+  if (syncData.recentEssayIds) {
+    state.recentEssayIds = [...syncData.recentEssayIds, ...(state.recentEssayIds || [])]
+      .filter((id, index, arr) => arr.indexOf(id) === index)
+      .slice(0, 50);
+  }
+  if (syncData.dailyStats) {
+    Object.entries(syncData.dailyStats).forEach(([date, imported]) => {
+      if (!state.dailyStats[date]) state.dailyStats[date] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
+      const s = state.dailyStats[date];
+      s.wordsRead = Math.max(s.wordsRead, imported.wordsRead || 0);
+      s.essaysRead = Math.max(s.essaysRead, imported.essaysRead || 0);
+      s.vocabCount = Math.max(s.vocabCount, imported.vocabCount || 0);
+      s.mastered = Math.max(s.mastered, imported.mastered || 0);
+      s.reviewed = Math.max(s.reviewed, imported.reviewed || 0);
+    });
+  }
+  if (syncData.duoSrs) {
+    if (!state.duoSrs) state.duoSrs = {};
+    Object.entries(syncData.duoSrs).forEach(([id, imported]) => {
+      const current = state.duoSrs[id];
+      if (!current || (imported.reviewCount || 0) > (current.reviewCount || 0)) {
+        state.duoSrs[id] = imported;
+      }
+    });
+  }
+  if (Array.isArray(syncData.youtubeItems)) {
+    if (!state.youtubeItems) state.youtubeItems = [];
+    syncData.youtubeItems.forEach(item => {
+      if (!state.youtubeItems.some(x => x.id === item.id)) state.youtubeItems.push(item);
+    });
+  }
+  if (Array.isArray(syncData.articles)) {
+    if (!state.articles) state.articles = [];
+    syncData.articles.forEach(item => {
+      if (!state.articles.some(x => x.id === item.id)) state.articles.push(item);
+    });
+  }
+}
+
+function generateSyncCode() {
+  document.getElementById('sync-import-area').style.display = 'none';
+  const json = JSON.stringify(buildSyncPayload());
   const encoded = btoa(unescape(encodeURIComponent(json)));
   document.getElementById('sync-code-output').value = encoded;
   document.getElementById('sync-export-area').style.display = 'block';
@@ -3571,84 +3667,169 @@ function applySyncCode() {
   const code = document.getElementById('sync-code-input').value.trim();
   if (!code) { showToast('Sync Codeを入力してください'); return; }
   try {
-    const json = decodeURIComponent(escape(atob(code)));
-    const syncData = JSON.parse(json);
-    if (!syncData.v || !syncData.vocabulary) { showToast('Invalid Sync Code'); return; }
-    // Merge SRS progress
-    Object.entries(syncData.vocabulary).forEach(([key, imported]) => {
-      if (state.vocabulary[key]) {
-        const current = state.vocabulary[key];
-        // Use whichever has more recent review or higher progress
-        const importedReviews = imported.reviewCount || 0;
-        const currentReviews = current.reviewCount || 0;
-        if (importedReviews > currentReviews || (importedReviews === currentReviews && (imported.lastReview || '') > (current.lastReview || ''))) {
-          current.level = imported.level;
-          current.interval = imported.interval;
-          current.easeFactor = imported.easeFactor;
-          current.nextReview = imported.nextReview;
-          current.reviewCount = imported.reviewCount;
-          current.correctCount = imported.correctCount;
-          current.lastReview = imported.lastReview;
-        }
-      }
-    });
-    // Merge readCounts (take max)
-    if (syncData.readCounts) {
-      Object.entries(syncData.readCounts).forEach(([id, count]) => {
-        state.readCounts[id] = Math.max(state.readCounts[id] || 0, count);
-      });
-    }
-    // Merge essaysRead
-    if (syncData.essaysRead) {
-      syncData.essaysRead.forEach(id => { if (!state.essaysRead.includes(id)) state.essaysRead.push(id); });
-    }
-    if (syncData.recentEssayIds) {
-      state.recentEssayIds = [...syncData.recentEssayIds, ...(state.recentEssayIds || [])]
-        .filter((id, index, arr) => arr.indexOf(id) === index)
-        .slice(0, 10);
-    }
-    // Merge dailyStats (take max for each field)
-    if (syncData.dailyStats) {
-      Object.entries(syncData.dailyStats).forEach(([date, imported]) => {
-        if (!state.dailyStats[date]) state.dailyStats[date] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
-        const s = state.dailyStats[date];
-        s.wordsRead = Math.max(s.wordsRead, imported.wordsRead || 0);
-        s.essaysRead = Math.max(s.essaysRead, imported.essaysRead || 0);
-        s.vocabCount = Math.max(s.vocabCount, imported.vocabCount || 0);
-        s.mastered = Math.max(s.mastered, imported.mastered || 0);
-        s.reviewed = Math.max(s.reviewed, imported.reviewed || 0);
-      });
-    }
-    // Merge duoSrs
-    if (syncData.duoSrs) {
-      if (!state.duoSrs) state.duoSrs = {};
-      Object.entries(syncData.duoSrs).forEach(([id, imported]) => {
-        const current = state.duoSrs[id];
-        if (!current || (imported.reviewCount || 0) > (current.reviewCount || 0)) {
-          state.duoSrs[id] = imported;
-        }
-      });
-    }
-    // Merge youtubeItems（IDベースで重複を避けて統合）
-    if (Array.isArray(syncData.youtubeItems)) {
-      if (!state.youtubeItems) state.youtubeItems = [];
-      syncData.youtubeItems.forEach(item => {
-        if (!state.youtubeItems.some(x => x.id === item.id)) state.youtubeItems.push(item);
-      });
-    }
-    // Merge articles（IDベースで重複を避けて統合）
-    if (Array.isArray(syncData.articles)) {
-      if (!state.articles) state.articles = [];
-      syncData.articles.forEach(item => {
-        if (!state.articles.some(x => x.id === item.id)) state.articles.push(item);
-      });
-    }
+    const syncData = JSON.parse(decodeURIComponent(escape(atob(code))));
+    mergeSyncData(syncData);
     saveState();
     updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
     document.getElementById('sync-import-area').style.display = 'none';
     showToast('Sync complete!');
   } catch (err) { showToast('Invalid Sync Code: ' + err.message); }
 }
+
+// === CLOUD SYNC (GitHub Gist) ===
+// トークンはlocalStorageのみに保存し、state（バックアップ/Sync Code）には決して含めない
+const CLOUD_TOKEN_KEY = 'ert-sync-token';
+const CLOUD_GIST_KEY = 'ert-sync-gist-id';
+const CLOUD_LAST_KEY = 'ert-sync-last';
+const CLOUD_FILENAME = 'ert-sync.json';
+const GH_API = 'https://api.github.com';
+let cloudPushTimer = null;
+let cloudBusy = false;
+
+function cloudEnabled() { return !!localStorage.getItem(CLOUD_TOKEN_KEY); }
+function ghHeaders() {
+  return {
+    'Authorization': 'Bearer ' + localStorage.getItem(CLOUD_TOKEN_KEY),
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json'
+  };
+}
+function cloudStatus(text, isError) {
+  const el = document.getElementById('cloud-sync-status');
+  if (el) { el.textContent = text; el.style.color = isError ? 'var(--red)' : 'var(--text2)'; }
+}
+function cloudStampSynced() {
+  const now = new Date();
+  localStorage.setItem(CLOUD_LAST_KEY, now.toISOString());
+  cloudStatus('☁️ 同期済み ' + now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' }));
+}
+
+async function cloudFindOrCreateGist() {
+  const cached = localStorage.getItem(CLOUD_GIST_KEY);
+  if (cached) return cached;
+  const res = await fetch(GH_API + '/gists?per_page=100', { headers: ghHeaders() });
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const gists = await res.json();
+  const hit = gists.find(g => g.files && g.files[CLOUD_FILENAME]);
+  if (hit) { localStorage.setItem(CLOUD_GIST_KEY, hit.id); return hit.id; }
+  const created = await fetch(GH_API + '/gists', {
+    method: 'POST', headers: ghHeaders(),
+    body: JSON.stringify({ description: 'English Reading Trainer 学習データ同期（自動生成）', public: false,
+      files: { [CLOUD_FILENAME]: { content: JSON.stringify(buildSyncPayload()) } } })
+  });
+  if (!created.ok) throw new Error('HTTP ' + created.status);
+  const g = await created.json();
+  localStorage.setItem(CLOUD_GIST_KEY, g.id);
+  return g.id;
+}
+
+async function cloudPull() {
+  if (!cloudEnabled() || cloudBusy) return;
+  cloudBusy = true;
+  try {
+    const gistId = await cloudFindOrCreateGist();
+    const res = await fetch(GH_API + '/gists/' + gistId, { headers: ghHeaders() });
+    if (res.status === 404) { localStorage.removeItem(CLOUD_GIST_KEY); throw new Error('HTTP 404'); }
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const gist = await res.json();
+    const file = gist.files && gist.files[CLOUD_FILENAME];
+    if (file) {
+      let content = file.content;
+      if (file.truncated && file.raw_url) {
+        const raw = await fetch(file.raw_url);
+        content = await raw.text();
+      }
+      mergeSyncData(JSON.parse(content));
+      saveState();
+      updateDashboard(); updateVocabPage(); updateQuizPage(); updateReviewPage();
+    }
+    cloudStampSynced();
+  } catch (err) {
+    cloudStatus('☁️ 取得失敗: ' + cloudErrorLabel(err), true);
+  } finally { cloudBusy = false; }
+}
+
+async function cloudPush() {
+  if (!cloudEnabled() || cloudBusy) return;
+  cloudBusy = true;
+  try {
+    const gistId = await cloudFindOrCreateGist();
+    const res = await fetch(GH_API + '/gists/' + gistId, {
+      method: 'PATCH', headers: ghHeaders(),
+      body: JSON.stringify({ files: { [CLOUD_FILENAME]: { content: JSON.stringify(buildSyncPayload()) } } })
+    });
+    if (res.status === 404) { localStorage.removeItem(CLOUD_GIST_KEY); throw new Error('HTTP 404'); }
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    cloudStampSynced();
+  } catch (err) {
+    cloudStatus('☁️ 保存失敗: ' + cloudErrorLabel(err), true);
+  } finally { cloudBusy = false; }
+}
+
+function cloudErrorLabel(err) {
+  const m = String(err && err.message || err);
+  if (m.includes('401') || m.includes('403')) return 'トークンが無効か期限切れです';
+  if (m.includes('Failed to fetch')) return 'オフライン';
+  return m;
+}
+
+// 学習操作の30秒後にまとめてクラウドへ保存
+function scheduleCloudPush() {
+  if (!cloudEnabled()) return;
+  if (cloudPushTimer) clearTimeout(cloudPushTimer);
+  cloudPushTimer = setTimeout(() => { cloudPushTimer = null; cloudPush(); }, 30000);
+}
+
+async function enableCloudSync() {
+  const input = document.getElementById('cloud-token-input');
+  const token = input.value.trim();
+  if (!token) { showToast('トークンを貼り付けてください'); return; }
+  localStorage.setItem(CLOUD_TOKEN_KEY, token);
+  input.value = '';
+  cloudStatus('☁️ 接続確認中...');
+  try {
+    await cloudFindOrCreateGist();
+    await cloudPull();
+    await cloudPush();
+    updateCloudSyncUi();
+    showToast('自動同期を有効にしました');
+  } catch (err) {
+    localStorage.removeItem(CLOUD_TOKEN_KEY);
+    localStorage.removeItem(CLOUD_GIST_KEY);
+    updateCloudSyncUi();
+    cloudStatus('☁️ 接続失敗: ' + cloudErrorLabel(err), true);
+    showToast('接続に失敗しました。トークンを確認してください');
+  }
+}
+
+function disableCloudSync() {
+  if (!confirm('自動同期を解除しますか？（クラウド上のデータは残ります）')) return;
+  localStorage.removeItem(CLOUD_TOKEN_KEY);
+  localStorage.removeItem(CLOUD_GIST_KEY);
+  if (cloudPushTimer) { clearTimeout(cloudPushTimer); cloudPushTimer = null; }
+  updateCloudSyncUi();
+  showToast('自動同期を解除しました');
+}
+
+function updateCloudSyncUi() {
+  const setup = document.getElementById('cloud-sync-setup');
+  const active = document.getElementById('cloud-sync-active');
+  if (!setup || !active) return;
+  const on = cloudEnabled();
+  setup.style.display = on ? 'none' : 'block';
+  active.style.display = on ? 'block' : 'none';
+  if (on) {
+    const last = localStorage.getItem(CLOUD_LAST_KEY);
+    cloudStatus(last ? '☁️ 最終同期 ' + new Date(last).toLocaleString('ja-JP', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '☁️ 有効（未同期）');
+  }
+}
+
+// 起動時に取得、フォアグラウンド復帰時に取得、離脱時に保存
+window.addEventListener('visibilitychange', () => {
+  if (!cloudEnabled()) return;
+  if (document.visibilityState === 'visible') cloudPull();
+  else if (cloudPushTimer) { clearTimeout(cloudPushTimer); cloudPushTimer = null; cloudPush(); }
+});
 
 // === LISTENING ===
 let currentListening = null;
