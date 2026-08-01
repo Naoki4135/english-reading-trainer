@@ -9,11 +9,11 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260801"></script>
-<script src="listening-data.js?v=20260801"></script>
-<script src="vocab-enrichment.js?v=20260801"></script>
-<script src="articles-data.js?v=20260801"></script>
-<script src="drill-data.js?v=20260801"></script>
+<script src="data.js?v=20260801b"></script>
+<script src="listening-data.js?v=20260801b"></script>
+<script src="vocab-enrichment.js?v=20260801b"></script>
+<script src="articles-data.js?v=20260801b"></script>
+<script src="drill-data.js?v=20260801b"></script>
 <style>
 :root {
   --bg: #0f172a;
@@ -476,6 +476,17 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   display: none;
 }
 .shadow-pause-indicator.show { display: block; }
+
+/* Tap dictionary popup */
+#dict-popup {
+  position: fixed; left: 12px; right: 12px; bottom: 76px; z-index: 300;
+  background: var(--surface); border: 1px solid var(--accent); border-radius: 14px;
+  padding: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); max-height: 45vh; overflow-y: auto;
+}
+.dict-popup-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.dict-popup-word { font-size: 18px; font-weight: 800; color: var(--accent2); }
+.dict-popup-def { font-size: 14px; line-height: 1.8; color: var(--text); white-space: pre-wrap; }
+.dict-popup-def .dict-note { font-size: 11px; color: var(--text2); }
 
 /* Vocab collapse & today session */
 .vocab-top { cursor: pointer; }
@@ -1042,6 +1053,16 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     </div>
   </div>
 </main>
+
+<div id="dict-popup" style="display:none;">
+  <div class="dict-popup-head">
+    <span class="dict-popup-word" id="dict-popup-word"></span>
+    <button class="btn small" id="dict-popup-speak">&#128266;</button>
+    <button class="btn small" id="dict-popup-close" style="margin-left:auto;">&#10005;</button>
+  </div>
+  <div class="dict-popup-def" id="dict-popup-def"></div>
+  <button class="btn primary" id="dict-popup-add" style="width:100%; padding:10px; margin-top:10px;">&#10133; 単語帳に追加</button>
+</div>
 
 <nav class="nav">
   <button class="nav-item active" onclick="showPage('home')" data-page="home">
@@ -1945,6 +1966,16 @@ function init() {
   registerServiceWorker();
   updateCloudSyncUi();
   if (cloudEnabled()) cloudPull();
+  attachDictTapHandler('essay-text-container');
+  attachDictTapHandler('listen-transcript');
+  attachDictTapHandler('yt-script');
+  document.addEventListener('click', (ev) => {
+    const p = document.getElementById('dict-popup');
+    if (p && p.style.display === 'block' && !p.contains(ev.target)
+      && !ev.target.closest('#essay-text-container') && !ev.target.closest('#listen-transcript') && !ev.target.closest('#yt-script')) {
+      hideDictPopup();
+    }
+  });
 }
 
 function registerServiceWorker() {
@@ -2000,6 +2031,132 @@ function deleteArticle(id) {
   saveState();
   updateDashboard();
   showToast('削除しました');
+}
+
+// === TAP DICTIONARY（内蔵英和辞書 EJDict・パブリックドメイン） ===
+// Glossaryにない単語もタップで意味を表示する安全網。初回タップ時に辞書を読み込む。
+let ejdictMap = null;
+let ejdictLoading = null;
+function loadEjdict() {
+  if (ejdictMap) return Promise.resolve(ejdictMap);
+  if (ejdictLoading) return ejdictLoading;
+  ejdictLoading = fetch('ejdict.txt?v=20260801').then(r => {
+    if (!r.ok) throw new Error('dict fetch ' + r.status);
+    return r.text();
+  }).then(text => {
+    ejdictMap = new Map();
+    text.split('\n').forEach(line => {
+      const tab = line.indexOf('\t');
+      if (tab > 0) ejdictMap.set(line.slice(0, tab).toLowerCase(), line.slice(tab + 1));
+    });
+    return ejdictMap;
+  }).catch(err => { ejdictLoading = null; throw err; });
+  return ejdictLoading;
+}
+// 活用形を原形に戻しながら引く（running→run, studies→study 等）
+function ejdictLookup(word) {
+  if (!ejdictMap) return null;
+  const w = word.toLowerCase();
+  const tries = [w];
+  if (w.endsWith("'s")) tries.push(w.slice(0, -2));
+  if (w.endsWith('ies')) tries.push(w.slice(0, -3) + 'y');
+  if (w.endsWith('es')) tries.push(w.slice(0, -2));
+  if (w.endsWith('s')) tries.push(w.slice(0, -1));
+  if (w.endsWith('ing')) { tries.push(w.slice(0, -3)); tries.push(w.slice(0, -3) + 'e'); if (w.length > 4 && w[w.length-4] === w[w.length-5]) tries.push(w.slice(0, -4)); }
+  if (w.endsWith('ied')) tries.push(w.slice(0, -3) + 'y');
+  if (w.endsWith('ed')) { tries.push(w.slice(0, -2)); tries.push(w.slice(0, -1)); if (w.length > 3 && w[w.length-3] === w[w.length-4]) tries.push(w.slice(0, -3)); }
+  if (w.endsWith('er')) { tries.push(w.slice(0, -2)); tries.push(w.slice(0, -1)); }
+  if (w.endsWith('est')) { tries.push(w.slice(0, -3)); tries.push(w.slice(0, -2)); }
+  if (w.endsWith('ly')) tries.push(w.slice(0, -2));
+  for (const t of tries) {
+    if (ejdictMap.has(t)) return { headword: t, def: ejdictMap.get(t) };
+  }
+  return null;
+}
+let dictCurrentWord = null;
+function showDictPopup(word) {
+  dictCurrentWord = null;
+  const popup = document.getElementById('dict-popup');
+  const wordEl = document.getElementById('dict-popup-word');
+  const defEl = document.getElementById('dict-popup-def');
+  const addBtn = document.getElementById('dict-popup-add');
+  popup.style.display = 'block';
+  wordEl.textContent = word;
+  document.getElementById('dict-popup-speak').onclick = () => speakWord(word);
+  document.getElementById('dict-popup-close').onclick = hideDictPopup;
+  const key = word.toLowerCase();
+  // 単語帳・Glossary由来の情報があれば優先表示
+  const known = state.vocabulary[key];
+  const renderEntry = (headword, defText, already) => {
+    dictCurrentWord = { word: headword, def: defText };
+    defEl.textContent = defText.replace(/ \/ /g, '\n');
+    addBtn.style.display = already ? 'none' : 'block';
+    if (already) defEl.textContent += '\n（単語帳に登録済み）';
+  };
+  if (known) {
+    renderEntry(known.word, known.japanese + (known.definition ? '\n' + known.definition : ''), true);
+    return;
+  }
+  defEl.innerHTML = '<span class="dict-note">辞書を読み込み中...</span>';
+  addBtn.style.display = 'none';
+  loadEjdict().then(() => {
+    const hit = ejdictLookup(word);
+    if (hit) {
+      renderEntry(hit.headword !== key ? word + '（' + hit.headword + '）' : word, hit.def, false);
+      addBtn.onclick = () => addDictWordToVocab(hit.headword, hit.def);
+    } else {
+      defEl.innerHTML = '<span class="dict-note">辞書に見つかりませんでした（固有名詞・複合表現の可能性）</span>';
+    }
+  }).catch(() => {
+    defEl.innerHTML = '<span class="dict-note">辞書の読み込みに失敗しました（通信環境を確認してください）</span>';
+  });
+}
+function hideDictPopup() {
+  const p = document.getElementById('dict-popup');
+  if (p) p.style.display = 'none';
+}
+function addDictWordToVocab(headword, def) {
+  const key = headword.toLowerCase();
+  if (state.vocabulary[key]) { showToast('すでに単語帳にあります'); hideDictPopup(); return; }
+  const japanese = def.split(' / ')[0].replace(/\s+/g, ' ').trim().slice(0, 60);
+  state.vocabulary[key] = {
+    interval: 0, easeFactor: 2.5, nextReview: formatLocalDate(),
+    reviewCount: 0, correctCount: 0, level: 0, lastReview: null,
+    word: headword, japanese, pos: '', definition: '', example: '', exampleJa: '',
+    essayId: currentEssay ? currentEssay.id : null, firstSeen: formatLocalDate(), userAdded: true
+  };
+  saveState();
+  hideDictPopup();
+  showToast('単語帳に追加しました: ' + headword);
+}
+// タップ位置の単語を取り出す
+function wordAtPoint(x, y) {
+  let range = null;
+  if (document.caretRangeFromPoint) range = document.caretRangeFromPoint(x, y);
+  else if (document.caretPositionFromPoint) {
+    const pos = document.caretPositionFromPoint(x, y);
+    if (pos) { range = document.createRange(); range.setStart(pos.offsetNode, pos.offset); }
+  }
+  if (!range || range.startContainer.nodeType !== Node.TEXT_NODE) return null;
+  const text = range.startContainer.textContent;
+  let i = range.startOffset;
+  const isWordChar = c => /[A-Za-z''-]/.test(c);
+  if (i >= text.length || !isWordChar(text[i])) { if (i > 0 && isWordChar(text[i - 1])) i--; else return null; }
+  let s = i, e = i;
+  while (s > 0 && isWordChar(text[s - 1])) s--;
+  while (e < text.length && isWordChar(text[e])) e++;
+  const word = text.slice(s, e).replace(/^['-]+|['-]+$/g, '');
+  return /^[A-Za-z][A-Za-z''-]*$/.test(word) && word.length >= 2 ? word : null;
+}
+function attachDictTapHandler(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.addEventListener('click', (ev) => {
+    // Glossaryハイライト語は既存のツールチップに任せる
+    if (ev.target.closest('.highlight-word') || ev.target.closest('button')) return;
+    const word = wordAtPoint(ev.clientX, ev.clientY);
+    if (word) showDictPopup(word);
+  });
 }
 
 function buildVocabulary() {
@@ -2398,17 +2555,50 @@ function getBestVoice() {
   return en.find(v => v.lang === 'en-US') || en[0] || null;
 }
 
+// 会話形式（"Name: 発話"）なら話者名を除いた本文+話者タグに分解する。
+// 音声では話者名を読み上げず、話者ごとに別の声を割り当てる。
 function splitEssayForSpeech(text) {
   const paragraphs = text.split(/\n+/).map(p => p.trim()).filter(Boolean);
   const segments = [];
+  const speakerRe = /^([A-Z][a-z]{1,11}):\s+(.*)$/s;
   paragraphs.forEach(paragraph => {
-    const sentences = paragraph.match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [paragraph];
+    let speaker = null;
+    let body = paragraph;
+    const m = paragraph.match(speakerRe);
+    if (m) { speaker = m[1]; body = m[2]; }
+    const sentences = body.match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [body];
     sentences.forEach(sentence => {
       const trimmed = sentence.trim();
-      if (trimmed) segments.push(trimmed);
+      if (trimmed) segments.push({ text: trimmed, speaker });
     });
   });
-  return segments.length ? segments : [text.trim()];
+  return segments.length ? segments : [{ text: text.trim(), speaker: null }];
+}
+
+// 会話の話者に一貫した声を割り当てる（1人目と2人目で性別が分かれるよう努力）
+let dialogueVoiceMap = {};
+function assignDialogueVoices(segments) {
+  dialogueVoiceMap = {};
+  if (!isSpeechSupported()) return;
+  const speakers = [...new Set(segments.map(s => s.speaker).filter(Boolean))];
+  if (speakers.length < 2) return;
+  const voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('en'));
+  const female = ['Ava', 'Zoe', 'Samantha', 'Serena', 'Karen', 'Fiona', 'Moira', 'Tessa'];
+  const male = ['Daniel', 'Tom', 'Alex', 'Aaron', 'Oliver', 'Fred', 'Rishi'];
+  const pick = (names, exclude) => {
+    for (const tag of ['Premium', 'Enhanced', '']) {
+      for (const n of names) {
+        const v = voices.find(v => v.name.includes(n) && (tag === '' || v.name.includes(tag)) && v !== exclude);
+        if (v) return v;
+      }
+    }
+    return voices.find(v => v !== exclude) || null;
+  };
+  const v1 = pick(female, null) || getBestVoice();
+  const v2 = pick(male, v1) || voices.find(v => v !== v1) || v1;
+  speakers.forEach((sp, i) => {
+    dialogueVoiceMap[sp] = { voice: i % 2 === 0 ? v1 : v2, pitch: i % 2 === 0 ? 1.05 : 0.9 };
+  });
 }
 
 function resetSpeechUi() {
@@ -2438,9 +2628,18 @@ function playSpeechSegment(index, sessionId = speechSessionId) {
     return;
   }
   speechSegmentIndex = index;
-  const utterance = new SpeechSynthesisUtterance(speechSegments[index]);
+  const seg = speechSegments[index];
+  const segText = typeof seg === 'string' ? seg : seg.text;
+  const segSpeaker = typeof seg === 'string' ? null : seg.speaker;
+  const utterance = new SpeechSynthesisUtterance(segText);
   utterance.lang = 'en-US';
-  if (realMode) {
+  const dlg = segSpeaker && dialogueVoiceMap[segSpeaker];
+  if (dlg) {
+    // 会話文: 話者ごとに固定の声（実戦モードでは速度だけ揺らす）
+    utterance.voice = dlg.voice;
+    utterance.pitch = dlg.pitch;
+    utterance.rate = realMode ? getSpeed() * 0.95 * (0.85 + Math.random() * 0.3) : getSpeed() * 0.95;
+  } else if (realMode) {
     // 実戦モード: 文ごとに速度±20%・話者ランダムで、聞き取り負荷を実会話に近づける
     utterance.rate = getSpeed() * 0.95 * (0.8 + Math.random() * 0.5);
     utterance.pitch = 0.95 + Math.random() * 0.2;
@@ -2482,6 +2681,7 @@ function speakEssay(startIndex = 0) {
   window.clearTimeout(speechRestartTimer);
   window.clearTimeout(speechRateRefreshTimer);
   speechSegments = splitEssayForSpeech(currentEssay.text);
+  assignDialogueVoices(speechSegments);
   speechSegmentIndex = clamp(startIndex, 0, Math.max(0, speechSegments.length - 1));
   speechRateChangedWhilePaused = false;
   speechSessionId++;
@@ -3627,6 +3827,10 @@ function buildSyncPayload() {
       nextReview: v.nextReview, reviewCount: v.reviewCount,
       correctCount: v.correctCount, lastReview: v.lastReview
     };
+    // タップ辞書からのユーザー追加語は語義ごと同期する（受信側のdata.jsに存在しないため）
+    if (v.userAdded) {
+      Object.assign(syncData.vocabulary[key], { userAdded: true, word: v.word, japanese: v.japanese, essayId: v.essayId || null, firstSeen: v.firstSeen || null });
+    }
   });
   return syncData;
 }
@@ -3635,6 +3839,19 @@ function buildSyncPayload() {
 function mergeSyncData(syncData) {
   if (!syncData || !syncData.v || !syncData.vocabulary) throw new Error('invalid sync data');
   Object.entries(syncData.vocabulary).forEach(([key, imported]) => {
+    // ユーザー追加語がローカルに無ければ新規作成
+    if (!state.vocabulary[key] && imported.userAdded && imported.word) {
+      state.vocabulary[key] = {
+        interval: imported.interval || 0, easeFactor: imported.easeFactor || 2.5,
+        nextReview: imported.nextReview || formatLocalDate(),
+        reviewCount: imported.reviewCount || 0, correctCount: imported.correctCount || 0,
+        level: imported.level || 0, lastReview: imported.lastReview || null,
+        word: imported.word, japanese: imported.japanese || '', pos: '', definition: '',
+        example: '', exampleJa: '', essayId: imported.essayId || null,
+        firstSeen: imported.firstSeen || formatLocalDate(), userAdded: true
+      };
+      return;
+    }
     if (state.vocabulary[key]) {
       const current = state.vocabulary[key];
       const importedReviews = imported.reviewCount || 0;

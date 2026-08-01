@@ -8,6 +8,7 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 - `data.js` - エッセイ・単語データ（Claude Codeが更新）
 - `vocab-enrichment.js` - 語彙拡充データ。2つのconstを持つ: ①`VOCAB_ENRICHMENT`（第2例文・語源/覚え方・コロケーション）②`VISUAL_OVERRIDES`（フラッシュカードのイラスト修正版。`{e:絵文字, h:情景ヒント}`）。キーはどちらもglossaryの`word.toLowerCase()`。**新しいエッセイを追加したら、新出単語分を両方に追加する**
 - `listening-data.js` - リスニング教材（audioUrl形式 or youtubeId形式）
+- `ejdict.txt` - 内蔵英和辞書（EJDict-hand、パブリックドメイン、45,609語、タブ区切り）。タップ辞書用。**再生成・編集しない**
 - `drill-data.js` - 瞬間英作文ドリル（`DRILLS`配列: {id, level(1-3), ja, en, key, keyJa}。Lv1=5〜8語/Lv2=8〜12語/Lv3=12〜16語）
 - `articles-data.js` - ニュース記事教材（`ARTICLES`配列。ESSAYSと同じスキーマ+source/sourceUrl）。**著作権配慮のため原文の転載は禁止。報道を基にClaudeが書き起こしたオリジナル要約記事のみ**。glossaryの新出単語はvocab-enrichment.jsにも追記する
 
@@ -85,6 +86,9 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **フラッシュカードのイラスト**: `getWordVisual()` が `VISUAL_OVERRIDES` → `WORD_VISUAL_MAP`（手作り183件）→ 日本語訳のキーワード自動マッチ、の順で解決する。自動マッチは誤爆しやすいため、2026-07-26に全1403語を点検し880語を修正済み。**汎用フォールバック（「名詞」「形容詞」等）に落ちる語はゼロを維持すること**
 - **ヒントのネタバレ防止（重要）**: `buildFlashcardHint()` は `visual.h` が日本語訳と一致する場合にImage行を出さない。自動生成のhは訳そのままで答えになるため。`VISUAL_OVERRIDES` の h には**訳語を書かず情景を書く**こと（例: hollow out →「外側は立派な大木。でも中身は空っぽ」）
 - **記事リーダー**（ホームのNews Articlesセクション）: ①アプリ内「＋記事を追加」で本文貼り付け→state.articlesにlocalStorage保存（Glossary/訳なし、音声再生・ブラインド可）②記事URLをClaudeに送る→articles-data.jsにGlossary・訳付きオリジナル要約記事として追加。記事はエッセイ詳細ページを流用表示（訳・Glossaryがない場合はボタン非表示）。記事のglossaryも単語帳・SRSに自動統合
+- **タップ辞書（2026-08-01追加）**: エッセイ・記事本文/リスニングTranscript/YouTubeスクリプトの任意の単語をタップ→内蔵EJDictで意味ポップアップ+「単語帳に追加」（userAddedフラグ付きで同期対象）。活用形の逆引き対応。Glossaryハイライト語は既存ツールチップ優先
+- **会話文の音声（2026-08-01追加）**: `splitEssayForSpeech`が"Name: 発話"を検出し話者名を読み上げから除外、`assignDialogueVoices`が話者ごとに固定ボイス（1人目女性系/2人目男性系）を割当。実戦モードでも会話文は声固定
+- **Glossary網羅率**: 2026-08-01に全156本を監査し拾い漏れ307語を追加（glossary総数2,012）。新規エッセイは「難しい単語・表現はすべてピックアップ」を厳守
 - **瞬間英作文Drillタブ（2026-08-01追加）**: ナビ6番目。1日10問（ミス再出題最大3+現Lvドリル文+単語帳例文2）。自己チェック3択（言えた/惜しい/言えなかった）。直近正答率でLv1〜3自動昇降（80%↑で昇格、40%↓で降格）。ミスは`state.drill.missedPool`に入り「言えた2回」で卒業。`dailyStats.drilled`がストリークにカウント。state.drillは同期対象
 - **Real Conversationsジャンル（2026-08-01追加）**: 2人の話者による会話スクリプト形式エッセイ（`Name: 発話`を\n\n区切り）。ライブラリで独立ジャンル🗣️。実戦モードで話者ごとに声が変わる
 - **自動クラウド同期（2026-07-31追加）**: GitHub Gist（非公開・`ert-sync.json`）を使ってデバイス間で学習データを自動同期。トークンはlocalStorage（`ert-sync-token`）のみに保存し、**stateやバックアップ・Sync Codeには絶対に含めない**。挙動: 起動時とフォアグラウンド復帰時に`cloudPull()`（フィールド単位マージ）、`saveState()`の30秒後と離脱時に`cloudPush()`。ペイロードは`buildSyncPayload()`（SRS進捗のみ、約200KB）。401はトークン失効表示
