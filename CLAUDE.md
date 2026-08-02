@@ -60,7 +60,7 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents/iCloud/`
 
 ## エッセイ規模
-- エッセイは156本（2026-08-01時点。data.jsのESSAYS配列）
+- エッセイは166本（2026-08-02時点。data.jsのESSAYS配列。うちReal Conversations 20本）
 - 長さは標準150語だが、2026-07-31追加分（コロケーション10+スラング10）は約100語のショート版
 
 ## UI/UX仕様
@@ -86,6 +86,7 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **フラッシュカードのイラスト**: `getWordVisual()` が `VISUAL_OVERRIDES` → `WORD_VISUAL_MAP`（手作り183件）→ 日本語訳のキーワード自動マッチ、の順で解決する。自動マッチは誤爆しやすいため、2026-07-26に全1403語を点検し880語を修正済み。**汎用フォールバック（「名詞」「形容詞」等）に落ちる語はゼロを維持すること**
 - **ヒントのネタバレ防止（重要）**: `buildFlashcardHint()` は `visual.h` が日本語訳と一致する場合にImage行を出さない。自動生成のhは訳そのままで答えになるため。`VISUAL_OVERRIDES` の h には**訳語を書かず情景を書く**こと（例: hollow out →「外側は立派な大木。でも中身は空っぽ」）
 - **記事リーダー**（ホームのNews Articlesセクション）: ①アプリ内「＋記事を追加」で本文貼り付け→state.articlesにlocalStorage保存（Glossary/訳なし、音声再生・ブラインド可）②記事URLをClaudeに送る→articles-data.jsにGlossary・訳付きオリジナル要約記事として追加。記事はエッセイ詳細ページを流用表示（訳・Glossaryがない場合はボタン非表示）。記事のglossaryも単語帳・SRSに自動統合
+- **横断ハイライト（2026-08-02追加）**: `buildHighlightIndex(glossary, text)` が「このエッセイのGlossary（黄色）」＋「他の教材で既習の語＝state.vocabulary（青色 `.highlight-word.cross`）」を統合した索引を作り、`renderHighlightedHtml()` が描画する。エッセイ本文とリスニングTranscriptで共用。**精度の要**: ①本文に出現する語だけ索引化して正規表現を小さく保つ ②語尾変化 `(s|es|ed|d|ing|ly)?` を許容しlookupは活用語尾を除いた `m[1]` で行う ③横断分は「6文字未満の単語」と「超頻出2000語(`COMMON_WORDS`)」を除外（多義語の誤訳表示を防ぐため。除外前は `effective→〜付けで発効する` のような誤表示が出た）④excluded(level -1)の語は対象外
 - **タップ辞書（2026-08-01追加）**: エッセイ・記事本文/リスニングTranscript/YouTubeスクリプトの任意の単語をタップ→内蔵EJDictで意味ポップアップ+「単語帳に追加」（userAddedフラグ付きで同期対象）。活用形の逆引き対応。Glossaryハイライト語は既存ツールチップ優先
 - **会話文の音声（2026-08-01追加）**: `splitEssayForSpeech`が"Name: 発話"を検出し話者名を読み上げから除外、`assignDialogueVoices`が話者ごとに固定ボイス（1人目女性系/2人目男性系）を割当。実戦モードでも会話文は声固定
 - **Glossary網羅率**: 2026-08-01に全156本を監査し拾い漏れ307語を追加（glossary総数2,012）。新規エッセイは「難しい単語・表現はすべてピックアップ」を厳守

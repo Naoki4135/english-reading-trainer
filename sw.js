@@ -1,6 +1,6 @@
 // English Reading Trainer - Service Worker
 // キャッシュ戦略: stale-while-revalidate（キャッシュを即返しつつ裏で最新を取得）
-const CACHE_NAME = 'ert-cache-v11';
+const CACHE_NAME = 'ert-cache-v12';
 const PRECACHE_ASSETS = [
   './',
   './index.html',
