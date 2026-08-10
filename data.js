@@ -19481,5 +19481,765 @@ const ESSAYS = [
    }
   ],
   "translation": "オパール: それで、来月あのクライアント案件を私に引き継ぐの？\n\nローマン: その予定だよ。事前に全部一つずつ説明する。\n\nオパール: 助かる。今いちばんの悩みの種は何？\n\nローマン: 取引先だね。承認のたびにわざとぐずぐずするんだ。\n\nオパール: 素敵ね。ほかに気をつけることは？\n\nローマン: 予算が厳しいから、請求書はしっかり見ておいて。\n\nオパール: 了解。引き継ぎ資料をまとめてもらえる？\n\nローマン: もう書き始めてる。金曜までに送るよ。\n\nオパール: 完璧。読み終えたら打ち合わせを設定しよう。\n\nローマン: いいよ。すぐにコツをつかめると思う。"
+ },
+ {
+  "id": "2026-08-04-001",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Just a Trim, Please",
+  "difficulty": "Casual English",
+  "wordCount": 101,
+  "text": "Rosa: Hey Piper, come on in. So, what are we doing today?\n\nPiper: Honestly, I just want a trim. Nothing drastic, you know?\n\nRosa: Gotcha. Your ends are pretty split, so let's chop an inch.\n\nPiper: Sure. My last cut was kinda butchered, honestly.\n\nRosa: No way! Who did that? Want me to add some layers?\n\nPiper: Sure, but keep the length. I'm growing it out for the wedding.\n\nRosa: Say no more. I'll blow-dry it too, on the house.\n\nPiper: You're a lifesaver. I'm gonna tip you big for this.\n\nRosa: Ha! Sit back and relax. This won't take long.",
+  "glossary": [
+   {
+    "word": "come on in",
+    "pos": "phrase",
+    "japanese": "どうぞ入って",
+    "definition": "a friendly, informal way to invite someone inside",
+    "example": "Come on in, the door is open and dinner is ready.",
+    "exampleJa": "どうぞ入って、鍵は開いてるし夕飯もできてるよ。"
+   },
+   {
+    "word": "gotcha",
+    "pos": "slang",
+    "japanese": "了解、わかった",
+    "definition": "casual spoken form of \"I got you,\" meaning \"I understand\"",
+    "example": "Gotcha, I'll send the file over before lunch today.",
+    "exampleJa": "了解、今日の昼までにファイルを送るね。"
+   },
+   {
+    "word": "kinda",
+    "pos": "slang",
+    "japanese": "ちょっと、なんか",
+    "definition": "spoken shortening of \"kind of,\" softening what follows",
+    "example": "That movie was kinda long, but I still enjoyed it.",
+    "exampleJa": "あの映画はちょっと長かったけど、それでも楽しめたよ。"
+   },
+   {
+    "word": "no way",
+    "pos": "slang",
+    "japanese": "うそでしょ、ありえない",
+    "definition": "an exclamation of surprise or strong disbelief",
+    "example": "No way, you finished the whole report in one night?",
+    "exampleJa": "うそでしょ、あのレポートを一晩で仕上げたの？"
+   },
+   {
+    "word": "grow out",
+    "pos": "phrasal verb",
+    "japanese": "（髪などを）伸ばす",
+    "definition": "to let hair or nails get longer instead of cutting them",
+    "example": "She is growing her bangs out before the summer holiday.",
+    "exampleJa": "彼女は夏休み前に前髪を伸ばしているところだ。"
+   },
+   {
+    "word": "say no more",
+    "pos": "phrase",
+    "japanese": "もう言わなくていい、任せて",
+    "definition": "used to show you fully understand and will handle it",
+    "example": "Say no more, I'll book the table for seven tonight.",
+    "exampleJa": "もう言わなくていいよ、今夜七時で席を取っておく。"
+   },
+   {
+    "word": "on the house",
+    "pos": "idiom",
+    "japanese": "店のおごりで、無料で",
+    "definition": "provided free by the business, not charged to the customer",
+    "example": "The dessert is on the house because your meal arrived late.",
+    "exampleJa": "料理が遅れたので、デザートは店のおごりです。"
+   },
+   {
+    "word": "a lifesaver",
+    "pos": "noun phrase",
+    "japanese": "救世主、助かる存在",
+    "definition": "a person or thing that rescues you from a difficult situation",
+    "example": "You're a lifesaver for lending me your charger this morning.",
+    "exampleJa": "今朝は充電器を貸してくれて本当に助かったよ。"
+   }
+  ],
+  "translation": "ローザ: パイパー、どうぞ入って。今日はどうする？\n\nパイパー: 正直、ちょっと整えるだけでいいの。大きく変えたくはないんだ。\n\nローザ: 了解。毛先がかなり傷んでるから、2、3センチ切ろうか。\n\nパイパー: いいよ。前回のカット、なんかひどくてさ。\n\nローザ: うそでしょ！誰がやったの？レイヤーも入れる？\n\nパイパー: うん、でも長さは残して。結婚式に向けて伸ばしてるの。\n\nローザ: もう言わなくていいよ。ブローもサービスでやっとくね。\n\nパイパー: 助かる。今日はチップ多めに払うね。\n\nローザ: ふふ、ゆっくりくつろいでて。すぐ終わるから。"
+ },
+ {
+  "id": "2026-08-04-002",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Three Hours at the Counter",
+  "difficulty": "Casual English",
+  "wordCount": 96,
+  "text": "Emmett: Ugh, I spent all morning at the DMV. Total nightmare.\n\nHazel: Oh no. Did you have to jump through hoops again?\n\nEmmett: Tons. They sent me back twice for the wrong paperwork.\n\nHazel: Typical. They love giving people the runaround, honestly.\n\nEmmett: I mean, three hours just to renew a license? Come on.\n\nHazel: My bank's the same. I got passed around four departments.\n\nEmmett: Seriously? That's so frustrating. Did they ever sort it out?\n\nHazel: Eventually. But I had to kick up a fuss first.\n\nEmmett: Figures. Squeaky wheel gets the grease, I guess.",
+  "glossary": [
+   {
+    "word": "jump through hoops",
+    "pos": "idiom",
+    "japanese": "面倒な手続きを踏まされる",
+    "definition": "to do many difficult or annoying things to get something",
+    "example": "We jumped through hoops just to open a joint account.",
+    "exampleJa": "共同口座を開くだけで面倒な手続きを山ほど踏まされた。"
+   },
+   {
+    "word": "give someone the runaround",
+    "pos": "idiom",
+    "japanese": "たらい回しにする",
+    "definition": "to avoid giving a clear answer and send someone elsewhere",
+    "example": "The airline gave me the runaround about my lost suitcase.",
+    "exampleJa": "航空会社は紛失したスーツケースの件で私をたらい回しにした。"
+   },
+   {
+    "word": "come on",
+    "pos": "phrase",
+    "japanese": "冗談でしょ、勘弁してよ",
+    "definition": "spoken protest expressing disbelief or mild frustration",
+    "example": "Come on, nobody can finish that much work by Friday.",
+    "exampleJa": "勘弁してよ、あの量を金曜までに終わらせられる人なんていない。"
+   },
+   {
+    "word": "pass around",
+    "pos": "phrasal verb",
+    "japanese": "あちこちに回される",
+    "definition": "to move a person or thing from one place to the next repeatedly",
+    "example": "I was passed around three teams before anyone helped me.",
+    "exampleJa": "誰かが助けてくれるまで三つの部署をたらい回しにされた。"
+   },
+   {
+    "word": "sort out",
+    "pos": "phrasal verb",
+    "japanese": "解決する、片づける",
+    "definition": "to deal with a problem successfully",
+    "example": "It took a week to sort out my billing mistake.",
+    "exampleJa": "請求ミスを解決するのに一週間かかった。"
+   },
+   {
+    "word": "kick up a fuss",
+    "pos": "idiom",
+    "japanese": "騒ぎ立てる、強く抗議する",
+    "definition": "to complain loudly so that people finally act",
+    "example": "He kicked up a fuss and got a full refund.",
+    "exampleJa": "彼は強く抗議して全額返金してもらった。"
+   },
+   {
+    "word": "figures",
+    "pos": "slang",
+    "japanese": "だろうね、やっぱりね",
+    "definition": "short for \"that figures\": exactly what you would expect",
+    "example": "Figures, the printer breaks the day before the deadline.",
+    "exampleJa": "やっぱりね、締め切り前日にプリンターが壊れるなんて。"
+   },
+   {
+    "word": "the squeaky wheel gets the grease",
+    "pos": "proverb",
+    "japanese": "声を上げた人が得をする",
+    "definition": "the person who complains most gets attention first",
+    "example": "The squeaky wheel gets the grease, so speak up early.",
+    "exampleJa": "声を上げた人が得をするから、早めに言ったほうがいい。"
+   }
+  ],
+  "translation": "エメット: あー、午前中まるごと免許センターで潰れたよ。最悪だった。\n\nヘイゼル: うわ。また面倒な手続きを踏まされたの？\n\nエメット: 山ほどね。書類が違うって二回も追い返された。\n\nヘイゼル: あるある。あそこは人をたらい回しにするのが好きだよね。\n\nエメット: だってさ、免許を更新するだけで三時間だよ？勘弁してよ。\n\nヘイゼル: うちの銀行も同じ。四つの部署を回されたよ。\n\nエメット: まじで？それはイライラするね。結局解決したの？\n\nヘイゼル: 最終的にはね。でもその前にひと騒ぎ起こさなきゃいけなかった。\n\nエメット: だろうね。声を上げた人が得をする、ってやつか。"
+ },
+ {
+  "id": "2026-08-04-003",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Low and Slow",
+  "difficulty": "Casual English",
+  "wordCount": 100,
+  "text": "Odette: This curry is unreal. Can you give me the recipe?\n\nNolan: Sure! Honestly, it's dead simple. I just eyeball everything.\n\nOdette: Of course you do. What's the secret ingredient?\n\nNolan: A splash of coconut milk, then let it simmer forever.\n\nOdette: Ooh. I always end up burning mine.\n\nNolan: You're probably cranking up the heat too much. Low and slow.\n\nOdette: Gotcha. My mum swears by adding a pinch of sugar.\n\nNolan: That works too. It takes the edge off the spice.\n\nOdette: I'm gonna give it a shot this weekend.\n\nNolan: Let me know how it turns out!",
+  "glossary": [
+   {
+    "word": "dead simple",
+    "pos": "slang",
+    "japanese": "超簡単",
+    "definition": "extremely easy; \"dead\" here just means \"completely\"",
+    "example": "Setting up the new router was dead simple, honestly.",
+    "exampleJa": "新しいルーターの設定は正直、超簡単だったよ。"
+   },
+   {
+    "word": "eyeball",
+    "pos": "verb (informal)",
+    "japanese": "目分量でやる",
+    "definition": "to judge an amount by looking rather than measuring",
+    "example": "I never weigh the flour; I just eyeball it.",
+    "exampleJa": "小麦粉は量ったことがなくて、いつも目分量だよ。"
+   },
+   {
+    "word": "end up",
+    "pos": "phrasal verb",
+    "japanese": "結局〜になる",
+    "definition": "to reach a result you did not plan on",
+    "example": "We ended up staying home because the train was cancelled.",
+    "exampleJa": "電車が運休になって、結局家にいることになった。"
+   },
+   {
+    "word": "crank up",
+    "pos": "phrasal verb",
+    "japanese": "（火力・音量を）上げる",
+    "definition": "to increase heat, volume, or speed sharply",
+    "example": "Don't crank up the oven or the top will burn.",
+    "exampleJa": "オーブンの温度を上げすぎると表面が焦げるよ。"
+   },
+   {
+    "word": "swear by",
+    "pos": "phrasal verb",
+    "japanese": "絶大な信頼を置く",
+    "definition": "to believe strongly that something works well",
+    "example": "My dad swears by cold showers every single morning.",
+    "exampleJa": "父は毎朝の冷水シャワーを絶対に欠かさず信じている。"
+   },
+   {
+    "word": "take the edge off",
+    "pos": "idiom",
+    "japanese": "（刺激や辛さを）和らげる",
+    "definition": "to make something harsh or intense feel milder",
+    "example": "A little yogurt takes the edge off a spicy sauce.",
+    "exampleJa": "ヨーグルトを少し入れるとソースの辛さが和らぐ。"
+   },
+   {
+    "word": "give it a shot",
+    "pos": "idiom",
+    "japanese": "試してみる",
+    "definition": "to try something, especially for the first time",
+    "example": "I've never baked bread, but I'll give it a shot.",
+    "exampleJa": "パンを焼いたことはないけど、試してみるよ。"
+   },
+   {
+    "word": "turn out",
+    "pos": "phrasal verb",
+    "japanese": "仕上がる、結果が出る",
+    "definition": "to have a particular result or final quality",
+    "example": "The cake turned out better than I expected, luckily.",
+    "exampleJa": "ケーキは幸い、思ったよりうまく仕上がった。"
+   }
+  ],
+  "translation": "オデット: このカレー、めちゃくちゃおいしい。レシピ教えてくれる？\n\nノーラン: もちろん！正直、超簡単だよ。全部目分量だし。\n\nオデット: だと思った。秘密の材料は何？\n\nノーラン: ココナッツミルクをちょっとと、あとはひたすら煮込むこと。\n\nオデット: へえ。私はいつも焦がしちゃうんだよね。\n\nノーラン: たぶん火力を上げすぎてるんだよ。弱火でじっくり。\n\nオデット: なるほど。母は砂糖をひとつまみ入れるのを絶対に信じてる。\n\nノーラン: それもいいね。辛さが和らぐんだよ。\n\nオデット: 今週末に試してみる。\n\nノーラン: どう仕上がったか教えてね！"
+ },
+ {
+  "id": "2026-08-04-004",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Ears Still Ringing",
+  "difficulty": "Casual English",
+  "wordCount": 106,
+  "text": "Yara: Did you catch that headliner on Saturday? Absolutely mind-blowing.\n\nSoren: I know, right? The crowd went nuts during the encore.\n\nYara: Totally. Although the sound was a bit rough at first.\n\nSoren: Yeah, some technical hiccups. They pulled it off, though.\n\nYara: The queue for drinks was insane. I gave up entirely.\n\nSoren: Same. I wanna go again next year, camping and all.\n\nYara: Count me in. Let's grab tickets the second they drop.\n\nSoren: Deal. They sell out in minutes, so set an alarm.\n\nYara: Will do. Honestly, best weekend I've had in ages.\n\nSoren: Same here. My ears are still ringing, no joke.",
+  "glossary": [
+   {
+    "word": "catch",
+    "pos": "verb (informal)",
+    "japanese": "（公演などを）見る、観る",
+    "definition": "to see or attend a show, film, or performance",
+    "example": "We caught the late show and walked home afterwards.",
+    "exampleJa": "私たちは遅い回の公演を観て、そのあと歩いて帰った。"
+   },
+   {
+    "word": "mind-blowing",
+    "pos": "adjective",
+    "japanese": "衝撃的にすごい",
+    "definition": "so impressive or surprising that it overwhelms you",
+    "example": "The view from the summit was honestly mind-blowing.",
+    "exampleJa": "山頂からの眺めは正直、衝撃的なほどすごかった。"
+   },
+   {
+    "word": "go nuts",
+    "pos": "slang",
+    "japanese": "熱狂する、大騒ぎする",
+    "definition": "to become wildly excited or lose control with excitement",
+    "example": "The fans went nuts when the winning goal landed.",
+    "exampleJa": "決勝ゴールが決まった瞬間、ファンは熱狂した。"
+   },
+   {
+    "word": "pull off",
+    "pos": "phrasal verb",
+    "japanese": "うまくやってのける",
+    "definition": "to succeed at something difficult",
+    "example": "She pulled off the presentation despite having no sleep.",
+    "exampleJa": "彼女は寝ていないのにプレゼンをうまくやってのけた。"
+   },
+   {
+    "word": "count me in",
+    "pos": "phrase",
+    "japanese": "私も参加する",
+    "definition": "used to say you want to join a plan",
+    "example": "A road trip in October? Count me in, definitely.",
+    "exampleJa": "十月にドライブ旅行？もちろん、私も行くよ。"
+   },
+   {
+    "word": "sell out",
+    "pos": "phrasal verb",
+    "japanese": "売り切れる",
+    "definition": "for all tickets or stock to be bought completely",
+    "example": "The morning tickets sold out before I finished breakfast.",
+    "exampleJa": "朝の分のチケットは、朝食を食べ終わる前に売り切れた。"
+   },
+   {
+    "word": "in ages",
+    "pos": "phrase",
+    "japanese": "久しく〜ない、久しぶりに",
+    "definition": "in a very long time",
+    "example": "I haven't seen my cousins in ages, sadly.",
+    "exampleJa": "残念ながら、いとこたちには長いこと会っていない。"
+   },
+   {
+    "word": "no joke",
+    "pos": "slang",
+    "japanese": "冗談抜きで、まじで",
+    "definition": "used to stress that a statement is completely true",
+    "example": "That hill is steep, no joke, my legs are shaking.",
+    "exampleJa": "あの坂は冗談抜きで急で、足が震えてるよ。"
+   }
+  ],
+  "translation": "ヤラ: 土曜のヘッドライナー観た？あれは本当にすごかった。\n\nソーレン: だよね？アンコールのとき観客が熱狂してたよ。\n\nヤラ: ほんとに。最初は音がちょっと荒れてたけどね。\n\nソーレン: うん、機材トラブルがあったね。でも見事にやりきった。\n\nヤラ: ドリンクの列がやばかった。私は完全にあきらめた。\n\nソーレン: 同じく。来年も行きたいな、キャンプもセットで。\n\nヤラ: 私も行く。チケットが出た瞬間に取ろう。\n\nソーレン: 決まりだね。数分で売り切れるからアラーム設定して。\n\nヤラ: そうする。正直、久しぶりに最高の週末だった。\n\nソーレン: こっちもだよ。まだ耳鳴りがしてる、冗談抜きで。"
+ },
+ {
+  "id": "2026-08-04-005",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Time for an Upgrade",
+  "difficulty": "Casual English",
+  "wordCount": 98,
+  "text": "Keira: My phone's on its last legs. Battery dies by noon.\n\nTobias: Time for an upgrade, then. Are you sticking with the same brand?\n\nKeira: I dunno. The new one costs an arm and a leg.\n\nTobias: True, but you can trade in your old one.\n\nKeira: Really? How much would that knock off the price?\n\nTobias: A couple hundred, maybe. Shop around before you commit.\n\nKeira: Good call. I'm not gonna splash out on the top model.\n\nTobias: Smart. The mid-range one does the job just fine.\n\nKeira: Right? I mean, I basically just scroll and text.",
+  "glossary": [
+   {
+    "word": "on its last legs",
+    "pos": "idiom",
+    "japanese": "もう寿命だ、限界だ",
+    "definition": "about to break down or stop working completely",
+    "example": "My laptop is on its last legs after six years.",
+    "exampleJa": "私のノートパソコンは六年使って、もう寿命だ。"
+   },
+   {
+    "word": "stick with",
+    "pos": "phrasal verb",
+    "japanese": "〜のままでいく",
+    "definition": "to continue with the same choice instead of changing",
+    "example": "I'll stick with my usual plan; it works fine.",
+    "exampleJa": "いつものプランのままでいくよ、問題なく使えてるし。"
+   },
+   {
+    "word": "cost an arm and a leg",
+    "pos": "idiom",
+    "japanese": "とても高くつく",
+    "definition": "to be extremely expensive",
+    "example": "Concert tickets cost an arm and a leg these days.",
+    "exampleJa": "最近のコンサートのチケットはとても高くつく。"
+   },
+   {
+    "word": "trade in",
+    "pos": "phrasal verb",
+    "japanese": "下取りに出す",
+    "definition": "to give an old item as part payment for a new one",
+    "example": "He traded in his car and saved two thousand dollars.",
+    "exampleJa": "彼は車を下取りに出して二千ドル節約した。"
+   },
+   {
+    "word": "knock off",
+    "pos": "phrasal verb",
+    "japanese": "（値段を）値引きする",
+    "definition": "to reduce a price by a certain amount",
+    "example": "They knocked twenty percent off because the box was damaged.",
+    "exampleJa": "箱が傷んでいたので、二割引きしてくれた。"
+   },
+   {
+    "word": "shop around",
+    "pos": "phrasal verb",
+    "japanese": "あちこち見比べる",
+    "definition": "to compare prices at several places before buying",
+    "example": "Shop around for insurance; the quotes vary a lot.",
+    "exampleJa": "保険はあちこち見比べたほうがいい、見積もりの差が大きいから。"
+   },
+   {
+    "word": "good call",
+    "pos": "phrase",
+    "japanese": "いい判断だね",
+    "definition": "used to say someone made a sensible decision",
+    "example": "Good call bringing umbrellas; it poured all afternoon.",
+    "exampleJa": "傘を持ってきたのはいい判断だったね、午後はずっと土砂降りだった。"
+   },
+   {
+    "word": "splash out",
+    "pos": "phrasal verb",
+    "japanese": "奮発して大金を使う",
+    "definition": "to spend a lot of money on something, often a treat",
+    "example": "They splashed out on a fancy dinner for their anniversary.",
+    "exampleJa": "彼らは記念日に奮発して豪華なディナーに行った。"
+   }
+  ],
+  "translation": "キーラ: スマホがもう限界なの。お昼には電池が切れる。\n\nトバイアス: じゃあ機種変の時期だね。同じメーカーで続ける？\n\nキーラ: どうだろう。新しいのはめちゃくちゃ高いんだよね。\n\nトバイアス: 確かに。でも古いのを下取りに出せるよ。\n\nキーラ: ほんと？それでいくらくらい安くなるの？\n\nトバイアス: たぶん二、三万円くらい。決める前にあちこち見比べなよ。\n\nキーラ: いい判断だね。最上位モデルに奮発する気はないし。\n\nトバイアス: 賢いね。中位モデルで十分こと足りるよ。\n\nキーラ: だよね。だって私、スクロールとメッセージくらいしか使わないもん。"
+ },
+ {
+  "id": "2026-08-04-006",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Moving the Sofa",
+  "difficulty": "Casual English",
+  "wordCount": 100,
+  "text": "Maeve: I'm thinking of moving the sofa under the window.\n\nLachlan: Ooh, that'd really open the place up. I like it.\n\nMaeve: Right? The layout feels kinda cramped at the moment.\n\nLachlan: Definitely. Have you thought about ditching that bulky bookcase?\n\nMaeve: I mean, where would the books go?\n\nLachlan: Floating shelves. They're cheap and they free up loads of space.\n\nMaeve: Oh, that's a great shout. I'll browse online tonight.\n\nLachlan: Just don't go overboard. You always buy on impulse.\n\nMaeve: Guilty. Last time I blew fifty quid on cushions.\n\nLachlan: Exactly. Sleep on it before you hit checkout.",
+  "glossary": [
+   {
+    "word": "open up",
+    "pos": "phrasal verb",
+    "japanese": "（空間を）広く見せる",
+    "definition": "to make a space feel larger or less crowded",
+    "example": "Removing the wall really opened up the kitchen area.",
+    "exampleJa": "壁を取り払ったらキッチンがぐっと広く感じられた。"
+   },
+   {
+    "word": "ditch",
+    "pos": "verb (informal)",
+    "japanese": "処分する、捨てる",
+    "definition": "to get rid of something you no longer want",
+    "example": "We ditched the old armchair before the movers arrived.",
+    "exampleJa": "引っ越し業者が来る前に古い肘掛け椅子を処分した。"
+   },
+   {
+    "word": "free up",
+    "pos": "phrasal verb",
+    "japanese": "（空間や時間を）空ける",
+    "definition": "to make space, time, or resources available",
+    "example": "Deleting old photos freed up half my phone storage.",
+    "exampleJa": "古い写真を消したらスマホの容量が半分空いた。"
+   },
+   {
+    "word": "a great shout",
+    "pos": "slang (British)",
+    "japanese": "いい案だね",
+    "definition": "a very good suggestion or idea",
+    "example": "Booking the early train was a great shout, thanks.",
+    "exampleJa": "早い電車を予約したのはいい案だったよ、ありがとう。"
+   },
+   {
+    "word": "go overboard",
+    "pos": "idiom",
+    "japanese": "やりすぎる",
+    "definition": "to do far more of something than is sensible",
+    "example": "He went overboard and bought four identical lamps.",
+    "exampleJa": "彼はやりすぎて同じランプを四つも買ってしまった。"
+   },
+   {
+    "word": "on impulse",
+    "pos": "phrase",
+    "japanese": "衝動的に",
+    "definition": "suddenly, without planning or thinking first",
+    "example": "She booked the flight on impulse and regretted nothing.",
+    "exampleJa": "彼女は衝動的に航空券を取ったが、後悔はしなかった。"
+   },
+   {
+    "word": "quid",
+    "pos": "slang (British)",
+    "japanese": "ポンド（英国の通貨）",
+    "definition": "informal word for one British pound",
+    "example": "The whole lunch came to about twelve quid each.",
+    "exampleJa": "昼食は全部で一人だいたい十二ポンドだった。"
+   },
+   {
+    "word": "sleep on it",
+    "pos": "idiom",
+    "japanese": "一晩考える",
+    "definition": "to wait until the next day before deciding",
+    "example": "Don't sign tonight; sleep on it and decide tomorrow.",
+    "exampleJa": "今夜は署名しないで、一晩考えて明日決めなよ。"
+   }
+  ],
+  "translation": "メイヴ: ソファを窓の下に移そうかと思ってるの。\n\nラクラン: おお、それだと部屋がずっと広く見えるね。いいと思う。\n\nメイヴ: でしょ？今のレイアウトはなんか窮屈で。\n\nラクラン: 確かに。あの大きい本棚を処分するのは考えた？\n\nメイヴ: いや、じゃあ本はどこに置くのよ。\n\nラクラン: 壁付けの棚。安いし、床のスペースがかなり空くよ。\n\nメイヴ: あ、それはいい案だね。今夜ネットで見てみる。\n\nラクラン: ただしやりすぎないでね。君はいつも衝動買いするから。\n\nメイヴ: 否定できない。この前もクッションに五十ポンド使ったし。\n\nラクラン: ほらね。購入ボタンを押す前に一晩考えなよ。"
+ },
+ {
+  "id": "2026-08-04-007",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Walk Me Through It",
+  "difficulty": "Casual English",
+  "wordCount": 100,
+  "text": "Vaughn: Thanks for helping. I'm so nervous about tomorrow's interview.\n\nInes: You'll be fine. Okay, walk me through your background.\n\nVaughn: Um, I've been in sales for six years, mostly retail.\n\nInes: Don't say \"um.\" Take a beat, then answer confidently.\n\nVaughn: Fair. What if they ask about my weaknesses?\n\nInes: Spin it. Pick something real, then show how you're working on it.\n\nVaughn: Got it. Honestly, I always freeze up on that one.\n\nInes: Practice out loud. It'll roll off the tongue eventually.\n\nVaughn: Thanks. You're gonna have to grill me again tomorrow.\n\nInes: Happily. You've got this, seriously.",
+  "glossary": [
+   {
+    "word": "walk someone through",
+    "pos": "phrasal verb",
+    "japanese": "順を追って説明する",
+    "definition": "to explain something step by step to another person",
+    "example": "Can you walk me through the refund process once more?",
+    "exampleJa": "返金の手順をもう一度、順を追って説明してもらえますか。"
+   },
+   {
+    "word": "take a beat",
+    "pos": "idiom",
+    "japanese": "一呼吸置く",
+    "definition": "to pause briefly before speaking or acting",
+    "example": "Take a beat before replying to that angry email.",
+    "exampleJa": "あの怒ったメールに返信する前に、一呼吸置きなよ。"
+   },
+   {
+    "word": "spin",
+    "pos": "verb (informal)",
+    "japanese": "見せ方を変える、うまく言い換える",
+    "definition": "to present information in a more favourable way",
+    "example": "He spun the delay as extra time for quality checks.",
+    "exampleJa": "彼は遅れを品質確認の追加時間だとうまく言い換えた。"
+   },
+   {
+    "word": "work on",
+    "pos": "phrasal verb",
+    "japanese": "改善に取り組む",
+    "definition": "to spend effort improving a skill or problem",
+    "example": "I'm working on speaking more slowly during presentations.",
+    "exampleJa": "プレゼン中にもっとゆっくり話せるよう取り組んでいる。"
+   },
+   {
+    "word": "freeze up",
+    "pos": "phrasal verb",
+    "japanese": "頭が真っ白になる",
+    "definition": "to become unable to speak or act from nerves",
+    "example": "She froze up the moment the camera turned on.",
+    "exampleJa": "カメラが回った瞬間、彼女は頭が真っ白になった。"
+   },
+   {
+    "word": "roll off the tongue",
+    "pos": "idiom",
+    "japanese": "すらすら出てくる",
+    "definition": "to be easy and natural to say",
+    "example": "After ten tries, the phrase rolled off the tongue.",
+    "exampleJa": "十回練習したら、そのフレーズがすらすら出てくるようになった。"
+   },
+   {
+    "word": "grill",
+    "pos": "verb (informal)",
+    "japanese": "厳しく質問攻めにする",
+    "definition": "to question someone intensely and repeatedly",
+    "example": "The panel grilled him about his last two projects.",
+    "exampleJa": "審査員たちは直近の二つの案件について彼を質問攻めにした。"
+   },
+   {
+    "word": "you've got this",
+    "pos": "phrase",
+    "japanese": "君ならできる",
+    "definition": "an encouraging phrase meaning you can handle it",
+    "example": "Breathe, walk in, and smile. You've got this.",
+    "exampleJa": "深呼吸して、入って、笑顔で。君ならできるよ。"
+   }
+  ],
+  "translation": "ヴォーン: 手伝ってくれてありがとう。明日の面接がすごく不安で。\n\nイネス: 大丈夫だよ。じゃあ、経歴を順を追って説明してみて。\n\nヴォーン: えっと、営業を六年やっていて、主に小売です。\n\nイネス: 「えっと」は言わないで。一呼吸置いてから、堂々と答えて。\n\nヴォーン: なるほど。短所を聞かれたらどうしよう？\n\nイネス: 見せ方を変えるの。本当の短所を挙げて、改善の努力を示す。\n\nヴォーン: わかった。正直、その質問でいつも頭が真っ白になるんだ。\n\nイネス: 声に出して練習して。そのうちすらすら出てくるようになるから。\n\nヴォーン: ありがとう。明日もまた質問攻めにしてもらわないとね。\n\nイネス: 喜んで。本当に、君ならできるよ。"
+ },
+ {
+  "id": "2026-08-04-008",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "How to Tell the Boss",
+  "difficulty": "Casual English",
+  "wordCount": 94,
+  "text": "Dahlia: Can I pick your brain? I need to raise something with our boss.\n\nXander: Sure. Is it about the workload thing?\n\nDahlia: Yeah. He keeps piling on tasks with zero heads-up.\n\nXander: Tricky. I'd frame it around impact, not blame.\n\nDahlia: Good point. I don't wanna come across as whiny.\n\nXander: Exactly. Ask for a quick one-on-one, keep it low-key.\n\nDahlia: Right. And maybe suggest a fix rather than just venting.\n\nXander: Bingo. Managers take it way better when you bring solutions.\n\nDahlia: Okay, I'll bite the bullet and book it this afternoon.",
+  "glossary": [
+   {
+    "word": "pick someone's brain",
+    "pos": "idiom",
+    "japanese": "知恵を借りる",
+    "definition": "to ask someone for advice or ideas on a topic",
+    "example": "Can I pick your brain about pricing for a minute?",
+    "exampleJa": "価格設定について少し知恵を借りてもいいですか。"
+   },
+   {
+    "word": "pile on",
+    "pos": "phrasal verb",
+    "japanese": "どんどん積み増す",
+    "definition": "to add more and more of something, often work",
+    "example": "They piled on extra reports right before the holidays.",
+    "exampleJa": "休暇直前に追加のレポートをどんどん積み増してきた。"
+   },
+   {
+    "word": "heads-up",
+    "pos": "noun (informal)",
+    "japanese": "事前の一報",
+    "definition": "an advance warning so you can prepare",
+    "example": "Thanks for the heads-up about tomorrow's schedule change.",
+    "exampleJa": "明日の予定変更を事前に知らせてくれてありがとう。"
+   },
+   {
+    "word": "come across as",
+    "pos": "phrasal verb",
+    "japanese": "〜という印象を与える",
+    "definition": "to give a particular impression to other people",
+    "example": "He came across as confident, though he was terrified.",
+    "exampleJa": "彼は内心怯えていたが、自信のある印象を与えた。"
+   },
+   {
+    "word": "one-on-one",
+    "pos": "noun/adjective",
+    "japanese": "一対一の面談",
+    "definition": "a private meeting between two people, often manager and staff",
+    "example": "We have a one-on-one every second Tuesday morning.",
+    "exampleJa": "私たちは隔週火曜の朝に一対一の面談をしている。"
+   },
+   {
+    "word": "low-key",
+    "pos": "adjective (informal)",
+    "japanese": "控えめな、大げさにしない",
+    "definition": "quiet and not drawing attention",
+    "example": "Let's keep the announcement low-key until Friday's meeting.",
+    "exampleJa": "金曜の会議まで発表は控えめにしておこう。"
+   },
+   {
+    "word": "vent",
+    "pos": "verb (informal)",
+    "japanese": "不満をぶちまける",
+    "definition": "to express frustration freely without solving anything",
+    "example": "She vented for ten minutes and then felt better.",
+    "exampleJa": "彼女は十分ほど不満をぶちまけて、気が晴れた。"
+   },
+   {
+    "word": "bite the bullet",
+    "pos": "idiom",
+    "japanese": "覚悟を決めてやる",
+    "definition": "to force yourself to do something unpleasant",
+    "example": "I bit the bullet and cancelled the contract myself.",
+    "exampleJa": "私は覚悟を決めて、自分で契約を解除した。"
+   }
+  ],
+  "translation": "ダリア: ちょっと知恵を借りていい？上司に言わなきゃいけないことがあって。\n\nザンダー: いいよ。仕事量の件？\n\nダリア: そう。事前の一報もなしに仕事をどんどん積んでくるの。\n\nザンダー: 難しいね。責任追及じゃなく、影響の話として伝えるかな。\n\nダリア: なるほど。不平ばかり言う人だと思われたくないし。\n\nザンダー: そのとおり。短い一対一の面談を頼んで、大げさにしないこと。\n\nダリア: だね。ただ愚痴るんじゃなくて、改善案も出そうかな。\n\nザンダー: 正解。解決策を持っていくと上司の受け止め方が全然違うよ。\n\nダリア: よし、覚悟を決めて今日の午後に予約する。"
+ },
+ {
+  "id": "2026-08-04-009",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Booking the Client Dinner",
+  "difficulty": "Casual English",
+  "wordCount": 96,
+  "text": "Griffin: Have you booked anywhere for Thursday's client dinner yet?\n\nBianca: Not yet. I'm torn between the steakhouse and that sushi place.\n\nGriffin: Go with sushi. Their team's pretty health-conscious, from what I hear.\n\nBianca: Makes sense. Should I set up a private room?\n\nGriffin: Definitely. You don't wanna be shouting over background noise.\n\nBianca: True. And who's picking up the tab this time?\n\nGriffin: We are. Put it on the company card, obviously.\n\nBianca: Got it. I'll send a calendar invite so nobody flakes.\n\nGriffin: Smart. Let's touch base beforehand and go over talking points.",
+  "glossary": [
+   {
+    "word": "torn between",
+    "pos": "phrase",
+    "japanese": "〜の間で迷っている",
+    "definition": "unable to choose between two attractive options",
+    "example": "I'm torn between the window seat and the aisle.",
+    "exampleJa": "窓側の席と通路側の席の間で迷っている。"
+   },
+   {
+    "word": "go with",
+    "pos": "phrasal verb",
+    "japanese": "〜に決める",
+    "definition": "to choose a particular option",
+    "example": "Let's go with the cheaper venue and spend elsewhere.",
+    "exampleJa": "安い会場に決めて、他のところにお金を使おう。"
+   },
+   {
+    "word": "set up",
+    "pos": "phrasal verb",
+    "japanese": "手配する、準備する",
+    "definition": "to arrange or organise something in advance",
+    "example": "I'll set up a call with the supplier tomorrow morning.",
+    "exampleJa": "明日の朝、仕入先との電話を手配しておきます。"
+   },
+   {
+    "word": "pick up the tab",
+    "pos": "idiom",
+    "japanese": "勘定を持つ、おごる",
+    "definition": "to pay the bill, especially for a group",
+    "example": "The head office picked up the tab for everyone.",
+    "exampleJa": "本社が全員分の勘定を持ってくれた。"
+   },
+   {
+    "word": "flake",
+    "pos": "verb (slang)",
+    "japanese": "ドタキャンする",
+    "definition": "to fail to show up or cancel plans at the last minute",
+    "example": "Two guests flaked an hour before the dinner started.",
+    "exampleJa": "夕食が始まる一時間前に二人がドタキャンした。"
+   },
+   {
+    "word": "touch base",
+    "pos": "idiom",
+    "japanese": "連絡を取り合う",
+    "definition": "to make brief contact to share updates",
+    "example": "Let's touch base on Monday before the client calls.",
+    "exampleJa": "顧客から連絡が来る前に、月曜に一度連絡を取り合おう。"
+   },
+   {
+    "word": "go over",
+    "pos": "phrasal verb",
+    "japanese": "見直す、確認する",
+    "definition": "to review or check something carefully",
+    "example": "We went over the figures twice before sending them.",
+    "exampleJa": "送る前に数字を二度確認した。"
+   },
+   {
+    "word": "talking points",
+    "pos": "noun phrase",
+    "japanese": "話すべき要点",
+    "definition": "the key subjects you plan to raise in a discussion",
+    "example": "She prepared three talking points for the board meeting.",
+    "exampleJa": "彼女は取締役会に向けて三つの要点を用意した。"
+   }
+  ],
+  "translation": "グリフィン: 木曜の顧客との会食、どこか予約した？\n\nビアンカ: まだ。ステーキハウスとあの寿司屋で迷ってるの。\n\nグリフィン: 寿司にしよう。先方のチームは健康志向らしいから。\n\nビアンカ: 納得。個室を手配したほうがいい？\n\nグリフィン: 絶対に。騒音の中で大声を出したくないでしょ。\n\nビアンカ: 確かに。今回の勘定はどっちが持つの？\n\nグリフィン: うちだよ。もちろん会社のカードで払って。\n\nビアンカ: 了解。誰もドタキャンしないようにカレンダー招待を送っておく。\n\nグリフィン: 賢いね。事前に一度連絡を取り合って、話す要点を確認しよう。"
+ },
+ {
+  "id": "2026-08-04-010",
+  "date": "2026-08-04",
+  "topic": "Real Conversations",
+  "title": "Before the Year-End Review",
+  "difficulty": "Casual English",
+  "wordCount": 96,
+  "text": "Fern: My year-end review's on Friday. I'm dreading it, honestly.\n\nZane: Why? You smashed your targets. You've got nothing to worry about.\n\nFern: I guess. But I dropped the ball on that Q2 project.\n\nZane: One slip-up won't overshadow a solid year. Own it and move on.\n\nFern: True. Should I bring up a pay rise?\n\nZane: Absolutely. Go in with numbers to back it up.\n\nFern: Okay. And for next year, I wanna step up into leadership.\n\nZane: Then say so. Nobody's gonna read your mind.\n\nFern: Fair enough. I'll jot down some goals tonight.",
+  "glossary": [
+   {
+    "word": "smash your targets",
+    "pos": "collocation",
+    "japanese": "目標を大きく上回る",
+    "definition": "to exceed your goals by a wide margin",
+    "example": "The team smashed their targets two months before deadline.",
+    "exampleJa": "チームは締め切りの二か月前に目標を大きく上回った。"
+   },
+   {
+    "word": "drop the ball",
+    "pos": "idiom",
+    "japanese": "しくじる、へまをする",
+    "definition": "to make a careless mistake or fail a responsibility",
+    "example": "I dropped the ball and forgot to confirm the booking.",
+    "exampleJa": "私がへまをして、予約の確認を忘れてしまった。"
+   },
+   {
+    "word": "slip-up",
+    "pos": "noun (informal)",
+    "japanese": "ちょっとしたミス",
+    "definition": "a small mistake, usually not serious",
+    "example": "One slip-up in the spreadsheet delayed the whole invoice.",
+    "exampleJa": "表計算の小さなミスで請求書全体が遅れた。"
+   },
+   {
+    "word": "own it",
+    "pos": "phrase (informal)",
+    "japanese": "非を認める、責任を引き受ける",
+    "definition": "to accept responsibility for a mistake openly",
+    "example": "He owned it in the meeting and nobody blamed him.",
+    "exampleJa": "彼は会議で非を認め、誰も彼を責めなかった。"
+   },
+   {
+    "word": "bring up",
+    "pos": "phrasal verb",
+    "japanese": "話題に出す、持ち出す",
+    "definition": "to mention a subject in a conversation",
+    "example": "Don't bring up the budget until she finishes speaking.",
+    "exampleJa": "彼女が話し終わるまで予算の話は持ち出さないで。"
+   },
+   {
+    "word": "back up",
+    "pos": "phrasal verb",
+    "japanese": "裏づける、根拠を示す",
+    "definition": "to support a claim with evidence",
+    "example": "Back up your request with last quarter's sales figures.",
+    "exampleJa": "前四半期の売上データで自分の要求を裏づけなさい。"
+   },
+   {
+    "word": "step up",
+    "pos": "phrasal verb",
+    "japanese": "一段上の役割を担う",
+    "definition": "to take on more responsibility or a bigger role",
+    "example": "She stepped up when the department lost its manager.",
+    "exampleJa": "部門長が抜けたとき、彼女が一段上の役割を担った。"
+   },
+   {
+    "word": "jot down",
+    "pos": "phrasal verb",
+    "japanese": "さっと書き留める",
+    "definition": "to write something quickly and briefly",
+    "example": "Jot down your questions before the interview begins.",
+    "exampleJa": "面接が始まる前に質問をさっと書き留めておこう。"
+   }
+  ],
+  "translation": "ファーン: 金曜が年末の評価面談なの。正直、憂うつで。\n\nゼイン: なんで？目標を大きく上回ったじゃない。心配することないよ。\n\nファーン: そうだけど。第2四半期の案件でへまをしたし。\n\nゼイン: 一度のミスで一年分の堅実な成果は消えないよ。認めて前に進めば。\n\nファーン: 確かに。昇給の話は持ち出すべきかな？\n\nゼイン: 絶対に。裏づけになる数字を持って臨んで。\n\nファーン: わかった。あと来年は、リーダー職に一段上がりたい。\n\nゼイン: なら、そう言いなよ。誰も心を読んではくれないんだから。\n\nファーン: だよね。今夜、目標をいくつか書き留めておく。"
  }
 ];
