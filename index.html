@@ -292,8 +292,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   display: block; margin-top: 8px; padding: 10px; background: var(--surface2);
   border-radius: 8px; font-size: 13px; line-height: 1.6;
 }
-.vocab-example-en { font-style: italic; color: var(--text); margin-bottom: 6px; }
-.vocab-example-ja { color: var(--text2); font-style: italic; }
+.vocab-example-en { font-size: 15px; line-height: 1.65; color: var(--text); margin-bottom: 5px; }
+.vocab-example-ja { font-size: 13px; line-height: 1.6; color: var(--text2); }
 
 /* Read count button */
 #page-essay { padding-bottom: 140px; }
@@ -353,10 +353,18 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .flashcard-word { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
 .flashcard-pos { font-size: 13px; color: var(--text2); }
 .flashcard-answer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); width: 100%; }
-.flashcard-japanese { font-size: 22px; font-weight: 600; color: var(--accent2); margin-bottom: 8px; }
-.flashcard-def { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
-.flashcard-example { font-size: 13px; color: var(--text2); font-style: italic; max-width: 500px; margin: 0 auto; }
-.flashcard-example-ja { font-size: 12px; color: var(--text2); margin-top: 4px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.flashcard-japanese { font-size: 22px; font-weight: 600; color: var(--accent2); margin-bottom: 10px; }
+.flashcard-def { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
+/* 例文は読みやすさ優先: 大きめ・明るい色・左揃え・イタリックなし。左のバーで1文ずつ区切る */
+.flashcard-example {
+  font-size: 16px; color: var(--text); font-style: normal; line-height: 1.7;
+  max-width: 520px; margin: 12px auto 0; text-align: left;
+  padding-left: 11px; border-left: 3px solid var(--accent);
+}
+.flashcard-example-ja {
+  font-size: 13px; color: var(--text2); line-height: 1.6;
+  max-width: 520px; margin: 5px auto 0; text-align: left; padding-left: 14px;
+}
 .flashcard-speak-btn {
   margin-top: 12px; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--accent);
   background: transparent; color: var(--accent2); font-size: 13px; cursor: pointer; font-family: inherit;
