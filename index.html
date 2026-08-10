@@ -11,7 +11,7 @@
 <title>English Reading Trainer</title>
 <script src="data.js?v=20260804"></script>
 <script src="listening-data.js?v=20260804"></script>
-<script src="vocab-enrichment.js?v=20260804"></script>
+<script src="vocab-enrichment.js?v=20260811"></script>
 <script src="articles-data.js?v=20260804"></script>
 <script src="drill-data.js?v=20260804"></script>
 <style>
@@ -524,6 +524,15 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .ex-speak-btn:hover { border-color: var(--accent); color: var(--accent); }
 .vocab-origin { font-size: 12px; color: var(--yellow); line-height: 1.6; margin: 6px 0 2px; }
 .vocab-colloc { font-size: 12px; color: var(--accent2); line-height: 1.6; }
+.vocab-syn { font-size: 12px; color: var(--green); line-height: 1.6; margin-top: 2px; }
+.vocab-nuance { font-size: 12px; color: var(--text2); line-height: 1.6; margin-top: 2px; }
+/* 単語チェック回数ボタン（音声ボタンの隣。押すたびにカウントアップ） */
+.check-btn {
+  padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--surface2); color: var(--text2); font-size: 11px; cursor: pointer;
+  font-family: inherit; font-weight: 700; white-space: nowrap; display: inline-flex; align-items: center; gap: 3px;
+}
+.check-btn.checked { border-color: var(--green); background: var(--green-bg); color: var(--green); }
 
 /* YouTube listening */
 #yt-player-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; margin: 12px 0; }
@@ -574,6 +583,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <div class="stat-card"><div class="stat-num" id="stat-mastered">0</div><div class="stat-label">Mastered</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-due">0</div><div class="stat-label">Due Today</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-total-reads">0</div><div class="stat-label">Total Reads</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-checked">0</div><div class="stat-label">Words Checked</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-quiz-answers">0</div><div class="stat-label">Quiz Answers</div></div>
     </div>
     <div id="due-alert" class="card" style="display:none; border-color: var(--orange);">
       <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -687,7 +698,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <div style="height:8px; background:var(--surface2); border-radius:4px; overflow:hidden; margin-top:8px;">
           <div id="today-progress-fill" style="height:100%; width:0%; background:var(--accent); border-radius:4px; transition:width 0.3s;"></div>
         </div>
-        <div style="font-size:11px; color:var(--text2); margin-top:6px;">英語を見て意味を思い出してからタップ。開くとチェックが付きます</div>
+        <div style="font-size:11px; color:var(--text2); margin-top:6px;">意味・例文を確認したらカードか&#10003;ボタンをタップ。回数が記録されます</div>
       </div>
       <div id="today-complete" class="card" style="display:none; text-align:center; padding:24px;">
         <div style="font-size:40px; margin-bottom:10px;">&#127881;</div>
@@ -763,6 +774,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
           <div class="flashcard-example-ja" id="fc-example-ja"></div>
           <div class="flashcard-example" id="fc-example2" style="display:none;"></div>
           <div class="flashcard-example-ja" id="fc-example2-ja" style="display:none;"></div>
+          <div class="vocab-syn" id="fc-syn" style="display:none; text-align:left;"></div>
+          <div class="vocab-nuance" id="fc-nuance" style="display:none; text-align:left;"></div>
           <div class="vocab-origin" id="fc-origin" style="display:none; text-align:left;"></div>
           <div class="vocab-colloc" id="fc-colloc" style="display:none; text-align:left; margin-bottom:8px;"></div>
           <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
@@ -1013,6 +1026,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div class="card" style="padding:12px; margin-top:8px;">
       <div style="font-size:12px; color:var(--text2); margin-bottom:8px;" id="chart-reviews-label">Quiz Reviews per Day</div>
       <canvas id="chart-reviews" height="150" style="width:100%;"></canvas>
+    </div>
+    <div class="card" style="padding:12px; margin-top:8px;">
+      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;" id="chart-checked-label">&#10003; 単語チェック数</div>
+      <canvas id="chart-checked" height="150" style="width:100%;"></canvas>
     </div>
     <div class="card" style="padding:12px; margin-top:8px;">
       <div style="font-size:12px; color:var(--text2); margin-bottom:8px;" id="chart-drill-label">&#9889; 瞬間英作文</div>
@@ -2270,7 +2287,7 @@ function toggleRecentOpened() {
 }
 function calcStreak() {
   const ds = state.dailyStats || {};
-  const hasActivity = d => { const s = ds[d]; return !!s && ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0 || (s.drilled || 0) > 0); };
+  const hasActivity = d => { const s = ds[d]; return !!s && ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0 || (s.drilled || 0) > 0 || (s.checked || 0) > 0); };
   let streak = 0;
   const d = new Date();
   if (!hasActivity(formatLocalDate(d))) d.setDate(d.getDate() - 1); // 今日未学習でも昨日までの連続を維持表示
@@ -2306,6 +2323,11 @@ function updateDashboard() {
   document.getElementById('stat-mastered').textContent = masteredWords;
   document.getElementById('stat-due').textContent = dueWords;
   document.getElementById('stat-total-reads').textContent = totalReads;
+  // 単語チェック延べ回数と、クイズ回答の累計（dailyStatsのreviewed合計）
+  const totalChecked = Object.values(state.vocabulary).reduce((sum, v) => sum + (v.checkCount || 0), 0);
+  const totalQuizAnswers = Object.values(state.dailyStats || {}).reduce((sum, s) => sum + (s.reviewed || 0), 0);
+  document.getElementById('stat-checked').textContent = totalChecked.toLocaleString();
+  document.getElementById('stat-quiz-answers').textContent = totalQuizAnswers.toLocaleString();
 
   const dueAlert = document.getElementById('due-alert');
   if (dueWords > 0) { dueAlert.style.display = 'block'; document.getElementById('due-count-alert').textContent = dueWords; }
@@ -3053,6 +3075,8 @@ function filterVocab() {
       || (v.example || '').toLowerCase().includes(search)
       || (en && ((en.example2 || '').toLowerCase().includes(search)
         || (en.collocations || []).some(c => c.toLowerCase().includes(search))
+        || (en.syn || []).some(s => s.toLowerCase().includes(search))
+        || (en.nuance || '').includes(search)
         || (en.origin || '').includes(search)));
     if (vocabFilter === 'all') return matchSearch && v.level >= 0 && v.level < 3;
     if (vocabFilter === 'new') return matchSearch && v.level === 0;
@@ -3068,14 +3092,12 @@ function filterVocab() {
     document.getElementById('vocab-count').textContent = '';
     return;
   }
-  // 検索中は目的の意味をすぐ見たいので展開表示
-  const expanded = !!search;
-  el.innerHTML = words.map(([key, v]) => vocabCardHtml(key, v, { expanded })).join('');
+  el.innerHTML = words.map(([key, v]) => vocabCardHtml(key, v, {})).join('');
   bindVocabCards(el, false);
   document.getElementById('vocab-count').textContent = `${words.length} words`;
 }
 
-// 共通カード（デフォルト折りたたみ: 英語だけ見せて意味当てクイズにする）
+// 共通カード（デフォルト展開。opts.collapsedで折りたたみ開始も可能）
 function vocabCardHtml(key, v, opts = {}) {
   const isExcluded = v.level === -1;
   const isMastered = v.level >= 3;
@@ -3092,11 +3114,14 @@ function vocabCardHtml(key, v, opts = {}) {
   if (v.example) detail += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="event.stopPropagation(); speakVocabExample('${kjs}', 1)">&#128266;</button><div><div class="vocab-example-en">${v.example}</div><div class="vocab-example-ja">${v.exampleJa || ''}</div></div></div>`;
   if (en) {
     if (en.example2) detail += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="event.stopPropagation(); speakVocabExample('${kjs}', 2)">&#128266;</button><div><div class="vocab-example-en">${en.example2}</div><div class="vocab-example-ja">${en.exampleJa2 || ''}</div></div></div>`;
+    if (en.syn && en.syn.length) detail += `<div class="vocab-syn">&#128257; ${en.syn.join(' · ')}</div>`;
+    if (en.nuance) detail += `<div class="vocab-nuance">&#128172; ${en.nuance}</div>`;
     if (en.origin) detail += `<div class="vocab-origin">&#128161; ${en.origin}</div>`;
     if (en.collocations && en.collocations.length) detail += `<div class="vocab-colloc">&#128279; ${en.collocations.join(' · ')}</div>`;
   }
   detail += `<div class="vocab-detail-actions">${buttons}</div>`;
-  return `<div class="vocab-card${opts.expanded ? '' : ' collapsed'}${opts.done ? ' done' : ''}" data-key="${escapeHtml(key)}">
+  const checks = v.checkCount || 0;
+  return `<div class="vocab-card${opts.collapsed ? ' collapsed' : ''}${opts.done ? ' done' : ''}" data-key="${escapeHtml(key)}">
     <div class="vocab-top">
       <div class="vocab-left">
         <div class="vocab-word-cell">${v.word} <span class="vocab-pos">${v.pos || ''}</span></div>
@@ -3104,6 +3129,7 @@ function vocabCardHtml(key, v, opts = {}) {
       <div class="vocab-right">
         ${!isExcluded && !isMastered && v.level > 0 ? getMasteryBadge(v.level) : ''}
         <button class="btn small" onclick="event.stopPropagation(); speakWord('${wjs}')">&#128266;</button>
+        <button class="check-btn${checks > 0 ? ' checked' : ''}" title="目を通した回数" onclick="event.stopPropagation(); checkWord('${kjs}', this)">&#10003; <span>${checks}</span></button>
         <span class="vocab-expand-arrow">&#9660;</span>
       </div>
     </div>
@@ -3115,9 +3141,25 @@ function bindVocabCards(container, isToday) {
     const head = card.querySelector('.vocab-top');
     if (head) head.onclick = () => {
       card.classList.toggle('collapsed');
-      if (isToday && !card.classList.contains('collapsed')) markTodayDone(card.dataset.key, card);
+      if (isToday) markTodayDone(card.dataset.key, card);
     };
   });
+}
+// 単語の「目を通した回数」をカウントアップ（ボタン表示・日次統計も更新）
+function checkWord(key, btn) {
+  const v = state.vocabulary[key];
+  if (!v) return;
+  v.checkCount = (v.checkCount || 0) + 1;
+  const today = formatLocalDate();
+  if (!state.dailyStats) state.dailyStats = {};
+  if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
+  state.dailyStats[today].checked = (state.dailyStats[today].checked || 0) + 1;
+  saveState();
+  if (btn) { btn.classList.add('checked'); const s = btn.querySelector('span'); if (s) s.textContent = v.checkCount; }
+  if (vocabViewMode === 'today') {
+    const card = btn && btn.closest('.vocab-card');
+    markTodayDone(key, card);
+  }
 }
 
 // === 今日の10語セッション ===
@@ -3330,6 +3372,12 @@ function showFlashcard() {
   ex2ja.style.display = en && en.exampleJa2 ? 'block' : 'none';
   ex2.textContent = en && en.example2 ? en.example2 : '';
   ex2ja.textContent = en && en.exampleJa2 ? en.exampleJa2 : '';
+  const synEl = document.getElementById('fc-syn');
+  const nuanceEl = document.getElementById('fc-nuance');
+  synEl.style.display = en && en.syn && en.syn.length ? 'block' : 'none';
+  synEl.innerHTML = en && en.syn && en.syn.length ? '&#128257; ' + escapeHtml(en.syn.join(' · ')) : '';
+  nuanceEl.style.display = en && en.nuance ? 'block' : 'none';
+  nuanceEl.innerHTML = en && en.nuance ? '&#128172; ' + escapeHtml(en.nuance) : '';
   originEl.style.display = en && en.origin ? 'block' : 'none';
   originEl.innerHTML = en && en.origin ? '&#128161; ' + escapeHtml(en.origin) : '';
   collocEl.style.display = en && en.collocations && en.collocations.length ? 'block' : 'none';
@@ -3703,16 +3751,17 @@ function buildStatsBuckets(period) {
     }
   }
   return buckets.map(b => {
-    let wordsRead = 0, reviewed = 0, drilled = 0, activeDays = 0;
+    let wordsRead = 0, reviewed = 0, drilled = 0, checked = 0, activeDays = 0;
     b.days.forEach(d => {
       const s = ds[d];
       if (!s) return;
       wordsRead += s.wordsRead || 0;
       reviewed += s.reviewed || 0;
       drilled += s.drilled || 0;
-      if ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0 || (s.drilled || 0) > 0) activeDays++;
+      checked += s.checked || 0;
+      if ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0 || (s.drilled || 0) > 0 || (s.checked || 0) > 0) activeDays++;
     });
-    return { ...b, wordsRead, reviewed, drilled, activeDays };
+    return { ...b, wordsRead, reviewed, drilled, checked, activeDays };
   });
 }
 function drawCharts() {
@@ -3722,9 +3771,11 @@ function drawCharts() {
   const labels = buckets.map(b => b.label);
   document.getElementById('chart-words-label').textContent = `読んだ語数 / ${unit}`;
   document.getElementById('chart-reviews-label').textContent = `クイズ復習数 / ${unit}`;
+  document.getElementById('chart-checked-label').innerHTML = `&#10003; 単語チェック数 / ${unit}`;
   document.getElementById('chart-drill-label').innerHTML = `&#9889; 瞬間英作文 / ${unit}`;
   drawBarChart('chart-words-read', labels, buckets.map(b => b.wordsRead), '#3b82f6');
   drawBarChart('chart-reviews', labels, buckets.map(b => b.reviewed), '#a78bfa');
+  drawBarChart('chart-checked', labels, buckets.map(b => b.checked), '#22c55e');
   drawBarChart('chart-drilled', labels, buckets.map(b => b.drilled), '#f97316');
   renderPeriodSummary(buckets, unit);
 }
@@ -3746,6 +3797,7 @@ function renderPeriodSummary(buckets, unit) {
   const rows = [
     ['読んだ語数', cur.wordsRead, prev && prev.wordsRead],
     ['クイズ復習', cur.reviewed, prev && prev.reviewed],
+    ['単語チェック', cur.checked, prev && prev.checked],
     ['瞬間英作文', cur.drilled, prev && prev.drilled]
   ];
   const maxDays = statsPeriod === 'day' ? 1 : cur.days.length;
@@ -4068,6 +4120,7 @@ function buildSyncPayload() {
       nextReview: v.nextReview, reviewCount: v.reviewCount,
       correctCount: v.correctCount, lastReview: v.lastReview
     };
+    if (v.checkCount) syncData.vocabulary[key].checkCount = v.checkCount;
     // タップ辞書からのユーザー追加語は語義ごと同期する（受信側のdata.jsに存在しないため）
     if (v.userAdded) {
       Object.assign(syncData.vocabulary[key], { userAdded: true, word: v.word, japanese: v.japanese, essayId: v.essayId || null, firstSeen: v.firstSeen || null });
@@ -4095,6 +4148,8 @@ function mergeSyncData(syncData) {
     }
     if (state.vocabulary[key]) {
       const current = state.vocabulary[key];
+      // チェック回数は単調増加カウンタなので大きい方を採用
+      if (imported.checkCount) current.checkCount = Math.max(current.checkCount || 0, imported.checkCount);
       const importedReviews = imported.reviewCount || 0;
       const currentReviews = current.reviewCount || 0;
       if (importedReviews > currentReviews || (importedReviews === currentReviews && (imported.lastReview || '') > (current.lastReview || ''))) {
@@ -4131,6 +4186,7 @@ function mergeSyncData(syncData) {
       s.mastered = Math.max(s.mastered, imported.mastered || 0);
       s.reviewed = Math.max(s.reviewed, imported.reviewed || 0);
       if (imported.drilled) s.drilled = Math.max(s.drilled || 0, imported.drilled);
+      if (imported.checked) s.checked = Math.max(s.checked || 0, imported.checked);
     });
   }
   if (syncData.duoSrs) {
