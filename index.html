@@ -265,9 +265,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .vocab-card:last-child { border-bottom: none; }
 .vocab-top { display: flex; justify-content: space-between; align-items: flex-start; }
 .vocab-left { flex: 1; }
-.vocab-word-cell { font-weight: 700; font-size: 15px; color: var(--accent2); }
-.vocab-ja-inline { font-size: 13px; color: var(--text); margin-top: 2px; }
-.vocab-pos { font-size: 10px; color: var(--text2); font-style: italic; }
+/* 見出し語と訳はカードの主役。周りの補足情報に埋もれないよう大きめに */
+.vocab-word-cell { font-weight: 700; font-size: 21px; line-height: 1.35; color: var(--accent2); }
+.vocab-ja-inline { font-size: 17px; font-weight: 600; line-height: 1.5; color: var(--text); margin-top: 2px; }
+.vocab-pos { font-size: 11px; color: var(--text2); font-style: italic; font-weight: 400; }
 .vocab-right { display: flex; gap: 6px; align-items: center; flex-shrink: 0; margin-left: 8px; }
 .btn-master {
   padding: 4px 10px; border-radius: 4px; border: 1px solid var(--green);
@@ -684,8 +685,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     </div>
     <div class="tabs" id="vocab-view-tabs" style="margin-bottom:12px;">
       <button class="tab active" data-view="today" onclick="setVocabView('today', this)">&#127919; 今日の10語</button>
-      <button class="tab" data-view="source" onclick="setVocabView('source', this)">&#128218; エッセイ別</button>
       <button class="tab" data-view="all" onclick="setVocabView('all', this)">All</button>
+      <button class="tab" data-view="source" onclick="setVocabView('source', this)">&#128218; エッセイ別</button>
     </div>
 
     <!-- 今日の10語 -->
@@ -727,6 +728,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="filter-btn" data-filter="learning" onclick="setVocabFilter('learning', this)">Learning</button>
         <button class="filter-btn" data-filter="mature" onclick="setVocabFilter('mature', this)">Mastered</button>
         <button class="filter-btn" data-filter="excluded" onclick="setVocabFilter('excluded', this)">Excluded</button>
+      </div>
+      <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+        <button class="btn" id="btn-shuffle-toggle" onclick="toggleVocabShuffle()" style="flex:1; min-width:140px; padding:10px; font-weight:700;">&#128256; シャッフル</button>
+        <button class="btn" id="btn-reshuffle" onclick="reshuffleVocab()" style="flex:1; min-width:140px; padding:10px; display:none;">&#127922; 並べ直す</button>
       </div>
       <div class="card" style="padding:0;">
         <div id="vocab-list"></div>
@@ -3085,7 +3090,13 @@ function filterVocab() {
     if (vocabFilter === 'excluded') return matchSearch && v.level === -1;
     return matchSearch;
   });
-  words.sort((a, b) => a[0].localeCompare(b[0]));
+  // シャッフルON時は保存した並び順で表示（検索・フィルターを変えても順序が保たれる）
+  if (vocabShuffled) {
+    if (!shuffleOrder.size) buildShuffleOrder();
+    words.sort((a, b) => (shuffleOrder.get(a[0]) ?? 0) - (shuffleOrder.get(b[0]) ?? 0));
+  } else {
+    words.sort((a, b) => a[0].localeCompare(b[0]));
+  }
   const el = document.getElementById('vocab-list');
   if (words.length === 0) {
     el.innerHTML = '<div style="text-align:center; padding:30px; color:var(--text2);">No words found</div>';
@@ -3094,7 +3105,32 @@ function filterVocab() {
   }
   el.innerHTML = words.map(([key, v]) => vocabCardHtml(key, v, {})).join('');
   bindVocabCards(el, false);
-  document.getElementById('vocab-count').textContent = `${words.length} words`;
+  document.getElementById('vocab-count').textContent = `${words.length} words${vocabShuffled ? ' · シャッフル中' : ''}`;
+}
+
+// === Vocabのシャッフル表示 ===
+let vocabShuffled = false;
+let shuffleOrder = new Map(); // key -> 並び順
+function buildShuffleOrder() {
+  const keys = Object.keys(state.vocabulary);
+  shuffleArray(keys);
+  shuffleOrder = new Map(keys.map((k, i) => [k, i]));
+}
+function toggleVocabShuffle() {
+  vocabShuffled = !vocabShuffled;
+  if (vocabShuffled) buildShuffleOrder();
+  const toggle = document.getElementById('btn-shuffle-toggle');
+  toggle.classList.toggle('primary', vocabShuffled);
+  toggle.innerHTML = vocabShuffled ? '&#128256; シャッフル中（解除）' : '&#128256; シャッフル';
+  document.getElementById('btn-reshuffle').style.display = vocabShuffled ? 'inline-flex' : 'none';
+  filterVocab();
+  window.scrollTo(0, 0);
+}
+function reshuffleVocab() {
+  buildShuffleOrder();
+  filterVocab();
+  window.scrollTo(0, 0);
+  showToast('並べ直しました');
 }
 
 // 共通カード（デフォルト展開。opts.collapsedで折りたたみ開始も可能）

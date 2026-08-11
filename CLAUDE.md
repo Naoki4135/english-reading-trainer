@@ -73,7 +73,8 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - Read Completeボタンは画面下部に固定表示
 
 ## 主要機能（2026-07-19更新）
-- **削除済み機能（復活させないこと）**: Gold Phrases（金フレ）全機能、VocabのShuffle/Duo/Duo Seqフィルター、QuizのDuo Sentencesモード、SRSタブの弱点分析（苦手単語・品詞別正答率）は2026-07-19に削除済み
+- **削除済み機能（復活させないこと）**: Gold Phrases（金フレ）全機能、VocabのDuo/Duo Seqフィルター、QuizのDuo Sentencesモード、SRSタブの弱点分析（苦手単語・品詞別正答率）は2026-07-19に削除済み
+- **Vocabのシャッフル（2026-08-11にユーザー要望で復活）**: Allビューの「🔀 シャッフル」ボタンで表示順をランダム化、「🎲 並べ直す」で再抽選。`vocabShuffled`と`shuffleOrder`(key→順位のMap)で管理し、検索・フィルターを変えても並びが保たれる。旧実装のようなfilter値'shuffle'ではなく独立トグルにしてある
 - **通訳練習モード**（Quizタブ内）: Glossary例文ペアを使用。日→英はSpeechRecognitionで発話を文字起こしし単語一致率を採点、英→日は音声を聞いて自己チェック
 - **実戦モード**（エッセイ再生）: 文ごとに話者・速度・ピッチをランダム化してリスニング負荷を上げる
 - **ブラインドモード**: エッセイ本文/Transcript/YouTubeスクリプトをblurで隠して耳だけで聞く（.blind-blurクラス）
@@ -82,7 +83,7 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **PWA対応**: manifest.json + sw.js（stale-while-revalidateキャッシュ）+ アイコン3種。ホーム画面追加・オフライン動作可
 - **ホーム**: エッセイライブラリは6ジャンル（Finance & Economics / Business English / Native Collocations / Slang & Casual / Science & Technology / Society & Culture、`essayGenre()`でtopicから判定）別のデフォルト全折りたたみ表示。Read Essaysも全折りたたみ。Recently Openedは5件表示+「もっと見る」で最大50件。連続学習2日以上でストリークバナー表示
 - **語彙エンリッチメント**: 全単語に第2例文・語源/覚え方・コロケーションを表示（単語カード・フラッシュカード）。例文読み上げボタン付き。Vocab検索は例文・コロケーション・語源にもヒット
-- **Vocabタブは3ビュー構成（2026-07-27刷新）**: ①「今日の10語」デイリーセッション（`state.dailyVocab`。復習期限語(最大4)+最近読んだエッセイの新語(最大3)+新語で10語選定。カードか✓ボタンのタップでチェック、10/10で完了画面+「もう10語」）②「エッセイ別」（出典ごとにグループ表示、新しい順）③「All」（検索+フィルター）。**単語カードは2026-08-11からデフォルト全展開**（ユーザー指示。ヘッダータップで折りたたみ可。旧・折りたたみ小テスト設計は廃止）。カード内は 意味→例文→🔁類義語→💬ニュアンス→💡語源→🔗コロケーション の順で表示
+- **Vocabタブは3ビュー構成（2026-07-27刷新。タブ順は2026-08-11に 今日の10語 → All → エッセイ別 へ変更）**: ①「今日の10語」デイリーセッション（`state.dailyVocab`。復習期限語(最大4)+最近読んだエッセイの新語(最大3)+新語で10語選定。カードか✓ボタンのタップでチェック、10/10で完了画面+「もう10語」）②「エッセイ別」（出典ごとにグループ表示、新しい順）③「All」（検索+フィルター）。**単語カードは2026-08-11からデフォルト全展開**（ユーザー指示。ヘッダータップで折りたたみ可。旧・折りたたみ小テスト設計は廃止）。カード内は 意味→例文→🔁類義語→💬ニュアンス→💡語源→🔗コロケーション の順で表示。**見出し語21px・訳17px**（2026-08-11。補足情報が増えて主役が埋もれたため拡大。小さく戻さないこと）
 - **単語チェック回数（2026-08-11追加）**: 各単語カードの音声ボタン隣に✓ボタン。押すたび`state.vocabulary[key].checkCount`と`dailyStats[date].checked`が+1（`checkWord()`）。ホームに「Words Checked」（checkCount延べ合計）と「Quiz Answers」（dailyStats.reviewedの累計）のタイル。checkCountとdailyStats.checkedはクラウド同期対象（単調増加なのでmaxマージ）。ストリーク判定にもcheckedを含む
 - **フラッシュカードのイラスト**: `getWordVisual()` が `VISUAL_OVERRIDES` → `WORD_VISUAL_MAP`（手作り183件）→ 日本語訳のキーワード自動マッチ、の順で解決する。自動マッチは誤爆しやすいため、2026-07-26に全1403語を点検し880語を修正済み。**汎用フォールバック（「名詞」「形容詞」等）に落ちる語はゼロを維持すること**
 - **ヒントのネタバレ防止（重要）**: `buildFlashcardHint()` は `visual.h` が日本語訳と一致する場合にImage行を出さない。自動生成のhは訳そのままで答えになるため。`VISUAL_OVERRIDES` の h には**訳語を書かず情景を書く**こと（例: hollow out →「外側は立派な大木。でも中身は空っぽ」）
