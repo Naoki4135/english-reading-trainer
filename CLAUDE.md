@@ -60,7 +60,7 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents/iCloud/`
 
 ## エッセイ規模
-- エッセイは186本（2026-08-04時点。data.jsのESSAYS配列。うちReal Conversations 40本）
+- エッセイは196本（2026-08-11時点。data.jsのESSAYS配列。うちReal Conversations 40本、Vocab Review Conversations 10本）
 - 長さは標準150語だが、2026-07-31追加分（コロケーション10+スラング10）は約100語のショート版
 
 ## UI/UX仕様
@@ -96,6 +96,7 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **会話文の音声（2026-08-01追加）**: `splitEssayForSpeech`が"Name: 発話"を検出し話者名を読み上げから除外、`assignDialogueVoices`が話者ごとに固定ボイス（1人目女性系/2人目男性系）を割当。実戦モードでも会話文は声固定
 - **Glossary網羅率**: 2026-08-01に全156本を監査し拾い漏れ307語を追加（glossary総数2,012）。新規エッセイは「難しい単語・表現はすべてピックアップ」を厳守
 - **瞬間英作文Drillタブ（2026-08-01追加）**: ナビ6番目。1日10問（ミス再出題最大3+現Lvドリル文+単語帳例文2）。自己チェック3択（言えた/惜しい/言えなかった）。直近正答率でLv1〜3自動昇降（80%↑で昇格、40%↓で降格）。ミスは`state.drill.missedPool`に入り「言えた2回」で卒業。`dailyStats.drilled`がストリークにカウント。state.drillは同期対象
+- **Vocab Review Conversations（2026-08-11追加）**: 既に単語帳に登録済みの語・イディオムだけで構成した復習用会話10本（topic=`Vocab Review Conversations`, difficulty=`Vocab Review`）。**ホームでは Essay Library とは別の専用セクション「🔁 Vocab Review Talks」に表示**（`#vocab-review-section`。`essayGenre()`が'vocab review'を最優先で判定し、`GENRE_ORDER`には含めないことで二重表示を防いでいる）。Glossaryは既存エントリの複製なので**vocab-enrichment.jsへの追記は不要**。増やす場合も既存2,029語からの選定を厳守（新語を入れるならenrichmentも追加すること）
 - **Real Conversationsジャンル（2026-08-01追加）**: 2人の話者による会話スクリプト形式エッセイ（`Name: 発話`を\n\n区切り）。ライブラリで独立ジャンル🗣️。実戦モードで話者ごとに声が変わる
 - **自動クラウド同期（2026-07-31追加）**: GitHub Gist（非公開・`ert-sync.json`）を使ってデバイス間で学習データを自動同期。トークンはlocalStorage（`ert-sync-token`）のみに保存し、**stateやバックアップ・Sync Codeには絶対に含めない**。挙動: 起動時とフォアグラウンド復帰時に`cloudPull()`（フィールド単位マージ）、`saveState()`の30秒後と離脱時に`cloudPush()`。ペイロードは`buildSyncPayload()`（SRS進捗のみ、約200KB）。401はトークン失効表示
 - **SRSタブの学習記録（2026-08-02改良、2026-08-11に単語チェック追加）**: 日次(14日)/週次(12週)/月次(12ヶ月)を`setStatsPeriod()`で切替。`buildStatsBuckets()`が`dailyStats`を期間集計し、読んだ語数・クイズ復習数・単語チェック数・瞬間英作文の4グラフ＋前期間比サマリー（学習した日数つき）を表示。週は月曜始まり。その他の構成: Due alert / 長期グラフ2種 / Mastery Distribution / Device Sync / バックアップ。Upcoming Reviews・Study History・Vocabulary Growthグラフは削除済み（復活させない）

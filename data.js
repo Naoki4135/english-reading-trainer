@@ -20242,4 +20242,1037 @@ const ESSAYS = [
   ],
   "translation": "ファーン: 金曜が年末の評価面談なの。正直、憂うつで。\n\nゼイン: なんで？目標を大きく上回ったじゃない。心配することないよ。\n\nファーン: そうだけど。第2四半期の案件でへまをしたし。\n\nゼイン: 一度のミスで一年分の堅実な成果は消えないよ。認めて前に進めば。\n\nファーン: 確かに。昇給の話は持ち出すべきかな？\n\nゼイン: 絶対に。裏づけになる数字を持って臨んで。\n\nファーン: わかった。あと来年は、リーダー職に一段上がりたい。\n\nゼイン: なら、そう言いなよ。誰も心を読んではくれないんだから。\n\nファーン: だよね。今夜、目標をいくつか書き留めておく。"
  }
+,
+{
+  "id": "2026-08-11-001",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Before the One-on-One",
+  "difficulty": "Vocab Review",
+  "wordCount": 125,
+  "text": "Elena: Got a minute? I wanted to touch base before your one-on-one with Greg.\n\nMarcus: Sure. Honestly, I'm not sure Greg and I see eye to eye on anything lately.\n\nElena: Then bring up the workload thing. Sitting on it just breeds resentment.\n\nMarcus: He can be pretty blunt. Last week he said I'd let the team down.\n\nElena: Ouch. Did you speak up?\n\nMarcus: No. I just smoothed things over and moved on.\n\nElena: That's the problem. You keep picking up the slack for Dan, and nobody's in the loop about it.\n\nMarcus: True. Morale on my side is... not great.\n\nElena: So clear the air. Greg's not unreasonable — he just hates surprises.\n\nMarcus: Fair. I'll ask him to step up on the Dan situation instead of hinting.\n\nElena: Exactly. Say it once, plainly.",
+  "glossary": [
+    {
+      "word": "touch base",
+      "pos": "phrase",
+      "japanese": "軽く連絡を取り合う・近況確認する",
+      "definition": "To make brief contact with someone to share updates.",
+      "example": "Let's touch base on Friday before the client meeting.",
+      "exampleJa": "クライアントとの会議の前に、金曜に軽くすり合わせしましょう。"
+    },
+    {
+      "word": "see eye to eye",
+      "pos": "phrase",
+      "japanese": "意見が一致する",
+      "definition": "to agree with someone or share the same view",
+      "example": "The partners rarely see eye to eye on hiring decisions.",
+      "exampleJa": "その共同経営者たちは採用の決定でめったに意見が合わない。"
+    },
+    {
+      "word": "bring up",
+      "pos": "phrasal verb",
+      "japanese": "〜を持ち出す、話題に出す",
+      "definition": "to mention or introduce a topic for discussion",
+      "example": "She brought up the budget issue at the meeting.",
+      "exampleJa": "彼女は会議で予算の問題を持ち出した。"
+    },
+    {
+      "word": "resentment",
+      "pos": "名詞",
+      "japanese": "憤り、恨み",
+      "definition": "a feeling of anger caused by unfair treatment",
+      "example": "Unequal pay created deep resentment among the junior staff.",
+      "exampleJa": "不平等な給与は若手社員の間に深い憤りを生んだ。"
+    },
+    {
+      "word": "blunt",
+      "pos": "adjective",
+      "japanese": "率直な、ぶっきらぼうな",
+      "definition": "Saying what you think without trying to be polite or diplomatic",
+      "example": "Her blunt feedback was hard to hear but ultimately helpful.",
+      "exampleJa": "彼女の率直なフィードバックは聞くのがつらかったが最終的に役立った。"
+    },
+    {
+      "word": "speak up",
+      "pos": "phrasal verb",
+      "japanese": "声を上げる、はっきり意見を言う",
+      "definition": "to express your opinion openly and without fear",
+      "example": "If you disagree with the policy, you should speak up.",
+      "exampleJa": "その方針に反対なら、はっきり意見を言うべきだ。"
+    },
+    {
+      "word": "smooth things over",
+      "pos": "idiom",
+      "japanese": "事を丸く収める",
+      "definition": "to make a disagreement less serious",
+      "example": "She smoothed things over with a sincere apology.",
+      "exampleJa": "彼女は誠実な謝罪で事を丸く収めた。"
+    },
+    {
+      "word": "pick up the slack",
+      "pos": "idiom",
+      "japanese": "人の分まで仕事を引き受ける",
+      "definition": "To do the work someone else has failed to do.",
+      "example": "When he quit, we all picked up the slack.",
+      "exampleJa": "彼が辞めたとき、みんなでその分の仕事を引き受けた。"
+    },
+    {
+      "word": "in the loop",
+      "pos": "phrase",
+      "japanese": "情報を共有されている状態",
+      "definition": "Informed about and involved in something",
+      "example": "Keep me in the loop on any changes.",
+      "exampleJa": "変更があれば情報を共有してください。"
+    },
+    {
+      "word": "morale",
+      "pos": "noun",
+      "japanese": "士気、やる気",
+      "definition": "The confidence and enthusiasm of a person or group",
+      "example": "Team morale improved after the reorganization.",
+      "exampleJa": "再編後にチームの士気が向上した。"
+    },
+    {
+      "word": "clear the air",
+      "pos": "phrase",
+      "japanese": "わだかまりを解消する",
+      "definition": "to discuss a problem openly in order to remove bad feelings",
+      "example": "A frank conversation helped the two friends clear the air.",
+      "exampleJa": "率直な会話のおかげで2人の友人はわだかまりを解消した。"
+    },
+    {
+      "word": "step up",
+      "pos": "phrasal verb",
+      "japanese": "一段上の役割を担う",
+      "definition": "to take on more responsibility or a bigger role",
+      "example": "She stepped up when the department lost its manager.",
+      "exampleJa": "部門長が抜けたとき、彼女が一段上の役割を担った。"
+    }
+  ],
+  "translation": "エレナ: ちょっといい？ グレッグとの1on1の前に、少し話しておきたくて。\n\nマーカス: いいよ。正直、最近グレッグとは何ひとつ意見が合わない気がする。\n\nエレナ: なら仕事量の件を切り出しなよ。抱え込んでても不満がたまるだけ。\n\nマーカス: 彼、けっこうズバズバ言うんだよ。先週なんて「チームを失望させた」って。\n\nエレナ: きつっ。で、言い返した？\n\nマーカス: いや。とりあえず丸く収めて流した。\n\nエレナ: それが問題なの。ダンの分までずっとカバーしてるのに、誰もその事情を知らない。\n\nマーカス: 確かに。こっちの士気は……正直よくない。\n\nエレナ: だからわだかまりを解消しなよ。グレッグは理不尽な人じゃない。ただ不意打ちが嫌いなだけ。\n\nマーカス: そうだね。ほのめかすんじゃなくて、ダンの件で一歩踏み込んで対応してほしいと頼むよ。\n\nエレナ: それでいい。一度、はっきり言えばいいの。"
+},
+{
+  "id": "2026-08-11-002",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Two Weeks Behind",
+  "difficulty": "Vocab Review",
+  "wordCount": 113,
+  "text": "Priya: Heads up — the data migration is way behind. Like two weeks behind.\n\nTom: Seriously? Who dropped the ball?\n\nPriya: Nobody, really. We hit bottlenecks in the review stage and nobody flagged them.\n\nTom: Can we push back the launch date?\n\nPriya: Marketing already signed off on the announcement. They'll push back hard.\n\nTom: Then something else has to give. Let's reassess the scope.\n\nPriya: Agreed. We could hold off on the reporting module until Q3.\n\nTom: Fine by me. Honestly, with these resource constraints, shipping everything was never realistic.\n\nPriya: Should I put together a revised timeline before Friday?\n\nTom: Please. And loop in Kenji — he'll hear about it anyway.\n\nPriya: Will do. Let's wrap up here and circle back Thursday.",
+  "glossary": [
+    {
+      "word": "heads up",
+      "pos": "phrase",
+      "japanese": "事前の注意、お知らせ",
+      "definition": "A warning or notice given in advance.",
+      "example": "Just a heads up, the elevator is broken today.",
+      "exampleJa": "一応お知らせだけど、今日はエレベーターが故障してるよ。"
+    },
+    {
+      "word": "way behind",
+      "pos": "phrase",
+      "japanese": "大幅に遅れている",
+      "definition": "far less advanced than you should be",
+      "example": "We're way behind schedule on the renovation.",
+      "exampleJa": "改装工事は予定より大幅に遅れている。"
+    },
+    {
+      "word": "drop the ball",
+      "pos": "idiom",
+      "japanese": "へまをする、責任を果たさない",
+      "definition": "To make a mistake or fail to do something one is responsible for",
+      "example": "Don't drop the ball on the deadline.",
+      "exampleJa": "締め切りでへまをしないように。"
+    },
+    {
+      "word": "bottlenecks",
+      "pos": "noun",
+      "japanese": "ボトルネック、隘路",
+      "definition": "Points of congestion that slow down a process",
+      "example": "Port bottlenecks caused weeks of delivery delays.",
+      "exampleJa": "港湾のボトルネックが数週間の配送遅延を引き起こした。"
+    },
+    {
+      "word": "push back",
+      "pos": "phrasal verb",
+      "japanese": "反発する、異議を唱える",
+      "definition": "to resist or oppose a plan, idea, or demand",
+      "example": "Employees pushed back against the new overtime policy.",
+      "exampleJa": "従業員たちは新しい残業規定に反発した。"
+    },
+    {
+      "word": "sign off",
+      "pos": "phrasal verb",
+      "japanese": "承認する",
+      "definition": "To formally approve something.",
+      "example": "The director needs to sign off on the final design.",
+      "exampleJa": "最終デザインには部長の承認が必要だ。"
+    },
+    {
+      "word": "reassess",
+      "pos": "verb",
+      "japanese": "再評価する",
+      "definition": "to evaluate something again, often with a new perspective",
+      "example": "It's time to reassess our investment strategy.",
+      "exampleJa": "投資戦略を再評価する時だ。"
+    },
+    {
+      "word": "hold off",
+      "pos": "phrasal verb",
+      "japanese": "〜を延期する、待つ",
+      "definition": "to delay or postpone doing something",
+      "example": "Let's hold off on the decision until Friday.",
+      "exampleJa": "金曜日まで決定を延期しよう。"
+    },
+    {
+      "word": "resource constraints",
+      "pos": "noun",
+      "japanese": "リソースの制約",
+      "definition": "Limitations on available people, money, or materials",
+      "example": "Resource constraints delayed the product launch.",
+      "exampleJa": "リソースの制約が製品のローンチを遅らせた。"
+    },
+    {
+      "word": "loop in",
+      "pos": "phrasal verb",
+      "japanese": "（人を会話・情報共有に）加える",
+      "definition": "To include someone in a conversation or email thread",
+      "example": "Let me loop in the finance team.",
+      "exampleJa": "財務チームを加えさせてください。"
+    },
+    {
+      "word": "wrap up",
+      "pos": "phrasal verb",
+      "japanese": "仕上げる、終わらせる",
+      "definition": "To finish or complete something.",
+      "example": "Let's wrap up this report before five o'clock.",
+      "exampleJa": "5時までにこのレポートを仕上げよう。"
+    },
+    {
+      "word": "circle back",
+      "pos": "phrasal verb",
+      "japanese": "後で話を戻す、改めて確認する",
+      "definition": "To return to a topic or task later.",
+      "example": "Let's circle back to the budget question tomorrow morning.",
+      "exampleJa": "予算の件は明日の朝、改めて話しましょう。"
+    }
+  ],
+  "translation": "プリヤ: 先に言っておくね。データ移行が大幅に遅れてる。2週間くらい。\n\nトム: マジで？ 誰がヘマしたの？\n\nプリヤ: 誰のせいでもない。レビュー工程がボトルネックになって、誰も報告しなかっただけ。\n\nトム: ローンチ日を後ろ倒しにできない？\n\nプリヤ: マーケはもう告知にゴーサインを出してる。絶対に反発してくるよ。\n\nトム: じゃあどこかを削るしかないな。範囲を見直そう。\n\nプリヤ: 賛成。レポート機能はQ3まで見送ってもいいと思う。\n\nトム: それでいい。正直、この人員・予算の制約で全部出すなんて最初から無理だった。\n\nプリヤ: 金曜までに修正スケジュールをまとめようか？\n\nトム: お願い。あとケンジも情報共有に入れて。どうせ耳に入るから。\n\nプリヤ: 了解。今日はここまでにして、木曜にまた話そう。"
+},
+{
+  "id": "2026-08-11-003",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Riding Out the Volatility",
+  "difficulty": "Vocab Review",
+  "wordCount": 120,
+  "text": "Ingrid: Did you see the open? Volatility spikes like that always rattle the desk.\n\nDesmond: Yeah, the whole tech sleeve tanked before nine. My inbox exploded.\n\nIngrid: Is anyone unwinding positions yet?\n\nDesmond: A couple of PMs wanted to. I told them to sit tight, because this smells like an overreaction.\n\nIngrid: Agreed. Market sentiment flips fast, and things usually bounce back once the dust settles.\n\nDesmond: Exactly. You just have to hold your nerve and ride it out.\n\nIngrid: What's our net market exposure right now?\n\nDesmond: Sixty percent, give or take. Comfortable enough.\n\nIngrid: Any calls from clients yet?\n\nDesmond: Three so far, all asking whether we're cutting risk.\n\nIngrid: Fine. Let's not touch anything until Friday's inflation data.\n\nDesmond: My thoughts exactly. Panic selling into a spike never pays.",
+  "glossary": [
+    {
+      "word": "volatility spikes",
+      "pos": "noun",
+      "japanese": "ボラティリティの急上昇",
+      "definition": "Sudden sharp increases in market price fluctuations",
+      "example": "Volatility spikes trigger forced liquidation of positions.",
+      "exampleJa": "ボラティリティの急上昇がポジションの強制清算を引き起こす。"
+    },
+    {
+      "word": "tank",
+      "pos": "slang",
+      "japanese": "急落する",
+      "definition": "to fall very sharply in value",
+      "example": "The shares tanked after the profit warning.",
+      "exampleJa": "業績警告の後、株価は急落した。"
+    },
+    {
+      "word": "unwind",
+      "pos": "verb",
+      "japanese": "巻き戻す、ポジションを解消する",
+      "definition": "To reverse or close out a financial position",
+      "example": "Carry trades unwind rapidly during market panics.",
+      "exampleJa": "キャリートレードは市場パニック時に急速に解消される。"
+    },
+    {
+      "word": "sit tight",
+      "pos": "idiom",
+      "japanese": "動かずに待つ",
+      "definition": "to wait patiently without taking action",
+      "example": "Just sit tight until we hear from the lawyer.",
+      "exampleJa": "弁護士から連絡が来るまで、じっと待っていて。"
+    },
+    {
+      "word": "overreaction",
+      "pos": "noun",
+      "japanese": "過剰反応",
+      "definition": "a response that is stronger than what the situation calls for",
+      "example": "Crying over spilled milk is an overreaction.",
+      "exampleJa": "こぼれた牛乳で泣くのは過剰反応だ。"
+    },
+    {
+      "word": "market sentiment",
+      "pos": "noun",
+      "japanese": "市場心理、市場センチメント",
+      "definition": "The overall attitude of investors toward a market",
+      "example": "Market sentiment turned negative after the earnings miss.",
+      "exampleJa": "決算未達後、市場心理はネガティブに転じた。"
+    },
+    {
+      "word": "bounce back",
+      "pos": "phrasal verb",
+      "japanese": "持ち直す",
+      "definition": "to recover quickly after a fall or setback",
+      "example": "The market bounced back within a couple of weeks.",
+      "exampleJa": "市場は数週間で持ち直した。"
+    },
+    {
+      "word": "once the dust settles",
+      "pos": "idiom",
+      "japanese": "騒ぎが落ち着いたら",
+      "definition": "after a confusing situation becomes calm again",
+      "example": "We'll review the plan once the dust settles.",
+      "exampleJa": "騒ぎが落ち着いたら計画を見直します。"
+    },
+    {
+      "word": "hold your nerve",
+      "pos": "collocation",
+      "japanese": "冷静さを保つ",
+      "definition": "to remain calm and determined during a difficult situation",
+      "example": "You need to hold your nerve during the presentation.",
+      "exampleJa": "プレゼン中は冷静さを保つ必要がある。"
+    },
+    {
+      "word": "ride it out",
+      "pos": "idiom",
+      "japanese": "嵐が過ぎるのを待つ、耐え抜く",
+      "definition": "To endure a difficult period until it ends.",
+      "example": "The storm was bad, but we rode it out at home.",
+      "exampleJa": "嵐はひどかったが、私たちは家で耐え抜いた。"
+    },
+    {
+      "word": "net market exposure",
+      "pos": "noun",
+      "japanese": "ネット・マーケット・エクスポージャー",
+      "definition": "The difference between long and short positions as a percentage of total portfolio",
+      "example": "The fund maintained low net market exposure.",
+      "exampleJa": "そのファンドは低いネット・マーケット・エクスポージャーを維持した。"
+    },
+    {
+      "word": "give or take",
+      "pos": "phrase",
+      "japanese": "だいたい、〜前後",
+      "definition": "approximately, allowing for a small difference",
+      "example": "The drive takes two hours, give or take.",
+      "exampleJa": "車で2時間前後かかる。"
+    }
+  ],
+  "translation": "イングリッド: 寄り付き見た？ ああいうボラティリティの急上昇は、いつもデスク全体をざわつかせるわね。\n\nデズモンド: ああ、テック関連はまるごと9時前に急落した。受信箱がパンクしたよ。\n\nイングリッド: もうポジションを解消し始めた人はいる？\n\nデズモンド: 何人かのPMがやりたがってた。動かずに待てって言ったよ。これは過剰反応の匂いがするからね。\n\nイングリッド: 同感。市場心理はすぐひっくり返るし、たいてい騒ぎが落ち着けば持ち直すものよ。\n\nデズモンド: まさに。冷静さを保って、嵐が過ぎるのを待つしかない。\n\nイングリッド: 今のネット・マーケット・エクスポージャーは？\n\nデズモンド: だいたい60%。十分許容範囲だ。\n\nイングリッド: お客様からの電話はもう来てる？\n\nデズモンド: 今のところ3件。どれもリスクを落とすのかという問い合わせだ。\n\nイングリッド: いいわ。金曜のインフレ指標まで何も触らないでおきましょう。\n\nデズモンド: 同意見だ。急騰局面でのパニック売りは報われた試しがない。"
+},
+{
+  "id": "2026-08-11-004",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Prepping the Fund Pitch",
+  "difficulty": "Vocab Review",
+  "wordCount": 116,
+  "text": "Tobias: Rosalind, are we ready to pitch the global equity fund on Thursday?\n\nRosalind: Almost. The client will push back on fees the moment we open the deck.\n\nTobias: Our fee structures aren't cheap, I'll admit that.\n\nRosalind: The expense ratio is fifty-eight basis points. Let's not sugarcoat it, just show the value.\n\nTobias: Fair. Performance helps. It beat the benchmark in six of the last eight years.\n\nRosalind: And the two years it underperformed?\n\nTobias: Same slide. They'll find them in due diligence anyway.\n\nRosalind: Good. What about the 2022 drawdown?\n\nTobias: Twenty-two percent. Painful, but the strategy still wins in the long run.\n\nRosalind: Then we frame everything around their risk tolerance.\n\nTobias: Works for me. Send me the draft and I'll sign off tonight.",
+  "glossary": [
+    {
+      "word": "push back",
+      "pos": "phrasal verb",
+      "japanese": "反発する、異議を唱える",
+      "definition": "to resist or oppose a plan, idea, or demand",
+      "example": "Employees pushed back against the new overtime policy.",
+      "exampleJa": "従業員たちは新しい残業規定に反発した。"
+    },
+    {
+      "word": "fee structures",
+      "pos": "noun",
+      "japanese": "手数料体系",
+      "definition": "The arrangement of fees charged by investment managers to clients",
+      "example": "Hedge fund fee structures typically include performance fees.",
+      "exampleJa": "ヘッジファンドの手数料体系には通常成功報酬が含まれる。"
+    },
+    {
+      "word": "expense ratio",
+      "pos": "noun",
+      "japanese": "経費率、信託報酬率",
+      "definition": "The annual fee charged by a fund expressed as a percentage of assets",
+      "example": "Low expense ratios benefit long-term investors.",
+      "exampleJa": "低い経費率は長期投資家に利益をもたらす。"
+    },
+    {
+      "word": "sugarcoat",
+      "pos": "verb",
+      "japanese": "オブラートに包む",
+      "definition": "to make bad news sound better than it is",
+      "example": "Don't sugarcoat the results; give me the facts.",
+      "exampleJa": "結果をオブラートに包まないで、事実を教えて。"
+    },
+    {
+      "word": "benchmark",
+      "pos": "noun",
+      "japanese": "ベンチマーク、基準",
+      "definition": "A standard or point of reference against which things may be compared",
+      "example": "The fund failed to beat its benchmark for three consecutive years.",
+      "exampleJa": "そのファンドは3年連続でベンチマークを下回った。"
+    },
+    {
+      "word": "underperform",
+      "pos": "verb",
+      "japanese": "下回る、期待以下の成績を出す",
+      "definition": "To perform less well than expected or less well than a standard",
+      "example": "Growth stocks underperformed value stocks last year.",
+      "exampleJa": "昨年、グロース株はバリュー株を下回った。"
+    },
+    {
+      "word": "due diligence",
+      "pos": "noun",
+      "japanese": "デューデリジェンス、精査",
+      "definition": "A comprehensive investigation of a business or person before signing a contract",
+      "example": "Due diligence uncovered accounting irregularities.",
+      "exampleJa": "デューデリジェンスで会計上の不正が発見された。"
+    },
+    {
+      "word": "drawdown",
+      "pos": "noun",
+      "japanese": "ドローダウン（最大下落幅）",
+      "definition": "the peak-to-trough decline in the value of an investment",
+      "example": "The fund experienced a 15% drawdown in March.",
+      "exampleJa": "そのファンドは3月に15%のドローダウンを経験した。"
+    },
+    {
+      "word": "in the long run",
+      "pos": "collocation",
+      "japanese": "長い目で見れば",
+      "definition": "over a long period of time; eventually",
+      "example": "This investment will pay off in the long run.",
+      "exampleJa": "この投資は長い目で見れば報われるだろう。"
+    },
+    {
+      "word": "risk tolerance",
+      "pos": "noun",
+      "japanese": "リスク許容度",
+      "definition": "The degree of variability in returns an investor is willing to accept",
+      "example": "Conservative investors typically have low risk tolerance.",
+      "exampleJa": "保守的な投資家は一般的にリスク許容度が低い。"
+    },
+    {
+      "word": "sign off",
+      "pos": "phrasal verb",
+      "japanese": "承認する",
+      "definition": "To formally approve something.",
+      "example": "The director needs to sign off on the final design.",
+      "exampleJa": "最終デザインには部長の承認が必要だ。"
+    }
+  ],
+  "translation": "トバイアス: ロザリンド、木曜のグローバル株式ファンドの提案、準備はできてる？\n\nロザリンド: あと少し。資料を開いた瞬間に、お客様は手数料に異議を唱えてくるわよ。\n\nトバイアス: うちの手数料体系が安くないのは認めるよ。\n\nロザリンド: 経費率は58ベーシスポイント。オブラートに包まず、価値のほうをきちんと見せましょう。\n\nトバイアス: もっともだ。運用実績は助けになる。過去8年のうち6年はベンチマークを上回っている。\n\nロザリンド: 下回った2年は？\n\nトバイアス: 同じスライドに載せる。どのみちデューデリジェンスで見つかるからね。\n\nロザリンド: いいわね。2022年のドローダウンは？\n\nトバイアス: 22%。痛いけれど、長い目で見ればこの戦略は勝っている。\n\nロザリンド: なら、すべてをお客様のリスク許容度に沿って組み立てましょう。\n\nトバイアス: それでいこう。ドラフトを送ってくれれば、今夜承認するよ。"
+},
+{
+  "id": "2026-08-11-005",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Saturday Plans and a Ramen Rescue",
+  "difficulty": "Vocab Review",
+  "wordCount": 129,
+  "text": "Micah: Hey, you alive? You've been ghosting the group chat all week.\n\nPriya: Sorry, I've been grinding at work. I'm honestly wiped.\n\nMicah: Same here. So are we still on for Saturday, or are you gonna flake again?\n\nPriya: Rude. But lowkey, yeah, maybe. I just wanna veg out.\n\nMicah: Come on, you need to blow off steam. There's this hole-in-the-wall ramen place near me.\n\nPriya: Okay, that changes things. Ramen after a week like this? No cap, that would hit the spot.\n\nMicah: Right? Swing by around seven and we can catch a game after.\n\nPriya: Fine, you win. But if I crash on your couch by nine, don't roast me.\n\nMicah: No promises. You've earned a lazy one, honestly.\n\nPriya: Thank you. I just wanna eat, laugh, and be unbothered for one night.\n\nMicah: Sounds like a plan.",
+  "glossary": [
+    {
+      "word": "ghosting",
+      "pos": "noun/verb (slang)",
+      "japanese": "音信不通にすること、フェードアウト",
+      "definition": "Suddenly ending all communication with someone without explanation",
+      "example": "She ghosted him after their third date.",
+      "exampleJa": "彼女は3回目のデートの後、彼を音信不通にした。"
+    },
+    {
+      "word": "grinding",
+      "pos": "verb (slang)",
+      "japanese": "必死に働く、がむしゃらに頑張る",
+      "definition": "Working extremely hard, often for long hours",
+      "example": "He's been grinding all week to finish the project.",
+      "exampleJa": "彼はプロジェクトを終わらせるために一週間必死に働いている。"
+    },
+    {
+      "word": "wiped",
+      "pos": "slang (adjective)",
+      "japanese": "くたくたに疲れた",
+      "definition": "Extremely tired; completely out of energy.",
+      "example": "I was wiped after moving boxes all day long.",
+      "exampleJa": "一日中箱を運んで、くたくたに疲れた。"
+    },
+    {
+      "word": "flake",
+      "pos": "verb (slang)",
+      "japanese": "ドタキャンする",
+      "definition": "to fail to show up or cancel plans at the last minute",
+      "example": "Two guests flaked an hour before the dinner started.",
+      "exampleJa": "夕食が始まる一時間前に二人がドタキャンした。"
+    },
+    {
+      "word": "lowkey",
+      "pos": "adverb (slang)",
+      "japanese": "密かに、ちょっと、実は",
+      "definition": "Somewhat; secretly; in a subtle or understated way",
+      "example": "I'm lowkey obsessed with that show.",
+      "exampleJa": "実はあの番組にハマっている。"
+    },
+    {
+      "word": "veg out",
+      "pos": "phrasal verb (slang)",
+      "japanese": "ぼーっとだらだら過ごす",
+      "definition": "to relax completely and do nothing at all",
+      "example": "After final exams, I vegged out in front of the TV.",
+      "exampleJa": "期末試験の後、テレビの前でだらだら過ごした。"
+    },
+    {
+      "word": "blow off steam",
+      "pos": "idiom",
+      "japanese": "うっぷんを晴らす",
+      "definition": "to release anger or stress harmlessly",
+      "example": "He goes running to blow off steam after work.",
+      "exampleJa": "彼は仕事の後、走ってストレスを発散する。"
+    },
+    {
+      "word": "hole-in-the-wall",
+      "pos": "slang",
+      "japanese": "小さくて目立たない（けど良い）店",
+      "definition": "A small, plain place, often a restaurant, that is surprisingly good.",
+      "example": "This hole-in-the-wall diner serves the best pancakes ever.",
+      "exampleJa": "この小さな目立たない食堂のパンケーキは最高なんだ。"
+    },
+    {
+      "word": "no cap",
+      "pos": "phrase (slang)",
+      "japanese": "マジで、嘘じゃなく",
+      "definition": "No lie; for real; I'm being completely honest",
+      "example": "That was the best concert ever, no cap.",
+      "exampleJa": "あれは今までで最高のコンサートだった、マジで。"
+    },
+    {
+      "word": "hit the spot",
+      "pos": "idiom",
+      "japanese": "ぴったり満足させる",
+      "definition": "To be exactly what was needed or desired, especially food or drink",
+      "example": "That hot soup really hit the spot.",
+      "exampleJa": "あの温かいスープは本当にぴったりだった。"
+    },
+    {
+      "word": "catch a game",
+      "pos": "phrase",
+      "japanese": "試合を見る",
+      "definition": "to watch a sports match, often on television",
+      "example": "Let's catch the game at the bar after work.",
+      "exampleJa": "仕事の後、バーで試合を見よう。"
+    },
+    {
+      "word": "sounds like a plan",
+      "pos": "phrase",
+      "japanese": "いいね、そうしよう",
+      "definition": "A casual way to agree to a suggestion or arrangement.",
+      "example": "\"Movie at eight tonight?\" \"Sounds like a plan!\"",
+      "exampleJa": "「今夜8時に映画は？」「いいね、そうしよう！」"
+    }
+  ],
+  "translation": "マイカ: おい、生きてる？今週ずっとグループチャットで音信不通じゃん。\n\nプリヤ: ごめん、仕事でずっとがむしゃらに働いてたの。正直くたくた。\n\nマイカ: こっちも同じ。で、土曜はまだ大丈夫？それともまたドタキャンする気？\n\nプリヤ: 失礼な。でも密かに、まあ、あるかも。ただぼーっとだらだらしたいんだよね。\n\nマイカ: おいおい、うっぷんを晴らさないと。うちの近くに小さくて目立たないけどいいラーメン屋があるんだ。\n\nプリヤ: あ、それは話が変わってくる。こんな一週間のあとのラーメン？マジで、それは五臓六腑に染みるやつだよ。\n\nマイカ: でしょ？7時ごろ立ち寄ってよ。そのあと試合でも見よう。\n\nプリヤ: わかった、あなたの勝ち。でも9時に私がソファで寝落ちしても、いじらないでね。\n\nマイカ: 約束はできないな。まあ、だらける権利はちゃんと稼いだよ。\n\nプリヤ: ありがとう。ただ食べて、笑って、一晩なんにも気にせずいたいの。\n\nマイカ: いいね、そうしよう。"
+},
+{
+  "id": "2026-08-11-006",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Rent, Boxes, and Second Thoughts",
+  "difficulty": "Vocab Review",
+  "wordCount": 133,
+  "text": "Owen: I'm thinking about moving out of my place. Rent went through the roof again.\n\nDana: Ugh, same story everywhere. How steep are we talking?\n\nOwen: Another two hundred a month. It doesn't break the bank, but it stings.\n\nDana: Have you had a chance to shop around? Places two stops further out are basically a steal.\n\nOwen: I know, but then the commute would cost an arm and a leg.\n\nDana: Fair. Just weigh your options before you sign anything.\n\nOwen: My sister says I should sit tight for a year and cut costs elsewhere.\n\nDana: Not bad advice. Moving is a pain, and you'd live out of boxes for months.\n\nOwen: Honestly, I still haven't settled in from the last move.\n\nDana: There you go. Stay put, and I'll pitch in when you finally move out.\n\nOwen: I'll hold you to that.",
+  "glossary": [
+    {
+      "word": "move out",
+      "pos": "phrasal verb",
+      "japanese": "家を出る、引っ越す",
+      "definition": "to leave the home where you have been living",
+      "example": "He moved out of his parents' house at nineteen.",
+      "exampleJa": "彼は19歳で実家を出た。"
+    },
+    {
+      "word": "through the roof",
+      "pos": "idiom",
+      "japanese": "（値段などが）跳ね上がって",
+      "definition": "extremely high, especially about prices or numbers",
+      "example": "Rents downtown have gone through the roof this year.",
+      "exampleJa": "今年、都心の家賃は跳ね上がった。"
+    },
+    {
+      "word": "steep",
+      "pos": "slang",
+      "japanese": "（値段が）高すぎる",
+      "definition": "Unreasonably expensive.",
+      "example": "Fifty dollars for parking? That's pretty steep.",
+      "exampleJa": "駐車場に50ドル？それはかなり高いね。"
+    },
+    {
+      "word": "break the bank",
+      "pos": "phrase",
+      "japanese": "大金がかかる、家計を圧迫する",
+      "definition": "to cost more money than one can afford",
+      "example": "A picnic in the park will not break the bank.",
+      "exampleJa": "公園でのピクニックなら大した出費にはならない。"
+    },
+    {
+      "word": "shop around",
+      "pos": "phrasal verb",
+      "japanese": "何軒か見て回る、比較検討する",
+      "definition": "to compare prices at different sellers before buying",
+      "example": "Shop around before you sign any insurance contract.",
+      "exampleJa": "保険契約を結ぶ前に比較検討しなさい。"
+    },
+    {
+      "word": "a steal",
+      "pos": "slang",
+      "japanese": "格安、掘り出し物",
+      "definition": "something sold at a surprisingly low price",
+      "example": "That jacket at half price was a real steal.",
+      "exampleJa": "半額のあのジャケットは本当にお買い得だった。"
+    },
+    {
+      "word": "cost an arm and a leg",
+      "pos": "idiom",
+      "japanese": "とても高くつく",
+      "definition": "to be extremely expensive",
+      "example": "Concert tickets cost an arm and a leg these days.",
+      "exampleJa": "最近のコンサートのチケットはとても高くつく。"
+    },
+    {
+      "word": "sit tight",
+      "pos": "idiom",
+      "japanese": "動かずに待つ",
+      "definition": "to wait patiently without taking action",
+      "example": "Just sit tight until we hear from the lawyer.",
+      "exampleJa": "弁護士から連絡が来るまで、じっと待っていて。"
+    },
+    {
+      "word": "cut costs",
+      "pos": "phrase",
+      "japanese": "経費を削減する",
+      "definition": "to reduce the amount of money being spent",
+      "example": "The airline cut costs by removing free meals from short flights.",
+      "exampleJa": "その航空会社は短距離便の無料機内食を廃止して経費を削減した。"
+    },
+    {
+      "word": "live out of boxes",
+      "pos": "idiom",
+      "japanese": "荷解きが終わらないまま暮らす",
+      "definition": "To live without unpacking after moving.",
+      "example": "We lived out of boxes for weeks after the move.",
+      "exampleJa": "引っ越し後、何週間も段ボール生活だった。"
+    },
+    {
+      "word": "settle in",
+      "pos": "phrasal verb",
+      "japanese": "新居・新環境に落ち着く",
+      "definition": "To become comfortable in a new home or situation.",
+      "example": "It took a month to settle in after moving.",
+      "exampleJa": "引っ越し後、落ち着くまで1か月かかった。"
+    },
+    {
+      "word": "pitch in",
+      "pos": "phrasal verb",
+      "japanese": "手伝う、協力する",
+      "definition": "to help with a shared task or cost",
+      "example": "Everyone pitched in to clean up after the party.",
+      "exampleJa": "みんなでパーティーの後片付けを手伝った。"
+    }
+  ],
+  "translation": "オーウェン: 今の家を出ようかと思ってるんだ。家賃がまた跳ね上がってさ。\n\nデイナ: うわ、どこも同じ話だね。どのくらい高いの？\n\nオーウェン: 月にさらに200ドル。家計を圧迫するほどじゃないけど、地味に痛い。\n\nデイナ: 何軒か見て回る機会はあった？二駅先なら正直、掘り出し物レベルだよ。\n\nオーウェン: わかってる。でもそうすると通勤費がとても高くつくんだ。\n\nデイナ: それもそうか。とにかく契約する前に選択肢をよく比べてね。\n\nオーウェン: 姉には、1年は動かずに待って、他で経費を削れって言われてる。\n\nデイナ: 悪くない助言だと思う。引っ越しは面倒だし、何ヶ月も荷解きが終わらないまま暮らすことになるよ。\n\nオーウェン: 正直、前の引っ越しからまだ落ち着けてないんだよね。\n\nデイナ: ほらね。しばらくそのままでいなよ。いよいよ引っ越すときは手伝うから。\n\nオーウェン: その約束、守ってもらうからね。"
+},
+{
+  "id": "2026-08-11-007",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Everything That Went Wrong on the Way Here",
+  "difficulty": "Vocab Review",
+  "wordCount": 132,
+  "text": "Marcus: How was the trip over? You look wiped.\n\nElena: Don't ask. We sat on the tarmac for three hours, so I missed my connection.\n\nMarcus: Ouch. Nobody gave you a heads-up?\n\nElena: Not a word. The agent basically told me to put up with it and rebook online myself.\n\nMarcus: And the hotel they booked?\n\nElena: A total rip off. Tiny room, and the air conditioning was on its last legs.\n\nMarcus: Did you sort out a refund?\n\nElena: Not yet. I'll square away the receipts once this jet lag wears off.\n\nMarcus: Fair enough. Go lie down — you'll be out like a light.\n\nElena: Honestly, I might crash before dinner. Wake me if the client calls.\n\nMarcus: Will do. And we leave at seven tomorrow to beat the traffic.\n\nElena: Seven? Fine. Just don't expect anything brilliant from me before coffee.",
+  "glossary": [
+    {
+      "word": "wiped",
+      "pos": "slang (adjective)",
+      "japanese": "くたくたに疲れた",
+      "definition": "Extremely tired; completely out of energy.",
+      "example": "I was wiped after moving boxes all day long.",
+      "exampleJa": "一日中箱を運んで、くたくたに疲れた。"
+    },
+    {
+      "word": "heads-up",
+      "pos": "noun (informal)",
+      "japanese": "事前の一報",
+      "definition": "an advance warning so you can prepare",
+      "example": "Thanks for the heads-up about tomorrow's schedule change.",
+      "exampleJa": "明日の予定変更を事前に知らせてくれてありがとう。"
+    },
+    {
+      "word": "put up with",
+      "pos": "phrasal verb",
+      "japanese": "〜を我慢する",
+      "definition": "to tolerate something unpleasant without complaining",
+      "example": "I can't put up with this noise anymore.",
+      "exampleJa": "この騒音にはもう我慢できない。"
+    },
+    {
+      "word": "rip off",
+      "pos": "phrasal verb",
+      "japanese": "ぼったくる",
+      "definition": "To cheat someone by charging too much money.",
+      "example": "Tourists often get ripped off at that souvenir shop.",
+      "exampleJa": "あの土産物屋では観光客がよくぼったくられる。"
+    },
+    {
+      "word": "on its last legs",
+      "pos": "idiom",
+      "japanese": "もう寿命寸前で",
+      "definition": "almost worn out and about to stop working",
+      "example": "That old car is on its last legs but still runs.",
+      "exampleJa": "あの古い車はもう寿命寸前だが、まだ走っている。"
+    },
+    {
+      "word": "sort out",
+      "pos": "phrasal verb",
+      "japanese": "解決する、片づける",
+      "definition": "to deal with a problem successfully",
+      "example": "It took a week to sort out my billing mistake.",
+      "exampleJa": "請求ミスを解決するのに一週間かかった。"
+    },
+    {
+      "word": "square away",
+      "pos": "phrasal verb",
+      "japanese": "きちんと片づける、決着をつける",
+      "definition": "to finish or settle something properly",
+      "example": "Let me square away the paperwork before Friday.",
+      "exampleJa": "金曜までに書類をきちんと片づけておきます。"
+    },
+    {
+      "word": "jet lag",
+      "pos": "noun",
+      "japanese": "時差ボケ",
+      "definition": "tiredness and disorientation from traveling across time zones",
+      "example": "It took me three days to recover from jet lag.",
+      "exampleJa": "時差ボケから回復するのに3日かかった。"
+    },
+    {
+      "word": "out like a light",
+      "pos": "phrase",
+      "japanese": "一瞬で寝落ちして",
+      "definition": "Asleep immediately and very deeply, like a switched-off light.",
+      "example": "He was out like a light before the movie started.",
+      "exampleJa": "映画が始まる前に、彼は一瞬で寝落ちしていた。"
+    },
+    {
+      "word": "crash",
+      "pos": "slang (verb)",
+      "japanese": "力尽きて眠り込む",
+      "definition": "To fall asleep suddenly because of extreme tiredness.",
+      "example": "She crashed on the sofa right after dinner ended.",
+      "exampleJa": "彼女は夕食が終わるとすぐソファで眠り込んだ。"
+    },
+    {
+      "word": "beat the traffic",
+      "pos": "phrase",
+      "japanese": "渋滞を避ける（ために早めに出る）",
+      "definition": "To leave early enough to avoid heavy traffic.",
+      "example": "We left at six to beat the traffic to the airport.",
+      "exampleJa": "空港までの渋滞を避けるため、6時に出発した。"
+    }
+  ],
+  "translation": "マーカス: こっちまでの移動どうだった？ くたくたって顔してるよ。\n\nエレナ: 聞かないで。3時間も滑走路で待たされて、乗り継ぎを逃したの。\n\nマーカス: それはきつい。事前の一報はなかったの？\n\nエレナ: 一言もなし。係員には「我慢して自分でネットから取り直して」と言われたようなもの。\n\nマーカス: 手配されたホテルは？\n\nエレナ: 完全にぼったくり。部屋は狭いし、エアコンはもう寿命寸前だったし。\n\nマーカス: 返金の件は片づけたの？\n\nエレナ: まだ。時差ボケが抜けたら領収書をきちんと片づけるつもり。\n\nマーカス: そうだね。少し横になりなよ、すぐ寝落ちするよ。\n\nエレナ: 正直、夕食前に力尽きて寝そう。クライアントから連絡が来たら起こして。\n\nマーカス: 了解。あと明日は渋滞を避けるために7時出発ね。\n\nエレナ: 7時？ わかった。コーヒーの前にまともなことは期待しないでね。"
+},
+{
+  "id": "2026-08-11-008",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Dinner With the Client",
+  "difficulty": "Vocab Review",
+  "wordCount": 135,
+  "text": "Priya: Careful with that sauce. It does have a kick to it.\n\nTomas: Too late. But it hits the spot after eleven hours in the air.\n\nPriya: The place looks like a hole-in-the-wall, but our clients rave about it.\n\nTomas: Good pick. Back home, dinner is where you break the ice, not the meeting room.\n\nPriya: Same here. Nobody signs anything until both sides find common ground over food.\n\nTomas: So should I offer to pick up the tab, or does that come across as pushy?\n\nPriya: Let the host insist first. Arguing over the bill is half the ritual.\n\nTomas: Noted. And if I genuinely can't finish this?\n\nPriya: Just leave it. Asking for a doggy-bag would look strange here.\n\nTomas: Understood. Although I'm sliding into a serious food coma.\n\nPriya: Then ask now — hands down the best moment to raise their new mandates.",
+  "glossary": [
+    {
+      "word": "have a kick to it",
+      "pos": "phrase",
+      "japanese": "ピリッと辛い、パンチがある",
+      "definition": "To have a strong, often spicy, flavor.",
+      "example": "Careful, that salsa has quite a kick to it.",
+      "exampleJa": "気をつけて、そのサルサはかなりピリッと辛いよ。"
+    },
+    {
+      "word": "hits the spot",
+      "pos": "phrase",
+      "japanese": "（飲食物が）まさに欲しかったものだ、五臓六腑に染みる",
+      "definition": "To be exactly what you wanted or needed, usually food or drink.",
+      "example": "A cold soda really hits the spot after mowing the lawn.",
+      "exampleJa": "芝刈りのあとの冷たい炭酸は本当に染みるね。"
+    },
+    {
+      "word": "hole-in-the-wall",
+      "pos": "slang",
+      "japanese": "小さくて目立たない（けど良い）店",
+      "definition": "A small, plain place, often a restaurant, that is surprisingly good.",
+      "example": "This hole-in-the-wall diner serves the best pancakes ever.",
+      "exampleJa": "この小さな目立たない食堂のパンケーキは最高なんだ。"
+    },
+    {
+      "word": "rave about",
+      "pos": "phrasal verb",
+      "japanese": "絶賛する",
+      "definition": "to talk about something with great enthusiasm",
+      "example": "Critics are raving about her debut novel.",
+      "exampleJa": "評論家たちは彼女のデビュー作を絶賛している。"
+    },
+    {
+      "word": "break the ice",
+      "pos": "collocation",
+      "japanese": "場の雰囲気を和ませる",
+      "definition": "to do something to relieve tension or start a conversation",
+      "example": "A joke can help break the ice at meetings.",
+      "exampleJa": "冗談が会議の場の雰囲気を和ませるのに役立つ。"
+    },
+    {
+      "word": "find common ground",
+      "pos": "phrase",
+      "japanese": "共通点を見いだす、歩み寄る",
+      "definition": "to discover shared interests or opinions that enable agreement",
+      "example": "The two parties struggled to find common ground on taxes.",
+      "exampleJa": "両党は税をめぐって共通点を見いだすのに苦労した。"
+    },
+    {
+      "word": "pick up the tab",
+      "pos": "idiom",
+      "japanese": "勘定を持つ、おごる",
+      "definition": "to pay the bill, especially for a group",
+      "example": "The head office picked up the tab for everyone.",
+      "exampleJa": "本社が全員分の勘定を持ってくれた。"
+    },
+    {
+      "word": "doggy-bag",
+      "pos": "slang",
+      "japanese": "残り物を持ち帰る",
+      "definition": "To take leftover restaurant food home in a container.",
+      "example": "We couldn't finish, so we doggy-bagged the pasta.",
+      "exampleJa": "食べきれなかったので、パスタを持ち帰りにした。"
+    },
+    {
+      "word": "food coma",
+      "pos": "slang (noun)",
+      "japanese": "食後の強烈な眠気、満腹でぼーっとする状態",
+      "definition": "A sleepy, heavy feeling after eating a very large meal.",
+      "example": "After Thanksgiving dinner, the whole family fell into a food coma.",
+      "exampleJa": "感謝祭のディナーのあと、家族全員が食後の眠気に襲われた。"
+    },
+    {
+      "word": "hands down",
+      "pos": "phrase",
+      "japanese": "文句なしに、断然",
+      "definition": "Without any doubt; easily the best choice.",
+      "example": "This is hands down the best pizza in town.",
+      "exampleJa": "これは文句なしに町で一番のピザだ。"
+    },
+    {
+      "word": "mandates",
+      "pos": "noun",
+      "japanese": "任務、委任事項",
+      "definition": "Official orders or commissions to carry out a policy or task",
+      "example": "The fund has conflicting mandates between returns and policy.",
+      "exampleJa": "そのファンドにはリターンと政策の間の相反する任務がある。"
+    }
+  ],
+  "translation": "プリヤ: そのソース、気をつけて。かなりピリッとくるから。\n\nトマス: もう遅い。でも11時間のフライトのあとだと五臓六腑に染みるよ。\n\nプリヤ: 見た目は小さくて目立たない店だけど、うちのクライアントは絶賛してるの。\n\nトマス: いい選択だね。うちの国だと、場を和ませるのは会議室じゃなくて食事の席なんだ。\n\nプリヤ: こっちも同じ。食事をしながら双方が歩み寄るまで、誰も何にもサインしない。\n\nトマス: じゃあ僕が勘定を持つと申し出るべき？ それとも出過ぎに見えるかな。\n\nプリヤ: まずホストに言わせて。会計で譲り合うのも儀式のうちだから。\n\nトマス: なるほど。もし本当に食べきれなかったら？\n\nプリヤ: そのまま残していいの。ここで残り物を持ち帰りたいと言うと変に見られるから。\n\nトマス: 了解。とはいえ、完全に食後の眠気に入りかけてる。\n\nプリヤ: なら今のうちに聞いて。新しい任務の話を持ち出すには断然いいタイミングよ。"
+},
+{
+  "id": "2026-08-11-009",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "At a Career Crossroads",
+  "difficulty": "Vocab Review",
+  "wordCount": 114,
+  "text": "Marcus: I think I'm done. Honestly, it's become a dead-end job.\n\nLena: Whoa. Did you actually weigh the pros and cons?\n\nMarcus: Twice. And every time I just sit on the fence.\n\nLena: That's normal. Nobody wants to burn bridges over one bad quarter.\n\nMarcus: It's not one quarter. I'm close to burnout.\n\nLena: Okay, that changes things. Do you have somewhere to go?\n\nMarcus: Not yet. I'd have to land a job first, or take the plunge and freelance.\n\nLena: Freelancing is a real leap of faith. Fun, but scary.\n\nMarcus: In the long run, though, staying feels riskier than leaving.\n\nLena: Then it might be the right career move. Just sleep on it before you tell anyone.\n\nMarcus: Deal. Ask me again Monday.",
+  "glossary": [
+    {
+      "word": "dead-end job",
+      "pos": "noun phrase",
+      "japanese": "先の見えない仕事、行き詰まりの仕事",
+      "definition": "a job that offers no chance of promotion or progress",
+      "example": "She quit her dead-end job to open her own café.",
+      "exampleJa": "彼女は先の見えない仕事を辞めて自分のカフェを開いた。"
+    },
+    {
+      "word": "weigh the pros and cons",
+      "pos": "phrase",
+      "japanese": "長所と短所を比較検討する",
+      "definition": "to consider the advantages and disadvantages carefully before deciding",
+      "example": "We weighed the pros and cons before buying the house.",
+      "exampleJa": "私たちは家を買う前に長所と短所を比較検討した。"
+    },
+    {
+      "word": "sit on the fence",
+      "pos": "phrase",
+      "japanese": "決めかねる、態度を保留する",
+      "definition": "to avoid deciding or choosing between two sides",
+      "example": "You cannot sit on the fence about this forever.",
+      "exampleJa": "この件についていつまでも決めかねているわけにはいかない。"
+    },
+    {
+      "word": "burn bridges",
+      "pos": "phrase",
+      "japanese": "関係を断ち切る、退路を断つ",
+      "definition": "to damage relationships so badly that you cannot return",
+      "example": "Leave politely so you never burn bridges with former colleagues.",
+      "exampleJa": "元同僚との関係を壊さないよう、礼儀正しく去りましょう。"
+    },
+    {
+      "word": "burnout",
+      "pos": "noun",
+      "japanese": "燃え尽き症候群",
+      "definition": "Physical or mental exhaustion caused by overwork or stress",
+      "example": "High burnout rates are driving employees to switch industries.",
+      "exampleJa": "高い燃え尽き率が従業員の業界転換を促している。"
+    },
+    {
+      "word": "land a job",
+      "pos": "phrase",
+      "japanese": "職を得る、仕事を勝ち取る",
+      "definition": "to succeed in getting a job",
+      "example": "He landed a job at the firm after three interviews.",
+      "exampleJa": "彼は3回の面接を経てその会社の職を得た。"
+    },
+    {
+      "word": "take the plunge",
+      "pos": "collocation",
+      "japanese": "思い切ってやる",
+      "definition": "to decide to do something risky or difficult after hesitating",
+      "example": "He finally took the plunge and quit his job.",
+      "exampleJa": "彼はついに思い切って仕事を辞めた。"
+    },
+    {
+      "word": "leap of faith",
+      "pos": "phrase",
+      "japanese": "思い切った決断、賭け",
+      "definition": "a decision to do something without being sure it will succeed",
+      "example": "Moving overseas without a job was a real leap of faith.",
+      "exampleJa": "仕事のあてもなく海外に移住するのは、まさに思い切った賭けだった。"
+    },
+    {
+      "word": "in the long run",
+      "pos": "collocation",
+      "japanese": "長い目で見れば",
+      "definition": "over a long period of time; eventually",
+      "example": "This investment will pay off in the long run.",
+      "exampleJa": "この投資は長い目で見れば報われるだろう。"
+    },
+    {
+      "word": "career move",
+      "pos": "noun phrase",
+      "japanese": "キャリア上の一手、転身",
+      "definition": "an action or decision taken to progress in one's career",
+      "example": "Joining that startup turned out to be a smart career move.",
+      "exampleJa": "あのスタートアップへの入社は、結果的に賢明なキャリアの一手だった。"
+    },
+    {
+      "word": "sleep on it",
+      "pos": "phrase",
+      "japanese": "一晩考える",
+      "definition": "to wait until the next day before making a decision",
+      "example": "Do not sign today—sleep on it and call me tomorrow.",
+      "exampleJa": "今日は署名しないで。一晩考えて明日電話をください。"
+    }
+  ],
+  "translation": "マーカス: もう限界かな。正直、先の見えない仕事になってしまったよ。\n\nレナ: ええっ。ちゃんと長所と短所を比較検討したの？\n\nマーカス: 二回もね。それでも毎回、決めかねて終わるんだ。\n\nレナ: それが普通よ。四半期ひとつ悪かったくらいで関係を断ちたくはないでしょ。\n\nマーカス: 一四半期の話じゃないんだ。もう燃え尽きる寸前だよ。\n\nレナ: それなら話は別ね。行き先のあてはあるの？\n\nマーカス: まだない。先に職を勝ち取るか、思い切ってフリーになるかだね。\n\nレナ: フリーランスは本当に大きな賭けよ。楽しいけど怖い。\n\nマーカス: でも長い目で見れば、残るほうが辞めるよりリスクが高い気がする。\n\nレナ: なら正しいキャリアの一手かもね。誰かに言う前に、一晩考えてみて。\n\nマーカス: 了解。月曜にまた聞いてよ。"
+},
+{
+  "id": "2026-08-11-010",
+  "date": "2026-08-11",
+  "topic": "Vocab Review Conversations",
+  "title": "Will AI Take Our Jobs?",
+  "difficulty": "Vocab Review",
+  "wordCount": 120,
+  "text": "Owen: Be honest with me. Is the AI thing mostly hype?\n\nCara: Some of it. But parts of it are a genuine game changer.\n\nOwen: My team uses it to streamline reporting. Saves hours every week.\n\nCara: Right. It augments what you already do; it doesn't think for you.\n\nOwen: Still, half my job could be redundant in five years.\n\nCara: Maybe. Skills go obsolete faster now, and that's the scary part.\n\nOwen: So I just keep up with everything? That sounds exhausting.\n\nCara: Not everything. Pick up a skill the tools can't fake, like judgment or clients.\n\nOwen: And if I fall behind anyway?\n\nCara: You won't, if you stay curious. It's a double-edged sword, but curiosity cuts the right way.\n\nOwen: I'll take that. Cheaper than a career panic.",
+  "glossary": [
+    {
+      "word": "hype",
+      "pos": "noun",
+      "japanese": "誇大宣伝、過剰な期待",
+      "definition": "Extravagant or intensive publicity or promotion",
+      "example": "The stock fell after the initial hype faded.",
+      "exampleJa": "当初の過剰な期待が薄れた後、株価は下落した。"
+    },
+    {
+      "word": "game changer",
+      "pos": "slang",
+      "japanese": "状況を一変させるもの",
+      "definition": "Something that completely changes a situation for the better.",
+      "example": "Noise-canceling headphones were a game changer for my commute.",
+      "exampleJa": "ノイズキャンセリングのヘッドホンは通勤を一変させた。"
+    },
+    {
+      "word": "streamline",
+      "pos": "verb",
+      "japanese": "効率化する、合理化する",
+      "definition": "to make a process simpler and more efficient",
+      "example": "The new software streamlined our monthly reporting process significantly.",
+      "exampleJa": "新しいソフトウェアが月次報告のプロセスを大幅に効率化した。"
+    },
+    {
+      "word": "augments",
+      "pos": "verb",
+      "japanese": "補強する、増強する",
+      "definition": "Makes something greater by adding to it; supplements",
+      "example": "The software augments physicians' diagnostic capabilities significantly.",
+      "exampleJa": "そのソフトウェアは医師の診断能力を大きく増強する。"
+    },
+    {
+      "word": "redundant",
+      "pos": "adjective",
+      "japanese": "余剰の、重複した",
+      "definition": "no longer needed because duplicated or unnecessary",
+      "example": "The merger left many administrative roles redundant.",
+      "exampleJa": "合併により多くの管理部門の職務が余剰になった。"
+    },
+    {
+      "word": "obsolete",
+      "pos": "adjective",
+      "japanese": "時代遅れの、廃れた",
+      "definition": "No longer produced or used; out of date",
+      "example": "Smartphone cameras have rendered point-and-shoot models virtually obsolete.",
+      "exampleJa": "スマホカメラがコンパクトカメラを事実上時代遅れにした。"
+    },
+    {
+      "word": "keep up with",
+      "pos": "phrasal verb",
+      "japanese": "〜に遅れずについていく",
+      "definition": "to move or progress at the same rate as others",
+      "example": "It's hard to keep up with all the new technology.",
+      "exampleJa": "新しいテクノロジーすべてについていくのは難しい。"
+    },
+    {
+      "word": "pick up a skill",
+      "pos": "phrase",
+      "japanese": "スキルを身につける",
+      "definition": "to learn a new ability, often gradually or informally",
+      "example": "Children pick up new skills faster than most adults do.",
+      "exampleJa": "子どもはたいていの大人よりも早く新しいスキルを身につける。"
+    },
+    {
+      "word": "fall behind",
+      "pos": "phrasal verb",
+      "japanese": "遅れをとる",
+      "definition": "to fail to keep up with others or with a schedule",
+      "example": "Don't fall behind on your loan payments.",
+      "exampleJa": "ローンの返済で遅れをとらないでください。"
+    },
+    {
+      "word": "double-edged sword",
+      "pos": "noun",
+      "japanese": "諸刃の剣",
+      "definition": "something that has both positive and negative effects",
+      "example": "Social media fame is a double-edged sword.",
+      "exampleJa": "SNSでの有名さは諸刃の剣だ。"
+    }
+  ],
+  "translation": "オーウェン: 正直に言ってよ。AIの話って結局は誇大宣伝が大半なの？\n\nカーラ: 一部はね。でも本当に状況を一変させる部分もある。\n\nオーウェン: うちのチームはレポート作成の効率化に使ってる。毎週何時間も浮くよ。\n\nカーラ: そう。すでにやっていることを補強するだけで、代わりに考えてはくれない。\n\nオーウェン: それでも、五年後には僕の仕事の半分は余剰になっているかも。\n\nカーラ: かもね。スキルが時代遅れになる速度が上がってる。そこが怖いところ。\n\nオーウェン: じゃあ全部に遅れずついていけって？ 疲れそうだよ。\n\nカーラ: 全部じゃない。ツールが真似できないスキルを身につけるの。判断力とか、顧客対応とか。\n\nオーウェン: それでも遅れをとったら？\n\nカーラ: 好奇心を持ち続けていれば大丈夫。諸刃の剣ではあるけど、好奇心なら良いほうに切れる。\n\nオーウェン: それでいこう。キャリアで慌てるより安上がりだ。"
+}
 ];

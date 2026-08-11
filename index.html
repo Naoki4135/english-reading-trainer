@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260804"></script>
+<script src="data.js?v=20260811"></script>
 <script src="listening-data.js?v=20260804"></script>
 <script src="vocab-enrichment.js?v=20260811"></script>
 <script src="articles-data.js?v=20260804"></script>
@@ -623,6 +623,13 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       </div>
     </div>
     <div id="article-list"></div>
+
+    <!-- 既習単語だけで構成した復習用会話（Essay Libraryとは別立て） -->
+    <div id="vocab-review-section" style="display:none;">
+      <div class="card-title" style="margin: 16px 0 8px;">&#128257; Vocab Review Talks <span style="color:var(--text2); font-weight:400; font-size:12px;">既習単語の会話</span></div>
+      <div style="font-size:11px; color:var(--text2); margin-bottom:8px;">単語帳に登録済みの語・イディオムだけで作った会話。復習向け</div>
+      <div id="vocab-review-list"></div>
+    </div>
 
     <div class="card-title" style="margin: 16px 0 8px;">Essay Library</div>
     <div id="essay-list"></div>
@@ -2268,14 +2275,17 @@ function showPage(page) {
 
 // === DASHBOARD ===
 // エッセイのtopicを6ジャンルに分類する
+// Essay Library内に並べるジャンル。'Vocab Review Talks'は専用セクションで別表示するため含めない
 const GENRE_ORDER = ['Conversations', 'Finance & Economics', 'Business English', 'Native Collocations', 'Slang & Casual', 'Science & Technology', 'Society & Culture'];
 const GENRE_ICONS = {
-  'Conversations': '&#128483;&#65039;',
+  'Vocab Review Talks': '&#128257;', 'Conversations': '&#128483;&#65039;',
   'Finance & Economics': '&#128176;', 'Business English': '&#128188;', 'Native Collocations': '&#128279;',
   'Slang & Casual': '&#128172;', 'Science & Technology': '&#128300;', 'Society & Culture': '&#127757;'
 };
 function essayGenre(topic) {
   const t = String(topic || '').toLowerCase();
+  // 既習単語だけで構成した復習用会話。'conversation'を含むので他の判定より先に置く
+  if (t.includes('vocab review')) return 'Vocab Review Talks';
   if (t.includes('real conversation')) return 'Conversations';
   if (t.includes('collocation')) return 'Native Collocations';
   if (t.includes('slang') || t.includes('travel') || t.includes('conversation')) return 'Slang & Casual';
@@ -2427,6 +2437,27 @@ function updateDashboard() {
     listHtml += `</div></div>`;
   });
   document.getElementById('essay-list').innerHTML = listHtml;
+
+  // 復習用会話は専用セクションへ（新しい順・全折りたたみ）
+  const vrSection = document.getElementById('vocab-review-section');
+  const vrItems = genreMap['Vocab Review Talks'] || [];
+  if (!vrItems.length) {
+    vrSection.style.display = 'none';
+  } else {
+    vrSection.style.display = 'block';
+    let vrHtml = '';
+    for (let i = vrItems.length - 1; i >= 0; i--) {
+      const { e, num } = vrItems[i];
+      const rc = state.readCounts[e.id] || 0;
+      vrHtml += `<div class="essay-item" onclick="openEssay('${e.id}')">
+        <span class="essay-num">#${num}</span>
+        <span class="essay-topic">${e.topic}</span>
+        <div class="essay-title">${e.title}</div>
+        <div class="essay-meta">${e.date} · ${e.wordCount} words · ${e.difficulty} · ${e.glossary.length} vocab · <span class="read-badge${rc > 0 ? ' read-done' : ''}">Read: ${rc}</span></div>
+      </div>`;
+    }
+    document.getElementById('vocab-review-list').innerHTML = vrHtml;
+  }
 
   // Read essays section
   const readEssays = essays.filter(e => (state.readCounts[e.id] || 0) > 0);
