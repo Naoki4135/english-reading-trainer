@@ -6,7 +6,7 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 ## ファイル構成
 - `index.html` - メインアプリケーション（レスポンシブHTML）
 - `data.js` - エッセイ・単語データ（Claude Codeが更新）
-- `vocab-enrichment.js` - 語彙拡充データ。2つのconstを持つ: ①`VOCAB_ENRICHMENT`（第2例文・語源/覚え方・コロケーション・類義語`syn`・ニュアンス/使用場面`nuance`。2026-08-11に全2,029語へsyn/nuance付与済み）②`VISUAL_OVERRIDES`（フラッシュカードのイラスト修正版。`{e:絵文字, h:情景ヒント}`）。キーはどちらもglossaryの`word.toLowerCase()`。**新しいエッセイを追加したら、新出単語分を両方に追加する（synは2〜4個の同義語、nuanceは語感+使用場面を日本語30〜70字）**
+- `vocab-enrichment.js` - 語彙拡充データ。2つのconstを持つ: ①`VOCAB_ENRICHMENT`（第2例文・語源/覚え方・コロケーション・類義語`syn`・ニュアンス/使用場面`nuance`・発音記号`ipa`。2026-08-11にsyn/nuance、2026-08-15に全2,029語へipa付与済み。ipaは米音IPAでスラッシュ無し、句は語ごとにスペース区切り）②`VISUAL_OVERRIDES`（フラッシュカードのイラスト修正版。`{e:絵文字, h:情景ヒント}`）。キーはどちらもglossaryの`word.toLowerCase()`。**新しいエッセイを追加したら、新出単語分を両方に追加する（synは2〜4個の同義語、nuanceは語感+使用場面を日本語30〜70字）**
 - `listening-data.js` - リスニング教材（audioUrl形式 or youtubeId形式）
 - `ejdict.txt` - 内蔵英和辞書（EJDict-hand、パブリックドメイン、45,609語、タブ区切り）。タップ辞書用。**再生成・編集しない**
 - `drill-data.js` - 瞬間英作文ドリル（`DRILLS`配列: {id, level(1-3), ja, en, key, keyJa}。Lv1=5〜8語/Lv2=8〜12語/Lv3=12〜16語）
@@ -60,7 +60,7 @@ TOEFL iBT+レベルの英文リーディング学習ツール。エッセイ表�
 Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents/iCloud/`
 
 ## エッセイ規模
-- エッセイは206本（2026-08-14時点。data.jsのESSAYS配列。うちReal Conversations 40本、Vocab Review Conversations 20本）
+- エッセイは216本（2026-08-15時点。data.jsのESSAYS配列。うちReal Conversations 40本、Vocab Review Conversations 30本）
 - 長さは標準150語だが、2026-07-31追加分（コロケーション10+スラング10）は約100語のショート版
 
 ## UI/UX仕様
@@ -85,6 +85,8 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **ホーム**: エッセイライブラリは6ジャンル（Finance & Economics / Business English / Native Collocations / Slang & Casual / Science & Technology / Society & Culture、`essayGenre()`でtopicから判定）別のデフォルト全折りたたみ表示。Read Essaysも全折りたたみ。Recently Openedは5件表示+「もっと見る」で最大50件。連続学習2日以上でストリークバナー表示
 - **語彙エンリッチメント**: 全単語に第2例文・語源/覚え方・コロケーションを表示（単語カード・フラッシュカード）。例文読み上げボタン付き。Vocab検索は例文・コロケーション・語源にもヒット
 - **Vocabタブは3ビュー構成（2026-07-27刷新。タブ順は2026-08-11に 今日の10語 → All → エッセイ別 へ変更）**: ①「今日の10語」デイリーセッション（`state.dailyVocab`。復習期限語(最大4)+最近読んだエッセイの新語(最大3)+新語で10語選定。カードか✓ボタンのタップでチェック、10/10で完了画面+「もう10語」）②「エッセイ別」（出典ごとにグループ表示、新しい順）③「All」（検索+フィルター）。**単語カードは2026-08-11からデフォルト全展開**（ユーザー指示。ヘッダータップで折りたたみ可。旧・折りたたみ小テスト設計は廃止）。カード内は 意味→例文→🔁類義語→💬ニュアンス→💡語源→🔗コロケーション の順で表示。**見出し語21px・訳17px**（2026-08-11。補足情報が増えて主役が埋もれたため拡大。小さく戻さないこと）
+- **発音記号（2026-08-15追加）**: 単語カード・フラッシュカード・穴埋めの答えに `/ˈtændʒəbəl/` の形で表示（`.ipa`クラス、`VOCAB_ENRICHMENT[key].ipa`）。新しいエッセイの新出語を追加するときは ipa も併せて入れること
+- **クイズからのMastered/Exclude（2026-08-15追加）**: Wordsの答え表示後（評価ボタンの下）と穴埋めの答え表示後に「⭐ Mastered / 🚫 Exclude」を表示。`quizMarkWord()`が該当語をキューから取り除いて次のカードへ進め、Due/Newの残数も更新する。`markMastered()`/`markExcluded()`は`refreshVocabIfVisible()`を使い、Vocabタブを開いていないときに全件再描画しない
 - **単語チェック回数（2026-08-11追加）**: 各単語カードの音声ボタン隣に✓ボタン。押すたび`state.vocabulary[key].checkCount`と`dailyStats[date].checked`が+1（`checkWord()`）。ホームに「Words Checked」（checkCount延べ合計）と「Quiz Answers」（dailyStats.reviewedの累計）のタイル。checkCountとdailyStats.checkedはクラウド同期対象（単調増加なのでmaxマージ）。ストリーク判定にもcheckedを含む
 - **フラッシュカードのイラスト**: `getWordVisual()` が `VISUAL_OVERRIDES` → `WORD_VISUAL_MAP`（手作り183件）→ 日本語訳のキーワード自動マッチ、の順で解決する。自動マッチは誤爆しやすいため、2026-07-26に全1403語を点検し880語を修正済み。**汎用フォールバック（「名詞」「形容詞」等）に落ちる語はゼロを維持すること**
 - **ヒントのネタバレ防止（重要）**: `buildFlashcardHint()` は `visual.h` が日本語訳と一致する場合にImage行を出さない。自動生成のhは訳そのままで答えになるため。`VISUAL_OVERRIDES` の h には**訳語を書かず情景を書く**こと（例: hollow out →「外側は立派な大木。でも中身は空っぽ」）
@@ -97,7 +99,7 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **会話文の音声（2026-08-01追加）**: `splitEssayForSpeech`が"Name: 発話"を検出し話者名を読み上げから除外、`assignDialogueVoices`が話者ごとに固定ボイス（1人目女性系/2人目男性系）を割当。実戦モードでも会話文は声固定
 - **Glossary網羅率**: 2026-08-01に全156本を監査し拾い漏れ307語を追加（glossary総数2,012）。新規エッセイは「難しい単語・表現はすべてピックアップ」を厳守
 - **瞬間英作文Drillタブ（2026-08-01追加）**: ナビ6番目。1日10問（ミス再出題最大3+現Lvドリル文+単語帳例文2）。自己チェック3択（言えた/惜しい/言えなかった）。直近正答率でLv1〜3自動昇降（80%↑で昇格、40%↓で降格）。ミスは`state.drill.missedPool`に入り「言えた2回」で卒業。`dailyStats.drilled`がストリークにカウント。state.drillは同期対象
-- **Vocab Review Conversations（2026-08-11に10本、2026-08-14に10本追加＝計20本）**: 既に単語帳に登録済みの語・イディオムだけで構成した復習用会話（topic=`Vocab Review Conversations`, difficulty=`Vocab Review`）。**全て100語以内**（85〜99語。ユーザー指定の上限なので超えないこと）。2回目は1回目で使った108語を除外したプールから選定し、カバー範囲を広げている。Essay Libraryの先頭ジャンル「🔁 Vocab Review Talks」として他ジャンルと同じ折りたたみ表示（`essayGenre()`が'vocab review'を最優先で判定。専用セクションは2026-08-11に統合して廃止）。Glossaryは既存エントリの複製なので**vocab-enrichment.jsへの追記は不要**。増やす場合も既存2,029語からの選定を厳守（新語を入れるならenrichmentも追加すること）
+- **Vocab Review Conversations（2026-08-11/14/15に各10本＝計30本）**: 既に単語帳に登録済みの語・イディオムだけで構成した復習用会話（topic=`Vocab Review Conversations`, difficulty=`Vocab Review`）。**全て100語以内**（85〜99語。ユーザー指定の上限なので超えないこと）。毎回、既存分で使った語を除外したプールから選定してカバー範囲を広げている（3回目時点で累計約300語を使用）。**Glossaryには本文に実際に出現する語だけを載せる**（検証時に未出現の語は自動で除外している）。Essay Libraryの先頭ジャンル「🔁 Vocab Review Talks」として他ジャンルと同じ折りたたみ表示（`essayGenre()`が'vocab review'を最優先で判定。専用セクションは2026-08-11に統合して廃止）。Glossaryは既存エントリの複製なので**vocab-enrichment.jsへの追記は不要**。増やす場合も既存2,029語からの選定を厳守（新語を入れるならenrichmentも追加すること）
 - **Real Conversationsジャンル（2026-08-01追加）**: 2人の話者による会話スクリプト形式エッセイ（`Name: 発話`を\n\n区切り）。ライブラリで独立ジャンル🗣️。実戦モードで話者ごとに声が変わる
 - **自動クラウド同期（2026-07-31追加）**: GitHub Gist（非公開・`ert-sync.json`）を使ってデバイス間で学習データを自動同期。トークンはlocalStorage（`ert-sync-token`）のみに保存し、**stateやバックアップ・Sync Codeには絶対に含めない**。挙動: 起動時とフォアグラウンド復帰時に`cloudPull()`（フィールド単位マージ）、`saveState()`の30秒後と離脱時に`cloudPush()`。ペイロードは`buildSyncPayload()`（SRS進捗のみ、約200KB）。401はトークン失効表示
 - **SRSタブの学習記録（2026-08-02改良、2026-08-11に単語チェック追加）**: 日次(14日)/週次(12週)/月次(12ヶ月)を`setStatsPeriod()`で切替。`buildStatsBuckets()`が`dailyStats`を期間集計し、読んだ語数・クイズ復習数・単語チェック数・瞬間英作文の4グラフ＋前期間比サマリー（学習した日数つき）を表示。週は月曜始まり。その他の構成: Due alert / 長期グラフ2種 / Mastery Distribution / Device Sync / バックアップ。Upcoming Reviews・Study History・Vocabulary Growthグラフは削除済み（復活させない）

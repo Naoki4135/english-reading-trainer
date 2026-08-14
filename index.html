@@ -9,9 +9,9 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260814"></script>
+<script src="data.js?v=20260815"></script>
 <script src="listening-data.js?v=20260804"></script>
-<script src="vocab-enrichment.js?v=20260811"></script>
+<script src="vocab-enrichment.js?v=20260815"></script>
 <script src="articles-data.js?v=20260804"></script>
 <script src="drill-data.js?v=20260804"></script>
 <style>
@@ -539,6 +539,11 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
   border-bottom: 2px solid var(--accent); color: var(--accent2); font-weight: 700;
 }
 .cloze-blank.revealed { border-bottom-color: var(--green); color: var(--green); letter-spacing: normal; }
+/* クイズ内のMastered/Excludeボタン（単語カードのものより大きめ） */
+.quiz-mark-row { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
+.quiz-mark-btn { font-size: 12px; padding: 8px 16px; border-radius: 8px; }
+/* 発音記号 */
+.ipa { font-size: 13px; color: var(--text2); font-family: "Hiragino Sans", system-ui, sans-serif; }
 .vocab-syn { font-size: 12px; color: var(--green); line-height: 1.6; margin-top: 2px; }
 .vocab-nuance { font-size: 12px; color: var(--text2); line-height: 1.6; margin-top: 2px; }
 /* 単語チェック回数ボタン（音声ボタンの隣。押すたびにカウントアップ） */
@@ -784,6 +789,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
           <div class="flashcard-visual-hint" id="fc-visual-hint"></div>
         </div>
         <div class="flashcard-word" id="fc-word"></div>
+        <div class="ipa" id="fc-ipa" style="margin-top:4px;"></div>
         <div class="flashcard-pos" id="fc-pos"></div>
         <div class="flashcard-hint" id="fc-hint">Tap card to reveal the answer</div>
         <div class="flashcard-answer" id="fc-answer" style="display:none;">
@@ -810,6 +816,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <button class="rating-btn rating-good" onclick="rateCard(3)">Good</button>
         <button class="rating-btn rating-easy" onclick="rateCard(4)">Easy</button>
       </div>
+      <div class="quiz-mark-row" id="quiz-mark-row" style="display:none;">
+        <button class="btn-master quiz-mark-btn" onclick="quizMarkWord('master')">&#11088; Mastered</button>
+        <button class="btn-exclude quiz-mark-btn" onclick="quizMarkWord('exclude')">&#128683; Exclude</button>
+      </div>
     </div>
     <!-- 穴埋めクイズ（例文の対象語をブランクにし、頭文字だけヒント表示） -->
     <div id="cloze-quiz-area" style="display:none;">
@@ -820,9 +830,14 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
         <div class="flashcard-hint" id="cloze-tap-hint">Tap card to reveal the answer</div>
         <div id="cloze-result" style="display:none; border-top:1px solid var(--border); padding-top:12px; margin-top:12px; width:100%;">
           <div id="cloze-answer" style="font-size:22px; font-weight:700; color:var(--accent2);"></div>
+          <div class="ipa" id="cloze-ipa" style="margin-top:3px;"></div>
           <div id="cloze-answer-ja" style="font-size:15px; color:var(--text); margin-top:4px;"></div>
           <div id="cloze-nuance" class="vocab-nuance" style="text-align:left; margin-top:10px;"></div>
           <button class="flashcard-speak-btn" id="cloze-speak" style="margin-top:10px;">&#128266; Pronounce</button>
+          <div class="quiz-mark-row" style="margin-top:12px;">
+            <button class="btn-master quiz-mark-btn" onclick="event.stopPropagation(); quizMarkWord('master')">&#11088; Mastered</button>
+            <button class="btn-exclude quiz-mark-btn" onclick="event.stopPropagation(); quizMarkWord('exclude')">&#128683; Exclude</button>
+          </div>
         </div>
       </div>
       <div style="display:flex; gap:8px; margin-top:12px;">
@@ -3148,7 +3163,9 @@ function vocabCardHtml(key, v, opts = {}) {
     buttons = `<button class="btn-master" onclick="event.stopPropagation(); markMastered('${kjs}')">Mastered</button><button class="btn-exclude" onclick="event.stopPropagation(); markExcluded('${kjs}')">Exclude</button>`;
   }
   const en = getEnrichment(key);
-  let detail = `<div class="vocab-ja-inline" style="margin-bottom:8px;">${v.japanese}</div>`;
+  let detail = '';
+  if (en && en.ipa) detail += `<div class="ipa" style="margin-bottom:4px;">/${escapeHtml(en.ipa)}/</div>`;
+  detail += `<div class="vocab-ja-inline" style="margin-bottom:8px;">${v.japanese}</div>`;
   if (v.example) detail += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="event.stopPropagation(); speakVocabExample('${kjs}', 1)">&#128266;</button><div><div class="vocab-example-en">${v.example}</div><div class="vocab-example-ja">${v.exampleJa || ''}</div></div></div>`;
   if (en) {
     if (en.example2) detail += `<div class="vocab-example-row"><button class="ex-speak-btn" onclick="event.stopPropagation(); speakVocabExample('${kjs}', 2)">&#128266;</button><div><div class="vocab-example-en">${en.example2}</div><div class="vocab-example-ja">${en.exampleJa2 || ''}</div></div></div>`;
@@ -3297,11 +3314,16 @@ function renderVocabBySource() {
   bindVocabCards(container, false);
 }
 
+// Vocabタブを開いているときだけ再描画する（クイズから呼ばれたときの無駄な全件描画を避ける）
+function refreshVocabIfVisible() {
+  const p = document.getElementById('page-vocab');
+  if (p && p.classList.contains('active')) updateVocabPage();
+}
 function markExcluded(key) {
   if (!state.vocabulary[key]) return;
   state.vocabulary[key].level = -1;
   state.vocabulary[key].interval = 0;
-  saveState(); updateVocabPage(); showToast('Excluded: ' + state.vocabulary[key].word);
+  saveState(); refreshVocabIfVisible(); showToast('Excluded: ' + state.vocabulary[key].word);
 }
 function restoreWord(key) {
   if (!state.vocabulary[key]) return;
@@ -3315,7 +3337,26 @@ function markMastered(key) {
   state.vocabulary[key].level = 3;
   state.vocabulary[key].interval = 365;
   state.vocabulary[key].nextReview = addDaysToLocalDate(365);
-  saveState(); updateVocabPage(); showToast('Marked as Mastered');
+  saveState(); refreshVocabIfVisible(); showToast('Marked as Mastered');
+}
+// クイズ中の単語をMastered/Excludeにして次のカードへ進む（同じ語がキューに残っていれば除去）
+function quizMarkWord(action) {
+  const isCloze = quizType === 'cloze';
+  const entry = isCloze ? clozeQueue[clozeIndex] : quizQueue[quizIndex];
+  if (!entry) return;
+  const key = entry[0];
+  if (action === 'master') markMastered(key); else markExcluded(key);
+  if (isCloze) {
+    clozeQueue = clozeQueue.filter((e, i) => i <= clozeIndex || e[0] !== key);
+    clozeIndex++;
+    showClozeCard();
+  } else {
+    quizQueue = quizQueue.filter((e, i) => i <= quizIndex || e[0] !== key);
+    updateQuizCounts();
+    quizIndex++;
+    showFlashcard();
+  }
+  window.scrollTo(0, 0);
 }
 
 // === QUIZ ===
@@ -3385,6 +3426,10 @@ function showFlashcard() {
   quizRevealed = false;
   quizHintVisible = false;
   document.getElementById('fc-word').textContent = v.word;
+  const fcIpa = document.getElementById('fc-ipa');
+  const enIpa = getEnrichment(key);
+  fcIpa.textContent = enIpa && enIpa.ipa ? '/' + enIpa.ipa + '/' : '';
+  fcIpa.style.display = enIpa && enIpa.ipa ? 'block' : 'none';
   document.getElementById('fc-pos').textContent = v.pos;
   document.getElementById('fc-hint').style.display = 'block';
   document.getElementById('fc-hint-toggle').style.display = 'inline-flex';
@@ -3392,6 +3437,7 @@ function showFlashcard() {
   document.getElementById('fc-hint-panel').classList.remove('open');
   document.getElementById('fc-answer').style.display = 'none';
   document.getElementById('rating-buttons').style.display = 'none';
+  document.getElementById('quiz-mark-row').style.display = 'none';
   document.getElementById('fc-japanese').textContent = v.japanese;
   document.getElementById('fc-def').textContent = v.definition;
   document.getElementById('fc-example').textContent = v.example;
@@ -3440,6 +3486,7 @@ function revealFlashcard() {
   document.getElementById('fc-hint-toggle').style.display = 'none';
   document.getElementById('fc-answer').style.display = 'block';
   document.getElementById('rating-buttons').style.display = 'flex';
+  document.getElementById('quiz-mark-row').style.display = 'flex';
 }
 function rateCard(quality) {
   const [key, v] = quizQueue[quizIndex];
@@ -3604,8 +3651,11 @@ function revealCloze() {
     blank.classList.add('revealed');
   }
   document.getElementById('cloze-answer').textContent = v.word;
-  document.getElementById('cloze-answer-ja').textContent = v.japanese || '';
   const en = getEnrichment(entry[0]);
+  const clozeIpa = document.getElementById('cloze-ipa');
+  clozeIpa.textContent = en && en.ipa ? '/' + en.ipa + '/' : '';
+  clozeIpa.style.display = en && en.ipa ? 'block' : 'none';
+  document.getElementById('cloze-answer-ja').textContent = v.japanese || '';
   const nuanceEl = document.getElementById('cloze-nuance');
   nuanceEl.style.display = en && en.nuance ? 'block' : 'none';
   nuanceEl.innerHTML = en && en.nuance ? '&#128172; ' + escapeHtml(en.nuance) : '';
