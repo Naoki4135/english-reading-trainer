@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260815"></script>
+<script src="data.js?v=20260816"></script>
 <script src="listening-data.js?v=20260804"></script>
 <script src="vocab-enrichment.js?v=20260815"></script>
 <script src="articles-data.js?v=20260804"></script>
@@ -269,6 +269,8 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .vocab-word-cell { font-weight: 700; font-size: 21px; line-height: 1.35; color: var(--accent2); }
 .vocab-ja-inline { font-size: 17px; font-weight: 600; line-height: 1.5; color: var(--text); margin-top: 2px; }
 .vocab-pos { font-size: 11px; color: var(--text2); font-style: italic; font-weight: 400; }
+/* 単語カードの絵文字（クイズのフラッシュカードと同じ getWordVisual を使う） */
+.vocab-emoji { font-size: 18px; margin-right: 7px; letter-spacing: 1px; vertical-align: middle; }
 .vocab-right { display: flex; gap: 6px; align-items: center; flex-shrink: 0; margin-left: 8px; }
 .btn-master {
   padding: 4px 10px; border-radius: 4px; border: 1px solid var(--green);
@@ -3179,7 +3181,7 @@ function vocabCardHtml(key, v, opts = {}) {
   return `<div class="vocab-card${opts.collapsed ? ' collapsed' : ''}${opts.done ? ' done' : ''}" data-key="${escapeHtml(key)}">
     <div class="vocab-top">
       <div class="vocab-left">
-        <div class="vocab-word-cell">${v.word} <span class="vocab-pos">${v.pos || ''}</span></div>
+        <div class="vocab-word-cell"><span class="vocab-emoji">${getWordVisual(v.word, v.pos, v.japanese).e}</span>${v.word} <span class="vocab-pos">${v.pos || ''}</span></div>
       </div>
       <div class="vocab-right">
         ${!isExcluded && !isMastered && v.level > 0 ? getMasteryBadge(v.level) : ''}
