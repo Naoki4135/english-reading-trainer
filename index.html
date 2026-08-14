@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>English Reading Trainer</title>
-<script src="data.js?v=20260811b"></script>
+<script src="data.js?v=20260814"></script>
 <script src="listening-data.js?v=20260804"></script>
 <script src="vocab-enrichment.js?v=20260811"></script>
 <script src="articles-data.js?v=20260804"></script>
@@ -526,20 +526,19 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .vocab-origin { font-size: 12px; color: var(--yellow); line-height: 1.6; margin: 6px 0 2px; }
 .vocab-colloc { font-size: 12px; color: var(--accent2); line-height: 1.6; }
 /* 穴埋めクイズ */
-.cloze-sentence { font-size: 19px; line-height: 1.8; text-align: left; width: 100%; }
-.cloze-ja { font-size: 14px; color: var(--text2); line-height: 1.7; text-align: left; width: 100%; margin-top: 10px; }
-.cloze-hint { font-size: 13px; color: var(--yellow); text-align: left; width: 100%; margin-top: 10px; }
+.cloze-sentence { font-size: 19px; line-height: 1.9; text-align: left; width: 100%; }
+.cloze-ja { font-size: 14px; color: var(--text2); line-height: 1.8; text-align: left; width: 100%; margin-top: 12px; }
+/* 日本語訳のうち、問われている語に相当する部分 */
+.cloze-ja-target {
+  color: var(--text); font-weight: 700;
+  border-bottom: 2px solid var(--accent); padding-bottom: 1px;
+}
+/* 空所。頭文字だけを見せ、残りの字数を下線で示す */
 .cloze-blank {
-  display: inline-block; min-width: 90px; padding: 0 6px;
+  display: inline-block; padding: 0 4px; letter-spacing: 1px;
   border-bottom: 2px solid var(--accent); color: var(--accent2); font-weight: 700;
 }
-.cloze-input {
-  width: 100%; margin-top: 14px; padding: 12px 14px; font-size: 17px; font-family: inherit;
-  border-radius: 10px; border: 1px solid var(--border); background: var(--surface2); color: var(--text);
-}
-.cloze-input:focus { outline: none; border-color: var(--accent); }
-.cloze-fill-correct { color: var(--green); font-weight: 700; }
-.cloze-fill-wrong { color: var(--red); font-weight: 700; text-decoration: line-through; }
+.cloze-blank.revealed { border-bottom-color: var(--green); color: var(--green); letter-spacing: normal; }
 .vocab-syn { font-size: 12px; color: var(--green); line-height: 1.6; margin-top: 2px; }
 .vocab-nuance { font-size: 12px; color: var(--text2); line-height: 1.6; margin-top: 2px; }
 /* 単語チェック回数ボタン（音声ボタンの隣。押すたびにカウントアップ） */
@@ -815,24 +814,18 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <!-- 穴埋めクイズ（例文の対象語をブランクにし、頭文字だけヒント表示） -->
     <div id="cloze-quiz-area" style="display:none;">
       <div class="flashcard-progress" id="cloze-progress"></div>
-      <div class="flashcard" id="cloze-card" style="cursor:default;">
+      <div class="flashcard" id="cloze-card" onclick="revealCloze()">
         <div class="cloze-sentence" id="cloze-sentence"></div>
         <div class="cloze-ja" id="cloze-ja"></div>
-        <div class="cloze-hint" id="cloze-hint"></div>
-        <input type="text" class="cloze-input" id="cloze-input" placeholder="答えを入力" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
-        <div id="cloze-result" style="display:none; border-top:1px solid var(--border); padding-top:12px; margin-top:12px;">
-          <div id="cloze-verdict" style="font-size:20px; font-weight:800; margin-bottom:8px;"></div>
-          <div style="font-size:11px; color:var(--text2); margin-bottom:4px;">正解</div>
-          <div id="cloze-answer" style="font-size:19px; font-weight:700; color:var(--accent2);"></div>
-          <div id="cloze-answer-ja" style="font-size:14px; color:var(--text2); margin-top:4px;"></div>
-          <div id="cloze-full" style="font-size:15px; line-height:1.7; margin-top:10px; text-align:left;"></div>
-          <div id="cloze-nuance" class="vocab-nuance" style="text-align:left; margin-top:8px;"></div>
+        <div class="flashcard-hint" id="cloze-tap-hint">Tap card to reveal the answer</div>
+        <div id="cloze-result" style="display:none; border-top:1px solid var(--border); padding-top:12px; margin-top:12px; width:100%;">
+          <div id="cloze-answer" style="font-size:22px; font-weight:700; color:var(--accent2);"></div>
+          <div id="cloze-answer-ja" style="font-size:15px; color:var(--text); margin-top:4px;"></div>
+          <div id="cloze-nuance" class="vocab-nuance" style="text-align:left; margin-top:10px;"></div>
           <button class="flashcard-speak-btn" id="cloze-speak" style="margin-top:10px;">&#128266; Pronounce</button>
         </div>
       </div>
       <div style="display:flex; gap:8px; margin-top:12px;">
-        <button class="btn" onclick="revealCloze()" id="cloze-reveal-btn" style="flex:1; padding:12px;">答えを見る</button>
-        <button class="btn primary" onclick="submitCloze()" id="cloze-submit-btn" style="flex:1; padding:12px;">判定する</button>
         <button class="btn primary" onclick="nextCloze()" id="cloze-next-btn" style="flex:1; padding:12px; display:none;">Next &#8594;</button>
       </div>
       <div id="cloze-summary" class="card" style="display:none; text-align:center; padding:20px; margin-top:12px;">
@@ -3344,8 +3337,15 @@ function setQuizType(type) {
 }
 function updateQuizCounts() {
   if (quizType === 'cloze') return;
-  document.getElementById('quiz-due-count').textContent = getDueWords().length;
+  const due = getDueWords().length;
+  document.getElementById('quiz-due-count').textContent = due;
   document.getElementById('quiz-new-count').textContent = getNewWords().length;
+  // ナビのDueバッジも同じタイミングで揃える
+  const badge = document.getElementById('nav-due-badge');
+  if (badge) {
+    if (due > 0) { badge.style.display = 'block'; badge.textContent = due; }
+    else badge.style.display = 'none';
+  }
 }
 function updateQuizPage() {
   document.getElementById('quiz-mode-words').classList.toggle('primary', quizType === 'words');
@@ -3451,7 +3451,9 @@ function rateCard(quality) {
   srs.nextReview = addDaysToLocalDate(srs.interval);
   srs.reviewCount++; if (quality >= 2) srs.correctCount++;
   srs.lastReview = formatLocalDate();
-  saveState(); quizIndex++; showFlashcard();
+  saveState();
+  updateQuizCounts(); // 1問ごとにDue/Newの残数を反映する（タブを切り替えなくても更新される）
+  quizIndex++; showFlashcard();
 }
 function showQuizComplete() {
   document.getElementById('quiz-area').style.display = 'none';
@@ -3473,149 +3475,158 @@ function resetQuiz() { document.getElementById('quiz-complete').style.display = 
 function startReview() { showPage('quiz'); setQuizMode('review', document.querySelector('#quiz-tabs .tab')); }
 
 // === CLOZE PRACTICE（例文穴埋め） ===
-// Glossaryの例文から対象語をブランクにして入力させる。頭文字だけをヒントに出す。
+// 英文は対象語を空所（頭文字＋字数分の下線）にし、日本語訳は対応部分に下線を引く。
+// カードをタップすると答えが出る単語カード形式。
 const CLOZE_SESSION_SIZE = 10;
 let clozeQueue = [];
 let clozeIndex = 0;
 let clozeRevealed = false;
-let clozeCorrect = 0;
-let clozeAnswered = 0;
 
-// 例文中の対象語を正規表現で探す（活用・子音重複・y→ie を許容）
+// よく出る不規則変化（例文が活用形の場合でも空所を作れるようにする）
+const CLOZE_IRREGULAR = {
+  take: ['took', 'taken'], make: ['made'], go: ['went', 'gone'], get: ['got', 'gotten'],
+  come: ['came'], give: ['gave', 'given'], run: ['ran'], sink: ['sank', 'sunk'],
+  blow: ['blew', 'blown'], steal: ['stole', 'stolen'], keep: ['kept'], hold: ['held'],
+  bring: ['brought'], catch: ['caught'], think: ['thought'], draw: ['drew', 'drawn'],
+  fall: ['fell', 'fallen'], feel: ['felt'], find: ['found'], lose: ['lost'],
+  pay: ['paid'], say: ['said'], see: ['saw', 'seen'], sell: ['sold'], send: ['sent'],
+  sit: ['sat'], speak: ['spoke'], spend: ['spent'], stand: ['stood'], stick: ['stuck'],
+  strike: ['struck'], wear: ['wore'], win: ['won'], write: ['wrote', 'written'],
+  leave: ['left'], build: ['built'], break: ['broke', 'broken'], grow: ['grew', 'grown'],
+  know: ['knew', 'known'], throw: ['threw', 'thrown'], eat: ['ate', 'eaten'],
+  fight: ['fought'], teach: ['taught'], buy: ['bought'], meet: ['met'], rise: ['rose', 'risen'],
+  drive: ['drove', 'driven'], begin: ['began', 'begun'], deal: ['dealt'], mean: ['meant']
+};
+// 例文中の対象語を探す正規表現（活用・子音重複・y→ie・e脱落・不規則変化を許容）
 function clozeWordPattern(word) {
   const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const inflect = part => {
-    const e = esc(part), last = part.slice(-1);
+    const lower = part.toLowerCase(), e = esc(part), last = part.slice(-1);
     const alts = [e + '(?:s|es|ed|d|ing|ly)?'];
     if (/[a-zA-Z]/.test(last)) alts.push(e + last + '(?:ed|ing)');
     if (last === 'y') alts.push(esc(part.slice(0, -1)) + 'i(?:ed|es)');
+    if (last === 'e') alts.push(esc(part.slice(0, -1)) + 'ing');
+    (CLOZE_IRREGULAR[lower] || []).forEach(f => alts.push(esc(f)));
     return '(?:' + alts.join('|') + ')';
   };
   return new RegExp('\\b(' + String(word).trim().split(/\s+/).map(inflect).join('\\s+') + ')\\b', 'i');
 }
-// 出題可能な語だけを集める（例文に対象語が実際に現れるものに限る）
+// japanese を候補に分解（「〜」「（）」「、」「・」を除去して切る）
+function clozeJaCandidates(japanese) {
+  return String(japanese)
+    .split(/[、,・･]|（[^）]*）|\([^)]*\)/)
+    .map(s => s.replace(/[〜～\s]/g, '').trim())
+    .filter(s => s.length >= 2);
+}
+// 候補と訳文の最長共通部分文字列（訳は語形が変わるので部分一致で拾う）
+function clozeLongestCommon(cand, text) {
+  let best = '';
+  for (let i = 0; i < cand.length; i++) {
+    for (let j = cand.length; j > i + best.length; j--) {
+      const sub = cand.slice(i, j);
+      if (text.includes(sub) && sub.length > best.length) { best = sub; break; }
+    }
+  }
+  return best;
+}
+// 訳文のどこが対象語に当たるかを返す（見つからなければ空文字）
+function clozeJaSpan(japanese, exampleJa) {
+  let best = '';
+  clozeJaCandidates(japanese).forEach(c => {
+    const m = clozeLongestCommon(c, exampleJa);
+    if (m.length > best.length) best = m;
+  });
+  return best.length >= 2 ? best : '';
+}
+// 頭文字だけ見せ、残りは下線にする（複数語は語ごと）
+function clozeBlankText(word) {
+  return String(word).trim().split(/\s+/)
+    .map(w => w[0].toUpperCase() + '＿'.repeat(Math.max(1, w.length - 1)))
+    .join(' ');
+}
+// 英文・訳文の両方で対象箇所を特定できる語だけを出題する
 function buildClozeQueue() {
   const all = Object.entries(state.vocabulary)
-    .filter(([, v]) => v.level >= 0 && v.example && v.exampleJa && v.word)
-    .filter(([, v]) => clozeWordPattern(v.word).test(v.example));
+    .filter(([, v]) => v.level >= 0 && v.example && v.exampleJa && v.word && v.japanese)
+    .filter(([, v]) => clozeWordPattern(v.word).test(v.example) && clozeJaSpan(v.japanese, v.exampleJa));
   const today = formatLocalDate();
-  const due = all.filter(([, v]) => v.level > 0 && v.level < 3 && v.nextReview <= today);
-  const rest = all.filter(([, v]) => !(v.level > 0 && v.level < 3 && v.nextReview <= today));
+  const isDue = v => v.level > 0 && v.level < 3 && v.nextReview <= today;
+  const due = all.filter(([, v]) => isDue(v));
+  const rest = all.filter(([, v]) => !isDue(v));
   shuffleArray(due); shuffleArray(rest);
   return due.concat(rest).slice(0, CLOZE_SESSION_SIZE);
 }
 function loadClozeSession() {
   clozeQueue = buildClozeQueue();
   clozeIndex = 0;
-  clozeCorrect = 0;
-  clozeAnswered = 0;
   document.getElementById('cloze-summary').style.display = 'none';
   if (!clozeQueue.length) {
     document.getElementById('cloze-card').style.display = 'none';
     document.getElementById('cloze-progress').textContent = '';
+    document.getElementById('cloze-next-btn').style.display = 'none';
     document.getElementById('cloze-summary').style.display = 'block';
     document.getElementById('cloze-summary-detail').textContent = '出題できる例文がありません';
     return;
   }
-  document.getElementById('cloze-card').style.display = 'block';
+  document.getElementById('cloze-card').style.display = 'flex';
   showClozeCard();
-}
-// 頭文字＋語数の形をヒントに出す（複数語は語ごとに頭文字を見せる）
-function clozeHintText(word) {
-  return String(word).trim().split(/\s+/)
-    .map(w => w[0].toUpperCase() + '_'.repeat(Math.max(1, w.length - 1)))
-    .join(' ');
 }
 function showClozeCard() {
   if (clozeIndex >= clozeQueue.length) { showClozeSummary(); return; }
   const [, v] = clozeQueue[clozeIndex];
   clozeRevealed = false;
   const re = clozeWordPattern(v.word);
-  // 例文中の該当箇所をブランクに置換（実際に出現した語形をあとで正解表示に使う）
   const matched = v.example.match(re);
-  const blanked = v.example.replace(re, '<span class="cloze-blank" id="cloze-blank">?</span>');
+  clozeQueue[clozeIndex].matchedForm = matched ? matched[0] : v.word;
+  // 英文: 対象語を空所に
+  const blanked = escapeHtml(v.example).replace(re,
+    `<span class="cloze-blank" id="cloze-blank">${escapeHtml(clozeBlankText(v.word))}</span>`);
+  // 訳文: 対応部分に下線
+  const span = clozeJaSpan(v.japanese, v.exampleJa);
+  const ja = span
+    ? escapeHtml(v.exampleJa).replace(escapeHtml(span), `<span class="cloze-ja-target">${escapeHtml(span)}</span>`)
+    : escapeHtml(v.exampleJa);
   document.getElementById('cloze-progress').textContent = `${clozeIndex + 1} / ${clozeQueue.length}`;
   document.getElementById('cloze-sentence').innerHTML = blanked;
-  document.getElementById('cloze-ja').textContent = v.exampleJa;
-  document.getElementById('cloze-hint').innerHTML = `&#128161; ヒント: <b>${escapeHtml(clozeHintText(v.word))}</b>（${escapeHtml(v.japanese || '')}）`;
-  const input = document.getElementById('cloze-input');
-  input.value = '';
-  input.disabled = false;
-  input.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); clozeRevealed ? nextCloze() : submitCloze(); } };
+  document.getElementById('cloze-ja').innerHTML = ja;
+  document.getElementById('cloze-tap-hint').style.display = 'block';
   document.getElementById('cloze-result').style.display = 'none';
-  document.getElementById('cloze-submit-btn').style.display = 'inline-flex';
-  document.getElementById('cloze-reveal-btn').style.display = 'inline-flex';
   document.getElementById('cloze-next-btn').style.display = 'none';
-  clozeQueue[clozeIndex].matchedForm = matched ? matched[0] : v.word;
 }
-function normalizeCloze(s) {
-  return String(s).toLowerCase().replace(/[^a-z0-9\s']/g, '').replace(/\s+/g, ' ').trim();
-}
-// 入力が正解か判定（語形の揺れは許容: 原形でも活用形でもOK）
-function isClozeCorrect(input, v, matchedForm) {
-  const a = normalizeCloze(input);
-  if (!a) return false;
-  if (a === normalizeCloze(v.word) || a === normalizeCloze(matchedForm)) return true;
-  return clozeWordPattern(v.word).test(a);
-}
-function submitCloze() {
-  if (clozeRevealed || clozeIndex >= clozeQueue.length) return;
-  const entry = clozeQueue[clozeIndex];
-  const v = entry[1];
-  const input = document.getElementById('cloze-input');
-  const ok = isClozeCorrect(input.value, v, entry.matchedForm);
-  clozeAnswered++;
-  if (ok) clozeCorrect++;
-  revealCloze(ok, input.value);
-}
-function revealCloze(ok, typed) {
+function revealCloze() {
   if (clozeRevealed || clozeIndex >= clozeQueue.length) return;
   clozeRevealed = true;
   const entry = clozeQueue[clozeIndex];
   const v = entry[1];
-  const answer = entry.matchedForm || v.word;
-  const showVerdict = typeof ok === 'boolean';
   const blank = document.getElementById('cloze-blank');
   if (blank) {
-    blank.textContent = answer;
-    blank.classList.add(showVerdict && ok ? 'cloze-fill-correct' : 'cloze-fill-wrong');
-    if (!showVerdict || ok) blank.classList.remove('cloze-fill-wrong');
-  }
-  const verdict = document.getElementById('cloze-verdict');
-  if (showVerdict) {
-    verdict.innerHTML = ok
-      ? '<span style="color:var(--green);">&#11044; 正解！</span>'
-      : `<span style="color:var(--red);">&#10006; 惜しい</span> <span style="font-size:13px; color:var(--text2);">入力: ${escapeHtml(typed || '(空欄)')}</span>`;
-  } else {
-    verdict.innerHTML = '<span style="color:var(--text2); font-size:16px;">答えを表示しました</span>';
+    blank.textContent = entry.matchedForm || v.word;
+    blank.classList.add('revealed');
   }
   document.getElementById('cloze-answer').textContent = v.word;
   document.getElementById('cloze-answer-ja').textContent = v.japanese || '';
-  document.getElementById('cloze-full').innerHTML = `${escapeHtml(v.example)}<div style="font-size:13px; color:var(--text2); margin-top:4px;">${escapeHtml(v.exampleJa || '')}</div>`;
   const en = getEnrichment(entry[0]);
   const nuanceEl = document.getElementById('cloze-nuance');
   nuanceEl.style.display = en && en.nuance ? 'block' : 'none';
   nuanceEl.innerHTML = en && en.nuance ? '&#128172; ' + escapeHtml(en.nuance) : '';
-  document.getElementById('cloze-speak').onclick = () => speakTextSequence([v.example], 0.95);
+  const speak = document.getElementById('cloze-speak');
+  speak.onclick = (e) => { e.stopPropagation(); speakTextSequence([v.example], 0.95); };
+  document.getElementById('cloze-tap-hint').style.display = 'none';
   document.getElementById('cloze-result').style.display = 'block';
-  document.getElementById('cloze-input').disabled = true;
-  document.getElementById('cloze-submit-btn').style.display = 'none';
-  document.getElementById('cloze-reveal-btn').style.display = 'none';
   document.getElementById('cloze-next-btn').style.display = 'inline-flex';
 }
 function nextCloze() {
-  if (!clozeRevealed) { submitCloze(); return; }
+  if (!clozeRevealed) { revealCloze(); return; }
   clozeIndex++;
   showClozeCard();
+  window.scrollTo(0, 0);
 }
 function showClozeSummary() {
   document.getElementById('cloze-card').style.display = 'none';
   document.getElementById('cloze-progress').textContent = '';
+  document.getElementById('cloze-next-btn').style.display = 'none';
   const done = clozeQueue.length;
-  const pct = clozeAnswered ? Math.round(clozeCorrect / clozeAnswered * 100) : 0;
-  document.getElementById('cloze-summary-detail').innerHTML = clozeAnswered
-    ? `${done}問を練習 · 解答 ${clozeAnswered}問<br>正答率: <b style="font-size:16px;">${pct}%</b>（${clozeCorrect}/${clozeAnswered}）`
-    : `${done}問を練習しました`;
+  document.getElementById('cloze-summary-detail').textContent = `${done}問の穴埋めを確認しました`;
   const today = formatLocalDate();
   if (!state.dailyStats) state.dailyStats = {};
   if (!state.dailyStats[today]) state.dailyStats[today] = { wordsRead: 0, essaysRead: 0, vocabCount: 0, mastered: 0, reviewed: 0 };
