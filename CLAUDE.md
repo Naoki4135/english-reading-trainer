@@ -73,9 +73,9 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - Read Completeボタンは画面下部に固定表示
 
 ## 主要機能（2026-07-19更新）
-- **削除済み機能（復活させないこと）**: Gold Phrases（金フレ）全機能、VocabのDuo/Duo Seqフィルター、QuizのDuo Sentencesモード、SRSタブの弱点分析（苦手単語・品詞別正答率）は2026-07-19に削除済み
+- **削除済み機能（復活させないこと）**: Gold Phrases（金フレ）全機能、VocabのDuo/Duo Seqフィルター、QuizのDuo Sentencesモード、SRSタブの弱点分析（苦手単語・品詞別正答率）は2026-07-19に削除済み。**通訳練習モード（音声認識で日→英を採点）は2026-08-11に削除**（穴埋めクイズに置き換え。SpeechRecognition関連コードも全て除去済み）
 - **Vocabのシャッフル（2026-08-11にユーザー要望で復活）**: Allビューの「🔀 シャッフル」ボタンで表示順をランダム化、「🎲 並べ直す」で再抽選。`vocabShuffled`と`shuffleOrder`(key→順位のMap)で管理し、検索・フィルターを変えても並びが保たれる。旧実装のようなfilter値'shuffle'ではなく独立トグルにしてある
-- **通訳練習モード**（Quizタブ内）: Glossary例文ペアを使用。日→英はSpeechRecognitionで発話を文字起こしし単語一致率を採点、英→日は音声を聞いて自己チェック
+- **穴埋めクイズ**（Quizタブの「✏️ 穴埋め」。2026-08-11に通訳練習モードを廃止して置き換え）: Glossaryの例文から対象語をブランクにして入力させる。日本語訳を常時表示し、ヒントは**頭文字＋文字数**（`clozeHintText()`が `H_____ R___` の形を生成）＋訳語。判定は活用形も正解扱い（`clozeWordPattern()`が語尾変化・子音重複・y→ieを許容）。正解後に語のニュアンスと例文全体を表示。1セッション10問、`dailyStats[date].cloze`に記録。**例文に対象語が実際に出現する語だけを出題**する（`buildClozeQueue()`でフィルタ）
 - **実戦モード**（エッセイ再生）: 文ごとに話者・速度・ピッチをランダム化してリスニング負荷を上げる
 - **ブラインドモード**: エッセイ本文/Transcript/YouTubeスクリプトをblurで隠して耳だけで聞く（.blind-blurクラス）
 - **YouTubeリスニング**（Listenタブ）: URL+スクリプト貼り付けで動画教材を追加（state.youtubeItemsにlocalStorage保存）。YouTube IFrame APIで埋め込み再生し、タイムスタンプ付きスクリプトは再生位置に同期ハイライト・タップでシーク。速度0.5〜2.0x。listening-data.jsに`youtubeId`を持つアイテムを置けばtranslation/glossary付きの完全教材にもできる（Claude経由追加用）
@@ -96,7 +96,7 @@ Vault: `/Users/naokimatsui/Library/Mobile Documents/iCloud~md~obsidian/Documents
 - **会話文の音声（2026-08-01追加）**: `splitEssayForSpeech`が"Name: 発話"を検出し話者名を読み上げから除外、`assignDialogueVoices`が話者ごとに固定ボイス（1人目女性系/2人目男性系）を割当。実戦モードでも会話文は声固定
 - **Glossary網羅率**: 2026-08-01に全156本を監査し拾い漏れ307語を追加（glossary総数2,012）。新規エッセイは「難しい単語・表現はすべてピックアップ」を厳守
 - **瞬間英作文Drillタブ（2026-08-01追加）**: ナビ6番目。1日10問（ミス再出題最大3+現Lvドリル文+単語帳例文2）。自己チェック3択（言えた/惜しい/言えなかった）。直近正答率でLv1〜3自動昇降（80%↑で昇格、40%↓で降格）。ミスは`state.drill.missedPool`に入り「言えた2回」で卒業。`dailyStats.drilled`がストリークにカウント。state.drillは同期対象
-- **Vocab Review Conversations（2026-08-11追加）**: 既に単語帳に登録済みの語・イディオムだけで構成した復習用会話10本（topic=`Vocab Review Conversations`, difficulty=`Vocab Review`）。**ホームでは Essay Library とは別の専用セクション「🔁 Vocab Review Talks」に表示**（`#vocab-review-section`。`essayGenre()`が'vocab review'を最優先で判定し、`GENRE_ORDER`には含めないことで二重表示を防いでいる）。Glossaryは既存エントリの複製なので**vocab-enrichment.jsへの追記は不要**。増やす場合も既存2,029語からの選定を厳守（新語を入れるならenrichmentも追加すること）
+- **Vocab Review Conversations（2026-08-11追加）**: 既に単語帳に登録済みの語・イディオムだけで構成した復習用会話10本（topic=`Vocab Review Conversations`, difficulty=`Vocab Review`）。**全て100語以内**（90〜99語。ユーザー指定の上限なので超えないこと）。Essay Libraryの先頭ジャンル「🔁 Vocab Review Talks」として他ジャンルと同じ折りたたみ表示（`essayGenre()`が'vocab review'を最優先で判定。専用セクションは2026-08-11に統合して廃止）。Glossaryは既存エントリの複製なので**vocab-enrichment.jsへの追記は不要**。増やす場合も既存2,029語からの選定を厳守（新語を入れるならenrichmentも追加すること）
 - **Real Conversationsジャンル（2026-08-01追加）**: 2人の話者による会話スクリプト形式エッセイ（`Name: 発話`を\n\n区切り）。ライブラリで独立ジャンル🗣️。実戦モードで話者ごとに声が変わる
 - **自動クラウド同期（2026-07-31追加）**: GitHub Gist（非公開・`ert-sync.json`）を使ってデバイス間で学習データを自動同期。トークンはlocalStorage（`ert-sync-token`）のみに保存し、**stateやバックアップ・Sync Codeには絶対に含めない**。挙動: 起動時とフォアグラウンド復帰時に`cloudPull()`（フィールド単位マージ）、`saveState()`の30秒後と離脱時に`cloudPush()`。ペイロードは`buildSyncPayload()`（SRS進捗のみ、約200KB）。401はトークン失効表示
 - **SRSタブの学習記録（2026-08-02改良、2026-08-11に単語チェック追加）**: 日次(14日)/週次(12週)/月次(12ヶ月)を`setStatsPeriod()`で切替。`buildStatsBuckets()`が`dailyStats`を期間集計し、読んだ語数・クイズ復習数・単語チェック数・瞬間英作文の4グラフ＋前期間比サマリー（学習した日数つき）を表示。週は月曜始まり。その他の構成: Due alert / 長期グラフ2種 / Mastery Distribution / Device Sync / バックアップ。Upcoming Reviews・Study History・Vocabulary Growthグラフは削除済み（復活させない）
