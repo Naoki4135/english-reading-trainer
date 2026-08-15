@@ -24293,4 +24293,1229 @@ const ESSAYS = [
   ],
   "translation": "ブレイク: 副業を始めようかと考えてるんだ。ちょっと時間ある？\n\nサシャ: いいよ。話してみて。\n\nブレイク: 週末にコンサルを、ゼロから立ち上げるんだ。でも本業だけでもう余力がなくてさ。\n\nサシャ: なら、まずは様子を見てみたら。まだ何も辞めないで。\n\nブレイク: それもそうだね。もう一つの案は、貯金を注目株一本に入れることなんだ。\n\nサシャ: お願いだから、全部を一つに賭けるのはやめて。\n\nブレイク: わかってる、わかってるよ。分散して、安全策でいくんだね。\n\nサシャ: それと、いざという時の備えは残しておいて。何をするにもまず下調べをね。\n\nブレイク: わかった。じゃあ小さく始めるよ。冷静にさせてくれてありがとう。\n\nサシャ: いつでも。きっと報われるよ。"
 }
+,
+{
+  "id": "2026-08-16-011",
+  "date": "2026-08-16",
+  "topic": "Finance & Economics",
+  "title": "Reading the Central Bank Pivot",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 93,
+  "text": "After two years of aggressive tightening, several major central banks have begun to pivot toward rate cuts. I am cautiously optimistic, but I refuse to take the shift at face value. Policymakers rarely telegraph their intentions cleanly; forward guidance is often hedged, and disinflation can stall without warning. Markets, meanwhile, have priced in an easing cycle so quickly that any hawkish surprise could trigger a sharp repricing. Going forward, I will keep an eye on wage growth and services inflation, because those stubborn components ultimately determine whether this pivot proves durable or premature.",
+  "glossary": [
+    {
+      "word": "pivot",
+      "pos": "動詞/名詞",
+      "japanese": "方針転換（する）",
+      "definition": "a significant change in policy, strategy, or direction",
+      "example": "The Fed's pivot surprised bond investors last spring.",
+      "exampleJa": "FRBの方針転換は昨春、債券投資家を驚かせた。"
+    },
+    {
+      "word": "telegraph",
+      "pos": "動詞",
+      "japanese": "（意図を）事前に知らせる、予告する",
+      "definition": "to make one's intentions known in advance, often unintentionally",
+      "example": "Good negotiators never telegraph their next move.",
+      "exampleJa": "優れた交渉者は次の一手を事前に悟らせない。"
+    },
+    {
+      "word": "forward guidance",
+      "pos": "名詞",
+      "japanese": "フォワードガイダンス（将来の政策方針の示唆）",
+      "definition": "central bank communication about the likely future path of policy",
+      "example": "The bank's forward guidance hinted at two more cuts.",
+      "exampleJa": "中銀のフォワードガイダンスはあと2回の利下げを示唆した。"
+    },
+    {
+      "word": "hedged",
+      "pos": "形容詞",
+      "japanese": "含みを持たせた、断定を避けた",
+      "definition": "carefully qualified to avoid firm commitment",
+      "example": "Her hedged answer left the analysts unsatisfied.",
+      "exampleJa": "彼女の含みを持たせた回答にアナリストは物足りなさを感じた。"
+    },
+    {
+      "word": "disinflation",
+      "pos": "名詞",
+      "japanese": "ディスインフレ（インフレ率の低下）",
+      "definition": "a slowdown in the rate of inflation, not falling prices",
+      "example": "Disinflation continued as energy prices fell steadily.",
+      "exampleJa": "エネルギー価格の着実な下落とともにディスインフレが続いた。"
+    },
+    {
+      "word": "stall",
+      "pos": "動詞",
+      "japanese": "停滞する、失速する",
+      "definition": "to stop making progress",
+      "example": "Negotiations stalled after both sides refused concessions.",
+      "exampleJa": "双方が譲歩を拒み、交渉は停滞した。"
+    },
+    {
+      "word": "hawkish",
+      "pos": "形容詞",
+      "japanese": "タカ派的な（引き締めに積極的な）",
+      "definition": "favoring tighter monetary policy to fight inflation",
+      "example": "Hawkish comments from the governor lifted the currency.",
+      "exampleJa": "総裁のタカ派的な発言で通貨は上昇した。"
+    },
+    {
+      "word": "repricing",
+      "pos": "名詞",
+      "japanese": "価格の見直し・修正",
+      "definition": "a broad adjustment of asset prices to new expectations",
+      "example": "A sudden repricing of risk hit emerging markets.",
+      "exampleJa": "リスクの急激な価格修正が新興国市場を直撃した。"
+    }
+  ],
+  "translation": "2年にわたる積極的な金融引き締めの後、主要中央銀行のいくつかが利下げへと方針転換し始めた。私は慎重ながらも楽観的だが、この転換を額面通りに受け取るつもりはない。政策当局者が意図を明快に予告することは稀で、フォワードガイダンスはしばしば含みを持たせた表現になり、ディスインフレは前触れなく停滞しうる。一方、市場は緩和サイクルをあまりに素早く織り込んだため、タカ派的なサプライズがあれば急激な価格修正を引き起こしかねない。今後は賃金の伸びとサービスインフレを注視していく。この粘着的な要素こそが、今回の転換が持続的か時期尚早かを最終的に決めるからだ。"
+},
+{
+  "id": "2026-08-16-012",
+  "date": "2026-08-16",
+  "topic": "Finance & Economics",
+  "title": "The Quiet Boom in Private Credit",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 95,
+  "text": "Private credit has quietly become one of the fastest-growing corners of asset management. With bank lending constrained by regulation, direct lenders now bear risk that once sat on bank balance sheets, and assets under management have gone through the roof. The appeal is understandable: floating-rate yields, negotiated covenants, and insulation from daily price swings. Yet that opacity cuts both ways. Because loans are rarely traded, valuations can lag reality, masking deterioration until refinancing exposes it. As an allocator, I keep an eye on default rates and fundraising momentum, wary that today's abundance breeds tomorrow's complacency.",
+  "glossary": [
+    {
+      "word": "constrained",
+      "pos": "形容詞",
+      "japanese": "制約された",
+      "definition": "limited or restricted by outside forces",
+      "example": "Growth remained constrained by weak consumer demand.",
+      "exampleJa": "成長は消費需要の弱さに制約されたままだった。"
+    },
+    {
+      "word": "covenants",
+      "pos": "名詞",
+      "japanese": "（融資契約の）財務制限条項",
+      "definition": "conditions in a loan agreement that restrict the borrower",
+      "example": "The loan's covenants limit additional borrowing by the company.",
+      "exampleJa": "そのローンの財務制限条項は同社の追加借入を制限している。"
+    },
+    {
+      "word": "insulation",
+      "pos": "名詞",
+      "japanese": "遮断、（外部影響からの）保護",
+      "definition": "protection from outside influences or shocks",
+      "example": "Diversification offers some insulation from market shocks.",
+      "exampleJa": "分散投資は市場ショックからの一定の遮断効果をもたらす。"
+    },
+    {
+      "word": "opacity",
+      "pos": "名詞",
+      "japanese": "不透明性",
+      "definition": "the quality of being difficult to see through or understand",
+      "example": "Investors complained about the fund's opacity on fees.",
+      "exampleJa": "投資家は手数料に関するそのファンドの不透明性に不満を述べた。"
+    },
+    {
+      "word": "deterioration",
+      "pos": "名詞",
+      "japanese": "悪化、劣化",
+      "definition": "the process of becoming progressively worse",
+      "example": "Credit deterioration often appears late in the cycle.",
+      "exampleJa": "信用の悪化はサイクル後期に表れることが多い。"
+    },
+    {
+      "word": "refinancing",
+      "pos": "名詞",
+      "japanese": "借り換え",
+      "definition": "replacing an existing loan with a new one",
+      "example": "Many firms face refinancing at much higher rates.",
+      "exampleJa": "多くの企業がはるかに高い金利での借り換えに直面している。"
+    },
+    {
+      "word": "wary",
+      "pos": "形容詞",
+      "japanese": "警戒して、用心深い",
+      "definition": "cautious and watchful because of possible danger",
+      "example": "Lenders grew wary of highly leveraged borrowers.",
+      "exampleJa": "貸し手は高レバレッジの借り手への警戒を強めた。"
+    },
+    {
+      "word": "complacency",
+      "pos": "名詞",
+      "japanese": "慢心、油断",
+      "definition": "self-satisfaction that blinds one to risks",
+      "example": "Years of easy gains bred complacency among investors.",
+      "exampleJa": "何年も続いた楽な利益が投資家の慢心を生んだ。"
+    }
+  ],
+  "translation": "プライベートクレジットは、静かに資産運用業界で最も急成長する分野の一つとなった。銀行融資が規制で制約される中、かつて銀行のバランスシートに載っていたリスクを直接貸付ファンドが負うようになり、運用資産額は急増している。その魅力は理解できる。変動金利の利回り、交渉で定める財務制限条項、日々の価格変動からの遮断だ。しかし、その不透明性は諸刃の剣でもある。ローンはほとんど取引されないため、評価額が実態から遅れ、借り換えの局面で表面化するまで劣化が覆い隠されかねない。アロケーターとして、私はデフォルト率と資金調達の勢いを注視している。今日の潤沢さが明日の慢心を生むことを警戒しながら。"
+},
+{
+  "id": "2026-08-16-013",
+  "date": "2026-08-16",
+  "topic": "Business English",
+  "title": "Why Good Meetings Are Designed, Not Improvised",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 92,
+  "text": "Effective meetings rarely happen by accident. In my experience, the difference lies in preparation: a written agenda, a clear decision to be made, and a designated facilitator. Without these, discussions go off on tangents and eat up everyone's morning. When a debate concerns only two people, I ask them to take it offline. I also end every meeting by restating the key takeaway and assigning owners to each action item. This ritual sounds bureaucratic, yet it consistently halves our meeting time and, more importantly, ensures decisions actually survive beyond the conference room.",
+  "glossary": [
+    {
+      "word": "designated",
+      "pos": "形容詞",
+      "japanese": "指名された、指定の",
+      "definition": "officially chosen for a particular purpose or role",
+      "example": "Please wait in the designated area near the entrance.",
+      "exampleJa": "入口近くの指定エリアでお待ちください。"
+    },
+    {
+      "word": "facilitator",
+      "pos": "名詞",
+      "japanese": "進行役、ファシリテーター",
+      "definition": "a person who guides a meeting or discussion so it runs smoothly",
+      "example": "A skilled facilitator keeps every discussion focused and fair.",
+      "exampleJa": "熟練したファシリテーターはあらゆる議論を焦点の定まった公平なものに保つ。"
+    },
+    {
+      "word": "go off on tangents",
+      "pos": "イディオム",
+      "japanese": "話が脱線する",
+      "definition": "to start discussing something unrelated to the main topic",
+      "example": "Our professor often goes off on tangents during lectures.",
+      "exampleJa": "私たちの教授は講義中によく話が脱線する。"
+    },
+    {
+      "word": "eat up",
+      "pos": "句動詞",
+      "japanese": "（時間などを）食う、費やす",
+      "definition": "to use a large amount of time or resources",
+      "example": "Long commutes eat up two hours of my day.",
+      "exampleJa": "長い通勤が1日のうち2時間を食ってしまう。"
+    },
+    {
+      "word": "take it offline",
+      "pos": "イディオム",
+      "japanese": "会議外で個別に話す",
+      "definition": "to discuss a topic privately after the meeting ends",
+      "example": "Let's take it offline and discuss the details later.",
+      "exampleJa": "その件は会議の後で個別に詳細を話しましょう。"
+    },
+    {
+      "word": "action item",
+      "pos": "名詞",
+      "japanese": "アクションアイテム、実行すべき課題",
+      "definition": "a specific task assigned to someone after a meeting",
+      "example": "Each action item has an owner and a deadline.",
+      "exampleJa": "各アクションアイテムには担当者と期限がある。"
+    },
+    {
+      "word": "bureaucratic",
+      "pos": "形容詞",
+      "japanese": "官僚的な",
+      "definition": "involving complicated official rules and procedures",
+      "example": "The visa process was slow and highly bureaucratic.",
+      "exampleJa": "ビザの手続きは遅く、非常に官僚的だった。"
+    }
+  ],
+  "translation": "効果的な会議は偶然には生まれない。私の経験では、その差は準備にある。書面のアジェンダ、下すべき明確な意思決定、そして指名されたファシリテーターだ。これらがなければ、議論は脱線し、皆の午前中を食いつぶしてしまう。議論が2人だけに関わるものなら、私は会議の外で個別に話すよう頼む。また、毎回の会議の最後に重要なポイントを再確認し、各アクションアイテムに担当者を割り当てる。この習慣は官僚的に聞こえるかもしれないが、会議時間を一貫して半減させ、さらに重要なことに、決定事項が会議室の外でも確実に生き続けるようにしてくれる。"
+},
+{
+  "id": "2026-08-16-014",
+  "date": "2026-08-16",
+  "topic": "Business English",
+  "title": "Silos Are an Incentive Problem, Not a Communication Problem",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 97,
+  "text": "Organizational silos form quietly. Each department optimizes its own metrics, and before long, sales barely speaks to product. I have learned that silos are not a communication problem but an incentive problem: people protect whatever they are measured on. To counter this, we created shared goals that no single team can achieve alone, and we hold leaders accountable for cross-functional outcomes, not just their own numbers. We also rotate staff between departments so colleagues can bounce ideas off one another and find common ground. Going forward, I regard silo prevention as a design task, not an afterthought.",
+  "glossary": [
+    {
+      "word": "silo",
+      "pos": "名詞",
+      "japanese": "サイロ、縦割り組織",
+      "definition": "a department that works in isolation from others",
+      "example": "Information rarely flows between silos in large companies.",
+      "exampleJa": "大企業ではサイロ間で情報がほとんど流れない。"
+    },
+    {
+      "word": "metrics",
+      "pos": "名詞",
+      "japanese": "指標、評価基準",
+      "definition": "numbers used to measure performance or progress",
+      "example": "We track customer satisfaction through several key metrics.",
+      "exampleJa": "私たちは複数の主要指標で顧客満足度を追跡している。"
+    },
+    {
+      "word": "incentive",
+      "pos": "名詞",
+      "japanese": "インセンティブ、動機づけ",
+      "definition": "something that encourages a person to act in a certain way",
+      "example": "Bonuses give employees a strong incentive to perform.",
+      "exampleJa": "ボーナスは社員に努力する強い動機を与える。"
+    },
+    {
+      "word": "accountable",
+      "pos": "形容詞",
+      "japanese": "責任を負うべき、説明責任がある",
+      "definition": "required to explain and take responsibility for results",
+      "example": "Managers are accountable for their team's overall results.",
+      "exampleJa": "マネージャーはチーム全体の成果に責任を負う。"
+    },
+    {
+      "word": "cross-functional",
+      "pos": "形容詞",
+      "japanese": "部門横断の",
+      "definition": "involving people from different departments working together",
+      "example": "A cross-functional team launched the new product quickly.",
+      "exampleJa": "部門横断チームが新製品を素早く立ち上げた。"
+    },
+    {
+      "word": "find common ground",
+      "pos": "イディオム",
+      "japanese": "共通点を見いだす、歩み寄る",
+      "definition": "to discover shared opinions or interests with someone",
+      "example": "The two rivals finally found common ground on pricing.",
+      "exampleJa": "2つのライバル企業は価格面でついに歩み寄った。"
+    },
+    {
+      "word": "going forward",
+      "pos": "イディオム",
+      "japanese": "今後、これから先",
+      "definition": "from now on; in the future",
+      "example": "Going forward, we will review budgets every quarter.",
+      "exampleJa": "今後は四半期ごとに予算を見直します。"
+    },
+    {
+      "word": "afterthought",
+      "pos": "名詞",
+      "japanese": "後付けの考え、付け足し",
+      "definition": "something added later because it was not planned at first",
+      "example": "Security was treated as an afterthought in the design.",
+      "exampleJa": "設計ではセキュリティが後回しの付け足しとして扱われた。"
+    }
+  ],
+  "translation": "組織のサイロは静かに形成される。各部署が自らの指標を最適化し、気づけば営業はプロダクト部門とほとんど話さなくなる。私が学んだのは、サイロはコミュニケーションの問題ではなくインセンティブの問題だということだ。人は自分が評価される対象を守ろうとする。これに対抗するため、私たちはどの単独チームでも達成できない共通目標を設け、リーダーには自部門の数字だけでなく部門横断の成果に責任を持たせている。また、部署間で人材をローテーションさせ、同僚同士が意見をぶつけ合い、共通点を見いだせるようにしている。今後、私はサイロ防止を後付けの対応ではなく設計課題として捉えていく。"
+},
+{
+  "id": "2026-08-16-015",
+  "date": "2026-08-16",
+  "topic": "Native Collocations",
+  "title": "Pitching a New Fund",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 90,
+  "text": "Last quarter, I had to pitch a new fund concept to our investment committee. To strike a balance between ambition and realism, I spent a week gathering data to make a compelling case. Beforehand, I bounced ideas off a colleague, whose candid feedback helped me manage expectations about first-year inflows. In the meeting, one director was quick to raise concerns about fees, but I stood firm on pricing. Now the idea is starting to gain traction internally. Going forward, I will take ownership of the launch and meet every deadline.",
+  "glossary": [
+    {
+      "word": "strike a balance",
+      "pos": "collocation",
+      "japanese": "バランスを取る、両立させる",
+      "definition": "to find a sensible middle point between two competing demands",
+      "example": "Managers must strike a balance between speed and quality.",
+      "exampleJa": "管理職はスピードと品質のバランスを取らなければならない。"
+    },
+    {
+      "word": "make a compelling case",
+      "pos": "collocation",
+      "japanese": "説得力のある主張をする",
+      "definition": "to present arguments strong enough to convince others",
+      "example": "She made a compelling case for expanding into Asia.",
+      "exampleJa": "彼女はアジア進出について説得力のある主張を展開した。"
+    },
+    {
+      "word": "candid feedback",
+      "pos": "collocation",
+      "japanese": "率直なフィードバック",
+      "definition": "honest, direct comments, even when they are hard to hear",
+      "example": "I asked my mentor for candid feedback on my draft.",
+      "exampleJa": "メンターに草稿への率直なフィードバックを求めた。"
+    },
+    {
+      "word": "manage expectations",
+      "pos": "collocation",
+      "japanese": "期待値を調整する",
+      "definition": "to help others hold realistic hopes about an outcome",
+      "example": "We managed expectations by sharing conservative forecasts early.",
+      "exampleJa": "保守的な予測を早めに共有して、期待値を調整した。"
+    },
+    {
+      "word": "raise concerns",
+      "pos": "collocation",
+      "japanese": "懸念を表明する",
+      "definition": "to point out worries or possible problems openly",
+      "example": "Auditors raised concerns about the company's cash flow.",
+      "exampleJa": "監査人は会社のキャッシュフローに懸念を示した。"
+    },
+    {
+      "word": "gain traction",
+      "pos": "collocation",
+      "japanese": "支持を得始める、軌道に乗り出す",
+      "definition": "to start becoming accepted, popular, or successful",
+      "example": "The new app quickly gained traction among younger users.",
+      "exampleJa": "その新アプリは若年層の間で急速に広まった。"
+    },
+    {
+      "word": "take ownership",
+      "pos": "collocation",
+      "japanese": "主体的に責任を持つ、自分事として引き受ける",
+      "definition": "to accept full responsibility for a task or result",
+      "example": "Each engineer takes ownership of the features they build.",
+      "exampleJa": "各エンジニアは自分が作る機能に主体的な責任を持つ。"
+    },
+    {
+      "word": "going forward",
+      "pos": "collocation",
+      "japanese": "今後は、これから先",
+      "definition": "from now on; in the future",
+      "example": "Going forward, all reports will be submitted online.",
+      "exampleJa": "今後、すべての報告書はオンラインで提出される。"
+    }
+  ],
+  "translation": "先四半期、私は新しいファンドのコンセプトを投資委員会にプレゼンすることになった。野心と現実性のバランスを取るため、1週間かけてデータを集め、説得力のある主張を組み立てた。事前に同僚にアイデアをぶつけてみたところ、彼女の率直なフィードバックのおかげで、初年度の資金流入に関する期待値を調整できた。会議では、ある取締役がすかさず手数料への懸念を示したが、私は価格設定については断固譲らなかった。今、このアイデアは社内で徐々に支持を集め始めている。今後はローンチを自分事として引き受け、すべての締め切りを守るつもりだ。"
+},
+{
+  "id": "2026-08-16-016",
+  "date": "2026-08-16",
+  "topic": "Native Collocations",
+  "title": "Guarding My Saturday Mornings",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 96,
+  "text": "On Saturdays I guard my mornings carefully. Weekday meetings eat up my energy, so I sleep in, brew a strong pot of coffee, and take a stroll along the river to clear my head. Then I run errands; the market near my place sells fresh produce at honest prices, and choosing vegetables works wonders for my mood. Back home, I make a simple home-cooked meal and spend quality time with my wife. By evening I am glad to call it a day early, because this slow rhythm helps me recharge my batteries for the week ahead.",
+  "glossary": [
+    {
+      "word": "take a stroll",
+      "pos": "collocation",
+      "japanese": "散歩する、ぶらぶら歩く",
+      "definition": "to walk slowly and casually for pleasure",
+      "example": "We took a stroll through the old town after dinner.",
+      "exampleJa": "夕食後、旧市街を散歩した。"
+    },
+    {
+      "word": "clear my head",
+      "pos": "collocation",
+      "japanese": "頭をすっきりさせる",
+      "definition": "to refresh one's mind so one can think clearly again",
+      "example": "I went outside to clear my head before the exam.",
+      "exampleJa": "試験の前に頭をすっきりさせようと外に出た。"
+    },
+    {
+      "word": "run errands",
+      "pos": "collocation",
+      "japanese": "用事を済ませる",
+      "definition": "to go out to do small necessary tasks like shopping",
+      "example": "I spent the afternoon running errands around the neighborhood.",
+      "exampleJa": "午後は近所で用事を済ませて回った。"
+    },
+    {
+      "word": "fresh produce",
+      "pos": "collocation",
+      "japanese": "新鮮な農産物（野菜・果物）",
+      "definition": "fruits and vegetables that have been recently harvested",
+      "example": "The store is known for its locally grown fresh produce.",
+      "exampleJa": "その店は地元産の新鮮な農産物で知られている。"
+    },
+    {
+      "word": "home-cooked meal",
+      "pos": "collocation",
+      "japanese": "手料理、家庭料理",
+      "definition": "a meal prepared at home rather than bought outside",
+      "example": "Nothing beats a home-cooked meal after a long trip.",
+      "exampleJa": "長旅の後は手料理に勝るものはない。"
+    },
+    {
+      "word": "quality time",
+      "pos": "collocation",
+      "japanese": "（大切な人と過ごす）充実した時間",
+      "definition": "time devoted to giving someone your full attention",
+      "example": "He set aside weekends for quality time with his kids.",
+      "exampleJa": "彼は週末を子どもとの充実した時間にあてた。"
+    },
+    {
+      "word": "recharge my batteries",
+      "pos": "collocation",
+      "japanese": "英気を養う、充電する",
+      "definition": "to rest in order to regain one's energy",
+      "example": "A week off helped me recharge my batteries completely.",
+      "exampleJa": "1週間の休暇で完全に英気を養うことができた。"
+    },
+    {
+      "word": "call it a day",
+      "pos": "collocation",
+      "japanese": "今日はここまでにする",
+      "definition": "to stop working or an activity for the day",
+      "example": "It's getting late, so let's call it a day.",
+      "exampleJa": "遅くなってきたし、今日はここまでにしよう。"
+    }
+  ],
+  "translation": "土曜日の朝は大切に守っている。平日は会議にエネルギーを食われるので、土曜はゆっくり寝て、濃いコーヒーをポットで淹れ、頭をすっきりさせるために川沿いを散歩する。それから用事を済ませに出かける。近所の市場は新鮮な野菜や果物を良心的な値段で売っていて、野菜を選んでいるだけで驚くほど気分が良くなる。家に戻ると簡単な手料理を作り、妻と充実した時間を過ごす。夕方には早めに切り上げられるのがうれしい。このゆったりしたリズムのおかげで、来週に向けて英気を養えるのだから。"
+},
+{
+  "id": "2026-08-16-017",
+  "date": "2026-08-16",
+  "topic": "Slang & Casual",
+  "title": "Best Night Ever, No Cap",
+  "difficulty": "Casual English",
+  "wordCount": 96,
+  "text": "Okay, so I finally saw my favorite band live last night, and no cap, it was the best night of my life. I was cutting it close because of overtime, but I slid into the venue right as the lights dropped. Hearing the opening song live just hits different, I actually cried. The vocalist was on fire and absolutely ate that final chorus. The whole setlist has been living rent-free in my head since. My coworkers think I'm delulu for taking a day off for this, but iykyk. Lowkey already saving up for the next tour.",
+  "glossary": [
+    {
+      "word": "no cap",
+      "pos": "(slang)",
+      "japanese": "マジで、嘘じゃなく",
+      "definition": "used to emphasize that you are not lying or exaggerating",
+      "example": "No cap, this is the best ramen place in town.",
+      "exampleJa": "マジで、ここ街いちばんのラーメン屋だよ。"
+    },
+    {
+      "word": "hits different",
+      "pos": "(slang)",
+      "japanese": "格別に響く、別格だ",
+      "definition": "feels much better or more special than usual",
+      "example": "Coffee on a quiet Friday morning just hits different.",
+      "exampleJa": "静かな金曜の朝に飲むコーヒーは格別なんだよね。"
+    },
+    {
+      "word": "ate",
+      "pos": "(slang)",
+      "japanese": "完璧にキメた、圧巻だった",
+      "definition": "performed something extremely well and impressively",
+      "example": "Honestly, she ate that entire dance routine last night.",
+      "exampleJa": "正直、昨日の彼女のダンスは完璧にキメてたよ。"
+    },
+    {
+      "word": "rent-free",
+      "pos": "(slang)",
+      "japanese": "（頭から）離れない、住み着いている",
+      "definition": "occupying someone's thoughts constantly and effortlessly",
+      "example": "That embarrassing moment still lives rent-free in my head.",
+      "exampleJa": "あの恥ずかしい瞬間、いまだに頭から離れないんだよね。"
+    },
+    {
+      "word": "delulu",
+      "pos": "(slang)",
+      "japanese": "イタいくらい妄想的な",
+      "definition": "playfully delusional, especially about unrealistic hopes or dreams",
+      "example": "I'm delulu enough to think my idol noticed me.",
+      "exampleJa": "推しが私に気づいたって思うくらい、妄想入ってるの。"
+    },
+    {
+      "word": "iykyk",
+      "pos": "(slang)",
+      "japanese": "わかる人にはわかる",
+      "definition": "short for 'if you know, you know'; an inside reference",
+      "example": "That hidden menu item is life-changing, iykyk.",
+      "exampleJa": "あの裏メニューは人生変わるよ、わかる人にはわかるやつ。"
+    },
+    {
+      "word": "lowkey",
+      "pos": "(slang)",
+      "japanese": "ひそかに、ちょっと",
+      "definition": "secretly or slightly, without wanting to admit it openly",
+      "example": "I lowkey want to skip the party tonight.",
+      "exampleJa": "今夜のパーティー、正直ちょっとサボりたいんだよね。"
+    },
+    {
+      "word": "cutting it close",
+      "pos": "(idiom)",
+      "japanese": "ギリギリになる",
+      "definition": "leaving barely enough time to do something",
+      "example": "Arriving five minutes before boarding is cutting it close.",
+      "exampleJa": "搭乗5分前に着くなんてギリギリすぎるよ。"
+    },
+    {
+      "word": "on fire",
+      "pos": "(idiom)",
+      "japanese": "絶好調で",
+      "definition": "performing extremely well; unstoppable",
+      "example": "Our team was on fire during the second half.",
+      "exampleJa": "後半、うちのチームは絶好調だった。"
+    }
+  ],
+  "translation": "いや聞いて、昨日の夜ついに大好きなバンドのライブに行ってきたんだけど、マジで人生最高の夜だった。残業のせいでギリギリで、照明が落ちる直前に会場へ滑り込みセーフ。オープニング曲を生で聴くと響き方が全然違って、普通に泣いた。ボーカルは絶好調で、最後のサビは完全に圧巻だった。あれからセトリがずっと頭に住み着いて離れない。これのために平日休むなんて、同僚には妄想入ってるって思われてるけど、わかる人にはわかるやつ。次のツアーに向けて、実はもうこっそり貯金始めてる。"
+},
+{
+  "id": "2026-08-16-018",
+  "date": "2026-08-16",
+  "topic": "Slang & Casual",
+  "title": "My Saturday Got Cooked",
+  "difficulty": "Casual English",
+  "wordCount": 98,
+  "text": "My Saturday was supposed to be productive. Instead I stayed up doomscrolling till 3 a.m., so I had to bail on leg day, obviously. My friend swore this new brunch spot was worth a shot, but it was honestly mid, and I'm still salty about paying fifteen bucks for cold pancakes. Then it started pouring the second we hit the hiking trail. We were cooked, soaked through in two minutes. My phone died too, so zero flex pics for the group chat. By four I called it a day and went home to touch grass in my backyard.",
+  "glossary": [
+    {
+      "word": "doomscrolling",
+      "pos": "(slang)",
+      "japanese": "（暗いニュースを）延々スクロールすること",
+      "definition": "endlessly scrolling through negative news or social media",
+      "example": "I need to stop doomscrolling before bed every night.",
+      "exampleJa": "毎晩寝る前のダラダラスクロール、やめなきゃ。"
+    },
+    {
+      "word": "bail on",
+      "pos": "(slang)",
+      "japanese": "〜をドタキャンする、すっぽかす",
+      "definition": "to cancel plans with someone, often at the last minute",
+      "example": "He bailed on our movie night again last week.",
+      "exampleJa": "彼、先週また映画の約束すっぽかしたんだよ。"
+    },
+    {
+      "word": "mid",
+      "pos": "(slang)",
+      "japanese": "ビミョー、パッとしない",
+      "definition": "mediocre; disappointingly average",
+      "example": "The sequel was honestly pretty mid, don't bother.",
+      "exampleJa": "続編は正直かなりビミョーだったよ、見なくていい。"
+    },
+    {
+      "word": "salty",
+      "pos": "(slang)",
+      "japanese": "根に持っている、不機嫌な",
+      "definition": "bitter or annoyed, usually about something small",
+      "example": "He's still salty about losing that video game.",
+      "exampleJa": "彼、あのゲームで負けたのまだ根に持ってるよ。"
+    },
+    {
+      "word": "cooked",
+      "pos": "(slang)",
+      "japanese": "終わった、詰んだ、ボロボロ",
+      "definition": "exhausted, ruined, or in serious trouble",
+      "example": "If the client sees this typo, we're cooked.",
+      "exampleJa": "クライアントがこの誤字を見たら、うちら終わりだよ。"
+    },
+    {
+      "word": "flex",
+      "pos": "(slang)",
+      "japanese": "自慢（する）、見せびらかし",
+      "definition": "to show off, or something that shows off",
+      "example": "Posting your new watch is such a flex.",
+      "exampleJa": "新しい時計を投稿するとか、完全に自慢じゃん。"
+    },
+    {
+      "word": "touch grass",
+      "pos": "(slang)",
+      "japanese": "ネットを離れて外に出る",
+      "definition": "to go outside and take a break from the internet",
+      "example": "Log off and go touch grass for a while.",
+      "exampleJa": "ログオフして、ちょっと外の空気吸ってきなよ。"
+    },
+    {
+      "word": "bucks",
+      "pos": "(slang)",
+      "japanese": "ドル",
+      "definition": "an informal word for dollars",
+      "example": "This tiny burger costs twelve bucks? That's crazy.",
+      "exampleJa": "このちっちゃいバーガーが12ドル？やばくない？"
+    }
+  ],
+  "translation": "土曜日は生産的に過ごすはずだった。なのに夜中3時まで延々スマホでネガティブなニュースをスクロールしちゃって、当然レッグデーはドタキャン。友達が「試す価値あり」って言い張ってた新しいブランチの店も正直ビミョーで、冷めたパンケーキに15ドルも払ったの、いまだに根に持ってる。そのあとハイキングコースに着いた瞬間に土砂降り。2分でずぶ濡れ、完全に終わった。おまけにスマホも死んで、グループチャットに自慢写真もゼロ。4時には切り上げて、家に帰って庭の芝生に触れて現実に戻りました。"
+},
+{
+  "id": "2026-08-16-019",
+  "date": "2026-08-16",
+  "topic": "Science & Technology",
+  "title": "How Sleep Builds Memory",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 95,
+  "text": "Neuroscientists have long suspected that sleep does more than restore energy. During deep sleep, the hippocampus replays the day's experiences, transferring fragile memories to the cortex for long-term storage, a process called consolidation. Studies show that a single night of poor sleep can impair this transfer, and chronic deprivation may accelerate cognitive decline. Sleep also seems to work wonders for insight: as the brain reorganizes information overnight, it helps us draw conclusions that elude us while awake. Researchers now keep track of sleep stages with wearable devices, hoping to optimize how and when we learn.",
+  "glossary": [
+    {
+      "word": "hippocampus",
+      "pos": "noun",
+      "japanese": "海馬（記憶を司る脳の部位）",
+      "definition": "a brain structure essential for forming new memories",
+      "example": "The hippocampus plays a key role in forming memories.",
+      "exampleJa": "海馬は記憶の形成において重要な役割を果たす。"
+    },
+    {
+      "word": "consolidation",
+      "pos": "noun",
+      "japanese": "（記憶の）固定・定着、統合",
+      "definition": "the process of making something stable, firm, or unified",
+      "example": "Memory consolidation occurs mainly during deep sleep at night.",
+      "exampleJa": "記憶の固定は主に夜の深い睡眠中に起こる。"
+    },
+    {
+      "word": "impair",
+      "pos": "verb",
+      "japanese": "損なう、悪化させる",
+      "definition": "to weaken or damage something, especially an ability",
+      "example": "Loud noise can impair your ability to concentrate.",
+      "exampleJa": "大きな騒音は集中力を損なうことがある。"
+    },
+    {
+      "word": "deprivation",
+      "pos": "noun",
+      "japanese": "欠乏、剥奪",
+      "definition": "the state of lacking something necessary, such as sleep",
+      "example": "Sleep deprivation slows reaction times and weakens judgment.",
+      "exampleJa": "睡眠不足は反応速度を鈍らせ、判断力を弱める。"
+    },
+    {
+      "word": "cognitive decline",
+      "pos": "noun phrase",
+      "japanese": "認知機能の低下",
+      "definition": "a gradual worsening of memory and thinking abilities",
+      "example": "Regular exercise may slow cognitive decline in older adults.",
+      "exampleJa": "定期的な運動は高齢者の認知機能の低下を遅らせる可能性がある。"
+    },
+    {
+      "word": "elude",
+      "pos": "verb",
+      "japanese": "（理解・記憶などが）〜から逃れる、つかめない",
+      "definition": "to escape from or fail to be grasped by someone",
+      "example": "The right word eluded me during the presentation.",
+      "exampleJa": "プレゼンの最中、ぴったりの言葉がどうしても出てこなかった。"
+    }
+  ],
+  "translation": "神経科学者たちは以前から、睡眠にはエネルギー回復以上の働きがあると考えてきた。深い睡眠の間、海馬はその日の経験を再生し、壊れやすい記憶を長期保存のために大脳皮質へ転送する。これは「固定（コンソリデーション）」と呼ばれるプロセスだ。研究によれば、たった一晩の睡眠不足でもこの転送は損なわれ、慢性的な睡眠不足は認知機能の低下を加速させる恐れがある。睡眠はひらめきにも驚くほどの効果があるようだ。脳が一晩かけて情報を再整理することで、起きている間にはどうしても出てこなかった結論を導き出す手助けをしてくれる。研究者たちは今、ウェアラブル端末で睡眠段階を記録し、「どのように、いつ学ぶか」の最適化を目指している。"
+},
+{
+  "id": "2026-08-16-020",
+  "date": "2026-08-16",
+  "topic": "Science & Technology",
+  "title": "Fusion Power: Still Twenty Years Away?",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 92,
+  "text": "For decades, fusion power has been the energy source of the future, and skeptics joke it always will be. Yet researchers are finally making headway. In 2022, a U.S. laboratory achieved ignition, producing more energy from a fuel pellet than the lasers delivered to it. Formidable obstacles remain: reactors must sustain plasma hotter than the sun's core, and the technology still eats up enormous capital. Private startups, backed by venture funding, claim they can deliver commercial reactors by the 2030s. Whether that optimism will hold water, only sustained engineering progress can tell.",
+  "glossary": [
+    {
+      "word": "ignition",
+      "pos": "noun",
+      "japanese": "点火（核融合が自立的に燃え始めること）",
+      "definition": "the moment when a fuel or reaction starts to burn",
+      "example": "The team celebrated when the reactor finally achieved ignition.",
+      "exampleJa": "炉がついに点火を達成し、チームは歓喜に沸いた。"
+    },
+    {
+      "word": "pellet",
+      "pos": "noun",
+      "japanese": "小球、ペレット",
+      "definition": "a small, rounded, compressed mass of a substance",
+      "example": "Lasers compress a tiny fuel pellet within nanoseconds.",
+      "exampleJa": "レーザーはナノ秒のうちに小さな燃料ペレットを圧縮する。"
+    },
+    {
+      "word": "plasma",
+      "pos": "noun",
+      "japanese": "プラズマ（電離した気体）",
+      "definition": "an extremely hot, electrically charged state of matter",
+      "example": "Magnetic fields confine the plasma inside the reactor.",
+      "exampleJa": "磁場が炉の内部にプラズマを閉じ込める。"
+    },
+    {
+      "word": "formidable",
+      "pos": "adjective",
+      "japanese": "手ごわい、恐るべき",
+      "definition": "very difficult to deal with and inspiring respect or fear",
+      "example": "The startup faced formidable competition from established rivals.",
+      "exampleJa": "そのスタートアップは既存の競合という手ごわい相手に直面した。"
+    },
+    {
+      "word": "skeptic",
+      "pos": "noun",
+      "japanese": "懐疑論者",
+      "definition": "a person who doubts claims until seeing strong evidence",
+      "example": "Even skeptics admitted the experiment was a real breakthrough.",
+      "exampleJa": "懐疑論者でさえ、その実験が真のブレークスルーだと認めた。"
+    },
+    {
+      "word": "hold water",
+      "pos": "idiom",
+      "japanese": "筋が通る、論理的に成り立つ",
+      "definition": "to remain logical and valid when examined closely",
+      "example": "His explanation simply does not hold water under scrutiny.",
+      "exampleJa": "彼の説明は精査すればまったく筋が通らない。"
+    }
+  ],
+  "translation": "何十年もの間、核融合発電は「未来のエネルギー源」であり続けてきた。懐疑論者は「これからもずっと未来のままだ」と皮肉る。しかし研究者たちはついに前進し始めている。2022年、米国の研究所は「点火」を達成し、燃料ペレットに照射したレーザーのエネルギーを上回るエネルギーを生み出したのだ。それでも障害は手ごわい。炉は太陽の中心部より高温のプラズマを維持しなければならず、この技術はいまだに莫大な資本を食いつぶす。ベンチャー資金を後ろ盾とする民間スタートアップは、2030年代までに商用炉を実現できると主張する。その楽観論が筋の通ったものかどうかは、地道な工学的進歩の積み重ねだけが教えてくれるだろう。"
+},
+{
+  "id": "2026-08-16-021",
+  "date": "2026-08-16",
+  "topic": "Society & Culture",
+  "title": "The Quiet Crisis of Falling Birthrates",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 98,
+  "text": "Across the developed world, fertility rates have fallen far below replacement level, and societies are struggling to keep pace with the consequences. Japan, South Korea, and much of Europe now come up against shrinking workforces and pension systems under mounting strain. Governments offer generous subsidies, yet such incentives rarely reverse the trend; the causes—career pressures, housing costs, shifting values—run deeper than economics. Going forward, aging nations must rethink immigration, automation, and retirement itself. The demographic shift is not a temporary dip but a structural change, and policies designed for growth must make way for an era of scarcity.",
+  "glossary": [
+    {
+      "word": "replacement level",
+      "pos": "名詞",
+      "japanese": "人口置換水準",
+      "definition": "人口を維持するのに必要な出生率の水準（約2.1）",
+      "example": "Birth rates in most rich countries are below replacement level.",
+      "exampleJa": "ほとんどの先進国の出生率は人口置換水準を下回っている。"
+    },
+    {
+      "word": "keep pace with",
+      "pos": "イディオム",
+      "japanese": "〜に遅れずついていく",
+      "definition": "変化や進展と同じ速さで対応し続けること",
+      "example": "Wages have failed to keep pace with rising prices.",
+      "exampleJa": "賃金は物価の上昇に追いついていない。"
+    },
+    {
+      "word": "mounting",
+      "pos": "形容詞",
+      "japanese": "増大する、高まる",
+      "definition": "圧力や問題などが次第に積み上がっていくさま",
+      "example": "The prime minister faced mounting pressure to resign.",
+      "exampleJa": "首相は辞任を求める圧力の高まりに直面した。"
+    },
+    {
+      "word": "subsidies",
+      "pos": "名詞",
+      "japanese": "補助金",
+      "definition": "政府が個人や産業を支援するために出すお金",
+      "example": "Farmers rely heavily on government subsidies to survive.",
+      "exampleJa": "農家は生き残るために政府の補助金に大きく依存している。"
+    },
+    {
+      "word": "incentive",
+      "pos": "名詞",
+      "japanese": "誘因、優遇策",
+      "definition": "人にある行動を促すための報酬や動機付け",
+      "example": "Cash incentives alone rarely change people's behavior.",
+      "exampleJa": "現金による優遇策だけで人々の行動が変わることはまれだ。"
+    },
+    {
+      "word": "demographic",
+      "pos": "形容詞",
+      "japanese": "人口統計の、人口動態の",
+      "definition": "人口の構成や変化に関する",
+      "example": "Demographic change is reshaping labor markets worldwide.",
+      "exampleJa": "人口動態の変化が世界中の労働市場を作り変えている。"
+    },
+    {
+      "word": "make way for",
+      "pos": "イディオム",
+      "japanese": "〜に道を譲る",
+      "definition": "新しいものが来られるように場所や地位を譲ること",
+      "example": "Old factories were demolished to make way for apartments.",
+      "exampleJa": "古い工場はマンション建設に道を譲るため取り壊された。"
+    },
+    {
+      "word": "scarcity",
+      "pos": "名詞",
+      "japanese": "欠乏、希少性",
+      "definition": "需要に対して供給が不足している状態",
+      "example": "Labor scarcity is pushing wages up in many industries.",
+      "exampleJa": "労働力不足が多くの業界で賃金を押し上げている。"
+    }
+  ],
+  "translation": "先進国全体で出生率は人口置換水準を大きく下回り、社会はその影響に対応しきれずにいる。日本、韓国、そして欧州の多くは今、縮小する労働力と、増大する負担にさらされる年金制度に直面している。各国政府は手厚い補助金を用意しているが、そうした優遇策で流れが反転することはまれだ。原因はキャリアの重圧、住宅費、価値観の変化など、経済だけでは説明しきれないほど根深い。今後、高齢化する国々は移民、自動化、そして退職のあり方そのものを再考しなければならない。この人口動態の変化は一時的な落ち込みではなく構造的な転換であり、成長を前提に設計された政策は、希少性の時代に道を譲らなければならないのだ。"
+},
+{
+  "id": "2026-08-16-022",
+  "date": "2026-08-16",
+  "topic": "Society & Culture",
+  "title": "Designing Against Urban Loneliness",
+  "difficulty": "TOEFL iBT+",
+  "wordCount": 97,
+  "text": "Modern cities promise connection yet often deliver isolation. Surveys show that residents of dense metropolises report loneliness at rates rivaling those of remote villages. Long commutes eat up hours once spent with family, and digital convenience has quietly eroded the casual encounters that once turned strangers into neighbors. Some cities are fighting back: Seoul funds communal kitchens, while Barcelona's superblocks reclaim streets for pedestrians. Such experiments can work wonders, but only when residents are willing to put themselves out there. Loneliness, researchers argue, is not a private failing but an urban design problem—and design problems have solutions.",
+  "glossary": [
+    {
+      "word": "metropolis",
+      "pos": "名詞",
+      "japanese": "大都市",
+      "definition": "国や地域の中心となる非常に大きな都市",
+      "example": "Tokyo is a sprawling metropolis of fourteen million people.",
+      "exampleJa": "東京は1400万人を抱える広大な大都市だ。"
+    },
+    {
+      "word": "rival",
+      "pos": "動詞",
+      "japanese": "〜に匹敵する",
+      "definition": "質や規模でほぼ同等であること",
+      "example": "Her home cooking rivals that of professional chefs.",
+      "exampleJa": "彼女の家庭料理はプロの料理人のものに匹敵する。"
+    },
+    {
+      "word": "commute",
+      "pos": "名詞",
+      "japanese": "通勤",
+      "definition": "自宅と職場・学校の間の定期的な移動",
+      "example": "My daily commute takes almost ninety minutes each way.",
+      "exampleJa": "私の毎日の通勤は片道ほぼ90分かかる。"
+    },
+    {
+      "word": "erode",
+      "pos": "動詞",
+      "japanese": "徐々にむしばむ、侵食する",
+      "definition": "少しずつ弱めたり削り取ったりすること",
+      "example": "Constant criticism slowly eroded her confidence at work.",
+      "exampleJa": "絶え間ない批判が職場での彼女の自信を徐々にむしばんだ。"
+    },
+    {
+      "word": "encounter",
+      "pos": "名詞",
+      "japanese": "出会い、遭遇",
+      "definition": "偶然の、予期しない出会い",
+      "example": "A chance encounter at a cafe changed her career.",
+      "exampleJa": "カフェでの偶然の出会いが彼女のキャリアを変えた。"
+    },
+    {
+      "word": "communal",
+      "pos": "形容詞",
+      "japanese": "共同の、共用の",
+      "definition": "共同体のメンバー全員で共有する",
+      "example": "The apartment building has a communal garden for residents.",
+      "exampleJa": "そのマンションには住民用の共用庭園がある。"
+    },
+    {
+      "word": "reclaim",
+      "pos": "動詞",
+      "japanese": "取り戻す",
+      "definition": "失われたものを再び自分のものにすること",
+      "example": "The city reclaimed the old docks as public parks.",
+      "exampleJa": "市は古い埠頭を公共の公園として取り戻した。"
+    },
+    {
+      "word": "work wonders",
+      "pos": "イディオム",
+      "japanese": "驚くほどの効果がある",
+      "definition": "予想以上に素晴らしい結果をもたらすこと",
+      "example": "A short walk every morning can work wonders.",
+      "exampleJa": "毎朝の短い散歩は驚くほどの効果がある。"
+    }
+  ],
+  "translation": "現代の都市はつながりを約束しながら、しばしば孤立をもたらす。調査によれば、人口密集の大都市の住民は、辺鄙な村に匹敵する割合で孤独を訴えている。長い通勤は、かつて家族と過ごした時間を食いつぶし、デジタルの利便性は、他人を隣人に変えてきた何気ない出会いを静かにむしばんできた。反撃に出る都市もある。ソウルは共同キッチンに資金を出し、バルセロナの「スーパーブロック」は通りを歩行者の手に取り戻している。こうした試みは驚くほどの効果を発揮しうるが、それは住民が思い切って一歩踏み出す気になって初めて実現する。孤独は個人の欠点ではなく都市デザインの問題であり、デザインの問題には解決策がある——研究者たちはそう主張している。"
+},
+{
+  "id": "2026-08-16-023",
+  "date": "2026-08-16",
+  "topic": "Real Conversations",
+  "title": "Booking a Doctor's Appointment",
+  "difficulty": "Casual English",
+  "wordCount": 95,
+  "text": "Dana: Riverside Clinic, this is Dana. How can I help you?\n\nKen: Hi, I need to book an appointment with Dr. Lee. I'm running low on my allergy meds.\n\nDana: Let's see... she's booked solid this week. I could squeeze you in Friday at 4:40.\n\nKen: Friday works, but 4:40 is cutting it close. I finish at 4:30.\n\nDana: Hmm. There's a cancellation Thursday at noon, if you can swing it.\n\nKen: I'll take it. Honestly, rescheduling around work is such a pain.\n\nDana: Tell me about it. Your date of birth?\n\nKen: March 3rd, 1990.\n\nDana: Perfect, you're all set. See you Thursday.",
+  "glossary": [
+    {
+      "word": "running low on",
+      "pos": "idiom",
+      "japanese": "〜が少なくなっている",
+      "definition": "to have almost none of something left",
+      "example": "We're running low on milk, so I'll grab some tonight.",
+      "exampleJa": "牛乳が少なくなってきたから、今夜買ってくるね。"
+    },
+    {
+      "word": "booked solid",
+      "pos": "idiom",
+      "japanese": "予約でぎっしり埋まって",
+      "definition": "completely full, with no appointments or openings available",
+      "example": "The salon is booked solid every Saturday before the holidays.",
+      "exampleJa": "そのサロンは連休前の土曜はいつも予約でぎっしりだ。"
+    },
+    {
+      "word": "squeeze you in",
+      "pos": "phrasal verb",
+      "japanese": "（予定に）ねじ込む、無理に入れる",
+      "definition": "to find time for someone in a very full schedule",
+      "example": "The dentist can squeeze you in tomorrow between two patients.",
+      "exampleJa": "歯医者さんは明日、患者さんの合間にあなたをねじ込めますよ。"
+    },
+    {
+      "word": "cutting it close",
+      "pos": "idiom",
+      "japanese": "ギリギリのタイミングで行動する",
+      "definition": "leaving barely enough time to do something",
+      "example": "Leaving at eight for a nine o'clock flight is cutting it close.",
+      "exampleJa": "9時のフライトに8時に出発するのはギリギリすぎるよ。"
+    },
+    {
+      "word": "swing it",
+      "pos": "idiom",
+      "japanese": "何とか都合をつける、やりくりする",
+      "definition": "to manage to arrange or afford something",
+      "example": "Can you swing it if we move the meeting to Friday?",
+      "exampleJa": "会議を金曜に動かしても、都合つけられそう？"
+    },
+    {
+      "word": "such a pain",
+      "pos": "idiom",
+      "japanese": "本当に面倒くさい",
+      "definition": "very annoying or troublesome",
+      "example": "Parking downtown is such a pain on weekend evenings.",
+      "exampleJa": "週末の夜に中心街で駐車するのは本当に面倒だ。"
+    },
+    {
+      "word": "tell me about it",
+      "pos": "idiom",
+      "japanese": "本当にそうだよね（強い同意）",
+      "definition": "used to agree that something is annoying or true",
+      "example": "\"This heat is brutal.\" \"Tell me about it.\"",
+      "exampleJa": "「この暑さはきつい」「本当にそれな」"
+    },
+    {
+      "word": "all set",
+      "pos": "idiom",
+      "japanese": "準備完了で、手続きがすべて済んで",
+      "definition": "completely ready; finished with a process or arrangement",
+      "example": "You're all set. Your appointment is Tuesday at ten.",
+      "exampleJa": "これで完了です。ご予約は火曜の10時です。"
+    }
+  ],
+  "translation": "ダナ: リバーサイド・クリニックのダナです。ご用件をどうぞ。\n\nケン: こんにちは、リー先生の予約を取りたいんです。アレルギーの薬が少なくなってきていて。\n\nダナ: ええと…先生は今週いっぱい予約で埋まっていますね。金曜の4時40分ならねじ込めますよ。\n\nケン: 金曜は大丈夫ですが、4時40分はギリギリですね。仕事が4時半に終わるので。\n\nダナ: うーん。都合がつくなら、木曜の正午にキャンセルが出ていますよ。\n\nケン: それでお願いします。正直、仕事に合わせて予定を組み直すのは本当に面倒で。\n\nダナ: 本当にそうですよね。生年月日を伺えますか？\n\nケン: 1990年3月3日です。\n\nダナ: はい、これで完了です。木曜にお待ちしていますね。"
+},
+{
+  "id": "2026-08-16-024",
+  "date": "2026-08-16",
+  "topic": "Real Conversations",
+  "title": "A Bold Change at the Hair Salon",
+  "difficulty": "Casual English",
+  "wordCount": 99,
+  "text": "Mia: So, what are we doing today? Just a trim?\n\nRyo: Actually, I want something bolder. Maybe a perm?\n\nMia: Ooh, fun. Your hair's on the fine side, but a soft wave could work wonders.\n\nRyo: Let's do it. How long will it take? I have dinner at seven.\n\nMia: About two hours, so you're fine. Fair warning, perms aren't cheap. Ninety with the cut.\n\nRyo: A bit steep, but you only live once. Worth a shot.\n\nMia: That's the spirit. Your usual coffee while we get started?\n\nRyo: Count me in. Oh, and go easy on the bangs this time.\n\nMia: Ha, noted. One disaster was enough.",
+  "glossary": [
+    {
+      "word": "on the fine side",
+      "pos": "idiom",
+      "japanese": "（どちらかといえば）細めで",
+      "definition": "tending to be fine or thin; somewhat fine",
+      "example": "His hair is on the fine side, so avoid heavy products.",
+      "exampleJa": "彼の髪は細めだから、重いスタイリング剤は避けて。"
+    },
+    {
+      "word": "work wonders",
+      "pos": "idiom",
+      "japanese": "驚くほどの効果がある",
+      "definition": "to have a surprisingly good effect on something",
+      "example": "A good night's sleep can work wonders for your mood.",
+      "exampleJa": "ぐっすり眠ると気分が驚くほど良くなるよ。"
+    },
+    {
+      "word": "fair warning",
+      "pos": "noun phrase",
+      "japanese": "前もっての注意、先に言っておくと",
+      "definition": "advance notice given before something unpleasant or surprising",
+      "example": "Fair warning, the spice level at that place is no joke.",
+      "exampleJa": "先に言っておくけど、あの店の辛さは本気だよ。"
+    },
+    {
+      "word": "steep",
+      "pos": "adjective",
+      "japanese": "（値段が）高すぎる",
+      "definition": "too expensive; unreasonably high in price",
+      "example": "Fifty dollars for parking? That's pretty steep, honestly.",
+      "exampleJa": "駐車料金が50ドル？正直、それはかなり高いね。"
+    },
+    {
+      "word": "worth a shot",
+      "pos": "idiom",
+      "japanese": "やってみる価値はある",
+      "definition": "worth trying even though success is not certain",
+      "example": "Asking for a discount never hurts; it's worth a shot.",
+      "exampleJa": "値引き交渉して損はないよ。やってみる価値はある。"
+    },
+    {
+      "word": "that's the spirit",
+      "pos": "idiom",
+      "japanese": "その意気だ、その調子",
+      "definition": "used to praise someone's positive or brave attitude",
+      "example": "\"I'll try again tomorrow.\" \"That's the spirit!\"",
+      "exampleJa": "「明日もう一回やってみるよ」「その意気だ！」"
+    },
+    {
+      "word": "go easy on",
+      "pos": "idiom",
+      "japanese": "〜を控えめにする、手加減する",
+      "definition": "to use less of something, or treat someone gently",
+      "example": "Go easy on the salt; I'm watching my blood pressure.",
+      "exampleJa": "塩は控えめにしてね。血圧に気をつけているんだ。"
+    },
+    {
+      "word": "bangs",
+      "pos": "noun",
+      "japanese": "前髪",
+      "definition": "hair cut straight across the forehead (American English)",
+      "example": "She got bangs and looks completely different now.",
+      "exampleJa": "彼女は前髪を作って、今や別人みたいだ。"
+    }
+  ],
+  "translation": "ミア: さて、今日はどうします？毛先を整えるだけ？\n\nリョウ: 実は、もっと思い切ったことをしたくて。パーマとか？\n\nミア: おお、いいですね。髪は細めだけど、ゆるめのウェーブなら驚くほど映えると思いますよ。\n\nリョウ: やりましょう。どれくらいかかります？7時に夕食があるんです。\n\nミア: 2時間くらいなので大丈夫。先に言っておくと、パーマは安くないですよ。カット込みで90ドルです。\n\nリョウ: ちょっと高いけど、人生一度きりですからね。やってみる価値はある。\n\nミア: その意気です。始める間、いつものコーヒーはいかがですか？\n\nリョウ: ぜひお願いします。あと、今回は前髪は控えめにしてくださいね。\n\nミア: ふふ、了解。惨事は一度で十分ですもんね。"
+},
+{
+  "id": "2026-08-16-025",
+  "date": "2026-08-16",
+  "topic": "Vocab Review Conversations",
+  "title": "Crunch Before Quarterly Earnings",
+  "difficulty": "Vocab Review",
+  "wordCount": 95,
+  "text": "Miles: Bianca, the quarterly numbers are due Friday, and requests keep piling up on my desk.\n\nBianca: Same here. Management is breathing down my neck about the fund performance summary.\n\nMiles: It feels like a race against the clock. Should we divide and conquer?\n\nBianca: Good idea. You take the equity section, and I'll handle the bond data.\n\nMiles: Deal. Can you hand off the client figures first thing tomorrow?\n\nBianca: Sure. Honestly, I almost pulled an all-nighter yesterday.\n\nMiles: Don't. If we crack on now, we won't cut it fine this time.\n\nBianca: Right. Let's make it work and celebrate on Friday.",
+  "glossary": [
+    {
+      "word": "pile up",
+      "pos": "phrasal verb",
+      "japanese": "積み重なる、山積みになる",
+      "definition": "to accumulate in increasing amounts",
+      "example": "Unread messages are piling up in my inbox.",
+      "exampleJa": "未読メッセージが受信箱に溜まっている。"
+    },
+    {
+      "word": "breathe down someone's neck",
+      "pos": "idiom",
+      "japanese": "しつこく催促する",
+      "definition": "to watch or pressure someone closely and annoyingly",
+      "example": "I can't focus with my boss breathing down my neck.",
+      "exampleJa": "上司にせっつかれていると集中できない。"
+    },
+    {
+      "word": "race against the clock",
+      "pos": "phrase",
+      "japanese": "時間と競争する、時間に追われる",
+      "definition": "to hurry to finish something before a time limit",
+      "example": "Engineers raced against the clock to restore the system.",
+      "exampleJa": "技術者たちはシステム復旧のため時間と競争した。"
+    },
+    {
+      "word": "divide and conquer",
+      "pos": "idiom",
+      "japanese": "手分けして片づける",
+      "definition": "to split a big task between people to finish faster",
+      "example": "Let's divide and conquer and finish before lunch.",
+      "exampleJa": "手分けして昼までに終わらせよう。"
+    },
+    {
+      "word": "hand off",
+      "pos": "phrasal verb",
+      "japanese": "引き継ぐ、任せる",
+      "definition": "To pass work or responsibility to someone else.",
+      "example": "I handed off my projects before the vacation started.",
+      "exampleJa": "休暇が始まる前に、担当プロジェクトを引き継いだ。"
+    },
+    {
+      "word": "first thing",
+      "pos": "phrase",
+      "japanese": "朝一番に、真っ先に",
+      "definition": "At the very beginning of the day or before anything else.",
+      "example": "I'll email the client first thing tomorrow morning.",
+      "exampleJa": "明日の朝一番にクライアントへメールします。"
+    },
+    {
+      "word": "pull an all-nighter",
+      "pos": "phrase",
+      "japanese": "徹夜する",
+      "definition": "to stay up all night working or studying",
+      "example": "We pulled an all-nighter to finish the presentation slides.",
+      "exampleJa": "私たちはプレゼン資料を仕上げるために徹夜した。"
+    },
+    {
+      "word": "crack on",
+      "pos": "phrasal verb",
+      "japanese": "さっさと取りかかる",
+      "definition": "to continue working quickly and with energy",
+      "example": "Enough chatting, let's crack on with the report.",
+      "exampleJa": "おしゃべりはこれくらいにして、レポートに取りかかろう。"
+    },
+    {
+      "word": "cut it fine",
+      "pos": "idiom",
+      "japanese": "ギリギリで間に合わせる",
+      "definition": "to leave barely enough time or margin",
+      "example": "You're cutting it fine arriving ten minutes before boarding.",
+      "exampleJa": "搭乗10分前の到着はかなりギリギリだよ。"
+    },
+    {
+      "word": "make it work",
+      "pos": "phrase",
+      "japanese": "なんとかうまくやる",
+      "definition": "To find a way to succeed despite difficulties.",
+      "example": "The budget is tight, but we'll make it work.",
+      "exampleJa": "予算は厳しいけど、なんとかうまくやるよ。"
+    }
+  ],
+  "translation": "マイルズ: ビアンカ、四半期の数字は金曜締めなのに、依頼が机にどんどん積み上がっていくよ。\n\nビアンカ: こっちも同じ。ファンドのパフォーマンス要約のことで、経営陣がしつこく催促してくるの。\n\nマイルズ: まさに時間との競争だね。手分けして片づけない？\n\nビアンカ: いいわね。あなたは株式セクションを担当して、私は債券データをやるわ。\n\nマイルズ: 決まりだ。クライアントの数字は明日の朝一番に引き継いでもらえる？\n\nビアンカ: もちろん。実は昨日、危うく徹夜するところだったの。\n\nマイルズ: だめだよ。今からさっさと取りかかれば、今回はギリギリにならずに済むさ。\n\nビアンカ: そうね。なんとかうまくやり遂げて、金曜日にお祝いしましょう。"
+},
+{
+  "id": "2026-08-16-026",
+  "date": "2026-08-16",
+  "topic": "Vocab Review Conversations",
+  "title": "Back from a Long Vacation",
+  "difficulty": "Vocab Review",
+  "wordCount": 95,
+  "text": "Colin: Tessa! Long time no see. How was your vacation?\n\nTessa: Wonderful. I just bummed around the beach for two weeks.\n\nColin: Sounds perfect. Did you treat yourself to anything special?\n\nTessa: Kinda. Too many souvenirs. How scary is my inbox?\n\nColin: Six hundred emails. Clearing them will eat up your morning.\n\nTessa: Wow. I could use a strong coffee before I face that.\n\nColin: Gotcha. Also, a new client project came up while you were away.\n\nTessa: Already? I'd better get my act together quickly, then.\n\nColin: Just ping me if you can't keep up.\n\nTessa: Thanks, Colin. Honestly, it's good to be back.",
+  "glossary": [
+    {
+      "word": "long time no see",
+      "pos": "phrase",
+      "japanese": "久しぶり",
+      "definition": "A casual greeting used when you have not seen someone for a long time.",
+      "example": "Long time no see! You haven't changed a bit.",
+      "exampleJa": "久しぶり！全然変わってないね。"
+    },
+    {
+      "word": "bum around",
+      "pos": "phrasal verb",
+      "japanese": "ブラブラする、何もせず過ごす",
+      "definition": "to spend time doing nothing productive",
+      "example": "We bummed around town with no real plan.",
+      "exampleJa": "特に予定もなく街をブラブラした。"
+    },
+    {
+      "word": "treat yourself",
+      "pos": "phrase",
+      "japanese": "自分へのご褒美を買う",
+      "definition": "To buy or do something nice for yourself as a reward.",
+      "example": "You finished the project, so go treat yourself to dessert.",
+      "exampleJa": "プロジェクトを終えたんだから、ご褒美にデザートを買いなよ。"
+    },
+    {
+      "word": "kinda",
+      "pos": "slang",
+      "japanese": "ちょっと、なんか",
+      "definition": "spoken shortening of \"kind of,\" softening what follows",
+      "example": "That movie was kinda long, but I still enjoyed it.",
+      "exampleJa": "あの映画はちょっと長かったけど、それでも楽しめたよ。"
+    },
+    {
+      "word": "eat up",
+      "pos": "phrasal verb",
+      "japanese": "（時間などを）食う",
+      "definition": "to use up a large amount of time or money",
+      "example": "Long meetings eat up most of my afternoon.",
+      "exampleJa": "長い会議で午後の大半が潰れる。"
+    },
+    {
+      "word": "could use",
+      "pos": "phrase",
+      "japanese": "～が欲しい、～があるとありがたい",
+      "definition": "To want or need something, said casually.",
+      "example": "After that long meeting, I could use some coffee.",
+      "exampleJa": "あの長い会議の後だから、コーヒーが飲みたいな。"
+    },
+    {
+      "word": "gotcha",
+      "pos": "slang",
+      "japanese": "了解、わかった",
+      "definition": "casual spoken form of \"I got you,\" meaning \"I understand\"",
+      "example": "Gotcha, I'll send the file over before lunch today.",
+      "exampleJa": "了解、今日の昼までにファイルを送るね。"
+    },
+    {
+      "word": "come up",
+      "pos": "phrasal verb",
+      "japanese": "（急に）起こる、持ち上がる",
+      "definition": "to happen unexpectedly",
+      "example": "Something came up, so I canceled dinner.",
+      "exampleJa": "急用ができたので夕食はキャンセルした。"
+    },
+    {
+      "word": "get one's act together",
+      "pos": "idiom",
+      "japanese": "しっかりする、立て直す",
+      "definition": "to become organized and start performing well",
+      "example": "The team finally got their act together after halftime.",
+      "exampleJa": "チームはハーフタイム後にようやく立て直した。"
+    },
+    {
+      "word": "ping me",
+      "pos": "phrase",
+      "japanese": "連絡して、メッセージちょうだい",
+      "definition": "To send a quick message to someone",
+      "example": "Ping me when the report is ready.",
+      "exampleJa": "レポートができたら連絡ちょうだい。"
+    },
+    {
+      "word": "keep up",
+      "pos": "phrasal verb",
+      "japanese": "ついていく、追いつく",
+      "definition": "to manage to maintain the same pace or level",
+      "example": "I can barely keep up with all the changes.",
+      "exampleJa": "すべての変化にかろうじてついていっている。"
+    }
+  ],
+  "translation": "コリン: テッサ！久しぶり。休暇はどうだった？\n\nテッサ: 最高だったわ。2週間、ビーチでただブラブラしてたの。\n\nコリン: いいね。何か特別な自分へのご褒美は買った？\n\nテッサ: ちょっとね。お土産を買いすぎちゃった。私の受信トレイはどれくらい恐ろしいことになってる？\n\nコリン: 600通だよ。片づけるだけで午前中が潰れるね。\n\nテッサ: うわあ。それに立ち向かう前に、濃いコーヒーが欲しいな。\n\nコリン: 了解。あと、留守の間に新しいクライアント案件が持ち上がったんだ。\n\nテッサ: もう？じゃあ、早くしっかりしないとね。\n\nコリン: 追いつけなかったら、チャットで連絡してよ。\n\nテッサ: ありがとう、コリン。正直、戻ってこられて嬉しいわ。"
+}
 ];
