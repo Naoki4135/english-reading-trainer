@@ -278,7 +278,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .native-pct { font-size: 30px; font-weight: 800; color: var(--accent2); }
 .native-bar { height: 12px; border-radius: 6px; background: var(--surface2); overflow: hidden; }
 .native-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--accent), #a78bfa); width: 0; transition: width .6s; }
-.native-subs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-top: 12px; }
+.native-subs { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
 .native-sub-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text2); margin-bottom: 3px; gap: 6px; }
 .native-sub-bar { height: 5px; border-radius: 3px; background: var(--surface2); overflow: hidden; }
 .native-sub-fill { height: 100%; border-radius: 3px; }
@@ -670,6 +670,7 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <div class="stat-card"><div class="stat-num" id="stat-total-reads">0</div><div class="stat-label">Total Reads</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-checked">0</div><div class="stat-label">Words Checked</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-quiz-answers">0</div><div class="stat-label">Quiz Answers</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-study-days">0</div><div class="stat-label">Study Days</div></div>
     </div>
     <div id="due-alert" class="card" style="display:none; border-color: var(--orange);">
       <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -2332,7 +2333,7 @@ function buildVocabulary() {
 // === GAMIFICATION（ネイティブ度・XP・デイリーミッション・実績バッジ） ===
 // すべて既存の記録（dailyStats / vocabulary / readCounts）から毎回導出する。
 // 追加の永続化はしない設計: クラウド同期・バックアップは既存の仕組みのまま整合が取れ、過去の学習も自動で反映される
-const NATIVE_GOALS = { vocab: 2029, words: 1000000, practice: 20000, days: 365 }; // スタンダード目標（ユーザー選択）
+const NATIVE_GOALS = { vocab: 2029, words: 1000000, practice: 20000 }; // スタンダード目標（ユーザー選択）
 const MISSION_DEFS = [
   { id: 'read300', key: 'wordsRead', target: 300, label: '300語読む', icon: '&#128214;' },
   { id: 'essays2', key: 'essaysRead', target: 2, label: 'エッセイ・記事を2本読了', icon: '&#128218;' },
@@ -2391,13 +2392,13 @@ function gatherProgressStats() {
   });
   return { mastered, words, essays, practice, days, checked, reviewed, drilled, cloze, streak: calcStreak() };
 }
-// ネイティブ度（0〜100）: 語彙30% + 読書量30% + 演習25% + 継続15%
+// ネイティブ度（0〜100）: 語彙35% + 読書量35% + 演習30%
+// 経過時間に依存する軸は置かない（本人の努力量だけでスコアが進む設計。継続日数は別途Study Daysタイル等で記録）
 function nativeScore(st) {
   const parts = [
-    { label: '語彙', cur: st.mastered, goal: NATIVE_GOALS.vocab, weight: 30, color: '#3b82f6', fmt: v => v.toLocaleString() + '語' },
-    { label: '読書量', cur: st.words, goal: NATIVE_GOALS.words, weight: 30, color: '#a78bfa', fmt: v => v >= 10000 ? (v / 10000).toFixed(v >= 100000 ? 0 : 1) + '万語' : v.toLocaleString() + '語' },
-    { label: '演習', cur: st.practice, goal: NATIVE_GOALS.practice, weight: 25, color: '#22c55e', fmt: v => v.toLocaleString() + '回' },
-    { label: '継続', cur: st.days, goal: NATIVE_GOALS.days, weight: 15, color: '#f97316', fmt: v => v + '日' }
+    { label: '語彙', cur: st.mastered, goal: NATIVE_GOALS.vocab, weight: 35, color: '#3b82f6', fmt: v => v.toLocaleString() + '語' },
+    { label: '読書量', cur: st.words, goal: NATIVE_GOALS.words, weight: 35, color: '#a78bfa', fmt: v => v >= 10000 ? (v / 10000).toFixed(v >= 100000 ? 0 : 1) + '万語' : v.toLocaleString() + '語' },
+    { label: '演習', cur: st.practice, goal: NATIVE_GOALS.practice, weight: 30, color: '#22c55e', fmt: v => v.toLocaleString() + '回' }
   ];
   let score = 0;
   parts.forEach(p => { p.ratio = Math.min(1, p.cur / p.goal); score += p.ratio * p.weight; });
@@ -2450,6 +2451,8 @@ function renderGamification() {
   const { score, parts } = nativeScore(st);
   const xp = totalXP();
   const lv = levelFromXP(xp);
+  // 継続日数はメーターから外したが、累計学習日数として記録・表示し続ける
+  document.getElementById('stat-study-days').textContent = st.days;
   // ネイティブ度メーター
   document.getElementById('native-pct').textContent = (score >= 100 ? '100' : score.toFixed(1)) + '%';
   document.getElementById('native-rank').textContent = nativeRank(score);
