@@ -271,6 +271,35 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
 .vocab-pos { font-size: 11px; color: var(--text2); font-style: italic; font-weight: 400; }
 /* 単語カードの絵文字（クイズのフラッシュカードと同じ getWordVisual を使う） */
 .vocab-emoji { font-size: 18px; margin-left: 7px; letter-spacing: 1px; vertical-align: middle; white-space: nowrap; }
+
+/* ゲーミフィケーション */
+.native-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.native-rank { font-size: 20px; font-weight: 800; color: var(--accent2); }
+.native-pct { font-size: 30px; font-weight: 800; color: var(--accent2); }
+.native-bar { height: 12px; border-radius: 6px; background: var(--surface2); overflow: hidden; }
+.native-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--accent), #a78bfa); width: 0; transition: width .6s; }
+.native-subs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; margin-top: 12px; }
+.native-sub-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text2); margin-bottom: 3px; gap: 6px; }
+.native-sub-bar { height: 5px; border-radius: 3px; background: var(--surface2); overflow: hidden; }
+.native-sub-fill { height: 100%; border-radius: 3px; }
+.xp-bar { height: 8px; border-radius: 4px; background: var(--surface2); overflow: hidden; margin-top: 8px; }
+.xp-bar-fill { height: 100%; background: var(--green); border-radius: 4px; width: 0; transition: width .6s; }
+.mission-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.mission-row:last-child { border-bottom: none; padding-bottom: 2px; }
+.mission-icon { font-size: 18px; width: 24px; text-align: center; }
+.mission-info { flex: 1; }
+.mission-label { font-size: 13px; font-weight: 600; }
+.mission-progress { font-size: 11px; color: var(--text2); margin-top: 1px; }
+.mission-done .mission-label { color: var(--green); }
+.mission-xp { font-size: 11px; font-weight: 700; color: var(--text2); white-space: nowrap; }
+.mission-done .mission-xp { color: var(--green); }
+.badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; padding: 12px; }
+.badge { text-align: center; padding: 8px 2px; border-radius: 10px; background: var(--surface2); border: 1px solid var(--border); }
+.badge.earned { border-color: var(--accent); background: var(--surface); }
+.badge-icon { font-size: 22px; filter: grayscale(1); opacity: .35; }
+.badge.earned .badge-icon { filter: none; opacity: 1; }
+.badge-name { font-size: 9px; color: var(--text2); margin-top: 3px; line-height: 1.3; }
+.badge.earned .badge-name { color: var(--text); }
 .vocab-right { display: flex; gap: 6px; align-items: center; flex-shrink: 0; margin-left: 8px; }
 .btn-master {
   padding: 4px 10px; border-radius: 4px; border: 1px solid var(--green);
@@ -598,6 +627,40 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
       <p id="home-date"></p>
     </div>
     <div id="streak-banner" class="card" style="display:none; text-align:center; padding:10px; margin-bottom:12px; font-weight:700;"></div>
+
+    <!-- ゲーミフィケーション: ネイティブ度メーター / XPレベル / デイリーミッション / 実績バッジ -->
+    <div class="card" id="native-meter-card">
+      <div class="native-header">
+        <div>
+          <div class="native-rank" id="native-rank">B2</div>
+          <div style="font-size:11px; color:var(--text2);">ネイティブへの道</div>
+        </div>
+        <div class="native-pct" id="native-pct">0%</div>
+      </div>
+      <div class="native-bar"><div class="native-bar-fill" id="native-bar-fill"></div></div>
+      <div class="native-subs" id="native-subs"></div>
+    </div>
+    <div class="card" id="xp-card">
+      <div style="display:flex; justify-content:space-between; align-items:baseline;">
+        <div style="font-weight:800; font-size:16px;">Lv.<span id="xp-level">1</span> <span id="xp-title" style="font-size:11px; color:var(--text2); font-weight:400;"></span></div>
+        <div style="font-size:12px; color:var(--text2);">今日 <span id="xp-today" style="color:var(--accent2); font-weight:700;">+0</span> XP</div>
+      </div>
+      <div class="xp-bar"><div class="xp-bar-fill" id="xp-bar-fill"></div></div>
+      <div style="display:flex; justify-content:space-between; font-size:11px; color:var(--text2); margin-top:4px;">
+        <span id="xp-total">0 XP</span><span id="xp-next"></span>
+      </div>
+    </div>
+    <div class="card" id="missions-card">
+      <div class="card-title" style="margin-bottom:4px;">&#127919; 今日のミッション <span id="missions-done" style="color:var(--text2); font-weight:400; font-size:12px;"></span></div>
+      <div id="missions-list"></div>
+    </div>
+    <div class="card" style="padding:0; overflow:hidden;" id="badges-card">
+      <button class="essay-group-toggle" style="margin:0;" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open');">
+        <span>&#127941; 実績バッジ <span id="badges-count" style="color:var(--text2); font-weight:400;"></span></span> <span class="arrow">&#9660;</span>
+      </button>
+      <div class="essay-group-content"><div class="badge-grid" id="badge-grid"></div></div>
+    </div>
+
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-num" id="stat-read-essays">0</div><div class="stat-label">Essays Read</div></div>
       <div class="stat-card"><div class="stat-num" id="stat-read-words">0</div><div class="stat-label">Words Read</div></div>
@@ -1057,6 +1120,10 @@ main { padding: 16px 16px 80px; max-width: 800px; margin: 0 auto; }
     <div class="card" style="padding:12px; margin-top:8px;">
       <div style="font-size:12px; color:var(--text2); margin-bottom:8px;" id="chart-drill-label">&#9889; 瞬間英作文</div>
       <canvas id="chart-drilled" height="150" style="width:100%;"></canvas>
+    </div>
+    <div class="card" style="padding:12px; margin-top:8px;">
+      <div style="font-size:12px; color:var(--text2); margin-bottom:8px;" id="chart-xp-label">&#127942; 獲得XP</div>
+      <canvas id="chart-xp" height="150" style="width:100%;"></canvas>
     </div>
 
     <div class="card-title" style="margin: 16px 0 8px;">Long-term Progress (All Time)</div>
@@ -2262,6 +2329,166 @@ function buildVocabulary() {
   saveState();
 }
 
+// === GAMIFICATION（ネイティブ度・XP・デイリーミッション・実績バッジ） ===
+// すべて既存の記録（dailyStats / vocabulary / readCounts）から毎回導出する。
+// 追加の永続化はしない設計: クラウド同期・バックアップは既存の仕組みのまま整合が取れ、過去の学習も自動で反映される
+const NATIVE_GOALS = { vocab: 2029, words: 1000000, practice: 20000, days: 365 }; // スタンダード目標（ユーザー選択）
+const MISSION_DEFS = [
+  { id: 'read300', key: 'wordsRead', target: 300, label: '300語読む', icon: '&#128214;' },
+  { id: 'essays2', key: 'essaysRead', target: 2, label: 'エッセイ・記事を2本読了', icon: '&#128218;' },
+  { id: 'quiz10', key: 'reviewed', target: 10, label: 'クイズに10問回答', icon: '&#127183;' },
+  { id: 'check10', key: 'checked', target: 10, label: '単語を10個チェック', icon: '&#128278;' },
+  { id: 'drill5', key: 'drilled', target: 5, label: '瞬間英作文を5問', icon: '&#9889;' },
+  { id: 'cloze5', key: 'cloze', target: 5, label: '穴埋めクイズを5問', icon: '&#9999;&#65039;' }
+];
+// 日付から決定的に3ミッションを選ぶ（保存不要・過去分も同じ結果を再計算できるので、XPの遡り計算が成立する）
+function missionsForDate(dateStr) {
+  let seed = 0;
+  for (const ch of String(dateStr)) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+  const pool = MISSION_DEFS.slice();
+  const picked = [];
+  for (let i = 0; i < 3 && pool.length; i++) {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    picked.push(pool.splice(seed % pool.length, 1)[0]);
+  }
+  return picked;
+}
+// 1日分のXP = 基礎XP（活動量に比例）+ ミッションボーナス（各+20）
+function dayXP(s, dateStr) {
+  if (!s) return 0;
+  let xp = (s.wordsRead || 0) * 0.1 + (s.essaysRead || 0) * 5 + (s.reviewed || 0) * 2
+    + (s.checked || 0) + (s.drilled || 0) * 3 + (s.cloze || 0) * 3 + (s.interp || 0) * 3;
+  missionsForDate(dateStr).forEach(m => { if ((s[m.key] || 0) >= m.target) xp += 20; });
+  return Math.round(xp);
+}
+function totalXP() {
+  return Object.entries(state.dailyStats || {}).reduce((sum, [d, s]) => sum + dayXP(s, d), 0);
+}
+// レベルn到達に必要な累計XP（なだらかな逓増カーブ）
+function xpForLevel(n) { return Math.round(80 * Math.pow(n - 1, 1.6)); }
+function levelFromXP(xp) {
+  let lv = 1;
+  while (xpForLevel(lv + 1) <= xp) lv++;
+  return lv;
+}
+const LEVEL_TITLES = ['Rookie', 'Learner', 'Reader', 'Word Collector', 'Storyteller', 'Fluent Mind', 'Wordsmith', 'Polyglot', 'Master', 'Legend'];
+function levelTitle(lv) { return LEVEL_TITLES[Math.min(LEVEL_TITLES.length - 1, Math.floor((lv - 1) / 5))]; }
+// 進捗の集計（メーター・バッジ共用）
+function gatherProgressStats() {
+  const mastered = Object.values(state.vocabulary).filter(v => v.level >= 3).length;
+  let words = 0, essays = 0;
+  Object.entries(state.readCounts).forEach(([id, count]) => {
+    const e = findReadingById(id);
+    if (e) words += e.wordCount * count;
+    if (count > 0) essays++;
+  });
+  let practice = 0, days = 0, checked = 0, reviewed = 0, drilled = 0, cloze = 0;
+  Object.values(state.dailyStats || {}).forEach(s => {
+    const p = (s.reviewed || 0) + (s.drilled || 0) + (s.cloze || 0) + (s.checked || 0) + (s.interp || 0);
+    practice += p;
+    reviewed += s.reviewed || 0; drilled += s.drilled || 0; cloze += s.cloze || 0; checked += s.checked || 0;
+    if ((s.wordsRead || 0) > 0 || p > 0) days++;
+  });
+  return { mastered, words, essays, practice, days, checked, reviewed, drilled, cloze, streak: calcStreak() };
+}
+// ネイティブ度（0〜100）: 語彙30% + 読書量30% + 演習25% + 継続15%
+function nativeScore(st) {
+  const parts = [
+    { label: '語彙', cur: st.mastered, goal: NATIVE_GOALS.vocab, weight: 30, color: '#3b82f6', fmt: v => v.toLocaleString() + '語' },
+    { label: '読書量', cur: st.words, goal: NATIVE_GOALS.words, weight: 30, color: '#a78bfa', fmt: v => v >= 10000 ? (v / 10000).toFixed(v >= 100000 ? 0 : 1) + '万語' : v.toLocaleString() + '語' },
+    { label: '演習', cur: st.practice, goal: NATIVE_GOALS.practice, weight: 25, color: '#22c55e', fmt: v => v.toLocaleString() + '回' },
+    { label: '継続', cur: st.days, goal: NATIVE_GOALS.days, weight: 15, color: '#f97316', fmt: v => v + '日' }
+  ];
+  let score = 0;
+  parts.forEach(p => { p.ratio = Math.min(1, p.cur / p.goal); score += p.ratio * p.weight; });
+  return { score, parts };
+}
+function nativeRank(score) {
+  if (score >= 100) return 'NATIVE';
+  if (score >= 75) return 'Near-Native';
+  if (score >= 50) return 'C2';
+  if (score >= 25) return 'C1';
+  return 'B2';
+}
+// 実績バッジ（現在の状態から判定。ctx = {st, lv, score}）
+const BADGE_DEFS = [
+  { icon: '&#128293;', name: '3日連続', test: c => c.st.streak >= 3 },
+  { icon: '&#128293;', name: '7日連続', test: c => c.st.streak >= 7 },
+  { icon: '&#128293;', name: '30日連続', test: c => c.st.streak >= 30 },
+  { icon: '&#128293;', name: '100日連続', test: c => c.st.streak >= 100 },
+  { icon: '&#11088;', name: '10語マスター', test: c => c.st.mastered >= 10 },
+  { icon: '&#11088;', name: '100語マスター', test: c => c.st.mastered >= 100 },
+  { icon: '&#127775;', name: '500語マスター', test: c => c.st.mastered >= 500 },
+  { icon: '&#128081;', name: '1000語マスター', test: c => c.st.mastered >= 1000 },
+  { icon: '&#128081;', name: '全語彙マスター', test: c => c.st.mastered >= NATIVE_GOALS.vocab },
+  { icon: '&#128214;', name: '1万語読了', test: c => c.st.words >= 10000 },
+  { icon: '&#128214;', name: '10万語読了', test: c => c.st.words >= 100000 },
+  { icon: '&#128218;', name: '50万語読了', test: c => c.st.words >= 500000 },
+  { icon: '&#127942;', name: '100万語読了', test: c => c.st.words >= 1000000 },
+  { icon: '&#128240;', name: 'エッセイ10本', test: c => c.st.essays >= 10 },
+  { icon: '&#128240;', name: 'エッセイ50本', test: c => c.st.essays >= 50 },
+  { icon: '&#128215;', name: 'エッセイ100本', test: c => c.st.essays >= 100 },
+  { icon: '&#127183;', name: 'クイズ100問', test: c => c.st.reviewed >= 100 },
+  { icon: '&#127183;', name: 'クイズ1000問', test: c => c.st.reviewed >= 1000 },
+  { icon: '&#127924;', name: 'クイズ5000問', test: c => c.st.reviewed >= 5000 },
+  { icon: '&#9989;', name: 'チェック100回', test: c => c.st.checked >= 100 },
+  { icon: '&#9989;', name: 'チェック1000回', test: c => c.st.checked >= 1000 },
+  { icon: '&#9889;', name: '英作文100問', test: c => c.st.drilled >= 100 },
+  { icon: '&#9889;', name: '英作文1000問', test: c => c.st.drilled >= 1000 },
+  { icon: '&#9999;&#65039;', name: '穴埋め100問', test: c => c.st.cloze >= 100 },
+  { icon: '&#9999;&#65039;', name: '穴埋め500問', test: c => c.st.cloze >= 500 },
+  { icon: '&#128640;', name: 'Lv.10到達', test: c => c.lv >= 10 },
+  { icon: '&#128640;', name: 'Lv.25到達', test: c => c.lv >= 25 },
+  { icon: '&#128760;', name: 'Lv.50到達', test: c => c.lv >= 50 },
+  { icon: '&#127891;', name: 'C1到達', test: c => c.score >= 25 },
+  { icon: '&#127891;', name: 'C2到達', test: c => c.score >= 50 },
+  { icon: '&#127941;', name: 'Near-Native', test: c => c.score >= 75 },
+  { icon: '&#127942;', name: 'NATIVE', test: c => c.score >= 100 }
+];
+function renderGamification() {
+  const st = gatherProgressStats();
+  const { score, parts } = nativeScore(st);
+  const xp = totalXP();
+  const lv = levelFromXP(xp);
+  // ネイティブ度メーター
+  document.getElementById('native-pct').textContent = (score >= 100 ? '100' : score.toFixed(1)) + '%';
+  document.getElementById('native-rank').textContent = nativeRank(score);
+  document.getElementById('native-bar-fill').style.width = Math.min(100, score) + '%';
+  document.getElementById('native-subs').innerHTML = parts.map(p => `
+    <div><div class="native-sub-label"><span>${p.label}</span><span>${p.fmt(p.cur)} / ${p.fmt(p.goal)}</span></div>
+    <div class="native-sub-bar"><div class="native-sub-fill" style="width:${(p.ratio * 100).toFixed(1)}%; background:${p.color};"></div></div></div>`).join('');
+  // XPレベル
+  const curBase = xpForLevel(lv), nextNeed = xpForLevel(lv + 1);
+  document.getElementById('xp-level').textContent = lv;
+  document.getElementById('xp-title').textContent = levelTitle(lv);
+  document.getElementById('xp-total').textContent = xp.toLocaleString() + ' XP';
+  document.getElementById('xp-next').textContent = '次のLvまで ' + (nextNeed - xp).toLocaleString() + ' XP';
+  document.getElementById('xp-bar-fill').style.width = Math.min(100, (xp - curBase) / Math.max(1, nextNeed - curBase) * 100).toFixed(1) + '%';
+  const today = formatLocalDate();
+  document.getElementById('xp-today').textContent = '+' + dayXP(state.dailyStats[today], today).toLocaleString();
+  // 今日のミッション
+  const s = state.dailyStats[today] || {};
+  let done = 0;
+  document.getElementById('missions-list').innerHTML = missionsForDate(today).map(m => {
+    const cur = Math.min(s[m.key] || 0, m.target);
+    const ok = cur >= m.target; if (ok) done++;
+    return `<div class="mission-row${ok ? ' mission-done' : ''}">
+      <span class="mission-icon">${ok ? '&#9989;' : m.icon}</span>
+      <div class="mission-info"><div class="mission-label">${m.label}</div>
+      <div class="mission-progress">${cur} / ${m.target}</div></div>
+      <span class="mission-xp">+20 XP</span></div>`;
+  }).join('');
+  document.getElementById('missions-done').textContent = `(${done}/3 達成)`;
+  // 実績バッジ
+  const ctx = { st, lv, score };
+  let earned = 0;
+  document.getElementById('badge-grid').innerHTML = BADGE_DEFS.map(b => {
+    const ok = b.test(ctx); if (ok) earned++;
+    return `<div class="badge${ok ? ' earned' : ''}"><div class="badge-icon">${b.icon}</div><div class="badge-name">${b.name}</div></div>`;
+  }).join('');
+  document.getElementById('badges-count').textContent = `(${earned}/${BADGE_DEFS.length})`;
+}
+
 // === NAV ===
 function showPage(page) {
   const targetPage = page === 'listen-detail' ? 'page-listen-detail' : 'page-' + page;
@@ -2320,6 +2547,7 @@ function calcStreak() {
 }
 function updateDashboard() {
   updateBackupAlert();
+  renderGamification();
   const streak = calcStreak();
   const sb = document.getElementById('streak-banner');
   if (streak >= 2) {
@@ -3775,7 +4003,7 @@ function buildStatsBuckets(period) {
     }
   }
   return buckets.map(b => {
-    let wordsRead = 0, reviewed = 0, drilled = 0, checked = 0, activeDays = 0;
+    let wordsRead = 0, reviewed = 0, drilled = 0, checked = 0, xp = 0, activeDays = 0;
     b.days.forEach(d => {
       const s = ds[d];
       if (!s) return;
@@ -3783,9 +4011,10 @@ function buildStatsBuckets(period) {
       reviewed += s.reviewed || 0;
       drilled += s.drilled || 0;
       checked += s.checked || 0;
+      xp += dayXP(s, d);
       if ((s.wordsRead || 0) > 0 || (s.reviewed || 0) > 0 || (s.drilled || 0) > 0 || (s.checked || 0) > 0) activeDays++;
     });
-    return { ...b, wordsRead, reviewed, drilled, checked, activeDays };
+    return { ...b, wordsRead, reviewed, drilled, checked, xp, activeDays };
   });
 }
 function drawCharts() {
@@ -3797,10 +4026,12 @@ function drawCharts() {
   document.getElementById('chart-reviews-label').textContent = `クイズ復習数 / ${unit}`;
   document.getElementById('chart-checked-label').innerHTML = `&#10003; 単語チェック数 / ${unit}`;
   document.getElementById('chart-drill-label').innerHTML = `&#9889; 瞬間英作文 / ${unit}`;
+  document.getElementById('chart-xp-label').innerHTML = `&#127942; 獲得XP / ${unit}`;
   drawBarChart('chart-words-read', labels, buckets.map(b => b.wordsRead), '#3b82f6');
   drawBarChart('chart-reviews', labels, buckets.map(b => b.reviewed), '#a78bfa');
   drawBarChart('chart-checked', labels, buckets.map(b => b.checked), '#22c55e');
   drawBarChart('chart-drilled', labels, buckets.map(b => b.drilled), '#f97316');
+  drawBarChart('chart-xp', labels, buckets.map(b => b.xp), '#eab308');
   renderPeriodSummary(buckets, unit);
 }
 // 直近の期間と1つ前の期間を比較して表示する
@@ -3822,7 +4053,8 @@ function renderPeriodSummary(buckets, unit) {
     ['読んだ語数', cur.wordsRead, prev && prev.wordsRead],
     ['クイズ復習', cur.reviewed, prev && prev.reviewed],
     ['単語チェック', cur.checked, prev && prev.checked],
-    ['瞬間英作文', cur.drilled, prev && prev.drilled]
+    ['瞬間英作文', cur.drilled, prev && prev.drilled],
+    ['獲得XP', cur.xp, prev && prev.xp]
   ];
   const maxDays = statsPeriod === 'day' ? 1 : cur.days.length;
   el.innerHTML = `<div style="font-weight:700; margin-bottom:8px;">${periodName}の記録 <span style="font-size:11px; color:var(--text2); font-weight:400;">（前${unit}比）</span></div>`
